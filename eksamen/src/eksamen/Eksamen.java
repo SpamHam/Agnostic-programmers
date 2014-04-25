@@ -13,7 +13,7 @@ package eksamen;
 public class Eksamen {
 
     /**
-     * @param args the command line arguments tttttjaskldaklsdjaklsdjaskd commit that shit
+     * @param args JACOB ELSKER TISSEMAND
      */
     public static void main(String[] args) {
         // TODO code application logic here
