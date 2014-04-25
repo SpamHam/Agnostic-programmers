@@ -8,7 +8,7 @@ package eksamen;
 
 /**
  *
- * @author peter bærbar
+ * @author peter og Morten
  */
 public class Eksamen {
 
