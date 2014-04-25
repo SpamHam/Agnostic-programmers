@@ -13,7 +13,7 @@ package eksamen;
 public class Eksamen {
 
     /**
-     * @param args the command line arguments ttttt
+     * @param args the command line arguments tttttjaskldaklsdjaklsdjaskd
      */
     public static void main(String[] args) {
         // TODO code application logic here
