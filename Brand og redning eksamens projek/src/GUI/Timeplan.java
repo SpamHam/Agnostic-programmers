@@ -17,7 +17,9 @@ public class Timeplan extends javax.swing.JFrame {
      */
     public Timeplan() {
         initComponents();
+        setTitle("Udryknings Skema");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     /**

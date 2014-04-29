@@ -17,6 +17,7 @@ public class Payroll extends javax.swing.JFrame {
      */
     public Payroll() {
         initComponents();
+        setTitle("Time oversigt");
     }
 
     /**

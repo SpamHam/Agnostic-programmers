@@ -18,6 +18,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     public ChooseTeam(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 

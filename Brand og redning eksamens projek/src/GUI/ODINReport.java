@@ -19,6 +19,7 @@ public class ODINReport extends javax.swing.JFrame {
      */
     public ODINReport() {
         initComponents();
+        setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
         ShowSkadeslidte();

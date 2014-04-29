@@ -18,6 +18,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     public ChooseMaterialsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Materiale Oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
