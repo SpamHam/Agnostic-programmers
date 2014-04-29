@@ -10,15 +10,19 @@ package GUI;
  * @author Claus
  */
 public class ODINReport extends javax.swing.JFrame {
-boolean visible = false;
+
+    boolean chkboxIndsatteStyrker = false;
+    boolean chkboxSkadeslidte = false;
+
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
         this.setVisible(true);
-        ShowFields();
-        
+        ShowIndsatteStyrker();
+        ShowSkadeslidte();
+
     }
 
     /**
@@ -126,6 +130,11 @@ boolean visible = false;
         txtMelding.setText("Ilde brand ved brønden");
 
         chkBoxSkadeslidte.setText("Skadeslidte");
+        chkBoxSkadeslidte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkBoxSkadeslidteActionPerformed(evt);
+            }
+        });
 
         lblNavn.setText("Navn:");
 
@@ -348,8 +357,12 @@ boolean visible = false;
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed
-        ShowFields();
+        ShowIndsatteStyrker();
     }//GEN-LAST:event_chkBoxIndsatteStyrkerActionPerformed
+
+    private void chkBoxSkadeslidteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxSkadeslidteActionPerformed
+        ShowSkadeslidte();
+    }//GEN-LAST:event_chkBoxSkadeslidteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -424,14 +437,30 @@ boolean visible = false;
     private javax.swing.JTextField txtUgeDag;
     // End of variables declaration//GEN-END:variables
 
-        private void ShowFields() {
-        boolean visible;
+    private void ShowIndsatteStyrker() {
         if (chkBoxIndsatteStyrker.isSelected()) {
-            visible = true;
+            chkboxIndsatteStyrker = true;
 
         } else {
-            visible = false;
+            chkboxIndsatteStyrker = false;
+
         }
-        jpanelIndsatteStyrker.setVisible(visible);
+        jpanelIndsatteStyrker.setVisible(chkboxIndsatteStyrker);
+
+    }
+
+
+private void ShowSkadeslidte()
+{
+if (chkBoxSkadeslidte.isSelected()){
+            chkboxSkadeslidte = true;
         }
+else{
+            chkboxSkadeslidte = false;
+}
+        lblNavn.setVisible(chkboxSkadeslidte);
+        lblAddresse.setVisible(chkboxSkadeslidte);
+        txtNavn.setVisible(chkboxSkadeslidte);
+        txtAddresse.setVisible(chkboxSkadeslidte);
+}
 }
