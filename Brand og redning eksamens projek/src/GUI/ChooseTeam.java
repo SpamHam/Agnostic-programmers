@@ -18,6 +18,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     public ChooseTeam(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -79,6 +80,11 @@ public class ChooseTeam extends javax.swing.JDialog {
         btnTilfoejTeam.setText("Tilføj Team");
 
         btnLukVindue.setText("Luk Vindue");
+        btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLukVindueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,6 +149,10 @@ public class ChooseTeam extends javax.swing.JDialog {
     private void btnFoejTilTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFoejTilTeamActionPerformed
 
     }//GEN-LAST:event_btnFoejTilTeamActionPerformed
+
+    private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
+dispose();
+    }//GEN-LAST:event_btnLukVindueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

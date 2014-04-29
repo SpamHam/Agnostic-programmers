@@ -17,6 +17,7 @@ public class Timeplan extends javax.swing.JFrame {
      */
     public Timeplan() {
         initComponents();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -58,10 +59,20 @@ public class Timeplan extends javax.swing.JFrame {
         jTextField1.setText("Andet tekst skal stå her....");
 
         btnVaelgTeam.setText("Vælg Team");
+        btnVaelgTeam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVaelgTeamActionPerformed(evt);
+            }
+        });
 
         btnNaesteSide.setText("Næste Side");
 
         btnLukVindue.setText("Luk Vindue");
+        btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLukVindueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,6 +114,16 @@ public class Timeplan extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVaelgTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaelgTeamActionPerformed
+ChooseTeam chooseTeam = new ChooseTeam(this, true);
+chooseTeam.setVisible(true);
+chooseTeam.setLocationRelativeTo(this);
+    }//GEN-LAST:event_btnVaelgTeamActionPerformed
+
+    private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
+        dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLukVindueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
