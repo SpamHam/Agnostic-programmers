@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 /**
@@ -11,12 +10,15 @@ package GUI;
  * @author Claus
  */
 public class ODINReport extends javax.swing.JFrame {
-
+boolean visible = false;
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
+        this.setVisible(true);
+        ShowFields();
+        
     }
 
     /**
@@ -53,8 +55,6 @@ public class ODINReport extends javax.swing.JFrame {
         lblAddresse = new javax.swing.JLabel();
         txtNavn = new javax.swing.JTextField();
         txtAddresse = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jtableIndsatteStyrker = new javax.swing.JTable();
         btnTilfoejMaterialer = new javax.swing.JButton();
         lblMaterialerBrugt = new javax.swing.JLabel();
         btnGem = new javax.swing.JButton();
@@ -62,6 +62,9 @@ public class ODINReport extends javax.swing.JFrame {
         chkBoxIndsatteStyrker = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         jtableMaterialer1 = new javax.swing.JTable();
+        jpanelIndsatteStyrker = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jtableIndsatteStyrker = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -77,8 +80,9 @@ public class ODINReport extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(500, 584));
+        setMaximumSize(new java.awt.Dimension(600, 640));
+        setPreferredSize(new java.awt.Dimension(600, 640));
+        setResizable(false);
 
         lblHeader.setFont(new java.awt.Font("Arial Black", 1, 18)); // NOI18N
         lblHeader.setForeground(new java.awt.Color(255, 0, 51));
@@ -127,21 +131,12 @@ public class ODINReport extends javax.swing.JFrame {
 
         lblAddresse.setText("Addresse:");
 
-        jtableIndsatteStyrker.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"1341", "", null, null},
-                {"2338", "", null, null},
-                {"2349", "", null, null},
-                {"2351", "", null, null},
-                {"ST Vagt", null, null, null}
-            },
-            new String [] {
-                "Vogn Nr:", "Kørsel 1 / 2", "Bemanding", "Afvigelse"
-            }
-        ));
-        jScrollPane1.setViewportView(jtableIndsatteStyrker);
-
         btnTilfoejMaterialer.setText("Tilføj Materialer");
+        btnTilfoejMaterialer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilfoejMaterialerActionPerformed(evt);
+            }
+        });
 
         lblMaterialerBrugt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblMaterialerBrugt.setText("Materialer Brugt:");
@@ -149,8 +144,18 @@ public class ODINReport extends javax.swing.JFrame {
         btnGem.setText("Gem");
 
         btnTilbage.setText("Tilbage");
+        btnTilbage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilbageActionPerformed(evt);
+            }
+        });
 
         chkBoxIndsatteStyrker.setText("Indsatte Styrker:");
+        chkBoxIndsatteStyrker.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkBoxIndsatteStyrkerActionPerformed(evt);
+            }
+        });
 
         jtableMaterialer1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,6 +170,33 @@ public class ODINReport extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jtableMaterialer1);
 
+        jtableIndsatteStyrker.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"1341", "", null, null},
+                {"2338", "", null, null},
+                {"2349", "", null, null},
+                {"2351", "", null, null},
+                {"ST Vagt", null, null, null}
+            },
+            new String [] {
+                "Vogn Nr:", "Kørsel 1 / 2", "Bemanding", "Afvigelse"
+            }
+        ));
+        jScrollPane1.setViewportView(jtableIndsatteStyrker);
+
+        javax.swing.GroupLayout jpanelIndsatteStyrkerLayout = new javax.swing.GroupLayout(jpanelIndsatteStyrker);
+        jpanelIndsatteStyrker.setLayout(jpanelIndsatteStyrkerLayout);
+        jpanelIndsatteStyrkerLayout.setHorizontalGroup(
+            jpanelIndsatteStyrkerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
+        );
+        jpanelIndsatteStyrkerLayout.setVerticalGroup(
+            jpanelIndsatteStyrkerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelIndsatteStyrkerLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,6 +204,9 @@ public class ODINReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnTilbage)
@@ -191,8 +226,8 @@ public class ODINReport extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblDato)
                                         .addGap(60, 60, 60)
-                                        .addComponent(jDateChooserDato, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(84, 84, 84)
+                                        .addComponent(jDateChooserDato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(71, 71, 71)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblIndsatsLeder)
                                     .addComponent(lblHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,10 +259,7 @@ public class ODINReport extends javax.swing.JFrame {
                                             .addComponent(txtAddresse))))
                                 .addGap(18, 18, 18)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,9 +318,9 @@ public class ODINReport extends javax.swing.JFrame {
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(chkBoxIndsatteStyrker)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilbage)
                     .addComponent(btnGem))
@@ -301,6 +333,23 @@ public class ODINReport extends javax.swing.JFrame {
     private void txtAlarmModtagetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlarmModtagetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlarmModtagetActionPerformed
+
+    private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
+        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
+        materialsDialog.setLocationRelativeTo(this);
+        materialsDialog.setVisible(true);
+    }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
+
+    private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+        Timeplan timePlanFrame = new Timeplan();
+        timePlanFrame.setLocationRelativeTo(this);
+        timePlanFrame.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnTilbageActionPerformed
+
+    private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed
+        ShowFields();
+    }//GEN-LAST:event_chkBoxIndsatteStyrkerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,6 +397,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel jpanelIndsatteStyrker;
     private javax.swing.JTable jtableIndsatteStyrker;
     private javax.swing.JTable jtableMaterialer1;
     private javax.swing.JLabel lblAddresse;
@@ -373,4 +423,15 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JTextField txtNavn;
     private javax.swing.JTextField txtUgeDag;
     // End of variables declaration//GEN-END:variables
+
+        private void ShowFields() {
+        boolean visible;
+        if (chkBoxIndsatteStyrker.isSelected()) {
+            visible = true;
+
+        } else {
+            visible = false;
+        }
+        jpanelIndsatteStyrker.setVisible(visible);
+        }
 }
