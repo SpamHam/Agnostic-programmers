@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblFornavn" max="32767" attributes="0"/>
+                          <Component id="lblCPR" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtFornavn" max="32767" attributes="0"/>
+                          <Component id="txtCPR" pref="113" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="lblCallNr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblTlfNr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblAddresse" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblEfternavn" alignment="0" pref="60" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtAddresse" pref="113" max="32767" attributes="0"/>
+                              <Component id="txtEfternavn" max="32767" attributes="0"/>
+                              <Component id="txtTlfNr" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCallNr" alignment="0" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+              <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnAnnuller" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnTilfoej" min="-2" pref="67" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblCPR" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCPR" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblEfternavn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtEfternavn" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtAddresse" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblAddresse" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtTlfNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblTlfNr" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtCallNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblCallNr" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnTilfoej" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAnnuller" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="lblEfternavn">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Efternavn:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblAddresse">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Addresse:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblTlfNr">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Tlf. Nr:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCallNr">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Call Nr:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtTlfNr">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtFornavn">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCallNr">
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtEfternavn">
+    </Component>
+    <Component class="javax.swing.JCheckBox" name="chkboxLederUddannet">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Leder Uddannet"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkboxLederUddannetActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblFornavn">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="Fornavn:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtAddresse">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblCPR">
+      <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
+        <Property name="text" type="java.lang.String" value="CPR:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtCPR">
+    </Component>
+    <Component class="javax.swing.JButton" name="btnTilfoej">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Tilf&#xf8;j"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTilfoejActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnAnnuller">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Annuller"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnnullerActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
