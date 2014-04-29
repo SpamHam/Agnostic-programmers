@@ -18,6 +18,8 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     public ChooseMaterialsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Materiale Oversigt");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -70,6 +72,11 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         });
 
         btnAnnuller.setText("Annuller");
+        btnAnnuller.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnnullerActionPerformed(evt);
+            }
+        });
 
         lblAlleMaterialer.setText("Alle Materialer:");
 
@@ -142,6 +149,10 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
+
+    private void btnAnnullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnullerActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnAnnullerActionPerformed
 
     /**
      * @param args the command line arguments
