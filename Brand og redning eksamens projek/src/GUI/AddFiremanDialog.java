@@ -19,7 +19,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Tilføj en Brandmand");
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
