@@ -15,6 +15,7 @@ public class EmergencyStart extends javax.swing.JFrame {
      */
     public EmergencyStart() {
         initComponents();
+        setTitle("Emergency Start");
     }
 
     /**
