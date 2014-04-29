@@ -19,9 +19,11 @@ public class ODINReport extends javax.swing.JFrame {
      */
     public ODINReport() {
         initComponents();
+        setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
         ShowSkadeslidte();
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 
@@ -364,40 +366,6 @@ public class ODINReport extends javax.swing.JFrame {
         ShowSkadeslidte();
     }//GEN-LAST:event_chkBoxSkadeslidteActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ODINReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ODINReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ODINReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ODINReport.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ODINReport().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGem;
@@ -436,7 +404,9 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JTextField txtNavn;
     private javax.swing.JTextField txtUgeDag;
     // End of variables declaration//GEN-END:variables
-
+/*
+     A function to Hide/Show the table for Indsatte Styrker
+     */
     private void ShowIndsatteStyrker() {
         if (chkBoxIndsatteStyrker.isSelected()) {
             chkboxIndsatteStyrker = true;
@@ -449,18 +419,18 @@ public class ODINReport extends javax.swing.JFrame {
 
     }
 
-
-private void ShowSkadeslidte()
-{
-if (chkBoxSkadeslidte.isSelected()){
+    /*
+     A function to Hide/Show the text areas and labels for Skadeslidte
+     */
+    private void ShowSkadeslidte() {
+        if (chkBoxSkadeslidte.isSelected()) {
             chkboxSkadeslidte = true;
-        }
-else{
+        } else {
             chkboxSkadeslidte = false;
-}
+        }
         lblNavn.setVisible(chkboxSkadeslidte);
         lblAddresse.setVisible(chkboxSkadeslidte);
         txtNavn.setVisible(chkboxSkadeslidte);
         txtAddresse.setVisible(chkboxSkadeslidte);
-}
+    }
 }
