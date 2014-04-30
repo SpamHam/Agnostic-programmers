@@ -35,7 +35,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblMateriale.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblMateriale.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblMateriale.setText("Materiale:");
 
         btnAdd.setText("Tilføj");
@@ -60,7 +60,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAdd))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMateriale, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblMateriale)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMateriale)))
                 .addContainerGap())
