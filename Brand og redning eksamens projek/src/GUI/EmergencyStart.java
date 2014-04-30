@@ -4,6 +4,10 @@
  */
 package GUI;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  *
  * @author Kathrine
@@ -16,6 +20,14 @@ public class EmergencyStart extends javax.swing.JFrame {
     public EmergencyStart() {
         initComponents();
         setTitle("Emergency Start");
+    }
+    
+    public String currentTime(){
+         Date date= new Date();
+	 Timestamp m_time = new Timestamp(date.getTime());
+         //String time = m_time.toString();
+         String time = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss").format(m_time);
+         return time;
     }
 
     /**
@@ -35,6 +47,11 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         btnStart.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnStart.setText("Start");
+        btnStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnStartActionPerformed(evt);
+            }
+        });
 
         lblSidsteUdrykning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblSidsteUdrykning.setText("Sidste udrykning:");
@@ -73,6 +90,11 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        
+        txtSidsteUdrykning.setText(currentTime());
+    }//GEN-LAST:event_btnStartActionPerformed
 
     /**
      * @param args the command line arguments
