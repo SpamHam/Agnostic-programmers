@@ -7,6 +7,7 @@
 package GUI;
 
 import BE.BEMaterial;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -20,6 +21,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
     BEMaterial materiale = new BEMaterial();
+    //
+    private int selectedRow;
    
     private void initMaterial(){
         allMateriale = materiale.getAll();
@@ -38,6 +41,22 @@ public class CRUDMaterial extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
+                jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+                
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onRowSelected (evt
+                );
+                btnOpdatere.setEnabled(true);
+                UpdateFieldsPanel.setVisible(true);
+            }
+
+            private void onRowSelected(MouseEvent evt) {
+                selectedRow = jTable1.getSelectedRow();
+                txtMaterial.setText(allMateriale.get(selectedRow).getM_Materiale());
+                txtAntal.setText(Integer.toString(allMateriale.get(selectedRow).getM_Antal()));
+            }
+        });
     }
 
     /**
