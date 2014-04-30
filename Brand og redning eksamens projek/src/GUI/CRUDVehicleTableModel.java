@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import BE.BEVehicle;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
@@ -12,11 +13,11 @@ import javax.swing.table.AbstractTableModel;
  * @author Kathrine
  */
 public class CRUDVehicleTableModel extends AbstractTableModel{
-    private ArrayList<?> m_allVehicle;
+    private ArrayList<BE.BEVehicle> m_allVehicle;
     private final String[] colNames = {"Registration nr.", "Mærke", "Model"};
     private final Class[] classes = {Integer.class, String.class, String.class};
     
-    public CRUDVehicleTableModel(ArrayList<?> allVehicle){
+    public CRUDVehicleTableModel(ArrayList<BE.BEVehicle> allVehicle){
         m_allVehicle = allVehicle;
         fireTableDataChanged();
     }
@@ -33,8 +34,19 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+           BEVehicle e = m_allVehicle.get(rowIndex);
+            switch (columnIndex) {
+                case 0:
+                    return e.getM_registrationNr();
+                case 1:
+                    return e.getM_mærke();
+                case 2:
+                    return e.getM_model();
+
+            }
+
+            return null;
+        } 
     
           @Override
     public String getColumnName(int col) {
@@ -56,7 +68,7 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
      *
      * @param ODINList
      */
-    public void setCarList(ArrayList<?> VehicleList) {
+    public void setCarList(ArrayList<BE.BEVehicle> VehicleList) {
        m_allVehicle = VehicleList;
     }
 
