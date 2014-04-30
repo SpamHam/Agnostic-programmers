@@ -18,7 +18,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
     public CRUDVehicle() {
         initComponents();
         btnOpdatere.setEnabled(false);
-        UpdateFieldsPanel.setVisible(false);
+        UpdateFieldsPanel.isShowing(false);
     }
 
     /**
