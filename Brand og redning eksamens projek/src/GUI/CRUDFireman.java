@@ -3,8 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
+
+import BE.BECRUDFireman;
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -12,11 +16,28 @@ package GUI;
  */
 public class CRUDFireman extends javax.swing.JFrame {
 
+    CRUDFiremanTableModel FiremanTableModel;
+    TableRowSorter<TableModel> sorter;
+    ArrayList<BECRUDFireman> allFiremans = new ArrayList<>();
+    BECRUDFireman myBEFireman = new BECRUDFireman();
+
+    private void initFiremans() {
+        allFiremans = myBEFireman.getAll();
+    }
+
     /**
      * Creates new form CRUDFireman
      */
     public CRUDFireman() {
         initComponents();
+        initFiremans();
+        FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
+        jTable1.setModel(FiremanTableModel);// Sets the table model for the JTable
+        sorter = new TableRowSorter<TableModel>(FiremanTableModel);
+        jTable1.setRowSorter(sorter);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        setTitle("Brandmand oversigt");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         UpdateButton.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
     }
@@ -224,9 +245,9 @@ public class CRUDFireman extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-AddFiremanDialog firemanDialog = new AddFiremanDialog(this, true);
-firemanDialog.setVisible(true);
-firemanDialog.setLocationRelativeTo(this);
+        AddFiremanDialog firemanDialog = new AddFiremanDialog(this, true);
+        firemanDialog.setVisible(true);
+        firemanDialog.setLocationRelativeTo(this);
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
