@@ -14,11 +14,11 @@ import javax.swing.table.AbstractTableModel;
  * @author Kathrine
  */
 public class CRUDMaterialTableModel extends AbstractTableModel{
-    private ArrayList<?> m_allMaterial;
+    private ArrayList<BE.BEMaterial> m_allMaterial;
     private final String[] colNames = {"Material", "Antal"};
     private final Class[] classes = {String.class, Integer.class};
     
-    public CRUDMaterialTableModel(ArrayList<?> allMaterial){
+    public CRUDMaterialTableModel(ArrayList<BE.BEMaterial> allMaterial){
         m_allMaterial = allMaterial;
         fireTableDataChanged();
     }
@@ -35,8 +35,17 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+              BE.BEMaterial e = m_allMaterial.get(rowIndex);
+            switch (columnIndex) {
+                case 0:
+                    return e.getM_Materiale();
+                case 1:
+                    return e.getM_Antal();
+                
+
+            }
+
+            return null; }
     
        
           @Override
@@ -59,7 +68,7 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
      *
      * @param ODINList
      */
-    public void setCarList(ArrayList<?> MaterialList) {
+    public void setCarList(ArrayList<BE.BEMaterial> MaterialList) {
        m_allMaterial = MaterialList;
     }
 

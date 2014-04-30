@@ -5,17 +5,37 @@
  */
 package GUI;
 
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+import BE.BEVehicle;
+
 /**
  *
  * @author Son Of Satan
  */
 public class CRUDVehicle extends javax.swing.JFrame {
-
+    CRUDVehicleTableModel vehicleTableModel;
+    TableRowSorter<TableModel> sorter;
+    ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
+    BEVehicle vehicle = new BEVehicle();
+    
+    private void initVehicle(){
+        allVehicle = vehicle.getAll();
+    }
+    
     /**
      * Creates new form CRUDVehicle
      */
     public CRUDVehicle() {
         initComponents();
+        initVehicle();
+        vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
+        jTable1.setModel(vehicleTableModel);
+        jTable1.setRowSorter(sorter);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        setTitle("Brandbils oversigt");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
     }
@@ -49,7 +69,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(700, 300));
         setMinimumSize(new java.awt.Dimension(700, 300));
-        setPreferredSize(new java.awt.Dimension(700, 300));
 
         btnFjern.setText("Fjern");
 
@@ -117,22 +136,22 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblDesc)
-                        .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                            .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblBrand)
-                                .addComponent(lblRegNr))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtBrand)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                            .addComponent(lblModel)
-                            .addGap(17, 17, 17)
-                            .addComponent(txtModel)))))
+                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblBrand)
+                            .addComponent(lblRegNr))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtBrand)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                        .addComponent(lblModel)
+                        .addGap(17, 17, 17)
+                        .addComponent(txtModel))
+                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblDesc))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
             UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
