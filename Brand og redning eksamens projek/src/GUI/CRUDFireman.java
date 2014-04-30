@@ -283,7 +283,9 @@ public class CRUDFireman extends javax.swing.JFrame {
     }//GEN-LAST:event_ChBoxLeaderActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-        // TODO add your handling code here:
+       dispose();
+       AdminstrationMenu admin = new AdminstrationMenu();
+       admin.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -87,6 +87,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
         });
 
         btnTilbage.setText("Tilbage");
+        btnTilbage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilbageActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -219,6 +224,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
         AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(this, rootPaneCheckingEnabled);
         tilføjBrandbil.setVisible(true);
     }//GEN-LAST:event_btnTilføjActionPerformed
+
+    private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+       dispose();
+       AdminstrationMenu admin = new AdminstrationMenu();
+       admin.setVisible(true);
+    }//GEN-LAST:event_btnTilbageActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
