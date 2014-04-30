@@ -16,8 +16,8 @@ private int m_UdrykningsID;
 private String m_Materiale;
 private int m_Antal;
 
-    public BEMaterial(int UdrykningsID, String Materiale, int Antal){
-        m_UdrykningsID = UdrykningsID;
+    public BEMaterial(String Materiale, int Antal){
+       
         m_Materiale = Materiale;
         m_Antal = Antal;
         
@@ -29,9 +29,9 @@ private int m_Antal;
     
     public ArrayList<BEMaterial> getAll(){
         ArrayList<BEMaterial> res = new ArrayList<>();
-        BEMaterial a = new BEMaterial(1, "Røg", 2);
+        BEMaterial a = new BEMaterial("Røg", 2);
         res.add(a);
-        BEMaterial b = new BEMaterial(2, "Ild", 3);
+        BEMaterial b = new BEMaterial("Ild", 3);
         res.add(b);
         return res;
     }

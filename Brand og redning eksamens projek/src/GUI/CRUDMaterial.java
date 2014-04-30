@@ -6,17 +6,36 @@
 
 package GUI;
 
+import BE.BEMaterial;
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Son Of Satan
  */
 public class CRUDMaterial extends javax.swing.JFrame {
-
+    CRUDMaterialTableModel materialTableModel;
+    TableRowSorter<TableModel> sorter;
+    ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
+    BEMaterial materiale = new BEMaterial();
+   
+    private void initMaterial(){
+        allMateriale = materiale.getAll();
+    }
     /**
      * Creates new form CRUDMaterial
      */
     public CRUDMaterial() {
         initComponents();
+        initMaterial();
+        materialTableModel = new CRUDMaterialTableModel(allMateriale);
+        jTable1.setModel(materialTableModel);
+        jTable1.setRowSorter(sorter);
+        jTable1.getTableHeader().setReorderingAllowed(false);
+        setTitle("Materiale oversigt");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
     }
