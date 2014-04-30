@@ -205,13 +205,13 @@ public class CRUDMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
-       dispose();
-       AdminstrationMenu admin = new AdminstrationMenu();
-       admin.setVisible(true);
+       
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-        // TODO add your handling code here:
+       dispose();
+       AdminstrationMenu admin = new AdminstrationMenu();
+       admin.setVisible(true);
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
