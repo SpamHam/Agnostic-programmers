@@ -6,17 +6,36 @@
 
 package GUI;
 
+import BE.BETimePlan;
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Claus
  */
 public class Timeplan extends javax.swing.JFrame {
-
+    TimePlanTableModel TimeTableModel;
+    TableRowSorter<TableModel> sorter;
+    ArrayList<BETimePlan> allTime = new ArrayList<>();
+    BETimePlan myBETimePlan = new BETimePlan();
+    
+      private void initTimePlan(){
+        allTime = myBETimePlan.getAll();
+    }
+    
     /**
      * Creates new form Timeplan
      */
     public Timeplan() {
         initComponents();
+        initTimePlan();
+        TimeTableModel = new TimePlanTableModel(allTime);
+        jtableTeamTabel.setModel(TimeTableModel);// Sets the table model for the JTable
+        sorter = new TableRowSorter<TableModel>(TimeTableModel);
+        jtableTeamTabel.setRowSorter(sorter);
+        jtableTeamTabel.getTableHeader().setReorderingAllowed(false);
         setTitle("Udryknings Skema");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -45,15 +64,10 @@ public class Timeplan extends javax.swing.JFrame {
 
         jtableTeamTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Stilling", "Navn + Efternavn", "Tidsrum", "Kørt", "Stationsvagt", "Vehicle"},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6"
+
             }
         ));
         jScrollPane1.setViewportView(jtableTeamTabel);
@@ -111,7 +125,7 @@ public class Timeplan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNaesteSide)
                     .addComponent(btnLukVindue))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
 
         pack();
