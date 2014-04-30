@@ -30,7 +30,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
 
         lblMateriale = new javax.swing.JLabel();
         txtMateriale = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
+        btnTilfoej = new javax.swing.JButton();
         btnLuk = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -38,7 +38,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
         lblMateriale.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblMateriale.setText("Materiale:");
 
-        btnAdd.setText("Tilføj");
+        btnTilfoej.setText("Tilføj");
 
         btnLuk.setText("Luk");
         btnLuk.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +58,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
                         .addGap(0, 128, Short.MAX_VALUE)
                         .addComponent(btnLuk)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAdd))
+                        .addComponent(btnTilfoej))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblMateriale)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -74,7 +74,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
                     .addComponent(txtMateriale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
+                    .addComponent(btnTilfoej)
                     .addComponent(btnLuk))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -87,8 +87,8 @@ public class AddMaterialDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnLukActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnLuk;
+    private javax.swing.JButton btnTilfoej;
     private javax.swing.JLabel lblMateriale;
     private javax.swing.JTextField txtMateriale;
     // End of variables declaration//GEN-END:variables
