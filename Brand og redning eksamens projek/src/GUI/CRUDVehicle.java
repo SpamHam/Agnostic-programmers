@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BE.BEVehicle;
+import java.awt.event.MouseEvent;
 
 /**
  *
@@ -19,6 +20,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
     BEVehicle vehicle = new BEVehicle();
+    //
+    private int selectedRow;
     
     private void initVehicle(){
         allVehicle = vehicle.getAll();
@@ -37,7 +40,23 @@ public class CRUDVehicle extends javax.swing.JFrame {
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
-        UpdateFieldsPanel.setVisible(false);
+        UpdateFieldsPanel.setVisible(false);   
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                onRowSelected (evt
+                );
+                btnOpdatere.setEnabled(true);
+                UpdateFieldsPanel.setVisible(true);
+            }
+
+            private void onRowSelected(MouseEvent evt) {
+                selectedRow = jTable1.getSelectedRow();
+                TxtReg.setText(Integer.toString(allVehicle.get(selectedRow).getM_registrationNr()));
+                txtBrand.setText(allVehicle.get(selectedRow).getM_model());
+                txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
+            }
+        });
     }
 
     /**
@@ -61,7 +80,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         lblModel = new javax.swing.JLabel();
         lblBrand = new javax.swing.JLabel();
         txtBrand = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        TxtReg = new javax.swing.JTextField();
         lblRegNr = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
@@ -142,28 +161,26 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
                         .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblBrand)
-                            .addComponent(lblRegNr))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtBrand)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addComponent(lblModel)
-                        .addGap(17, 17, 17)
-                        .addComponent(txtModel))
-                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                            .addComponent(lblBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblRegNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(54, 54, 54)
                         .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDesc))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(TxtReg, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                        .addComponent(lblModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(54, 54, 54)
+                        .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblDesc))
+                .addGap(0, 0, 0))
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
             UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblRegNr)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,6 +250,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField TxtReg;
     private javax.swing.JPanel UpdateFieldsPanel;
     private javax.swing.JButton btnFjern;
     private javax.swing.JButton btnOpdatere;
@@ -241,7 +259,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
