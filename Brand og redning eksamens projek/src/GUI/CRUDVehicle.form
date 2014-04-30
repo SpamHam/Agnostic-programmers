@@ -3,6 +3,15 @@
 <Form version="1.3" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
+    <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 300]"/>
+    </Property>
+    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 300]"/>
+    </Property>
+    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+      <Dimension value="[700, 300]"/>
+    </Property>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -27,48 +36,13 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblDesc" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblBrand" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Component id="lblRegNr" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtBrand" pref="121" max="32767" attributes="0"/>
-                                          <Component id="jTextField2" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="lblModel" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                                      <Component id="txtModel" max="32767" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnOpdatere" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnFjern" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnTilføj" max="32767" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnTilbage" pref="127" max="32767" attributes="0"/>
-                  </Group>
+              <Component id="UpdateFieldsPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="btnOpdatere" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnFjern" alignment="0" max="32767" attributes="0"/>
+                  <Component id="btnTilføj" max="32767" attributes="0"/>
+                  <Component id="btnTilbage" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -77,41 +51,21 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblRegNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnTilføj" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btnTilføj" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblBrand" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnOpdatere" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnOpdatere" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnFjern" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblModel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtModel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblDesc" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnTilbage" min="-2" max="-2" attributes="0"/>
-                          <Component id="jScrollPane2" min="-2" pref="171" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnFjern" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnTilbage" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" alignment="0" min="-2" pref="275" max="-2" attributes="0"/>
+                  <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                  <Component id="UpdateFieldsPanel" alignment="0" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,10 +76,6 @@
         <Property name="text" type="java.lang.String" value="Fjern"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtBrand">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
-    </Component>
     <Component class="javax.swing.JButton" name="btnOpdatere">
       <Properties>
         <Property name="text" type="java.lang.String" value="Opdatere"/>
@@ -133,11 +83,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOpdatereActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblBrand">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="M&#xe6;rke"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnTilf&#xf8;j">
       <Properties>
@@ -172,36 +117,108 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblRegNr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Reg. Nr."/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblModel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Model"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblDesc">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Deskription"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtModel">
-    </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane2">
-      <AuxValues>
-        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-      </AuxValues>
+    <Container class="javax.swing.JPanel" name="UpdateFieldsPanel">
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblDesc" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblBrand" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblRegNr" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtBrand" max="32767" attributes="0"/>
+                                  <Component id="jTextField2" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblModel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <Component id="txtModel" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblRegNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="lblModel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtModel" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblDesc" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jScrollPane2" pref="180" max="32767" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="txtDesc">
+        <Component class="javax.swing.JLabel" name="lblDesc">
           <Properties>
-            <Property name="columns" type="int" value="20"/>
-            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="Deskription"/>
           </Properties>
         </Component>
+        <Component class="javax.swing.JTextField" name="txtModel">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblModel">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Model"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblBrand">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="M&#xe6;rke"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtBrand">
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField2">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblRegNr">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Reg. Nr."/>
+          </Properties>
+        </Component>
+        <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+          <AuxValues>
+            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+          </AuxValues>
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+          <SubComponents>
+            <Component class="javax.swing.JTextArea" name="txtDesc">
+              <Properties>
+                <Property name="columns" type="int" value="20"/>
+                <Property name="rows" type="int" value="5"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
   </SubComponents>
