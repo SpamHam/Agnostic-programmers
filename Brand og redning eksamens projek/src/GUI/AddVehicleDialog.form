@@ -29,11 +29,9 @@
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblRegNr" pref="51" max="32767" attributes="0"/>
-                              <Component id="lblMaerke" max="32767" attributes="0"/>
-                              <Component id="lblModel" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="lblRegNr" pref="51" max="32767" attributes="0"/>
+                          <Component id="lblMaerke" max="32767" attributes="0"/>
+                          <Component id="lblModel" max="32767" attributes="0"/>
                           <Component id="lblDeskription" pref="57" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
