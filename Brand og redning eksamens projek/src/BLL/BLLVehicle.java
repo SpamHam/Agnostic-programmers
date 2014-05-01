@@ -5,7 +5,8 @@
  */
 package BLL;
 
-import BE.BEVehicle;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -14,13 +15,32 @@ import java.util.ArrayList;
  */
 public class BLLVehicle {
 
-    public ArrayList<BEVehicle> getAll() {
-        ArrayList<BEVehicle> res = new ArrayList<>();
-        BEVehicle c = new BEVehicle(12345, "Man", "a3");
-        res.add(c);
-        BEVehicle b = new BEVehicle(34211, "BMW", "m3");
-        res.add(b);
-        return res;
+    private static BLLVehicle M_instance;
+    DALC.DALCVehicle DALCVehicle;
 
+    public static BLLVehicle getInstance() throws Exception {
+        try {
+            if (M_instance == null) {
+                M_instance = new BLLVehicle();
+            }
+        } catch (SQLServerException e) {
+            throw new Exception("Data store not there...");
+        }
+        return M_instance;
     }
+
+    private BLLVehicle() throws Exception {
+        DALCVehicle = DALC.DALCVehicle.getInstance();
+    }
+
+    public ArrayList<BE.BEVehicle> getAllVehicles() throws Exception {
+        ArrayList<BE.BEVehicle> Vehicles;
+        try {
+            Vehicles = DALCVehicle.read();
+        } catch (SQLException ex) {
+            throw new Exception("Could not retrieve data from data store.");
+        }
+        return Vehicles;
+    }
+
 }
