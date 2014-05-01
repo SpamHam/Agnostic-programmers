@@ -32,14 +32,6 @@ public class BETimePlan {
     
     public BETimePlan(){}
 
-    public ArrayList<BETimePlan> getAll(){
-        ArrayList<BETimePlan> res = new ArrayList<>();
-       BETimePlan c = new BETimePlan("HL", "Bent", 10, 2, 2, "X8989");
-            res.add(c);
-       BETimePlan B = new BETimePlan("BM", "Lars", 5, 2, 4, "K2323");
-            res.add(B);
-            return res;
-    }
 
     public String getStilling() {
         return Stilling;
