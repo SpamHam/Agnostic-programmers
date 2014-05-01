@@ -29,7 +29,7 @@ public class BLLVehicle {
         return M_instance;
     }
 
-    private BLLVehicle() throws Exception {
+    public BLLVehicle() throws Exception {
         DALCVehicle = DALC.DALCVehicle.getInstance();
     }
 
