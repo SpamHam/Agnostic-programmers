@@ -10,14 +10,16 @@ package BE;
  */
 public class BEVehicle {
 
-    private int m_registrationNr;
+    private String m_registrationNr;
     private String m_mærke;
     private String m_model;
+    private String m_description;
 
-    public BEVehicle(int registrationNr, String mærke, String model) {
+    public BEVehicle(String registrationNr, String mærke, String model, String description) {
         m_registrationNr = registrationNr;
         m_mærke = mærke;
         m_model = model;
+        m_description = description;
 
     }
 
@@ -28,14 +30,14 @@ public class BEVehicle {
     /**
      * @return the m_registrationNr
      */
-    public int getM_registrationNr() {
+    public String getM_registrationNr() {
         return m_registrationNr;
     }
 
     /**
      * @param m_registrationNr the m_registrationNr to set
      */
-    public void setM_registrationNr(int m_registrationNr) {
+    public void setM_registrationNr(String m_registrationNr) {
         this.m_registrationNr = m_registrationNr;
     }
 
@@ -65,6 +67,20 @@ public class BEVehicle {
      */
     public void setM_model(String m_model) {
         this.m_model = m_model;
+    }
+
+    /**
+     * @return the m_description
+     */
+    public String getM_description() {
+        return m_description;
+    }
+
+    /**
+     * @param m_description the m_description to set
+     */
+    public void setM_description(String m_description) {
+        this.m_description = m_description;
     }
 
 }
