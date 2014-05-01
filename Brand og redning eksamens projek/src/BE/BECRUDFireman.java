@@ -23,14 +23,6 @@ public BECRUDFireman(String CPR, String Fornavn, String Efternavn) {
 
 public BECRUDFireman(){}
 
-    public ArrayList<BECRUDFireman> getAll(){
-        ArrayList<BECRUDFireman> res = new ArrayList<>();
-        BECRUDFireman c = new BECRUDFireman("3007901556", "Bent", "Andreasen");
-            res.add(c);
-       BECRUDFireman B = new BECRUDFireman("2902901447", "Lars", "Jesus");
-            res.add(B);
-            return res;
-    }
 
     /**
      * @return the CPR
