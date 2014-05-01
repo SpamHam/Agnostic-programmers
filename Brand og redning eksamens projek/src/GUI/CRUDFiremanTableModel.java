@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BE.BECRUDFireman;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
@@ -15,12 +14,12 @@ import java.util.ArrayList;
  */
 public class CRUDFiremanTableModel extends AbstractTableModel {
 
-    private ArrayList<BECRUDFireman> firemanList;
+    private ArrayList<BE.BEFireman> firemanList;
 
     private String[] colNames = {"CPR", "Fornavn", "Efternavn"};
     private Class[] classes = {Integer.class, String.class, String.class};
 
-    public CRUDFiremanTableModel(ArrayList<BECRUDFireman> allFiremanLists) {
+    public CRUDFiremanTableModel(ArrayList<BE.BEFireman> allFiremanLists) {
         firemanList = allFiremanLists;
 
     }
@@ -46,21 +45,21 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
         return false;
     }
 
-    public void setCRUDFiremanList(ArrayList<BECRUDFireman> fireList) {
+    public void setCRUDFiremanList(ArrayList<BE.BEFireman> fireList) {
         firemanList = fireList;
         fireTableDataChanged();
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        BECRUDFireman e = firemanList.get(rowIndex);
+        BE.BEFireman e = firemanList.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return e.getCPR();
             case 1:
-                return e.getFornavn();
+                return e.getFirstName();
             case 2:
-                return e.getEfternavn();
+                return e.getLastName();
         }
             return null;
     }

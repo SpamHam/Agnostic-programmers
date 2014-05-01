@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BE.BECRUDFireman;
 import BLL.BLLFireman;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -20,7 +19,7 @@ public class CRUDFireman extends javax.swing.JFrame {
 
     CRUDFiremanTableModel FiremanTableModel;
     TableRowSorter<TableModel> sorter;
-    ArrayList<BECRUDFireman> allFiremans = new ArrayList<>();
+    ArrayList<BE.BEFireman> allFiremans = new ArrayList<>();
     BLLFireman myBLLFireman = new BLLFireman();
 
     //
@@ -58,8 +57,8 @@ public class CRUDFireman extends javax.swing.JFrame {
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
                 TxtCPR.setText(allFiremans.get(selectedRow).getCPR());
-                TxtFornavn.setText(allFiremans.get(selectedRow).getFornavn());
-                TxtEfternavn.setText(allFiremans.get(selectedRow).getEfternavn());
+                TxtFornavn.setText(allFiremans.get(selectedRow).getFirstName());
+                TxtEfternavn.setText(allFiremans.get(selectedRow).getLastName());
             }
         });
     }
