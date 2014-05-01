@@ -100,5 +100,19 @@ public class TimePlanTableModel extends AbstractTableModel {
 
             return null;
         }
+    
+      @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex)
+    {
+        BETimePlan row = timePlan.get(rowIndex);
+        switch (columnIndex){
+            case 2: 
+              row.setTidsrum((Integer) aValue);
+            case 3: 
+             row.setKoert((Integer) aValue);
+            case 4:
+               row.setStationsVagt((Integer) aValue);
+    } 
+   }
 
 }
