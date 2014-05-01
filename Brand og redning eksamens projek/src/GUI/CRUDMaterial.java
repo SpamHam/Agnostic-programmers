@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BEMaterial;
+import BLL.BLLMaterial;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
@@ -20,7 +21,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
-    BEMaterial materiale = new BEMaterial();
+    BLLMaterial materiale = new BLLMaterial();
     //
     private int selectedRow;
 

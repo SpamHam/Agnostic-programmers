@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BECRUDFireman;
+import BLL.BLLCRUDFireman;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
@@ -20,12 +21,13 @@ public class CRUDFireman extends javax.swing.JFrame {
     CRUDFiremanTableModel FiremanTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BECRUDFireman> allFiremans = new ArrayList<>();
-    BECRUDFireman myBEFireman = new BECRUDFireman();
+    BLLCRUDFireman myBLLFireman = new BLLCRUDFireman();
+    
     //
     private int selectedRow;
 
     private void initFiremans() {
-        allFiremans = myBEFireman.getAll();
+        allFiremans = myBLLFireman.getAll();
     }
 
     /**

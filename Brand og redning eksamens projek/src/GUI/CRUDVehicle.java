@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BE.BEVehicle;
+import BLL.BLLVehicle;
 import java.awt.event.MouseEvent;
 
 /**
@@ -19,7 +20,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    BEVehicle vehicle = new BEVehicle();
+    BLLVehicle vehicle = new BLLVehicle();
     //
     private int selectedRow;
     
