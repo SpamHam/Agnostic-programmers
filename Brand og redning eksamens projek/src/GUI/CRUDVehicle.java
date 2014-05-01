@@ -10,6 +10,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
 import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,12 +21,16 @@ public class CRUDVehicle extends javax.swing.JFrame {
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    BLLVehicle vehicle = new BLLVehicle();
+    BLLVehicle vehicle;
     //
     private int selectedRow;
 
     private void initVehicle() {
-        allVehicle = vehicle.getAll();
+        try {
+            allVehicle = vehicle.getInstance().getAllVehicles();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -53,9 +58,10 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
-                TxtReg.setText(Integer.toString(allVehicle.get(selectedRow).getM_registrationNr()));
+                TxtReg.setText(allVehicle.get(selectedRow).getM_registrationNr());
                 txtBrand.setText(allVehicle.get(selectedRow).getM_model());
                 txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
+                txtDesc.setText(allVehicle.get(selectedRow).getM_description());
             }
         });
     }
