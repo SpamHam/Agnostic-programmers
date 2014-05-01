@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BE.BEMaterial;
 import BLL.BLLMaterial;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;

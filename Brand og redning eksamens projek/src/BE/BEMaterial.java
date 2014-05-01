@@ -4,27 +4,25 @@
  */
 package BE;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Kathrine
  */
 public class BEMaterial {
 
-private int m_UdrykningsID;
-private String m_Materiale;
-private int m_Antal;
+    private int m_UdrykningsID;
+    private String m_Materiale;
+    private int m_Antal;
 
-    public BEMaterial(String Materiale, int Antal){
-       
+    public BEMaterial(String Materiale, int Antal) {
+
         m_Materiale = Materiale;
         m_Antal = Antal;
-        
+
     }
-    
-    public BEMaterial(){
-        
+
+    public BEMaterial() {
+
     }
 
     /**
@@ -68,5 +66,5 @@ private int m_Antal;
     public void setM_Antal(int m_Antal) {
         this.m_Antal = m_Antal;
     }
-    
+
 }

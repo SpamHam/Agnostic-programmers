@@ -3,26 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package BE;
-import java.util.ArrayList;
+
 /**
  *
  * @author Claus
  */
 public class BECRUDFireman {
+
     private String CPR;
     private String Fornavn;
     private String Efternavn;
-        
-public BECRUDFireman(String CPR, String Fornavn, String Efternavn) {
+
+    public BECRUDFireman(String CPR, String Fornavn, String Efternavn) {
         this.CPR = CPR;
         this.Fornavn = Fornavn;
         this.Efternavn = Efternavn;
-    }    
+    }
 
-public BECRUDFireman(){}
-
+    public BECRUDFireman() {
+    }
 
     /**
      * @return the CPR
@@ -65,6 +65,5 @@ public BECRUDFireman(){}
     public void setEfternavn(String Efternavn) {
         this.Efternavn = Efternavn;
     }
-
 
 }

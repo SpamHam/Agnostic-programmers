@@ -22,7 +22,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BECRUDFireman> allFiremans = new ArrayList<>();
     BLLCRUDFireman myBLLFireman = new BLLCRUDFireman();
-    
+
     //
     private int selectedRow;
 
@@ -46,10 +46,10 @@ public class CRUDFireman extends javax.swing.JFrame {
         UpdateButton.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-                
+
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onRowSelected (evt
+                onRowSelected(evt
                 );
                 UpdateButton.setEnabled(true);
                 UpdateFieldsPanel.setVisible(true);
@@ -285,9 +285,9 @@ public class CRUDFireman extends javax.swing.JFrame {
     }//GEN-LAST:event_ChBoxLeaderActionPerformed
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
-       dispose();
-       AdminstrationMenu admin = new AdminstrationMenu();
-       admin.setVisible(true);
+        dispose();
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
     }//GEN-LAST:event_BackButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

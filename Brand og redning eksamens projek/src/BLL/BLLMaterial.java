@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package BLL;
 
 import BE.BEMaterial;
@@ -14,8 +13,8 @@ import java.util.ArrayList;
  * @author peter bærbar
  */
 public class BLLMaterial {
-    
-        public ArrayList<BEMaterial> getAll(){
+
+    public ArrayList<BEMaterial> getAll() {
         ArrayList<BEMaterial> res = new ArrayList<>();
         BEMaterial a = new BEMaterial("Pulverslukker", 2);
         res.add(a);
@@ -29,5 +28,5 @@ public class BLLMaterial {
         res.add(e);
         return res;
     }
-    
+
 }

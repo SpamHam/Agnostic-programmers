@@ -8,7 +8,6 @@ package GUI;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import BE.BEVehicle;
 import BLL.BLLVehicle;
 import java.awt.event.MouseEvent;
 
@@ -17,17 +16,18 @@ import java.awt.event.MouseEvent;
  * @author Son Of Satan
  */
 public class CRUDVehicle extends javax.swing.JFrame {
+
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
     BLLVehicle vehicle = new BLLVehicle();
     //
     private int selectedRow;
-    
-    private void initVehicle(){
+
+    private void initVehicle() {
         allVehicle = vehicle.getAll();
     }
-    
+
     /**
      * Creates new form CRUDVehicle
      */
@@ -41,11 +41,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
-        UpdateFieldsPanel.setVisible(false);   
+        UpdateFieldsPanel.setVisible(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onRowSelected (evt
+                onRowSelected(evt
                 );
                 btnOpdatere.setEnabled(true);
                 UpdateFieldsPanel.setVisible(true);
@@ -244,9 +244,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
-       dispose();
-       AdminstrationMenu admin = new AdminstrationMenu();
-       admin.setVisible(true);
+        dispose();
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
     }//GEN-LAST:event_btnTilbageActionPerformed
 
 

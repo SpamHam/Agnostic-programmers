@@ -4,29 +4,26 @@
  */
 package BE;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Kathrine
  */
 public class BEVehicle {
-    
+
     private int m_registrationNr;
     private String m_mærke;
     private String m_model;
-    
-    public BEVehicle(int registrationNr, String mærke, String model){
+
+    public BEVehicle(int registrationNr, String mærke, String model) {
         m_registrationNr = registrationNr;
         m_mærke = mærke;
         m_model = model;
-        
+
     }
-    
-    public BEVehicle(){
-        
+
+    public BEVehicle() {
+
     }
-    
 
     /**
      * @return the m_registrationNr
@@ -69,5 +66,5 @@ public class BEVehicle {
     public void setM_model(String m_model) {
         this.m_model = m_model;
     }
-    
+
 }
