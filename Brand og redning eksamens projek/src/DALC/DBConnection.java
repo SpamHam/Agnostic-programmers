@@ -27,7 +27,7 @@ public class DBConnection {
         ds.setApplicationName("jdbc:sqlserver://");
         ds.setServerName("localhost");
         ds.setInstanceName("SQLEXPRESS");
-        ds.setDatabaseName("CarRentalAssignment");
+        ds.setDatabaseName("Borr");
         ds.setPortNumber(1433);
         ds.setUser("test");
         ds.setPassword("test123");
