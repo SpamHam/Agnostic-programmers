@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package BE;
 
 /**
  *
  * @author Son Of Satan
  */
-public class BEFireman {
+public final class BEFireman {
+
     private String CPR, FirstName, LastName, Address;
     private int PhoneNr, CallNr, PaymentNr;
     private boolean LeaderTrained;
-    
-    public BEFireman(String CPR, String FirstName, String LastName, String Address, int  PhoneNr, int CallNr, int PaymentNr, boolean LeaderTrained){
+
+    public BEFireman(String CPR, String FirstName, String LastName) {
+        this.CPR = CPR;
+        this.FirstName = FirstName;
+        this.LastName = LastName;
+    }
+
+    public BEFireman(String CPR, String FirstName, String LastName, String Address, int PhoneNr, int CallNr, int PaymentNr, boolean LeaderTrained) {
         this.setCPR(CPR);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
@@ -137,5 +143,5 @@ public class BEFireman {
     public void setLeaderTrained(boolean LeaderTrained) {
         this.LeaderTrained = LeaderTrained;
     }
-    
+
 }
