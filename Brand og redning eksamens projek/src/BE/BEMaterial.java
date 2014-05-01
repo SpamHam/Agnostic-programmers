@@ -20,6 +20,13 @@ public class BEMaterial {
         m_Antal = Antal;
 
     }
+    public BEMaterial(int ID, String Materiale, int Antal) {
+
+        m_UdrykningsID = ID;
+        m_Materiale = Materiale;
+        m_Antal = Antal;
+
+    }
 
     public BEMaterial() {
 
