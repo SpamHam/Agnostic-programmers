@@ -15,7 +15,7 @@ import javax.swing.table.AbstractTableModel;
 public class CRUDVehicleTableModel extends AbstractTableModel{
     private ArrayList<BE.BEVehicle> m_allVehicle;
     private final String[] colNames = {"Registration nr.", "Mærke", "Model"};
-    private final Class[] classes = {Integer.class, String.class, String.class};
+    private final Class[] classes = {String.class, String.class, String.class};
     
     public CRUDVehicleTableModel(ArrayList<BE.BEVehicle> allVehicle){
         m_allVehicle = allVehicle;
