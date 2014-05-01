@@ -5,20 +5,19 @@
  */
 package BLL;
 
-import BE.BECRUDFireman;
 import java.util.ArrayList;
 
 /**
  *
  * @author peter bærbar
  */
-public class BLLCRUDFireman {
+public class BLLFireman {
 
-    public ArrayList<BECRUDFireman> getAll() {
-        ArrayList<BECRUDFireman> res = new ArrayList<>();
-        BECRUDFireman c = new BECRUDFireman("3007901556", "Bent", "Andreasen");
+    public ArrayList<BE.BEFireman> getAll() {
+        ArrayList<BE.BEFireman> res = new ArrayList<>();
+        BE.BEFireman c = new BE.BEFireman("3007901556", "Bent", "Andreasen");
         res.add(c);
-        BECRUDFireman B = new BECRUDFireman("2902901447", "Lars", "Jesus");
+        BE.BEFireman B = new BE.BEFireman("2902901447", "Lars", "Jesus");
         res.add(B);
         return res;
     }
