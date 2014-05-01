@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import BE.BEMaterial;
@@ -17,16 +16,18 @@ import javax.swing.table.TableRowSorter;
  * @author Son Of Satan
  */
 public class CRUDMaterial extends javax.swing.JFrame {
+
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
     BEMaterial materiale = new BEMaterial();
     //
     private int selectedRow;
-   
-    private void initMaterial(){
+
+    private void initMaterial() {
         allMateriale = materiale.getAll();
     }
+
     /**
      * Creates new form CRUDMaterial
      */
@@ -41,11 +42,11 @@ public class CRUDMaterial extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
-                jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
-                
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onRowSelected (evt
+                onRowSelected(evt
                 );
                 btnOpdatere.setEnabled(true);
                 UpdateFieldsPanel.setVisible(true);
@@ -113,6 +114,11 @@ public class CRUDMaterial extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         btnTilbage.setText("Tilbage");
+        btnTilbage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilbageActionPerformed(evt);
+            }
+        });
 
         btnTilføj.setText("Tilføj");
         btnTilføj.addActionListener(new java.awt.event.ActionListener() {
@@ -174,10 +180,9 @@ public class CRUDMaterial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnTilbage, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(btnFjern, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnOpdatere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
-                        .addComponent(btnTilføj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(btnFjern, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnOpdatere, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                    .addComponent(btnTilføj, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -194,9 +199,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
                             .addComponent(btnFjern)
                             .addGap(168, 168, 168)
                             .addComponent(btnTilbage))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
@@ -205,14 +208,18 @@ public class CRUDMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
-       
+
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-       dispose();
-       AdminstrationMenu admin = new AdminstrationMenu();
-       admin.setVisible(true);
+
     }//GEN-LAST:event_btnOpdatereActionPerformed
+
+    private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+        dispose();
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }//GEN-LAST:event_btnTilbageActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UpdateFieldsPanel;
