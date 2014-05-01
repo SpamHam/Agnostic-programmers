@@ -81,10 +81,10 @@ public class DALCFireman {
             String FirstName = result.getString("FirstName");
             String LastName = result.getString("LastName");
             String Address = result.getString("Address");
-            int PhoneNr = result.getInt("PhoneNr");
-            int CallNr = result.getInt("CallNr");
+            int PhoneNr = result.getInt("Phone");
+            int CallNr = result.getInt("CallNumber");
             int PaymentNr = result.getInt("PaymentNr");
-            boolean isLeaderTrained = result.getBoolean("isLeaderTrained");
+            boolean isLeaderTrained = result.getBoolean("LeaderTrained");
             
             BE.BEFireman c = new BE.BEFireman(CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
             res.add(c);
@@ -98,7 +98,7 @@ public class DALCFireman {
      * @throws SQLException 
      */
     public void update(BE.BEFireman u) throws SQLException {
-        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, PhoneNr=?, CallNr=?, PaymentNr=?, LeaderTrained=? where CPR=?";
+        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=? where CPR=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
         ps.setString(2, u.getLastName());
