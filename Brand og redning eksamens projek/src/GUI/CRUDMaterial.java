@@ -208,7 +208,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
-
+        AddMaterialDialog tilføjMaterial = new AddMaterialDialog(this, true);
+        tilføjMaterial.setVisible(true);
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
