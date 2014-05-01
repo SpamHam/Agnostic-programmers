@@ -7,6 +7,7 @@
 package GUI;
 
 import BE.BETimePlan;
+import BLL.BLLTimePlan;
 import java.util.ArrayList;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
@@ -21,10 +22,10 @@ public class Timeplan extends javax.swing.JFrame {
     TimePlanTableModel TimeTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
-    BETimePlan myBETimePlan = new BETimePlan();
+    BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
     
       private void initTimePlan(){
-        allTime = myBETimePlan.getAll();
+        allTime = MyBLLTimePlan.getAll();
     }
     
     /**
