@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package DALC;
+
+import Utility.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,13 +13,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 /**
  *
  * @author Claus
  */
 public class DALCVehicle {
 
-    
+    private final ErrorHandler Error;
     private static DALCVehicle m_instance;
     Connection M_connection;
 
@@ -27,11 +29,12 @@ public class DALCVehicle {
             m_instance = new DALCVehicle();
         }
         return m_instance;
-    }    
+    }
 
     private DALCVehicle() throws SQLServerException {
         M_connection = DALC.DBConnection.getInstance().getConnection();
-    }    
+        Error = Utility.ErrorHandler.getInstance();
+    }
 
     public void Create(BE.BEVehicle e) throws SQLException {
         String sql = "insert into Vehicle values (?,?,?,?,?)";
@@ -41,13 +44,13 @@ public class DALCVehicle {
         ps.setString(3, e.getM_model());
         ps.setString(4, e.getM_description());
         ps.executeUpdate();
-    }    
+    }
 
     public ArrayList<BE.BEVehicle> read() throws SQLException {
         ArrayList<BE.BEVehicle> res = new ArrayList<>();
         Statement stm = M_connection.createStatement();
         if (!stm.execute("select * from Vehicle")) {
-            throw new SQLException("Could not load from Vehicle table");
+            Error.Datatable("vehicle");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {
@@ -73,10 +76,10 @@ public class DALCVehicle {
         ps.executeUpdate();
     }
 
-        public void Delete(BE.BEVehicle e) throws SQLException {
-    String sql = "delete from Vehicle where RegistrationNr=?";
-    PreparedStatement ps = M_connection.prepareStatement(sql);
-    ps.setString(1, e.getM_registrationNr());
-    ps.executeUpdate();
-    }    
+    public void Delete(BE.BEVehicle e) throws SQLException {
+        String sql = "delete from Vehicle where RegistrationNr=?";
+        PreparedStatement ps = M_connection.prepareStatement(sql);
+        ps.setString(1, e.getM_registrationNr());
+        ps.executeUpdate();
+    }
 }

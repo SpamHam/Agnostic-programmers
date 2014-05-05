@@ -5,6 +5,7 @@
  */
 package DALC;
 
+import Utility.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
  */
 public class DALCSalary {
 
+    private final ErrorHandler Error;
     private static DALCSalary m_instance;
     Connection m_connection;
 
@@ -41,6 +43,7 @@ public class DALCSalary {
      */
     private DALCSalary() throws SQLServerException {
         m_connection = DALC.DBConnection.getInstance().getConnection();
+        Error = Utility.ErrorHandler.getInstance();
     }
 
     /**
@@ -81,7 +84,7 @@ public class DALCSalary {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
         if (!stm.execute("select * from MonthlySalary inner join SalaryReport on SalaryReport.OdinNr = MonthlySalary.ODINnr")) {
-            throw new SQLException("Could not load from MontlySalary or SalaryReport table");
+            Error.Datatable("monthlysalary or salaryreport");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {

@@ -5,6 +5,8 @@
  */
 package Utility;
 
+import java.sql.SQLException;
+
 /**
  *
  * @author Son Of Satan
@@ -41,5 +43,14 @@ public class ErrorHandler {
      */
     public void StorageUnreachable(String n) throws Exception {
         throw new Exception("Could not connect to data storage" + n);
+    }
+    /**
+     * Error 003, Data table unreachable.
+     *
+     * @param n - which table, e.g fireman.
+     * @throws java.sql.SQLException
+     */
+    public void Datatable(String n) throws SQLException {
+        throw new SQLException("Could not find " + n + " table.");
     }
 }

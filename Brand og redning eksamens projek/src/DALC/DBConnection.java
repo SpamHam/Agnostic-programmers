@@ -46,6 +46,7 @@ public class DBConnection {
     /**
      * checks, using singelton, whether a instance has already been created 
      * @return SchoolDBConnection
+     * @throws com.microsoft.sqlserver.jdbc.SQLServerException
      */
     public static DBConnection getInstance() throws SQLServerException {
         if (M_Instance == null) {
