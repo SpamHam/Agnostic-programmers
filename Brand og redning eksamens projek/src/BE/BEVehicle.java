@@ -10,10 +10,7 @@ package BE;
  */
 public class BEVehicle {
 
-    private String m_registrationNr;
-    private String m_mærke;
-    private String m_model;
-    private String m_description;
+    private String m_registrationNr, m_mærke, m_model, m_description;
 
     public BEVehicle(String registrationNr, String mærke, String model, String description) {
         m_registrationNr = registrationNr;

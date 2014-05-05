@@ -10,9 +10,8 @@ package BE;
  */
 public class BEMaterial {
 
-    private int m_UdrykningsID;
+    private int m_UdrykningsID, m_Antal;
     private String m_Materiale;
-    private int m_Antal;
 
     public BEMaterial(String Materiale, int Antal) {
 

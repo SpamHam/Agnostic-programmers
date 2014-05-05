@@ -5,7 +5,6 @@
  */
 package BE;
 
-import java.util.ArrayList;
 
 /**
  *
@@ -14,12 +13,8 @@ import java.util.ArrayList;
 public class BETimePlan {
 
     
-    private String Stilling;
-    private String navn;
-    private int Koert;
-    private int Tidsrum;
-    private int StationsVagt;
-    private String Koeretoej;
+    private String Stilling, navn, Koeretoej;
+    private int Koert, Tidsrum, StationsVagt;
 
     public BETimePlan(String Stilling, String navn, int Koert, int Tidsrum, int StationsVagt, String Koeretoej) {
         this.Stilling = Stilling;
