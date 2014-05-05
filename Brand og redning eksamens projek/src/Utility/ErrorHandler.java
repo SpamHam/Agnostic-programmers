@@ -30,7 +30,7 @@ public class ErrorHandler {
      * @throws Exception
      */
     public void NotEnougthInfo(String n) throws Exception {
-        throw new Exception("Not enougth info are typed in" + n);
+        throw new Exception("Not enougth info are typed in for, " + n);
     }
 
     /**
@@ -40,6 +40,6 @@ public class ErrorHandler {
      * @throws Exception
      */
     public void StorageUnreachable(String n) throws Exception {
-        throw new Exception("Could not connect to data storage for " + n);
+        throw new Exception("Could not connect to data storage" + n);
     }
 }

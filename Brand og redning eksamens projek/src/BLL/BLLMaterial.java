@@ -13,9 +13,11 @@ import java.util.ArrayList;
  * @author peter bærbar
  */
 public class BLLMaterial {
+
     private static BLLMaterial m_instance;
-    DALC.DALCMaterial DALCMaterial;
-    
+    private DALC.DALCMaterial DALCMaterial;
+    private final Utility.ErrorHandler Error;
+
     /**
      * Singleton
      *
@@ -23,28 +25,29 @@ public class BLLMaterial {
      * @throws SQLServerException
      */
     public static BLLMaterial getInstance() throws Exception {
-        try {
-            if (m_instance == null) {
-                m_instance = new BLLMaterial();
-            }
-        } catch (SQLServerException e) {
-            throw new Exception("Data store not there...");
+        if (m_instance == null) {
+            m_instance = new BLLMaterial();
         }
         return m_instance;
     }
 
     private BLLMaterial() throws Exception {
-        DALCMaterial = DALC.DALCMaterial.getInstance();
+        Error = Utility.ErrorHandler.getInstance();
+        try {
+            DALCMaterial = DALC.DALCMaterial.getInstance();
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
+        }
     }
 
     public void Create(BE.BEMaterial b) throws Exception {
         if (b.getM_Materiale().isEmpty()) {
-            throw new Exception("You need to enter all required data if you want to Create a material.");
+            Error.NotEnougthInfo("creating a material.");
         } else {
             try {
                 DALCMaterial.getInstance().Create(b);
             } catch (SQLServerException e) {
-                throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
             }
         }
     }
@@ -54,19 +57,19 @@ public class BLLMaterial {
         try {
             res = DALCMaterial.getInstance().read();
         } catch (SQLServerException ex) {
-            throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
         }
         return res;
     }
 
     public void Update(BE.BEMaterial b) throws Exception {
         if (b.getM_Materiale().isEmpty()) {
-            throw new Exception("You need to enter all required data if you want to update a material.");
+            Error.NotEnougthInfo("updating a material.");
         } else {
             try {
                 DALCMaterial.getInstance().update(b);
             } catch (SQLServerException ex) {
-                throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
             }
         }
     }

@@ -5,7 +5,6 @@
  */
 package BLL;
 
-import DALC.DALCVehicle;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
@@ -14,38 +13,41 @@ import java.util.ArrayList;
  * @author peter bærbar
  */
 public class BLLVehicle {
+
     private static BLLVehicle m_instance;
-    DALC.DALCVehicle DALCVehicle;
-    
-      /**
+    private DALC.DALCVehicle DALCVehicle;
+    private final Utility.ErrorHandler Error;
+
+    /**
      * Singleton
      *
      * @return
      * @throws SQLServerException
      */
     public static BLLVehicle getInstance() throws Exception {
-        try {
-            if (m_instance == null) {
-                m_instance = new BLLVehicle();
-            }
-        } catch (SQLServerException e) {
-            throw new Exception("Data store not there...");
+        if (m_instance == null) {
+            m_instance = new BLLVehicle();
         }
         return m_instance;
     }
-    
-    private BLLVehicle() throws SQLServerException{
-        DALCVehicle = DALC.DALCVehicle.getInstance();
+
+    private BLLVehicle() throws Exception {
+        Error = Utility.ErrorHandler.getInstance();
+        try {
+            DALCVehicle = DALC.DALCVehicle.getInstance();
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
+        }
     }
-    
+
     public void Create(BE.BEVehicle b) throws Exception {
         if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
-            throw new Exception("You need to enter all required data if you want to Create a Vehicle.");
+            Error.NotEnougthInfo("creating a vehicle");
         } else {
             try {
-                DALC.DALCVehicle.getInstance().Create(b);
+                DALCVehicle.getInstance().Create(b);
             } catch (SQLServerException e) {
-                throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
             }
         }
     }
@@ -53,26 +55,26 @@ public class BLLVehicle {
     public ArrayList<BE.BEVehicle> getAll() throws Exception {
         ArrayList<BE.BEVehicle> res = new ArrayList<>();
         try {
-            res = DALC.DALCVehicle.getInstance().read();
+            res = DALCVehicle.getInstance().read();
         } catch (SQLServerException ex) {
-            throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
         }
         return res;
     }
 
     public void Update(BE.BEVehicle b) throws Exception {
         if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
-            throw new Exception("You need to enter all required data if you want to update the Vehicle.");
+            Error.NotEnougthInfo("updating a vehicle.");
         } else {
             try {
-                DALC.DALCVehicle.getInstance().update(b);
+                DALCVehicle.getInstance().update(b);
             } catch (SQLServerException ex) {
-                throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
             }
         }
     }
 
     public void remove() throws Exception {
         //TODO after Salary are done.
-    }    
+    }
 }

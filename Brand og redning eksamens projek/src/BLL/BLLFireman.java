@@ -7,8 +7,6 @@ package BLL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -17,8 +15,8 @@ import java.util.logging.Logger;
 public class BLLFireman {
 
     private static BLLFireman m_instance;
-    DALC.DALCFireman DALCFireman;
-    Utility.ErrorHandler Error;
+    private DALC.DALCFireman DALCFireman;
+    private final Utility.ErrorHandler Error;
 
     /**
      * Singleton
@@ -44,12 +42,12 @@ public class BLLFireman {
 
     public void Create(BE.BEFireman b) throws Exception {
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
-            throw new Exception("You need to enter all required data if you want to Create a fireman.");
+            Error.NotEnougthInfo("creating a fireman.");
         } else {
             try {
-                DALC.DALCFireman.getInstance().Create(b);
+                DALCFireman.getInstance().Create(b);
             } catch (SQLServerException e) {
-                throw new Exception("Could not get access to storage device.");
+                Error.StorageUnreachable(".");
             }
         }
     }
@@ -57,21 +55,21 @@ public class BLLFireman {
     public ArrayList<BE.BEFireman> getAll() throws Exception {
         ArrayList<BE.BEFireman> res = new ArrayList<>();
         try {
-            res = DALC.DALCFireman.getInstance().read();
+            res = DALCFireman.getInstance().read();
         } catch (SQLServerException ex) {
-            throw new Exception("Could not get access to storage device.");
+            Error.StorageUnreachable(".");
         }
         return res;
     }
 
     public void Update(BE.BEFireman b) throws Exception {
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
-            throw new Exception("You need to enter all required data if you want to update the fireman.");
+            Error.NotEnougthInfo("updating a fireman.");
         } else {
             try {
-                DALC.DALCFireman.getInstance().update(b);
+                DALCFireman.getInstance().update(b);
             } catch (SQLServerException ex) {
-                throw new Exception("Could not get access to storage device.");
+                Error.StorageUnreachable(".");
             }
         }
     }
