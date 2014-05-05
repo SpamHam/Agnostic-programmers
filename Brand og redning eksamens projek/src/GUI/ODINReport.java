@@ -416,7 +416,6 @@ public class ODINReport extends javax.swing.JFrame {
         jtableMaterialer1.setModel(MaterialModel);
         MaterialModel.fireTableDataChanged();
         }
-    dispose();
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed

@@ -88,7 +88,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
            BEMaterial temp = new BEMaterial((String) jlistValgteMaterialer.getModel().getElementAt(i));
            valgteMaterials.add(i,temp);
            }
-           
+            dispose();
         }
     }
 
