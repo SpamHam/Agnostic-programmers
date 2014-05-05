@@ -417,6 +417,7 @@ public class ODINReport extends javax.swing.JFrame {
          }
         MaterialModel = new ChooseMaterialsTableModel(allMaterials);
         jtableMaterialer1.setModel(MaterialModel);
+        MaterialModel.setMaterialsStatusList(allMaterials);
         MaterialModel.fireTableDataChanged();
         }
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
