@@ -14,6 +14,30 @@ import java.util.ArrayList;
  */
 public class BLLFireman {
 
+    private static BLLFireman m_instance;
+    DALC.DALCFireman DALCFireman;
+
+    /**
+     * Singleton
+     *
+     * @return
+     * @throws SQLServerException
+     */
+    public static BLLFireman getInstance() throws Exception {
+        try {
+            if (m_instance == null) {
+                m_instance = new BLLFireman();
+            }
+        } catch (SQLServerException e) {
+            throw new Exception("Data store not there...");
+        }
+        return m_instance;
+    }
+
+    private BLLFireman() throws SQLServerException {
+        DALCFireman = DALC.DALCFireman.getInstance();
+    }
+
     public void Create(BE.BEFireman b) throws Exception {
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
             throw new Exception("You need to enter all required data if you want to Create a fireman.");

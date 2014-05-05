@@ -27,7 +27,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
     private void initVehicle() {
         try {
-            allVehicle = vehicle.getInstance().getAllVehicles();
+            allVehicle = vehicle.getInstance().getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

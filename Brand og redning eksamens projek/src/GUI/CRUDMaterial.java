@@ -7,6 +7,7 @@ package GUI;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -23,7 +24,11 @@ public class CRUDMaterial extends javax.swing.JFrame {
     private int selectedRow;
 
     private void initMaterial() {
-        allMateriale = BLL.BLLMaterial.getInstance.getAll();
+        try {
+            allMateriale = BLL.BLLMaterial.getInstance().getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**

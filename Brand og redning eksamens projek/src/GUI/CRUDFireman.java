@@ -28,7 +28,7 @@ public class CRUDFireman extends javax.swing.JFrame {
 
     private void initFiremans() {
         try {
-            allFiremans = BLL.BLLFireman.getInstance.getAll();
+            allFiremans = BLL.BLLFireman.getInstance().getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
