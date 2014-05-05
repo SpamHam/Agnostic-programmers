@@ -21,9 +21,7 @@ private Class[] classes = {String.class, Integer.class};
 
 private ArrayList<BEMaterial> allSelectedMaterials;
 
-    public ChooseMaterialsTableModel(ArrayList<BEMaterial> selectedMaterials) {
-        allSelectedMaterials = selectedMaterials;
-        fireTableDataChanged();
+    public ChooseMaterialsTableModel() {
     }
 
         @Override
@@ -59,6 +57,7 @@ private ArrayList<BEMaterial> allSelectedMaterials;
 
     public void setMaterialsStatusList(ArrayList<BEMaterial> materialList) {
         allSelectedMaterials = materialList;
+        fireTableDataChanged();
     }    
     
      public BEMaterial getTimePlanByRow(int row) {

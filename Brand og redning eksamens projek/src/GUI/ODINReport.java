@@ -40,6 +40,8 @@ public class ODINReport extends javax.swing.JFrame {
     public ODINReport() {
         initComponents();
         //initMaterials();
+        MaterialModel = new ChooseMaterialsTableModel();
+        jtableMaterialer1.setModel(MaterialModel);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
         jtableMaterialer1.setRowSorter(sorter);
         jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
@@ -415,10 +417,8 @@ public class ODINReport extends javax.swing.JFrame {
          for (BEMaterial b : allMaterials){
              System.out.println(b.getM_Materiale());
          }
-        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
-        jtableMaterialer1.setModel(MaterialModel);
         MaterialModel.setMaterialsStatusList(allMaterials);
-        MaterialModel.fireTableDataChanged();
+        //MaterialModel.fireTableDataChanged();
         }
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
