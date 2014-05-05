@@ -5,12 +5,20 @@
  */
 package GUI;
 
+import BE.BEMaterial;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author Claus
  */
 public class ODINReport extends javax.swing.JFrame {
-
+    ChooseMaterialsTableModel MaterialModel;
+    ArrayList<BEMaterial> allMaterials = null;
+     TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
 
@@ -19,6 +27,11 @@ public class ODINReport extends javax.swing.JFrame {
      */
     public ODINReport() {
         initComponents();
+        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
+        jtableMaterialer1.setModel(MaterialModel);// Sets the table model for the JTable
+        sorter = new TableRowSorter<TableModel>(MaterialModel);
+        jtableMaterialer1.setRowSorter(sorter);
+        jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
         setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
@@ -382,6 +395,15 @@ public class ODINReport extends javax.swing.JFrame {
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
         materialsDialog.setLocationRelativeTo(this);
         materialsDialog.setVisible(true);
+        
+                // continue here when the dialog box is closed (disposed).
+        ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
+        if (rent != null) // a car has been created in the dialog box.
+        {
+            allMaterials = rent;
+            MaterialModel.setMaterialsStatusList(allMaterials);
+        }
+    
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed

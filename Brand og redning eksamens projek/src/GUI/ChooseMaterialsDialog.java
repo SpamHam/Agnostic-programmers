@@ -20,7 +20,9 @@ import javax.swing.JOptionPane;
 public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
     ArrayList<BEMaterial> Materials;
-    DefaultListModel listModel = new DefaultListModel();
+    ArrayList<BEMaterial> valgteMaterials;
+    DefaultListModel alleListModel = new DefaultListModel();
+    DefaultListModel valgteListModel = new DefaultListModel();
 
     /**
      * Creates new form ChooseMaterialsDialog
@@ -39,10 +41,12 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         InitializeMaterials();
         setTitle("Materiale Oversigt");
         ActionListener BTNListener = new BTNMoveActionListener();
+        ActionListener BTNTilfoejListener = new BTNTilfoejActionListener();
         btnFoejTilMaterialer.addActionListener(BTNListener);
         btnFjernFraMaterialer.addActionListener(BTNListener);
-        jlistAlleMaterialer.setModel(listModel);
-        jlistValgteMaterialer.setModel(new DefaultListModel());
+        btnTilfoejMaterialer.addActionListener(BTNTilfoejListener);
+        jlistAlleMaterialer.setModel(alleListModel);
+        jlistValgteMaterialer.setModel(valgteListModel);
         PopulateList();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -59,25 +63,36 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         DefaultListModel modelSource = (DefaultListModel) source.getModel();
         modelSource.remove(idx);
     }
+    
+    public ArrayList<BEMaterial> getValgteMaterials(){
+    return valgteMaterials;
+    }
 
     private class BTNMoveActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnFoejTilMaterialer) {
-                moveItem(jlistAlleMaterialer, jlistValgteMaterialer);
-                //if(lstLeft.getModel().getSize() <= 0) ButtonVisibility(lstLeft, false); 
+                moveItem(jlistAlleMaterialer, jlistValgteMaterialer); 
             } else {
                 moveItem(jlistValgteMaterialer, jlistAlleMaterialer);
-
-                // if(lstRight.getModel().getSize() <= 0) ButtonVisibility(lstRight, false); 
             }
+        }
+    }
+    
+       private class BTNTilfoejActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+           for(int i=0; i< valgteListModel.getSize(); i++){
+           valgteMaterials.add(i,valgteMaterials.get(i));
+           }
         }
     }
 
     private void PopulateList() {
         for (BEMaterial m : Materials) {
-            listModel.addElement(m.getM_Materiale());
+            alleListModel.addElement(m.getM_Materiale());
         }
     }
 
