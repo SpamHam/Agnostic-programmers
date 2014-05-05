@@ -3,13 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
+import BE.BEMaterial;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,9 +19,20 @@ import javax.swing.JList;
  */
 public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
+    ArrayList<BEMaterial> Materials;
+    DefaultListModel listModel;
+
     /**
      * Creates new form ChooseMaterialsDialog
      */
+    public void InitializeMaterials() {
+        try {
+            BLL.BLLMaterial.getInstance().getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     public ChooseMaterialsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -27,35 +40,43 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         ActionListener BTNListener = new BTNMoveActionListener();
         btnFoejTilMaterialer.addActionListener(BTNListener);
         btnFjernFraMaterialer.addActionListener(BTNListener);
-       jlistAlleMaterialer.setModel(new DefaultListModel());
-       jlistValgteMaterialer.setModel( new DefaultListModel());
+        jlistAlleMaterialer.setModel(listModel);
+        jlistValgteMaterialer.setModel(listModel);
+        PopulateList();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
-       private void moveItem(JList source, JList target) {
-        
-     int idx = source.getSelectedIndex();
-     if(idx == -1) return;
-     String element = (String) source.getModel().getElementAt(idx);
-     DefaultListModel modelTarget = (DefaultListModel) target.getModel();
-     modelTarget.addElement(element);
-     DefaultListModel modelSource = (DefaultListModel) source.getModel();
-     modelSource.remove(idx);
-      }
-       
-    private class BTNMoveActionListener implements ActionListener
-    {
+
+    private void moveItem(JList source, JList target) {
+
+        int idx = source.getSelectedIndex();
+        if (idx == -1) {
+            return;
+        }
+        String element = (String) source.getModel().getElementAt(idx);
+        DefaultListModel modelTarget = (DefaultListModel) target.getModel();
+        modelTarget.addElement(element);
+        DefaultListModel modelSource = (DefaultListModel) source.getModel();
+        modelSource.remove(idx);
+    }
+
+    private class BTNMoveActionListener implements ActionListener {
+
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnFoejTilMaterialer){
-                moveItem(jlistAlleMaterialer,jlistValgteMaterialer);
-             //if(lstLeft.getModel().getSize() <= 0) ButtonVisibility(lstLeft, false); 
-            }
-            else{
+            if (e.getSource() == btnFoejTilMaterialer) {
+                moveItem(jlistAlleMaterialer, jlistValgteMaterialer);
+                //if(lstLeft.getModel().getSize() <= 0) ButtonVisibility(lstLeft, false); 
+            } else {
                 moveItem(jlistValgteMaterialer, jlistAlleMaterialer);
-             
-            // if(lstRight.getModel().getSize() <= 0) ButtonVisibility(lstRight, false); 
+
+                // if(lstRight.getModel().getSize() <= 0) ButtonVisibility(lstRight, false); 
             }
+        }
+    }
+
+    private void PopulateList() {
+        for (BEMaterial m : Materials) {
+            listModel.addElement(m);
         }
     }
 
