@@ -8,6 +8,9 @@ package GUI;
 import BLL.BLLFireman;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -20,13 +23,15 @@ public class CRUDFireman extends javax.swing.JFrame {
     CRUDFiremanTableModel FiremanTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEFireman> allFiremans = new ArrayList<>();
-    BLLFireman myBLLFireman = new BLLFireman();
-
     //
     private int selectedRow;
 
     private void initFiremans() {
-        allFiremans = myBLLFireman.getAll();
+        try {
+            allFiremans = BLL.BLLFireman.getInstance.getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**

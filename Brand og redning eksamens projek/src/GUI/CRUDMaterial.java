@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import BLL.BLLMaterial;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
@@ -20,12 +19,11 @@ public class CRUDMaterial extends javax.swing.JFrame {
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
-    BLLMaterial materiale = new BLLMaterial();
     //
     private int selectedRow;
 
     private void initMaterial() {
-        allMateriale = materiale.getAll();
+        allMateriale = BLL.BLLMaterial.getInstance.getAll();
     }
 
     /**

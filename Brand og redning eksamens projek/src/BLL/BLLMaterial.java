@@ -5,7 +5,6 @@
  */
 package BLL;
 
-import DALC.DALCMaterial;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
@@ -16,7 +15,8 @@ import java.util.ArrayList;
 public class BLLMaterial {
     private static BLLMaterial m_instance;
     DALC.DALCMaterial DALCMaterial;
-      /**
+    
+    /**
      * Singleton
      *
      * @return
@@ -42,7 +42,7 @@ public class BLLMaterial {
             throw new Exception("You need to enter all required data if you want to Create a material.");
         } else {
             try {
-                DALC.DALCMaterial.getInstance().Create(b);
+                DALCMaterial.getInstance().Create(b);
             } catch (SQLServerException e) {
                 throw new Exception("Could not get access to storage device.");
             }
@@ -52,7 +52,7 @@ public class BLLMaterial {
     public ArrayList<BE.BEMaterial> getAll() throws Exception {
         ArrayList<BE.BEMaterial> res = new ArrayList<>();
         try {
-            res = DALC.DALCMaterial.getInstance().read();
+            res = DALCMaterial.getInstance().read();
         } catch (SQLServerException ex) {
             throw new Exception("Could not get access to storage device.");
         }
@@ -64,7 +64,7 @@ public class BLLMaterial {
             throw new Exception("You need to enter all required data if you want to update a material.");
         } else {
             try {
-                DALC.DALCMaterial.getInstance().update(b);
+                DALCMaterial.getInstance().update(b);
             } catch (SQLServerException ex) {
                 throw new Exception("Could not get access to storage device.");
             }
