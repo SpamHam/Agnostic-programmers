@@ -7,6 +7,8 @@ package BLL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,6 +18,7 @@ public class BLLFireman {
 
     private static BLLFireman m_instance;
     DALC.DALCFireman DALCFireman;
+    Utility.ErrorHandler Error;
 
     /**
      * Singleton
@@ -24,18 +27,19 @@ public class BLLFireman {
      * @throws SQLServerException
      */
     public static BLLFireman getInstance() throws Exception {
-        try {
-            if (m_instance == null) {
-                m_instance = new BLLFireman();
-            }
-        } catch (SQLServerException e) {
-            throw new Exception("Data store not there...");
+        if (m_instance == null) {
+            m_instance = new BLLFireman();
         }
         return m_instance;
     }
 
-    private BLLFireman() throws SQLServerException {
-        DALCFireman = DALC.DALCFireman.getInstance();
+    private BLLFireman() throws Exception {
+        Error = Utility.ErrorHandler.getInstance();
+        try {
+            DALCFireman = DALC.DALCFireman.getInstance();
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
+        }
     }
 
     public void Create(BE.BEFireman b) throws Exception {

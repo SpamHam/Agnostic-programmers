@@ -11,14 +11,26 @@ package Utility;
  */
 public class ErrorHandler {
 
+    private static ErrorHandler m_instance;
+
+    public static ErrorHandler getInstance() {
+        if (m_instance == null) {
+            m_instance = new ErrorHandler();
+        }
+        return m_instance;
+    }
+
+    public ErrorHandler() {
+    }
+
     /**
-     * Error 001, provided insuficient data.
+     * Error 001, insuficient data provided.
      *
      * @param n - extra text. e.g. fireman data base.
      * @throws Exception
      */
     public void NotEnougthInfo(String n) throws Exception {
-        throw new Exception("Not enougth info are typed in, for " + n);
+        throw new Exception("Not enougth info are typed in" + n);
     }
 
     /**
