@@ -6,7 +6,7 @@
 
 package GUI;
 
-import Utility.PDFFactory;
+import Utility.PDFGenerator;
 
 /**
  *

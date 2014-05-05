@@ -14,7 +14,7 @@ import java.text.DateFormatSymbols;
  *
  * @author peter bærbar
  */ 
-public class DateFactory {
+public class DateConverter {
 DateFormatSymbols symbols;
 DateFormat format;
 public static final int WEEKDAY_DAY_MONTH_YEAR_TIME = 0;
@@ -28,7 +28,7 @@ public static final int DAY_MONTH_TIME = 1;
     "torsdag", "fredag", "lørdag", "søndag"};
   String[] shortWeekdays = {"", "man", "tir", "ons", "tor", "fre", "lør", "søn"};
   
-  public DateFactory(int typeFormat){
+  public DateConverter(int typeFormat){
   symbols = new DateFormatSymbols();
   symbols.setMonths(MONTHS);
   symbols.setShortMonths(ShortMONTHS);
