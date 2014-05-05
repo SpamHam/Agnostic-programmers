@@ -85,7 +85,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
            for(int i=0; i< valgteListModel.getSize(); i++){
-           valgteMaterials.add(i,valgteMaterials.get(i));
+           valgteMaterials.add(i, (BEMaterial) jlistValgteMaterialer.getModel().getElementAt(i));
            }
         }
     }
