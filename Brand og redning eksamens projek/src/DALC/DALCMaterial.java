@@ -42,11 +42,10 @@ public class DALCMaterial {
      * @throws SQLException
      */
     public void Create(BE.BEMaterial e) throws SQLException {
-        String sql = "insert into Fireman values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into Materials values (?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setInt(1, e.getM_UdrykningsID());
-        ps.setString(2, e.getM_Materiale());
-        ps.setInt(3, e.getM_Antal());
+        ps.setString(1, e.getM_Materiale());
+        ps.setInt(2, e.getM_Antal());
         ps.executeUpdate();
     }
     
@@ -59,8 +58,8 @@ public class DALCMaterial {
     public ArrayList<BE.BEMaterial> read() throws SQLException {
         ArrayList<BE.BEMaterial> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from Material")) {
-            throw new SQLException("Could not load from Material table");
+        if (!stm.execute("select * from Materials")) {
+            throw new SQLException("Could not load from Materials table");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {
@@ -83,7 +82,7 @@ public class DALCMaterial {
      * @throws SQLException 
      */
     public void update(BE.BEMaterial u) throws SQLException {
-        String sql = "update Material set Materiale=?, Antal=?";
+        String sql = "update Materialz set Materiale=?, Antal=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getM_Materiale());
         ps.setInt(4, u.getM_Antal());
@@ -96,7 +95,7 @@ public class DALCMaterial {
      * @throws java.sql.SQLException
      */
     public void Delete(BE.BEMaterial e) throws SQLException {
-    String sql = "delete from Fireman where Materiale=?";
+    String sql = "delete from Materials where Materiale=?";
     PreparedStatement ps = m_connection.prepareStatement(sql);
     ps.setString(1, e.getM_Materiale());
     ps.executeUpdate();
