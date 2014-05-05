@@ -21,7 +21,7 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
     ChooseMaterialsTableModel MaterialModel;
     ArrayList<BEMaterial> allMaterials;
-    ArrayList<BEMaterial> temp;
+    ArrayList<BEMaterial> temp = new ArrayList<>();
      TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
