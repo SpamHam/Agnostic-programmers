@@ -20,14 +20,14 @@ import javax.swing.JOptionPane;
 public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
     ArrayList<BEMaterial> Materials;
-    DefaultListModel listModel;
+    DefaultListModel listModel = new DefaultListModel();
 
     /**
      * Creates new form ChooseMaterialsDialog
      */
     public void InitializeMaterials() {
         try {
-            BLL.BLLMaterial.getInstance().getAll();
+            Materials = BLL.BLLMaterial.getInstance().getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -36,12 +36,13 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     public ChooseMaterialsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        InitializeMaterials();
         setTitle("Materiale Oversigt");
         ActionListener BTNListener = new BTNMoveActionListener();
         btnFoejTilMaterialer.addActionListener(BTNListener);
         btnFjernFraMaterialer.addActionListener(BTNListener);
         jlistAlleMaterialer.setModel(listModel);
-        jlistValgteMaterialer.setModel(listModel);
+        jlistValgteMaterialer.setModel(new DefaultListModel());
         PopulateList();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -76,7 +77,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
     private void PopulateList() {
         for (BEMaterial m : Materials) {
-            listModel.addElement(m);
+            listModel.addElement(m.getM_Materiale());
         }
     }
 
