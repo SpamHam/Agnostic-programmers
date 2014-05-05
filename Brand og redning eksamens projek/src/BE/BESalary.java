@@ -25,6 +25,17 @@ public class BESalary {
         this.TypeOfWork = TypeOfWork;
         this.isHoliday = isHoliday;
     }
+    
+        public BESalary(int ODIN, String CPR, String Role, int SalaryCode, int Hours, String Date, String TypeOfWork){
+        this.ODIN = ODIN;
+        this.CPR = CPR;
+        this.Role = Role;
+        this.SalaryCode = SalaryCode;
+        this.Hours = Hours;
+        this.Date = Date;
+        this.TypeOfWork = TypeOfWork;
+        
+    }
 
     /**
      * @return the CPR

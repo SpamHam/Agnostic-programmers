@@ -6,6 +6,7 @@ package GUI;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,6 +14,8 @@ import java.util.Date;
  * @author Kathrine
  */
 public class EmergencyStart extends javax.swing.JFrame {
+    
+    ArrayList<Object> Udrykningstider = new ArrayList<>();
 
     /**
      * Creates new form EmergencyStart
@@ -20,6 +23,11 @@ public class EmergencyStart extends javax.swing.JFrame {
     public EmergencyStart() {
         initComponents();
         setTitle("Emergency Start");
+    }
+    
+    public ArrayList getAll(){
+       
+        return Udrykningstider;
     }
     
     public String currentTime(){
@@ -42,6 +50,7 @@ public class EmergencyStart extends javax.swing.JFrame {
         btnStart = new javax.swing.JButton();
         lblSidsteUdrykning = new javax.swing.JLabel();
         txtSidsteUdrykning = new javax.swing.JTextField();
+        btnUdrykningsTider = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +69,13 @@ public class EmergencyStart extends javax.swing.JFrame {
         txtSidsteUdrykning.setBackground(javax.swing.UIManager.getDefaults().getColor("menu"));
         txtSidsteUdrykning.setBorder(null);
 
+        btnUdrykningsTider.setText("Afslut en udrykning");
+        btnUdrykningsTider.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUdrykningsTiderActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,26 +91,38 @@ public class EmergencyStart extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtSidsteUdrykning, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(btnUdrykningsTider, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(72, 72, 72)
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblSidsteUdrykning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSidsteUdrykning))
-                .addGap(29, 29, 29))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnUdrykningsTider))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
         txtSidsteUdrykning.setText(currentTime());
+        Udrykningstider.add(currentTime());
+
     }//GEN-LAST:event_btnStartActionPerformed
+
+    private void btnUdrykningsTiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUdrykningsTiderActionPerformed
+        EmergencyStartDialog start = new EmergencyStartDialog(this, rootPaneCheckingEnabled, Udrykningstider);
+        start.setVisible(true);
+        
+    }//GEN-LAST:event_btnUdrykningsTiderActionPerformed
 
     /**
      * @param args the command line arguments
@@ -132,6 +160,7 @@ public class EmergencyStart extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnStart;
+    private javax.swing.JButton btnUdrykningsTider;
     private javax.swing.JLabel lblSidsteUdrykning;
     private javax.swing.JTextField txtSidsteUdrykning;
     // End of variables declaration//GEN-END:variables
