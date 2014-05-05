@@ -26,6 +26,10 @@ public class BEMaterial {
         m_Antal = Antal;
 
     }
+    
+      public BEMaterial(String Materiale) {
+        m_Materiale = Materiale;
+    }
 
     public BEMaterial() {
 
