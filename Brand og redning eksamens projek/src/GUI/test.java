@@ -38,7 +38,7 @@ public class test {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Timeplan().setVisible(true);
+                new CRUDVehicle().setVisible(true);
             }
         });
     }
