@@ -6,7 +6,10 @@
 package GUI;
 
 import BE.BEMaterial;
+import BLL.BLLMaterial;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -17,16 +20,26 @@ import javax.swing.table.TableRowSorter;
  */
 public class ODINReport extends javax.swing.JFrame {
     ChooseMaterialsTableModel MaterialModel;
-    ArrayList<BEMaterial> allMaterials = null;
+    ArrayList<BEMaterial> allMaterials;
      TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
+    
+    private void initMaterials(){
+        try {
+            allMaterials = BLLMaterial.getInstance().getAll();
+        } catch (Exception ex) {
+             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    
+    }
 
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
+        initMaterials();
         MaterialModel = new ChooseMaterialsTableModel(allMaterials);
         jtableMaterialer1.setModel(MaterialModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(MaterialModel);
