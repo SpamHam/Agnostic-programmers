@@ -10,12 +10,15 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.DateFormatSymbols;
- 
+/**
+ *
+ * @author peter bærbar
+ */ 
 public class DateFactory {
 DateFormatSymbols symbols;
 DateFormat format;
-public final int DAY_DATE_MONTH_YEAR_TIME = 0;
-public final int DATE_MONTH_TIME = 1;
+public static final int WEEKDAY_DAY_MONTH_YEAR_TIME = 0;
+public static final int DAY_MONTH_TIME = 1;
 
   String[] MONTHS = {"januar", "februar", "marts", "april", "maj", "juni",
   "juli", "august", "september", "oktober", "november", "december"};
@@ -35,18 +38,18 @@ public final int DATE_MONTH_TIME = 1;
   format = new SimpleDateFormat(type, symbols);
     }
   
-  public String getConvetedDate(){
+  public String getDate(){
   return format.format(new Date());
   }
   
-  public void print(){
-  System.out.println(format.format(new Date()));
+  public void getprint(){
+      System.out.println(format.format(new Date()));
   }
 
     private String typeOfFormat(int typeFormat) {
             switch (typeFormat) {
          case 0: return "EEE dd MMM yyyy HH:mm";
-         case 1: return "dd-MMM-HH:mm";
+         case 1: return "dd-MMM HH.mm";
          } return null;
     }
 }
