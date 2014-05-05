@@ -6,7 +6,6 @@
 package BLL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -15,32 +14,41 @@ import java.util.ArrayList;
  */
 public class BLLVehicle {
 
-    private static BLLVehicle M_instance;
-    DALC.DALCVehicle DALCVehicle;
-
-    public static BLLVehicle getInstance() throws Exception {
-        try {
-            if (M_instance == null) {
-                M_instance = new BLLVehicle();
+    public void Create(BE.BEVehicle b) throws Exception {
+        if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
+            throw new Exception("You need to enter all required data if you want to Create a Vehicle.");
+        } else {
+            try {
+                DALC.DALCVehicle.getInstance().Create(b);
+            } catch (SQLServerException e) {
+                throw new Exception("Could not get access to storage device.");
             }
-        } catch (SQLServerException e) {
-            throw new Exception("Data store not there...");
         }
-        return M_instance;
     }
 
-    public BLLVehicle() throws Exception {
-        DALCVehicle = DALC.DALCVehicle.getInstance();
-    }
-
-    public ArrayList<BE.BEVehicle> getAllVehicles() throws Exception {
-        ArrayList<BE.BEVehicle> Vehicles;
+    public ArrayList<BE.BEVehicle> getAll() throws Exception {
+        ArrayList<BE.BEVehicle> res = new ArrayList<>();
         try {
-            Vehicles = DALCVehicle.read();
-        } catch (SQLException ex) {
-            throw new Exception("Could not retrieve data from data store.");
+            res = DALC.DALCVehicle.getInstance().read();
+        } catch (SQLServerException ex) {
+            throw new Exception("Could not get access to storage device.");
         }
-        return Vehicles;
+        return res;
     }
 
+    public void Update(BE.BEVehicle b) throws Exception {
+        if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
+            throw new Exception("You need to enter all required data if you want to update the Vehicle.");
+        } else {
+            try {
+                DALC.DALCVehicle.getInstance().update(b);
+            } catch (SQLServerException ex) {
+                throw new Exception("Could not get access to storage device.");
+            }
+        }
+    }
+
+    public void remove() throws Exception {
+        //TODO after Salary are done.
+    }    
 }

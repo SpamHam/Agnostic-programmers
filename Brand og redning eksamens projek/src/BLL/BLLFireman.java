@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
 /**
@@ -13,13 +14,41 @@ import java.util.ArrayList;
  */
 public class BLLFireman {
 
-    public ArrayList<BE.BEFireman> getAll() {
+    public void Create(BE.BEFireman b) throws Exception {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
+            throw new Exception("You need to enter all required data if you want to Create a fireman.");
+        } else {
+            try {
+                DALC.DALCFireman.getInstance().Create(b);
+            } catch (SQLServerException e) {
+                throw new Exception("Could not get access to storage device.");
+            }
+        }
+    }
+
+    public ArrayList<BE.BEFireman> getAll() throws Exception {
         ArrayList<BE.BEFireman> res = new ArrayList<>();
-        BE.BEFireman c = new BE.BEFireman("3007901556", "Bent", "Andreasen");
-        res.add(c);
-        BE.BEFireman B = new BE.BEFireman("2902901447", "Lars", "Jesus");
-        res.add(B);
+        try {
+            res = DALC.DALCFireman.getInstance().read();
+        } catch (SQLServerException ex) {
+            throw new Exception("Could not get access to storage device.");
+        }
         return res;
     }
 
+    public void Update(BE.BEFireman b) throws Exception {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
+            throw new Exception("You need to enter all required data if you want to update the fireman.");
+        } else {
+            try {
+                DALC.DALCFireman.getInstance().update(b);
+            } catch (SQLServerException ex) {
+                throw new Exception("Could not get access to storage device.");
+            }
+        }
+    }
+
+    public void remove() throws Exception {
+        //TODO after Salary are done.
+    }
 }

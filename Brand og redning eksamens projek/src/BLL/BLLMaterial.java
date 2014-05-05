@@ -5,7 +5,7 @@
  */
 package BLL;
 
-import BE.BEMaterial;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
 /**
@@ -14,19 +14,42 @@ import java.util.ArrayList;
  */
 public class BLLMaterial {
 
-    public ArrayList<BEMaterial> getAll() {
-        ArrayList<BEMaterial> res = new ArrayList<>();
-        BEMaterial a = new BEMaterial("Pulverslukker", 2);
-        res.add(a);
-        BEMaterial b = new BEMaterial("Flydespærringer", 3);
-        res.add(b);
-        BEMaterial c = new BEMaterial("Lysmateriel", 4);
-        res.add(c);
-        BEMaterial d = new BEMaterial("C-slanger", 16);
-        res.add(d);
-        BEMaterial e = new BEMaterial("Flasker (300 bar)", 12);
-        res.add(e);
+    public void Create(BE.BEMaterial b) throws Exception {
+        if (b.getM_Materiale().isEmpty()) {
+            throw new Exception("You need to enter all required data if you want to Create a material.");
+        } else {
+            try {
+                DALC.DALCMaterial.getInstance().Create(b);
+            } catch (SQLServerException e) {
+                throw new Exception("Could not get access to storage device.");
+            }
+        }
+    }
+
+    public ArrayList<BE.BEMaterial> getAll() throws Exception {
+        ArrayList<BE.BEMaterial> res = new ArrayList<>();
+        try {
+            res = DALC.DALCMaterial.getInstance().read();
+        } catch (SQLServerException ex) {
+            throw new Exception("Could not get access to storage device.");
+        }
         return res;
+    }
+
+    public void Update(BE.BEMaterial b) throws Exception {
+        if (b.getM_Materiale().isEmpty()) {
+            throw new Exception("You need to enter all required data if you want to update a material.");
+        } else {
+            try {
+                DALC.DALCMaterial.getInstance().update(b);
+            } catch (SQLServerException ex) {
+                throw new Exception("Could not get access to storage device.");
+            }
+        }
+    }
+
+    public void remove() throws Exception {
+        //TODO after Salary are done.
     }
 
 }
