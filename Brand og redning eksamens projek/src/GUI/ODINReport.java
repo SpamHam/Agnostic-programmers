@@ -25,23 +25,21 @@ public class ODINReport extends javax.swing.JFrame {
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
     
-    private void initMaterials(){
-        try {
-            allMaterials = BLLMaterial.getInstance().getAll();
-        } catch (Exception ex) {
-             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    
-    }
+//    private void initMaterials(){
+//        try {
+//            allMaterials = BLLMaterial.getInstance().getAll();
+//        } catch (Exception ex) {
+//             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    
+//    }
 
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        initMaterials();
-        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
-        jtableMaterialer1.setModel(MaterialModel);// Sets the table model for the JTable
+        //initMaterials();
         sorter = new TableRowSorter<TableModel>(MaterialModel);
         jtableMaterialer1.setRowSorter(sorter);
         jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
@@ -413,8 +411,9 @@ public class ODINReport extends javax.swing.JFrame {
         ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
         if (rent != null) // a car has been created in the dialog box.
         {
-            allMaterials = rent;
-            MaterialModel.setMaterialsStatusList(allMaterials);
+         allMaterials = rent;
+        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
+        jtableMaterialer1.setModel(MaterialModel);
         }
     
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
