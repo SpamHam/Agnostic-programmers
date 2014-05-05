@@ -5,6 +5,7 @@
  */
 package BLL;
 
+import DALC.DALCMaterial;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
@@ -13,6 +14,28 @@ import java.util.ArrayList;
  * @author peter bærbar
  */
 public class BLLMaterial {
+    private static BLLMaterial m_instance;
+    DALC.DALCMaterial DALCMaterial;
+      /**
+     * Singleton
+     *
+     * @return
+     * @throws SQLServerException
+     */
+    public static BLLMaterial getInstance() throws Exception {
+        try {
+            if (m_instance == null) {
+                m_instance = new BLLMaterial();
+            }
+        } catch (SQLServerException e) {
+            throw new Exception("Data store not there...");
+        }
+        return m_instance;
+    }
+
+    private BLLMaterial() throws Exception {
+        DALCMaterial = DALC.DALCMaterial.getInstance();
+    }
 
     public void Create(BE.BEMaterial b) throws Exception {
         if (b.getM_Materiale().isEmpty()) {
