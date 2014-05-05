@@ -412,6 +412,9 @@ public class ODINReport extends javax.swing.JFrame {
         if (rent != null) // a car has been created in the dialog box.
         {
          allMaterials = rent;
+         for (BEMaterial b : allMaterials){
+             System.out.println(b.getM_Materiale());
+         }
         MaterialModel = new ChooseMaterialsTableModel(allMaterials);
         jtableMaterialer1.setModel(MaterialModel);
         MaterialModel.fireTableDataChanged();
