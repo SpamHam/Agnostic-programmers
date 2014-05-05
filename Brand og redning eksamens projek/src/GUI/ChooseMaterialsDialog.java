@@ -6,6 +6,11 @@
 
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 /**
  *
  * @author Claus
@@ -19,7 +24,39 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Materiale Oversigt");
+        ActionListener BTNListener = new BTNMoveActionListener();
+        btnFoejTilMaterialer.addActionListener(BTNListener);
+        btnFjernFraMaterialer.addActionListener(BTNListener);
+       jlistAlleMaterialer.setModel(new DefaultListModel());
+       jlistValgteMaterialer.setModel( new DefaultListModel());
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+    
+       private void moveItem(JList source, JList target) {
+        
+     int idx = source.getSelectedIndex();
+     if(idx == -1) return;
+     String element = (String) source.getModel().getElementAt(idx);
+     DefaultListModel modelTarget = (DefaultListModel) target.getModel();
+     modelTarget.addElement(element);
+     DefaultListModel modelSource = (DefaultListModel) source.getModel();
+     modelSource.remove(idx);
+      }
+       
+    private class BTNMoveActionListener implements ActionListener
+    {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnFoejTilMaterialer){
+                moveItem(jlistAlleMaterialer,jlistValgteMaterialer);
+             //if(lstLeft.getModel().getSize() <= 0) ButtonVisibility(lstLeft, false); 
+            }
+            else{
+                moveItem(jlistValgteMaterialer, jlistAlleMaterialer);
+             
+            // if(lstRight.getModel().getSize() <= 0) ButtonVisibility(lstRight, false); 
+            }
+        }
     }
 
     /**

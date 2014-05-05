@@ -53,13 +53,7 @@ public class PDFFactory {
   this.colNames = colNames;
   DateFactory myDate = new DateFactory(0);
   FILE = filePath + myDate.getConvetedDate();
-  
   }
-  
-//  private static void initArrays(){
-//  allTime = myTime.getAll();
-//  colNames = myTime.getCol();
-//  }
   
   public void run() throws Exception{
       try {
@@ -73,20 +67,6 @@ public class PDFFactory {
       throw new Exception ("Kunne ikke generer PDF");
     }
   }
-
-//  public static void main(String[] args) {
-//    try {
-//        initArrays();
-//      Document document = new Document();
-//      PdfWriter.getInstance(document, new FileOutputStream(FILE));
-//      document.open();
-//      addMetaData(document);
-//      createODIN(document);
-//      document.close();
-//    } catch (Exception e) {
-//      e.printStackTrace();
-//    }
-//  }
 
   // iText allows to add metadata to the PDF which can be viewed in your Adobe
   // Reader
