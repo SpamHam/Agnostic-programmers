@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
     ArrayList<BEMaterial> Materials;
-    ArrayList<BEMaterial> valgteMaterials;
+    ArrayList<BEMaterial> valgteMaterials = new ArrayList<>();
     DefaultListModel alleListModel = new DefaultListModel();
     DefaultListModel valgteListModel = new DefaultListModel();
 
