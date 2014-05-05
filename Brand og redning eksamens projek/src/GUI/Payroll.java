@@ -5,19 +5,39 @@
  */
 
 package GUI;
+import BE.BESalary;
+import BLL.BLLPayroll;
+import java.util.ArrayList;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
  * @author Claus
  */
 public class Payroll extends javax.swing.JFrame {
-
+    PayrollTableModel Payrollmodel;
+    TableRowSorter<TableModel> sorter;
+    ArrayList<BE.BESalary> allSalary = new ArrayList<>();
+    BLL.BLLPayroll m_Payroll = new BLLPayroll();
+    
+    public void initSalary(){
+        allSalary = null;
+    }
+    
     /**
      * Creates new form Payroll
      */
     public Payroll() {
         initComponents();
+        initSalary();
         setTitle("Time oversigt");
+        Payrollmodel = new PayrollTableModel(allSalary);
+        jtableLoenOversigt.setModel(Payrollmodel);
+        sorter = new TableRowSorter<TableModel>(Payrollmodel);
+        jtableLoenOversigt.setRowSorter(sorter);
+        jtableLoenOversigt.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
