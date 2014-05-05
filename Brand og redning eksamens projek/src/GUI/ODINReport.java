@@ -21,26 +21,24 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
     ChooseMaterialsTableModel MaterialModel;
     ArrayList<BEMaterial> allMaterials;
+    ArrayList<BEMaterial> temp;
      TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
     
-//    private void initMaterials(){
-//        try {
-//            allMaterials = BLLMaterial.getInstance().getAll();
-//        } catch (Exception ex) {
-//             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    
-//    }
+    private void initTemp(){
+    BEMaterial b = new BEMaterial("");
+    temp.add(b);
+        
+    }
 
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        //initMaterials();
-        MaterialModel = new ChooseMaterialsTableModel();
+        initTemp();
+        MaterialModel = new ChooseMaterialsTableModel(temp);
         jtableMaterialer1.setModel(MaterialModel);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
         jtableMaterialer1.setRowSorter(sorter);
@@ -418,7 +416,6 @@ public class ODINReport extends javax.swing.JFrame {
              System.out.println(b.getM_Materiale());
          }
         MaterialModel.setMaterialsStatusList(allMaterials);
-        //MaterialModel.fireTableDataChanged();
         }
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 

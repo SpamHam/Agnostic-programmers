@@ -21,8 +21,11 @@ private Class[] classes = {String.class, Integer.class};
 
 private ArrayList<BEMaterial> allSelectedMaterials;
 
-    public ChooseMaterialsTableModel() {
-    }
+    public ChooseMaterialsTableModel(ArrayList<BEMaterial> materialList) {
+      allSelectedMaterials = materialList;
+        fireTableDataChanged();
+    }    
+    
 
         @Override
     public int getRowCount() {
