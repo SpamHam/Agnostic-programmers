@@ -46,7 +46,7 @@ public final int DATE_MONTH_TIME = 1;
     private String typeOfFormat(int typeFormat) {
             switch (typeFormat) {
          case 0: return "EEE dd MMM yyyy HH:mm";
-         case 1: return "dd MMM HH:mm";
+         case 1: return "dd-MMM-HH:mm";
          } return null;
     }
 }
