@@ -25,7 +25,10 @@ public class BETimePlan {
         this.Koeretoej = Koeretoej;
     }
     
-    public BETimePlan(){}
+    public BETimePlan(String navn, String Koeretoej){
+    this.navn = navn;
+    this.Koeretoej = Koeretoej;
+    }
 
 
     public String getStilling() {
