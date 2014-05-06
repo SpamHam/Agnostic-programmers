@@ -6,11 +6,7 @@
 package GUI;
 
 import BE.BEMaterial;
-import BLL.BLLMaterial;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,17 +15,18 @@ import javax.swing.table.TableRowSorter;
  * @author Claus
  */
 public class ODINReport extends javax.swing.JFrame {
+
     ChooseMaterialsTableModel MaterialModel;
     ArrayList<BEMaterial> allMaterials;
     ArrayList<BEMaterial> temp = new ArrayList<>();
-     TableRowSorter<TableModel> sorter;
+    TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
-    
-    private void initTemp(){
-    BEMaterial b = new BEMaterial("");
-    temp.add(b);
-        
+
+    private void initTemp() {
+        BEMaterial b = new BEMaterial("");
+        temp.add(b);
+
     }
 
     /**
@@ -38,9 +35,9 @@ public class ODINReport extends javax.swing.JFrame {
     public ODINReport() {
         initComponents();
         initTemp();
-        //MaterialModel = new ChooseMaterialsTableModel(temp);
+        MaterialModel = new ChooseMaterialsTableModel(temp);
         //jtableMaterialer1.setModel(MaterialModel);
-        //sorter = new TableRowSorter<TableModel>(MaterialModel);
+        sorter = new TableRowSorter<TableModel>(MaterialModel);
         //jtableMaterialer1.setRowSorter(sorter);
         //jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
         setTitle("ODIN Report");
@@ -50,14 +47,14 @@ public class ODINReport extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
-    
-        public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -409,16 +406,20 @@ public class ODINReport extends javax.swing.JFrame {
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
         materialsDialog.setLocationRelativeTo(this);
         materialsDialog.setVisible(true);
-        
-                // continue here when the dialog box is closed (disposed).
+
+        // continue here when the dialog box is closed (disposed).
         ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
-        if (rent != null) // a car has been created in the dialog box.
+        if (rent != null) // a material has been created in the dialog box.
         {
-         allMaterials = rent;
-         for (BEMaterial b : allMaterials){
-             System.out.println(b.getM_Materiale());
-         }
-        MaterialModel.setMaterialsStatusList(allMaterials);
+            allMaterials = rent;
+            for (BEMaterial b : allMaterials) {
+                System.out.println(b.getM_Materiale());
+            }
+            jtableMaterialer1.setModel(MaterialModel);
+            jtableMaterialer1.setRowSorter(sorter);
+            jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
+
+            MaterialModel.setMaterialsStatusList(allMaterials);
         }
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
