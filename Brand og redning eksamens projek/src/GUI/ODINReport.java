@@ -36,10 +36,7 @@ public class ODINReport extends javax.swing.JFrame {
         initComponents();
         initTemp();
         MaterialModel = new ChooseMaterialsTableModel(temp);
-        //jtableMaterialer1.setModel(MaterialModel);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
-        //jtableMaterialer1.setRowSorter(sorter);
-        //jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
         setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
