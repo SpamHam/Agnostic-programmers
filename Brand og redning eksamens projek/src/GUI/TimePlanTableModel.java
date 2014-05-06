@@ -42,7 +42,7 @@ public class TimePlanTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int col) {
+    public Class<BETimePlan> getColumnClass(int col) {
         return classes[col];
     }
 

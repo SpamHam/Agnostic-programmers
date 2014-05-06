@@ -5,9 +5,9 @@
  */
 
 package GUI;
-import BE.BESalary;
-import BLL.BLLPayroll;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,7 +19,7 @@ public class Payroll extends javax.swing.JFrame {
     PayrollTableModel Payrollmodel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BESalary> allSalary = new ArrayList<>();
-    BLL.BLLPayroll m_Payroll = new BLLPayroll();
+    BLL.BLLPayroll m_Payroll;
     
     public void initSalary(){
         allSalary = null;
@@ -29,6 +29,11 @@ public class Payroll extends javax.swing.JFrame {
      * Creates new form Payroll
      */
     public Payroll() {
+        try {
+            this.m_Payroll = BLL.BLLPayroll.getInstance();
+        } catch (Exception ex) {
+            Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+        }
         initComponents();
         initSalary();
         setTitle("Time oversigt");

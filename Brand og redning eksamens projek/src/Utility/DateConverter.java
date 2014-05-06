@@ -10,12 +10,15 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.DateFormatSymbols;
- 
-public class DateFactory {
+/**
+ *
+ * @author peter bærbar
+ */ 
+public class DateConverter {
 DateFormatSymbols symbols;
 DateFormat format;
-public final int DAY_DATE_MONTH_YEAR_TIME = 0;
-public final int DATE_MONTH_TIME = 1;
+public static final int WEEKDAY_DAY_MONTH_YEAR_TIME = 0;
+public static final int DAY_MONTH_TIME = 1;
 
   String[] MONTHS = {"januar", "februar", "marts", "april", "maj", "juni",
   "juli", "august", "september", "oktober", "november", "december"};
@@ -25,7 +28,7 @@ public final int DATE_MONTH_TIME = 1;
     "torsdag", "fredag", "lørdag", "søndag"};
   String[] shortWeekdays = {"", "man", "tir", "ons", "tor", "fre", "lør", "søn"};
   
-  public DateFactory(int typeFormat){
+  public DateConverter(int typeFormat){
   symbols = new DateFormatSymbols();
   symbols.setMonths(MONTHS);
   symbols.setShortMonths(ShortMONTHS);
@@ -35,18 +38,14 @@ public final int DATE_MONTH_TIME = 1;
   format = new SimpleDateFormat(type, symbols);
     }
   
-  public String getConvetedDate(){
+  public String getDate(){
   return format.format(new Date());
-  }
-  
-  public void print(){
-  System.out.println(format.format(new Date()));
   }
 
     private String typeOfFormat(int typeFormat) {
             switch (typeFormat) {
          case 0: return "EEE dd MMM yyyy HH:mm";
-         case 1: return "dd-MMM-HH:mm";
+         case 1: return "dd-MMM HH.mm";
          } return null;
     }
 }

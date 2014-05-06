@@ -6,6 +6,8 @@
 
 package GUI;
 
+import Utility.PDFGenerator;
+
 /**
  *
  * @author peter bærbar
@@ -38,7 +40,7 @@ public class test {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CRUDVehicle().setVisible(true);
+               
             }
         });
     }

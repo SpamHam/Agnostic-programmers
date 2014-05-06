@@ -15,7 +15,8 @@ public class BESalary {
     private int SalaryCode, Hours, ODIN;
     private boolean isHoliday;
     
-    public BESalary(int ODIN, String CPR, String Role, int SalaryCode, int Hours, String Date, String TypeOfWork, boolean isHoliday){
+    public BESalary(int ODIN, String CPR, String Role, int SalaryCode, int Hours, String Date,
+                    String TypeOfWork, boolean isHoliday){
         this.ODIN = ODIN;
         this.CPR = CPR;
         this.Role = Role;

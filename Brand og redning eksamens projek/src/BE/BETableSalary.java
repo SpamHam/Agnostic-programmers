@@ -10,11 +10,11 @@ package BE;
  *
  * @author Son Of Satan
  */
-public class BEMonthlySalary {
+public class BETableSalary {
     private String Navn, SalaryNumber;
     private double BrandBrandmand, BrandHoldleder, StandbyStationBrandmand, StandbyStationHoldleder, ArbejdeStationAndet, ØvelserBrandmand, ØvelserHoldeder, VagtBrandmandHeligdage, VagtBrandmandHverdage, VagtHoldledereHeligdage, VagtHoldledereHverdage; 
 
-    public BEMonthlySalary(String Navn, String SalaryNumber, double BrandBrandmand, double BrandHoldleder, double StandbyStationBrandmand, double StandbyStationHoldleder, double ArbejdeStationAndet, double ØvelserBrandmand, double ØvelserHoldeder, double VagtBrandmandHeligdage, double VagtBrandmandHverdage, double VagtHoldledereHeligdage, double VagtHoldledereHverdage){
+    public BETableSalary(String Navn, String SalaryNumber, double BrandBrandmand, double BrandHoldleder, double StandbyStationBrandmand, double StandbyStationHoldleder, double ArbejdeStationAndet, double ØvelserBrandmand, double ØvelserHoldeder, double VagtBrandmandHeligdage, double VagtBrandmandHverdage, double VagtHoldledereHeligdage, double VagtHoldledereHverdage){
         this.Navn = Navn;
         this.SalaryNumber = SalaryNumber;
         this.BrandBrandmand = BrandBrandmand;
