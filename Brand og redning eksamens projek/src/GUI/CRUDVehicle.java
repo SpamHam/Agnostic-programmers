@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.BEVehicle;
 import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -247,6 +248,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
         AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(this, rootPaneCheckingEnabled);
         tilføjBrandbil.setVisible(true);
+        
+               // continue here when the dialog box is closed (disposed).
+        BEVehicle vehicle = tilføjBrandbil.getVehicle();
+        if (vehicle != null) // a team has been created in the dialog box.
+        {
+          
+        }
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed

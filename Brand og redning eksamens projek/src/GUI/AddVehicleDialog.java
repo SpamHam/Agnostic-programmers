@@ -4,12 +4,14 @@
  */
 package GUI;
 
+import BE.BEVehicle;
+
 /**
  *
  * @author Kathrine
  */
 public class AddVehicleDialog extends javax.swing.JDialog {
-
+BEVehicle res;
     /**
      * Creates new form AddVehicleDialog
      */
@@ -59,6 +61,11 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         lblBeskrivelse.setText("Beskrivelse:");
 
         btnTilfoej.setText("Tilføj");
+        btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilfoejActionPerformed(evt);
+            }
+        });
 
         btnLukVindue.setText("Luk vindue");
         btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
@@ -132,6 +139,18 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_btnLukVindueActionPerformed
 
+    private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+        
+        String reg = txtRegNr.getText();
+        String brand = txtMaerke.getText();
+        String model = txtModel.getText();
+        String descrip = txtBeskrivelse.getText();
+         res = new BEVehicle(reg, brand, model, descrip);
+    }//GEN-LAST:event_btnTilfoejActionPerformed
+
+    public BEVehicle getVehicle(){
+    return res;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLukVindue;
     private javax.swing.JButton btnTilfoej;
