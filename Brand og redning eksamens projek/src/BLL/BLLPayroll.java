@@ -76,7 +76,44 @@ public class BLLPayroll {
         return res;
     }
 
-    public ArrayList<BE.BETableSalary> convertToTable() throws Exception {
+    /**
+     *
+     * @return @throws Exception
+     */
+    public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
+        int count = 0;
+        ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>();
+        ArrayList<BE.BETableSalary> UncompressedTable = convertToTable();
+        for (BE.BETableSalary a : UncompressedTable) {
+            for (BE.BETableSalary b : UncompressedTable) {
+                if (a.getNavn().equalsIgnoreCase(b.getNavn())) {
+                    BE.BETableSalary ny = new BE.BETableSalary(UncompressedTable.get(count).getNavn(), UncompressedTable.get(count).getSalaryNumber(),
+                            UncompressedTable.get(count).getBrandBrandmand() + b.getBrandBrandmand(),
+                            UncompressedTable.get(count).getBrandHoldleder() + b.getBrandHoldleder(),
+                            UncompressedTable.get(count).getStandbyStationBrandmand() + b.getStandbyStationBrandmand(),
+                            UncompressedTable.get(count).getStandbyStationHoldleder() + b.getStandbyStationHoldleder(),
+                            UncompressedTable.get(count).getArbejdeStationAndet() + b.getArbejdeStationAndet(),
+                            UncompressedTable.get(count).getØvelserBrandmand() + b.getØvelserBrandmand(),
+                            UncompressedTable.get(count).getØvelserHoldeder() + b.getØvelserHoldeder(),
+                            UncompressedTable.get(count).getVagtBrandmandHeligdage() + b.getVagtBrandmandHeligdage(),
+                            UncompressedTable.get(count).getVagtBrandmandHverdage() + b.getVagtBrandmandHverdage(),
+                            UncompressedTable.get(count).getVagtHoldledereHeligdage() + b.getVagtHoldledereHeligdage(),
+                            UncompressedTable.get(count).getVagtHoldledereHverdage() + b.getVagtHoldledereHverdage());
+                    UncompressedTable.set(count, ny);
+                    UncompressedTable.remove(b);
+                }
+            }
+            CompressedTable.add(UncompressedTable.get(count));
+            count++;
+        }
+        return CompressedTable;
+    }
+
+    /**
+     *
+     * @return @throws Exception
+     */
+    private ArrayList<BE.BETableSalary> convertToTable() throws Exception {
         ArrayList<BE.BETableSalary> TableSalarys = new ArrayList<>();
         for (BE.BESalary S : getAll()) {
             BETableSalary ts = SalaryTotableSalary(S);
