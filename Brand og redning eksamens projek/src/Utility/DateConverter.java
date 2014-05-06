@@ -41,10 +41,6 @@ public static final int DAY_MONTH_TIME = 1;
   public String getDate(){
   return format.format(new Date());
   }
-  
-  public void getprint(){
-      System.out.println(format.format(new Date()));
-  }
 
     private String typeOfFormat(int typeFormat) {
             switch (typeFormat) {

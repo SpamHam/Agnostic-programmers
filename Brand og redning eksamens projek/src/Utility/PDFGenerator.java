@@ -52,8 +52,8 @@ public class PDFGenerator {
   public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
   this.allTime = allTime;
   this.colNames = colNames;
- String fileName = new DateConverter(DateConverter.DAY_MONTH_TIME).getDate();
-  FILE = FILE + fileName + ".pdf";
+ //String fileName = new DateConverter(DateConverter.DAY_MONTH_TIME).getDate();
+  FILE = FILE + new DateConverter(DateConverter.DAY_MONTH_TIME).getDate() + ".pdf";
   }
   
   public void run() throws Exception{
