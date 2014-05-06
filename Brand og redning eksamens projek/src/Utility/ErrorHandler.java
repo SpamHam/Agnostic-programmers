@@ -44,6 +44,7 @@ public class ErrorHandler {
     public void StorageUnreachable(String n) throws Exception {
         throw new Exception("Could not connect to data storage" + n);
     }
+    
     /**
      * Error 003, Data table unreachable.
      *
@@ -53,4 +54,15 @@ public class ErrorHandler {
     public void Datatable(String n) throws SQLException {
         throw new SQLException("Could not find " + n + " table.");
     }
+    
+    /**
+     * Error 004, String couldn't be matched.
+     *
+     * @param n - the string you want to match.
+     * @throws java.sql.SQLException
+     */
+    public void StringEqualError(String n) throws Exception {
+        throw new Exception("There seems to be a problem with finding the matching string " + n + " in the code.");
+    }
+    
 }

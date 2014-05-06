@@ -5,6 +5,8 @@
  */
 package BLL;
 
+import BE.BESalary;
+import BE.BETableSalary;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
@@ -73,13 +75,54 @@ public class BLLPayroll {
         }
         return res;
     }
-    
-    public ArrayList<BE.BETableSalary> convertToTable() throws Exception{
+
+    public ArrayList<BE.BETableSalary> convertToTable() throws Exception {
         ArrayList<BE.BETableSalary> TableSalarys = new ArrayList<>();
-        for (BE.BESalary S: getAll()){
-            
+        for (BE.BESalary S : getAll()) {
+            BETableSalary ts = SalaryTotableSalary(S);
+            TableSalarys.add(ts);
         }
         return TableSalarys;
+    }
+
+    private BETableSalary SalaryTotableSalary(BESalary S) throws Exception {
+        double BrandBrandmand = 0, BrandHoldleder = 0, StandbyStationBrandmand = 0, StandbyStationHoldleder = 0, ArbejdeStationAndet = 0, ØvelserBrandmand = 0, ØvelserHoldeder = 0, VagtBrandmandHeligdage = 0, VagtBrandmandHverdage = 0, VagtHoldledereHeligdage = 0, VagtHoldledereHverdage = 0;
+        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(S.getCPR());
+        if (S.getTypeOfWork().equalsIgnoreCase("Øvelse")) {
+            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+                ØvelserHoldeder = 1;
+            } else {
+                ØvelserBrandmand = 1;
+            }
+        } else if (S.getTypeOfWork().equalsIgnoreCase("Indsats")) {
+            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+                BrandHoldleder = 1;
+            } else {
+                BrandBrandmand = 1;
+            }
+        } else if (S.getTypeOfWork().equalsIgnoreCase("Stand-By")) {
+            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+                StandbyStationHoldleder = 1;
+            } else {
+                StandbyStationBrandmand = 1;
+            }
+        } else if (S.getTypeOfWork().equalsIgnoreCase("Andet")) {
+            ArbejdeStationAndet = 1;
+        } else if (S.getTypeOfWork().equalsIgnoreCase("Vagt") && S.isIsHoliday()) {
+            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+                VagtHoldledereHeligdage = 1;
+            } else {
+                VagtBrandmandHeligdage = 1;
+            }
+        } else if (S.getTypeOfWork().equalsIgnoreCase("Vagt") && !S.isIsHoliday()) {
+            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+                VagtHoldledereHverdage = 1;
+            } else {
+                VagtBrandmandHverdage = 1;
+            }
+        }
+        BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), Integer.toString(f.getPaymentNr()), BrandBrandmand * S.getHours(), BrandHoldleder * S.getHours(), StandbyStationBrandmand * S.getHours(), StandbyStationHoldleder * S.getHours(), ArbejdeStationAndet * S.getHours(), ØvelserBrandmand * S.getHours(), ØvelserHoldeder * S.getHours(), VagtBrandmandHeligdage * S.getHours(), VagtBrandmandHverdage * S.getHours(), VagtHoldledereHeligdage * S.getHours(), VagtHoldledereHverdage * S.getHours());
+        return ts;
     }
 
     public void remove() throws Exception {

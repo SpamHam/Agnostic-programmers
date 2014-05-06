@@ -5,7 +5,9 @@
  */
 package BLL;
 
+import BE.BEFireman;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 /**
@@ -76,5 +78,15 @@ public class BLLFireman {
 
     public void remove() throws Exception {
         //TODO after Salary are done.
+    }
+
+    BEFireman FiremanFromCPR(String cpr) throws Exception {
+        for (BE.BEFireman f : getAll()) {
+            if (cpr.equalsIgnoreCase(f.getCPR())) {
+                return f;
+            }
+        }
+        Error.StringEqualError(cpr);
+        return null;
     }
 }
