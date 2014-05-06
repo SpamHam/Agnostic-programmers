@@ -78,17 +78,17 @@ public class ChooseTeam extends javax.swing.JDialog {
         modelSource.remove(idx);
     }
 
-//        private class BTNTilfoejActionListener implements ActionListener {
-//
-//        @Override
-//        public void actionPerformed(ActionEvent e) {
-//            for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-//                BEFireman temp = new BEFireman ((String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i));
-//                ValgteFiremen.add(i, temp);
-//            }
-//            dispose();
-//        }
-//    }
+        private class BTNTilfoejActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
+                //BEFireman temp = new BEFireman ((String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i));
+                //ValgteFiremen.add(i, temp);
+            }
+            dispose();
+        }
+    }
     
     private class BTNMoveActionListener implements ActionListener {
 

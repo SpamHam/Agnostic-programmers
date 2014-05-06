@@ -21,12 +21,13 @@ public final class BEFireman {
         this.LastName = LastName;
     }
 
-    public BEFireman(String FirstName, String LastName){
+    public BEFireman(String FirstName, String LastName) {
         this.FirstName = FirstName;
         this.LastName = LastName;
     }
-    
-    public BEFireman(String CPR, String FirstName, String LastName, String Address, int PhoneNr, int CallNr, int PaymentNr, boolean LeaderTrained) {
+
+    public BEFireman(String CPR, String FirstName, String LastName, String Address,
+                     int PhoneNr, int CallNr, int PaymentNr, boolean LeaderTrained) {
         this.setCPR(CPR);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
