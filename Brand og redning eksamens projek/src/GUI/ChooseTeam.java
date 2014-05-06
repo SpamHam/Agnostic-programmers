@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BEFireman;
+import BE.BETimePlan;
 import BE.BEVehicle;
 import BLL.BLLFireman;
 import java.awt.event.ActionEvent;
@@ -23,7 +24,7 @@ public class ChooseTeam extends javax.swing.JDialog {
 
     ArrayList<BEFireman> Firemen;
     ArrayList<BEVehicle> Vehicles;
-    ArrayList<BEFireman> ValgteFiremen = new ArrayList<>();
+    ArrayList<BETimePlan> ValgteFiremen = new ArrayList<>();
     DefaultListModel alleFiremenListModel = new DefaultListModel();
     DefaultListModel valgteFiremenListModel = new DefaultListModel();
     DefaultListModel alleVehiclesListModel = new DefaultListModel();
@@ -36,7 +37,8 @@ public class ChooseTeam extends javax.swing.JDialog {
         initComponents();
         InitializeFiremen();
         InitializeVehicles();
-        ActionListener BTNListener = new ChooseTeam.BTNMoveActionListener();
+        ActionListener BTNListener = new BTNMoveActionListener();
+        ActionListener BTNFoejListener = new BTNTilfoejActionListener();
         btnFoejTilTeam.addActionListener(BTNListener);
         btnFjernFraTeam.addActionListener(BTNListener);
         jlistAlleBraendmaend.setModel(alleFiremenListModel);
@@ -44,7 +46,7 @@ public class ChooseTeam extends javax.swing.JDialog {
         jlistVaelgEnBil.setModel(alleVehiclesListModel);
         PopulateFiremanList();
         PopulateVehicleList();
-//btnTilfoejTeam.addActionListener(BTNTilfoejListener);
+    btnTilfoejTeam.addActionListener(BTNFoejListener);
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -77,18 +79,34 @@ public class ChooseTeam extends javax.swing.JDialog {
         DefaultListModel modelSource = (DefaultListModel) source.getModel();
         modelSource.remove(idx);
     }
+    
+     private String chosenVehicle(JList veh) {
+
+        int idx = veh.getSelectedIndex();
+        if (idx == -1) {
+            return null;
+        }
+        String element = (String) veh.getModel().getElementAt(idx);
+        return element;
+    }
 
         private class BTNTilfoejActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-                //BEFireman temp = new BEFireman ((String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i));
-                //ValgteFiremen.add(i, temp);
+            String fireman = (String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i);
+            String vehicle = chosenVehicle(jlistVaelgEnBil);
+          BETimePlan temp = new BETimePlan (fireman, vehicle);
+             ValgteFiremen.add(i, temp);
             }
             dispose();
         }
     }
+        
+      public ArrayList<BETimePlan> getTeam(){
+      return ValgteFiremen;
+      }
     
     private class BTNMoveActionListener implements ActionListener {
 

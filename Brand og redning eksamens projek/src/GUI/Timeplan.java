@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.BEMaterial;
 import BE.BETimePlan;
 import BLL.BLLTimePlan;
 import java.util.ArrayList;
@@ -24,16 +25,16 @@ public class Timeplan extends javax.swing.JFrame {
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
 
-    private void initTimePlan() {
-        allTime = MyBLLTimePlan.getAll();
-    }
+//    private void initTimePlan() {
+//        allTime = MyBLLTimePlan.getAll();
+//    }
 
     /**
      * Creates new form Timeplan
      */
     public Timeplan() {
         initComponents();
-        initTimePlan();
+       // initTimePlan();
         TimeTableModel = new TimePlanTableModel(allTime);
         jtableTeamTabel.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
@@ -146,6 +147,24 @@ public class Timeplan extends javax.swing.JFrame {
         ChooseTeam chooseTeam = new ChooseTeam(this, true);
         chooseTeam.setVisible(true);
         chooseTeam.setLocationRelativeTo(this);
+
+        // continue here when the dialog box is closed (disposed).
+        ArrayList<BETimePlan> plan = chooseTeam.getTeam();
+        if (plan != null) // a team has been created in the dialog box.
+        {
+            if (!allTime.isEmpty()) {
+                for (int i = 0; i < plan.size(); i++) {
+                    allTime.add(plan.get(i));
+                }
+            } else {
+                allTime = plan;
+            }
+            //jtableTeamTabel.setModel(MaterialModel);
+            //jtableMaterialer1.setRowSorter(sorter);
+            //jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
+
+            TimeTableModel.setTimePlanStatusList(allTime);
+        }
     }//GEN-LAST:event_btnVaelgTeamActionPerformed
 
     private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
