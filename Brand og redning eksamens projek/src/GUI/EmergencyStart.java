@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Utility.DateConverter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,6 +17,9 @@ import java.util.Date;
 public class EmergencyStart extends javax.swing.JFrame {
     
     ArrayList<Object> Udrykningstider = new ArrayList<>();
+    
+    Object [][] tider = new Object[2][];
+    int i = 1;
 
     /**
      * Creates new form EmergencyStart
@@ -31,11 +35,12 @@ public class EmergencyStart extends javax.swing.JFrame {
     }
     
     public String currentTime(){
-         Date date= new Date();
-	 Timestamp m_time = new Timestamp(date.getTime());
+        // Date date= new Date();
+	 //Timestamp m_time = new Timestamp(date.getTime());
          //String time = m_time.toString();
-         String time = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss").format(m_time);
-         return time;
+         
+         return new DateConverter(DateConverter.DATE_HOURS_MINUTES_SECONDS).getDate();
+        
     }
 
     /**
@@ -113,8 +118,10 @@ public class EmergencyStart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
+        
         txtSidsteUdrykning.setText(currentTime());
-        Udrykningstider.add(currentTime());
+        Udrykningstider.add(i + "       " + currentTime());
+        i++;
 
     }//GEN-LAST:event_btnStartActionPerformed
 

@@ -33,6 +33,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         tableUdrykningsOversigt.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
         tableUdrykningsOversigt.setRowSorter(sorter);
+      
         tableUdrykningsOversigt.getTableHeader().setReorderingAllowed(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
@@ -75,6 +76,11 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         jScrollPane1.setViewportView(tableUdrykningsOversigt);
 
         btnAfslut.setText("Afslut udrykning");
+        btnAfslut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAfslutActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("jButton1");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -115,8 +121,15 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+    EmergencyStart startMenu = new EmergencyStart();
+    startMenu.setVisible(true);
+    dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAfslutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfslutActionPerformed
+     startTider.remove(tableUdrykningsOversigt.getSelectedRow());
+     StartTableModel.fireTableDataChanged();
+    }//GEN-LAST:event_btnAfslutActionPerformed
 
     /**
      * @param args the command line arguments

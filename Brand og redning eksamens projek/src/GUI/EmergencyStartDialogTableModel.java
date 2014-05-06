@@ -23,7 +23,8 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
    
     
     public EmergencyStartDialogTableModel(ArrayList<Object> pik){
-        
+        startTider = pik;
+        System.out.println(startTider.size() + "Morten sutter pik");
     }
 
     @Override
@@ -35,9 +36,13 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
     public int getColumnCount() {
         return colNames.length;
     }
+    @Override
+    public String getColumnName(int col){
+        return colNames[col];
+    }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return startTider.get(rowIndex);
+        return startTider.get(rowIndex);    }
+
     }
-}

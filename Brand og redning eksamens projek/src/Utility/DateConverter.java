@@ -19,6 +19,7 @@ DateFormatSymbols symbols;
 DateFormat format;
 public static final int WEEKDAY_DAY_MONTH_YEAR_TIME = 0;
 public static final int DAY_MONTH_TIME = 1;
+public static final int DATE_HOURS_MINUTES_SECONDS = 2;
 
   String[] MONTHS = {"januar", "februar", "marts", "april", "maj", "juni",
   "juli", "august", "september", "oktober", "november", "december"};
@@ -46,6 +47,7 @@ public static final int DAY_MONTH_TIME = 1;
             switch (typeFormat) {
          case 0: return "EEE dd MMM yyyy HH:mm";
          case 1: return "dd-MMM HH.mm";
+         case 2: return "MM/dd/yyyy hh:mm:ss";
          } return null;
     }
 }
