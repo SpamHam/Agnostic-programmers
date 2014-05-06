@@ -41,6 +41,7 @@ public class Timeplan extends javax.swing.JFrame {
         jtableTeamTabel.getTableHeader().setReorderingAllowed(false);
         setTitle("Udryknings Skema");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        System.out.println("hej hej pede");
         
     }
 
