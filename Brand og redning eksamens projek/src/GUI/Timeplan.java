@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import BE.BETimePlan;
@@ -19,15 +18,16 @@ import javax.swing.table.TableRowSorter;
  * @author Claus
  */
 public class Timeplan extends javax.swing.JFrame {
+
     TimePlanTableModel TimeTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
-    
-      private void initTimePlan(){
+
+    private void initTimePlan() {
         allTime = MyBLLTimePlan.getAll();
     }
-    
+
     /**
      * Creates new form Timeplan
      */
@@ -39,9 +39,9 @@ public class Timeplan extends javax.swing.JFrame {
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
         jtableTeamTabel.setRowSorter(sorter);
         jtableTeamTabel.getTableHeader().setReorderingAllowed(false);
+        txtAndetTekst.setVisible(false);
         setTitle("Udryknings Skema");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        
     }
 
     /**
@@ -56,7 +56,7 @@ public class Timeplan extends javax.swing.JFrame {
         cmbTypeIndsats = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableTeamTabel = new javax.swing.JTable();
-        jTextField1 = new javax.swing.JTextField();
+        txtAndetTekst = new javax.swing.JTextField();
         btnVaelgTeam = new javax.swing.JButton();
         btnNaesteSide = new javax.swing.JButton();
         btnLukVindue = new javax.swing.JButton();
@@ -64,6 +64,11 @@ public class Timeplan extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         cmbTypeIndsats.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Indsats", "Øvelse", "Brandvagt", "Stand-By", "Arbejde Falck", "Følgeskadeindsats", "Andet" }));
+        cmbTypeIndsats.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTypeIndsatsActionPerformed(evt);
+            }
+        });
 
         jtableTeamTabel.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,8 +80,6 @@ public class Timeplan extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtableTeamTabel);
 
-        jTextField1.setText("Andet tekst skal stå her....");
-
         btnVaelgTeam.setText("Vælg Team");
         btnVaelgTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,6 +88,11 @@ public class Timeplan extends javax.swing.JFrame {
         });
 
         btnNaesteSide.setText("Næste Side");
+        btnNaesteSide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNaesteSideActionPerformed(evt);
+            }
+        });
 
         btnLukVindue.setText("Luk Vindue");
         btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +112,7 @@ public class Timeplan extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)
+                        .addComponent(txtAndetTekst)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnVaelgTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -120,7 +128,7 @@ public class Timeplan extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAndetTekst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVaelgTeam))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,14 +143,30 @@ public class Timeplan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVaelgTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaelgTeamActionPerformed
-ChooseTeam chooseTeam = new ChooseTeam(this, true);
-chooseTeam.setVisible(true);
-chooseTeam.setLocationRelativeTo(this);
+        ChooseTeam chooseTeam = new ChooseTeam(this, true);
+        chooseTeam.setVisible(true);
+        chooseTeam.setLocationRelativeTo(this);
     }//GEN-LAST:event_btnVaelgTeamActionPerformed
 
     private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLukVindueActionPerformed
+
+    private void btnNaesteSideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNaesteSideActionPerformed
+        dispose();
+        ODINReport odinReport = new ODINReport();
+        odinReport.setVisible(true);
+        odinReport.setLocationRelativeTo(this);
+    }//GEN-LAST:event_btnNaesteSideActionPerformed
+
+    private void cmbTypeIndsatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeIndsatsActionPerformed
+ if(cmbTypeIndsats.getSelectedItem().toString().equalsIgnoreCase("Andet")){
+     txtAndetTekst.setVisible(true);
+ }
+     else
+     txtAndetTekst.setVisible(false);
+ 
+    }//GEN-LAST:event_cmbTypeIndsatsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -151,7 +175,7 @@ chooseTeam.setLocationRelativeTo(this);
     private javax.swing.JButton btnVaelgTeam;
     private javax.swing.JComboBox cmbTypeIndsats;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable jtableTeamTabel;
+    private javax.swing.JTextField txtAndetTekst;
     // End of variables declaration//GEN-END:variables
 }

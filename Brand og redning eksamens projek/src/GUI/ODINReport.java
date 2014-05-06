@@ -17,68 +17,30 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel MaterialModel;
-    ArrayList<BEMaterial> allMaterials;
-    ArrayList<BEMaterial> temp = new ArrayList<>();
+    ArrayList<BEMaterial> allMaterials = new ArrayList<>();
+    ArrayList<BEMaterial> EmptyArray = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
 
-    private void initTemp() {
-        BEMaterial b = new BEMaterial("");
-        temp.add(b);
-
-    }
-
+//        private void initTemp() {
+//            BEMaterial b = new BEMaterial("");
+//            temp.add(b);
+//
+//    }
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        initTemp();
-        MaterialModel = new ChooseMaterialsTableModel(temp);
-        //jtableMaterialer1.setModel(MaterialModel);
+        MaterialModel = new ChooseMaterialsTableModel(EmptyArray);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
-        //jtableMaterialer1.setRowSorter(sorter);
-        //jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
         setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
         ShowSkadeslidte();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ODINReport().setVisible(true);
-            }
-        });
     }
 
     /**
@@ -222,14 +184,7 @@ public class ODINReport extends javax.swing.JFrame {
 
         jtableMaterialer1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, ""},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Materiale", "Antal"
@@ -299,15 +254,15 @@ public class ODINReport extends javax.swing.JFrame {
                                             .addComponent(txtEvaReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtBrandReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtNavn)
-                                            .addComponent(txtAddresse))))
+                                            .addComponent(txtAddresse)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(94, 94, 94)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblAlarmModtaget)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblAlarmModtaget)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblHeader)
@@ -315,8 +270,8 @@ public class ODINReport extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(lblDato)
                                                 .addGap(60, 60, 60)
-                                                .addComponent(jDateChooserDato, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(71, 71, 71)
+                                                .addComponent(jDateChooserDato, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(60, 60, 60)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(lblIndsatsLeder)
                                             .addComponent(lblHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -411,9 +366,12 @@ public class ODINReport extends javax.swing.JFrame {
         ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
         if (rent != null) // a material has been created in the dialog box.
         {
-            allMaterials = rent;
-            for (BEMaterial b : allMaterials) {
-                System.out.println(b.getM_Materiale());
+            if (!allMaterials.isEmpty()) {
+                for (int i = 0; i < rent.size(); i++) {
+                    allMaterials.add(rent.get(i));
+                }
+            } else {
+                allMaterials = rent;
             }
             jtableMaterialer1.setModel(MaterialModel);
             jtableMaterialer1.setRowSorter(sorter);
@@ -424,10 +382,10 @@ public class ODINReport extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+        dispose();
         Timeplan timePlanFrame = new Timeplan();
         timePlanFrame.setLocationRelativeTo(this);
         timePlanFrame.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed

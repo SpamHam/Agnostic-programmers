@@ -63,9 +63,9 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         DefaultListModel modelSource = (DefaultListModel) source.getModel();
         modelSource.remove(idx);
     }
-    
-    public ArrayList<BEMaterial> getValgteMaterials(){
-    return valgteMaterials;
+
+    public ArrayList<BEMaterial> getValgteMaterials() {
+        return valgteMaterials;
     }
 
     private class BTNMoveActionListener implements ActionListener {
@@ -73,21 +73,21 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == btnFoejTilMaterialer) {
-                moveItem(jlistAlleMaterialer, jlistValgteMaterialer); 
+                moveItem(jlistAlleMaterialer, jlistValgteMaterialer);
             } else {
                 moveItem(jlistValgteMaterialer, jlistAlleMaterialer);
             }
         }
     }
-    
-       private class BTNTilfoejActionListener implements ActionListener {
+
+    private class BTNTilfoejActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           for(int i=0; i< valgteListModel.getSize(); i++){
-           BEMaterial temp = new BEMaterial((String) jlistValgteMaterialer.getModel().getElementAt(i));
-           valgteMaterials.add(i,temp);
-           }
+            for (int i = 0; i < valgteListModel.getSize(); i++) {
+                BEMaterial temp = new BEMaterial((String) jlistValgteMaterialer.getModel().getElementAt(i));
+                valgteMaterials.add(i, temp);
+            }
             dispose();
         }
     }
