@@ -49,7 +49,7 @@ public class TimePlanTableModel extends AbstractTableModel {
     @Override
     public boolean isCellEditable(int row, int col) {
          switch (col) {
-         case 0: return false;
+         case 0: return true;
          case 1: return false;
          case 2: return true;
          case 3: return true;
@@ -67,6 +67,7 @@ public class TimePlanTableModel extends AbstractTableModel {
      */
     public void setTimePlanStatusList(ArrayList<BETimePlan> timeList) {
         timePlan = timeList;
+        fireTableDataChanged();
     }
 
     /**
