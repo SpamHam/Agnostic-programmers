@@ -17,25 +17,23 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel MaterialModel;
-    ArrayList<BEMaterial> allMaterials;
-    ArrayList<BEMaterial> temp = new ArrayList<>();
+    ArrayList<BEMaterial> allMaterials = new ArrayList<>();
+    ArrayList<BEMaterial> EmptyArray = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
 
-    private void initTemp() {
-        BEMaterial b = new BEMaterial("");
-        temp.add(b);
-
-    }
-
+//        private void initTemp() {
+//            BEMaterial b = new BEMaterial("");
+//            temp.add(b);
+//
+//    }
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        initTemp();
-        MaterialModel = new ChooseMaterialsTableModel(temp);
+        MaterialModel = new ChooseMaterialsTableModel(EmptyArray);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
         setTitle("ODIN Report");
         this.setVisible(true);
@@ -43,39 +41,6 @@ public class ODINReport extends javax.swing.JFrame {
         ShowSkadeslidte();
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-    }
-
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AdminstrationMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ODINReport().setVisible(true);
-            }
-        });
     }
 
     /**
@@ -219,14 +184,7 @@ public class ODINReport extends javax.swing.JFrame {
 
         jtableMaterialer1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, ""},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Materiale", "Antal"
@@ -408,9 +366,12 @@ public class ODINReport extends javax.swing.JFrame {
         ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
         if (rent != null) // a material has been created in the dialog box.
         {
-            allMaterials = rent;
-            for (BEMaterial b : allMaterials) {
-                System.out.println(b.getM_Materiale());
+            if (!allMaterials.isEmpty()) {
+                for (int i = 0; i < rent.size(); i++) {
+                    allMaterials.add(rent.get(i));
+                }
+            } else {
+                allMaterials = rent;
             }
             jtableMaterialer1.setModel(MaterialModel);
             jtableMaterialer1.setRowSorter(sorter);
@@ -421,10 +382,10 @@ public class ODINReport extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+        dispose();
         Timeplan timePlanFrame = new Timeplan();
         timePlanFrame.setLocationRelativeTo(this);
         timePlanFrame.setVisible(true);
-        dispose();
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed

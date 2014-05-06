@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
 
 import BE.BETimePlan;
@@ -19,15 +18,16 @@ import javax.swing.table.TableRowSorter;
  * @author Claus
  */
 public class Timeplan extends javax.swing.JFrame {
+
     TimePlanTableModel TimeTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
-    
-      private void initTimePlan(){
+
+    private void initTimePlan() {
         allTime = MyBLLTimePlan.getAll();
     }
-    
+
     /**
      * Creates new form Timeplan
      */
@@ -41,8 +41,6 @@ public class Timeplan extends javax.swing.JFrame {
         jtableTeamTabel.getTableHeader().setReorderingAllowed(false);
         setTitle("Udryknings Skema");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        System.out.println("hej hej pede");
-        
     }
 
     /**
@@ -86,6 +84,11 @@ public class Timeplan extends javax.swing.JFrame {
         });
 
         btnNaesteSide.setText("Næste Side");
+        btnNaesteSide.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNaesteSideActionPerformed(evt);
+            }
+        });
 
         btnLukVindue.setText("Luk Vindue");
         btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
@@ -136,14 +139,21 @@ public class Timeplan extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVaelgTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVaelgTeamActionPerformed
-ChooseTeam chooseTeam = new ChooseTeam(this, true);
-chooseTeam.setVisible(true);
-chooseTeam.setLocationRelativeTo(this);
+        ChooseTeam chooseTeam = new ChooseTeam(this, true);
+        chooseTeam.setVisible(true);
+        chooseTeam.setLocationRelativeTo(this);
     }//GEN-LAST:event_btnVaelgTeamActionPerformed
 
     private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLukVindueActionPerformed
+
+    private void btnNaesteSideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNaesteSideActionPerformed
+        dispose();
+        ODINReport odinReport = new ODINReport();
+        odinReport.setVisible(true);
+        odinReport.setLocationRelativeTo(this);
+    }//GEN-LAST:event_btnNaesteSideActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
