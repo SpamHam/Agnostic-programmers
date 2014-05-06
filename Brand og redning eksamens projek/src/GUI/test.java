@@ -40,7 +40,7 @@ public class test {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                ChooseTeam chooseTeam = new ChooseTeam(null, true);
+                CRUDFireman chooseTeam = new CRUDFireman();
                 chooseTeam.setVisible(true);
             }
         });

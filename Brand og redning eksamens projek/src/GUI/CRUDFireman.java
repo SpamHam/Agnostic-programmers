@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.BEFireman;
 import BLL.BLLFireman;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -278,6 +279,21 @@ public class CRUDFireman extends javax.swing.JFrame {
         AddFiremanDialog firemanDialog = new AddFiremanDialog(this, true);
         firemanDialog.setVisible(true);
         firemanDialog.setLocationRelativeTo(this);
+
+        BEFireman fireman = firemanDialog.getNewFireman();
+        if (fireman != null) // a team has been created in the dialog box.
+        {
+            if (!allFiremans.isEmpty()) {
+                try {
+                    BLLFireman.getInstance().Create(fireman);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+            FiremanTableModel.setCRUDFiremanList(allFiremans);
+            jTable1.repaint();
+        }
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed

@@ -59,9 +59,9 @@ public class DALCFireman {
         ps.setString(2, e.getFirstName());
         ps.setString(3, e.getLastName());
         ps.setString(4, e.getAddress());
-        ps.setInt(5, e.getPhoneNr());
-        ps.setInt(6, e.getCallNr());
-        ps.setInt(7, e.getPaymentNr());
+        ps.setString(5, e.getPhoneNr());
+        ps.setString(6, e.getCallNr());
+        ps.setString(7, e.getPaymentNr());
         ps.setBoolean(8, e.isLeaderTrained());
         ps.executeUpdate();
     }
@@ -85,9 +85,9 @@ public class DALCFireman {
             String FirstName = result.getString("FirstName");
             String LastName = result.getString("LastName");
             String Address = result.getString("Address");
-            int PhoneNr = result.getInt("Phone");
-            int CallNr = result.getInt("CallNumber");
-            int PaymentNr = result.getInt("PaymentNr");
+            String PhoneNr = result.getString("Phone");
+            String CallNr = result.getString("CallNumber");
+            String PaymentNr = result.getString("PaymentNr");
             boolean isLeaderTrained = result.getBoolean("LeaderTrained");
 
             BE.BEFireman c = new BE.BEFireman(CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
@@ -107,9 +107,9 @@ public class DALCFireman {
         ps.setString(1, u.getFirstName());
         ps.setString(2, u.getLastName());
         ps.setString(3, u.getAddress());
-        ps.setInt(4, u.getPhoneNr());
-        ps.setInt(5, u.getCallNr());
-        ps.setInt(6, u.getPaymentNr());
+        ps.setString(4, u.getPhoneNr());
+        ps.setString(5, u.getCallNr());
+        ps.setString(6, u.getPaymentNr());
         ps.setBoolean(7, u.isLeaderTrained());
         ps.setString(8, u.getCPR());
         ps.executeUpdate();

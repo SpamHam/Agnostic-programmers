@@ -42,12 +42,14 @@
                           <Component id="lblCallNr" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblTlfNr" alignment="0" max="32767" attributes="0"/>
                           <Component id="lblAddresse" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblEfternavn" alignment="0" pref="60" max="32767" attributes="0"/>
+                          <Component id="lblEfternavn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblPaymentNr" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtPaymentNr" max="32767" attributes="0"/>
                               <Component id="txtAddresse" pref="113" max="32767" attributes="0"/>
                               <Component id="txtEfternavn" max="32767" attributes="0"/>
                               <Component id="txtTlfNr" alignment="0" max="32767" attributes="0"/>
@@ -58,7 +60,7 @@
               </Group>
               <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnAnnuller" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -100,14 +102,19 @@
                   <Component id="txtCallNr" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblCallNr" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="txtPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTilfoej" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAnnuller" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -184,6 +191,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnnullerActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPaymentNr">
+    </Component>
+    <Component class="javax.swing.JLabel" name="lblPaymentNr">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Payment Nr:"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

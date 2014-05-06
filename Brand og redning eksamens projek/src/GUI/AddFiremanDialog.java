@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
+
+import BE.BEFireman;
 
 /**
  *
@@ -12,6 +13,8 @@ package GUI;
  */
 public class AddFiremanDialog extends javax.swing.JDialog {
 
+private BEFireman fireman = null;
+    
     /**
      * Creates new form AddFiremanDialog
      */
@@ -21,6 +24,28 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         setTitle("Tilføj en Brandmand");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
+
+    public void Add() {
+        String CPR = txtCPR.getText().trim();
+        String forNavn = txtFornavn.getText().trim();
+        String efterNavn = txtEfternavn.getText().trim();
+        String adresse = txtAddresse.getText().trim();
+        String tlfNr = txtTlfNr.getText().trim();
+        String callNr = txtCallNr.getText().trim();
+        String paymentNr = txtPaymentNr.getText().trim();
+        boolean leaderUddannet = false;
+        if (chkboxLederUddannet.isSelected()) {
+            leaderUddannet = true;
+        }
+        
+        fireman = new BEFireman(CPR, forNavn, callNr, adresse, callNr, callNr, paymentNr, leaderUddannet);
+    
+    }
+ 
+    public BEFireman getNewFireman(){
+    return fireman;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +71,8 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         txtCPR = new javax.swing.JTextField();
         btnTilfoej = new javax.swing.JButton();
         btnAnnuller = new javax.swing.JButton();
+        txtPaymentNr = new javax.swing.JTextField();
+        lblPaymentNr = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,6 +115,8 @@ public class AddFiremanDialog extends javax.swing.JDialog {
             }
         });
 
+        lblPaymentNr.setText("Payment Nr:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,17 +137,19 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                             .addComponent(lblCallNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblTlfNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblAddresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblEfternavn, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE))
+                            .addComponent(lblEfternavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPaymentNr, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(chkboxLederUddannet)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtPaymentNr)
                                 .addComponent(txtAddresse, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)
                                 .addComponent(txtEfternavn)
                                 .addComponent(txtTlfNr)
                                 .addComponent(txtCallNr)))))
                 .addGap(0, 35, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnAnnuller)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -152,13 +183,17 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCallNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblCallNr))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPaymentNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPaymentNr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkboxLederUddannet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilfoej)
                     .addComponent(btnAnnuller))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -173,7 +208,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnTilfoejActionPerformed
 
     private void btnAnnullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnullerActionPerformed
-dispose();
+        dispose();
     }//GEN-LAST:event_btnAnnullerActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -185,12 +220,14 @@ dispose();
     private javax.swing.JLabel lblCallNr;
     private javax.swing.JLabel lblEfternavn;
     private javax.swing.JLabel lblFornavn;
+    private javax.swing.JLabel lblPaymentNr;
     private javax.swing.JLabel lblTlfNr;
     private javax.swing.JTextField txtAddresse;
     private javax.swing.JTextField txtCPR;
     private javax.swing.JTextField txtCallNr;
     private javax.swing.JTextField txtEfternavn;
     private javax.swing.JTextField txtFornavn;
+    private javax.swing.JTextField txtPaymentNr;
     private javax.swing.JTextField txtTlfNr;
     // End of variables declaration//GEN-END:variables
 }

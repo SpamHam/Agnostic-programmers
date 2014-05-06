@@ -18,22 +18,16 @@ public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel MaterialModel;
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
-    ArrayList<BEMaterial> EmptyArray = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
 
-//        private void initTemp() {
-//            BEMaterial b = new BEMaterial("");
-//            temp.add(b);
-//
-//    }
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        MaterialModel = new ChooseMaterialsTableModel(EmptyArray);
+        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
         sorter = new TableRowSorter<TableModel>(MaterialModel);
         setTitle("ODIN Report");
         this.setVisible(true);

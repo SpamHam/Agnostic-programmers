@@ -11,8 +11,7 @@ package BE;
  */
 public final class BEFireman {
 
-    private String CPR, FirstName, LastName, Address;
-    private int PhoneNr, CallNr, PaymentNr;
+    private String CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr;
     private boolean LeaderTrained;
 
     public BEFireman(String CPR, String FirstName, String LastName) {
@@ -27,7 +26,7 @@ public final class BEFireman {
     }
 
     public BEFireman(String CPR, String FirstName, String LastName, String Address,
-                     int PhoneNr, int CallNr, int PaymentNr, boolean LeaderTrained) {
+                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained) {
         this.setCPR(CPR);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
@@ -97,42 +96,42 @@ public final class BEFireman {
     /**
      * @return the PhoneNr
      */
-    public int getPhoneNr() {
+    public String getPhoneNr() {
         return PhoneNr;
     }
 
     /**
      * @param PhoneNr the PhoneNr to set
      */
-    public void setPhoneNr(int PhoneNr) {
+    public void setPhoneNr(String PhoneNr) {
         this.PhoneNr = PhoneNr;
     }
 
     /**
      * @return the CallNr
      */
-    public int getCallNr() {
+    public String getCallNr() {
         return CallNr;
     }
 
     /**
      * @param CallNr the CallNr to set
      */
-    public void setCallNr(int CallNr) {
+    public void setCallNr(String CallNr) {
         this.CallNr = CallNr;
     }
 
     /**
      * @return the PaymentNr
      */
-    public int getPaymentNr() {
+    public String getPaymentNr() {
         return PaymentNr;
     }
 
     /**
      * @param PaymentNr the PaymentNr to set
      */
-    public void setPaymentNr(int PaymentNr) {
+    public void setPaymentNr(String PaymentNr) {
         this.PaymentNr = PaymentNr;
     }
 

@@ -54,7 +54,7 @@ public class TimePlanTableModel extends AbstractTableModel {
          case 2: return true;
          case 3: return true;
          case 4: return true;
-         case 5: return false;
+         case 5: return true;
          default:
              return false;
          }

@@ -164,7 +164,6 @@ public class Timeplan extends javax.swing.JFrame {
             //jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
 
             TimeTableModel.setTimePlanStatusList(allTime);
-            TimeTableModel.fireTableDataChanged();
             jtableTeamTabel.repaint();
         }
     }//GEN-LAST:event_btnVaelgTeamActionPerformed
