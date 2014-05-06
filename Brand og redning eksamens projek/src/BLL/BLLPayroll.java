@@ -73,6 +73,14 @@ public class BLLPayroll {
         }
         return res;
     }
+    
+    public ArrayList<BE.BETableSalary> convertToTable() throws Exception{
+        ArrayList<BE.BETableSalary> TableSalarys = new ArrayList<>();
+        for (BE.BESalary S: getAll()){
+            
+        }
+        return TableSalarys;
+    }
 
     public void remove() throws Exception {
         //TODO after Salary are done.
