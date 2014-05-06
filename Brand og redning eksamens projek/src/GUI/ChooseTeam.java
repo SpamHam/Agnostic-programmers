@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
+
+import BE.BEFireman;
+import BE.BEVehicle;
+import BLL.BLLFireman;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,14 +21,97 @@ package GUI;
  */
 public class ChooseTeam extends javax.swing.JDialog {
 
+    ArrayList<BEFireman> Firemen;
+    ArrayList<BEVehicle> Vehicles;
+    ArrayList<BEFireman> ValgteFiremen = new ArrayList<>();
+    DefaultListModel alleFiremenListModel = new DefaultListModel();
+    DefaultListModel valgteFiremenListModel = new DefaultListModel();
+    DefaultListModel alleVehiclesListModel = new DefaultListModel();
+
     /**
      * Creates new form ChooseTeam
      */
     public ChooseTeam(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        InitializeFiremen();
+        InitializeVehicles();
+        ActionListener BTNListener = new ChooseTeam.BTNMoveActionListener();
+        btnFoejTilTeam.addActionListener(BTNListener);
+        btnFjernFraTeam.addActionListener(BTNListener);
+        jlistAlleBraendmaend.setModel(alleFiremenListModel);
+        jlistVaelgTeamMedlemmer.setModel(valgteFiremenListModel);
+        jlistVaelgEnBil.setModel(alleVehiclesListModel);
+        PopulateFiremanList();
+        PopulateVehicleList();
+//btnTilfoejTeam.addActionListener(BTNTilfoejListener);
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+    }
+
+    public void InitializeFiremen() {
+        try {
+            Firemen = BLL.BLLFireman.getInstance().getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public void InitializeVehicles() {
+        try {
+            Vehicles = BLL.BLLVehicle.getInstance().getAll();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void moveItem(JList source, JList target) {
+
+        int idx = source.getSelectedIndex();
+        if (idx == -1) {
+            return;
+        }
+        String element = (String) source.getModel().getElementAt(idx);
+        DefaultListModel modelTarget = (DefaultListModel) target.getModel();
+        modelTarget.addElement(element);
+        DefaultListModel modelSource = (DefaultListModel) source.getModel();
+        modelSource.remove(idx);
+    }
+
+//        private class BTNTilfoejActionListener implements ActionListener {
+//
+//        @Override
+//        public void actionPerformed(ActionEvent e) {
+//            for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
+//                BEFireman temp = new BEFireman ((String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i));
+//                ValgteFiremen.add(i, temp);
+//            }
+//            dispose();
+//        }
+//    }
+    
+    private class BTNMoveActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if (e.getSource() == btnFoejTilTeam) {
+                moveItem(jlistAlleBraendmaend, jlistVaelgTeamMedlemmer);
+            } else {
+                moveItem(jlistVaelgTeamMedlemmer, jlistAlleBraendmaend);
+            }
+        }
+    }
+
+    private void PopulateFiremanList() {
+        for (BEVehicle m : Vehicles) {
+            alleVehiclesListModel.addElement(m.getM_registrationNr());
+        }
+    }
+
+    private void PopulateVehicleList() {
+        for (BEFireman m : Firemen) {
+            alleFiremenListModel.addElement(m.getFirstName() + " " + m.getLastName());
+        }
     }
 
     /**
@@ -47,11 +139,6 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jlistAlleBraendmaend.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Jens Rasmussen", "Peter Lundin", "Toke Bendixen", "Peter Hasselhof", "Jacob The Hut", "Morten Fritzl" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jlistAlleBraendmaend);
 
         jScrollPane2.setViewportView(jlistVaelgTeamMedlemmer);
@@ -65,11 +152,6 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         btnFjernFraTeam.setText("Fjern fra Team");
 
-        jlistVaelgEnBil.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "1338", "1341", "1346", "2338", "2341", "2349", "2351", " " };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane3.setViewportView(jlistVaelgEnBil);
 
         lblAlleBraendMaend.setText("Alle brændmand:");
@@ -106,9 +188,9 @@ public class ChooseTeam extends javax.swing.JDialog {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblValgteTeamMedlemmer))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblVaelgEnBil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVaelgEnBil))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,11 +219,11 @@ public class ChooseTeam extends javax.swing.JDialog {
                         .addComponent(btnFoejTilTeam)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnFjernFraTeam)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilfoejTeam)
                     .addComponent(btnLukVindue))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
@@ -152,7 +234,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     }//GEN-LAST:event_btnFoejTilTeamActionPerformed
 
     private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
-dispose();
+        dispose();
     }//GEN-LAST:event_btnLukVindueActionPerformed
 
 

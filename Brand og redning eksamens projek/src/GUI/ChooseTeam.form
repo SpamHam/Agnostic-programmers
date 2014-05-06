@@ -42,9 +42,9 @@
                   <Component id="lblValgteTeamMedlemmer" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="lblVaelgEnBil" max="32767" attributes="0"/>
-                  <Component id="jScrollPane3" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane3" min="-2" pref="71" max="-2" attributes="0"/>
+                  <Component id="lblVaelgEnBil" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -82,12 +82,12 @@
                       <Component id="btnFjernFraTeam" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTilfoejTeam" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLukVindue" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="16" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,14 +103,7 @@
         <Component class="javax.swing.JList" name="jlistAlleBraendmaend">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="6">
-                <StringItem index="0" value="Jens Rasmussen"/>
-                <StringItem index="1" value="Peter Lundin"/>
-                <StringItem index="2" value="Toke Bendixen"/>
-                <StringItem index="3" value="Peter Hasselhof"/>
-                <StringItem index="4" value="Jacob The Hut"/>
-                <StringItem index="5" value="Morten Fritzl"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>
@@ -155,16 +148,7 @@
         <Component class="javax.swing.JList" name="jlistVaelgEnBil">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="8">
-                <StringItem index="0" value="1338"/>
-                <StringItem index="1" value="1341"/>
-                <StringItem index="2" value="1346"/>
-                <StringItem index="3" value="2338"/>
-                <StringItem index="4" value="2341"/>
-                <StringItem index="5" value="2349"/>
-                <StringItem index="6" value="2351"/>
-                <StringItem index="7" value=" "/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>

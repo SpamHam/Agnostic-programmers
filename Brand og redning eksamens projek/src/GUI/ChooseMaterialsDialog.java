@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BEMaterial;
+import BE.BEVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -34,6 +35,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
 
     public ChooseMaterialsDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
