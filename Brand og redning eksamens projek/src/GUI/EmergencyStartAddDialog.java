@@ -113,9 +113,9 @@ public class EmergencyStartAddDialog extends javax.swing.JDialog {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
     addTider.add(AddEmergencyStart());
-        
-    StartTableModel.fireTableDataChanged();
-    dispose();
+        System.out.println(addTider.size());
+    //StartTableModel.fireTableDataChanged();
+    //dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 
     
