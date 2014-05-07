@@ -335,7 +335,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         BEFireman fireman = firemanDialog.getNewFireman();
         if (fireman != null) // a team has been created in the dialog box.
         {
-            if (!allFiremans.isEmpty()) {
                 try {
                     BLLFireman.getInstance().Create(fireman);
                     allFiremans.add(fireman);
@@ -344,7 +343,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-            }
+            
 
         }
     }//GEN-LAST:event_AddButtonActionPerformed
