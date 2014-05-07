@@ -29,15 +29,15 @@ public class Timeplan extends javax.swing.JFrame {
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
     PDFGenerator pdfGen;
 
-    private void initTimePlan() {
-        allTime = MyBLLTimePlan.getAll();
-    }
+//    private void initTimePlan() {
+//        allTime = MyBLLTimePlan.getAll();
+//    }
     /**
      * Creates new form Timeplan
      */
     public Timeplan() {
         initComponents();
-        initTimePlan();
+        //initTimePlan();
         TimeTableModel = new TimePlanTableModel(allTime);
         jtableTeamTabel.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
