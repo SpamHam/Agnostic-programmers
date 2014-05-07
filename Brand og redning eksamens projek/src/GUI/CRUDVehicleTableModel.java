@@ -68,8 +68,9 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
      *
      * @param ODINList
      */
-    public void setCarList(ArrayList<BE.BEVehicle> VehicleList) {
+    public void setVehicleList(ArrayList<BE.BEVehicle> VehicleList) {
        m_allVehicle = VehicleList;
+       fireTableDataChanged();
     }
 
     /**

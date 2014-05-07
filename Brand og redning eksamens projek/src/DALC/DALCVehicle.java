@@ -37,7 +37,7 @@ public class DALCVehicle {
     }
 
     public void Create(BE.BEVehicle e) throws SQLException {
-        String sql = "insert into Vehicle values (?,?,?,?,?)";
+        String sql = "insert into Vehicle values (?,?,?,?)";
         PreparedStatement ps = M_connection.prepareStatement(sql);
         ps.setString(1, e.getM_registrationNr());
         ps.setString(2, e.getM_mærke());

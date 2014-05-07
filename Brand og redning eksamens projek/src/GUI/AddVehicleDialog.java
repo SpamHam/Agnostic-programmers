@@ -146,6 +146,7 @@ BEVehicle res;
         String model = txtModel.getText();
         String descrip = txtBeskrivelse.getText();
          res = new BEVehicle(reg, brand, model, descrip);
+         dispose();
     }//GEN-LAST:event_btnTilfoejActionPerformed
 
     public BEVehicle getVehicle(){

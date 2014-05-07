@@ -11,6 +11,8 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
 import java.awt.event.MouseEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -22,13 +24,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    BLLVehicle vehicle;
+    BLLVehicle BLLvehicle;
     //
     private int selectedRow;
 
     private void initVehicle() {
         try {
-            allVehicle = vehicle.getInstance().getAll();
+            allVehicle = BLLvehicle.getInstance().getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -41,14 +43,14 @@ public class CRUDVehicle extends javax.swing.JFrame {
         initComponents();
         initVehicle();
         vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
-        jTable1.setModel(vehicleTableModel);
-        jTable1.setRowSorter(sorter);
-        jTable1.getTableHeader().setReorderingAllowed(false);
+        tblVehicle.setModel(vehicleTableModel);
+        tblVehicle.setRowSorter(sorter);
+        tblVehicle.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
-        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblVehicle.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onRowSelected(evt
@@ -58,11 +60,17 @@ public class CRUDVehicle extends javax.swing.JFrame {
             }
 
             private void onRowSelected(MouseEvent evt) {
-                selectedRow = jTable1.getSelectedRow();
+                selectedRow = tblVehicle.getSelectedRow();
                 TxtReg.setText(allVehicle.get(selectedRow).getM_registrationNr());
                 txtBrand.setText(allVehicle.get(selectedRow).getM_model());
                 txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
                 txtDesc.setText(allVehicle.get(selectedRow).getM_description());
+            }
+                        
+          public BEVehicle updateSelectedRow (MouseEvent evt){
+            selectedRow = tblVehicle.getSelectedRow();
+            BEVehicle H = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), allVehicle.get(selectedRow).getM_model(), allVehicle.get(selectedRow).getM_mærke(), allVehicle.get(selectedRow).getM_description());
+            return H;
             }
         });
     }
@@ -81,7 +89,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         btnTilføj = new javax.swing.JButton();
         btnTilbage = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblVehicle = new javax.swing.JTable();
         UpdateFieldsPanel = new javax.swing.JPanel();
         lblDesc = new javax.swing.JLabel();
         txtModel = new javax.swing.JTextField();
@@ -94,7 +102,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
         txtDesc = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(700, 300));
         setMinimumSize(new java.awt.Dimension(700, 300));
 
         btnFjern.setText("Fjern");
@@ -120,7 +127,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblVehicle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -146,7 +153,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblVehicle);
 
         lblDesc.setText("Deskription");
 
@@ -242,18 +249,25 @@ public class CRUDVehicle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-
+      
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
-        AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(this, rootPaneCheckingEnabled);
+        AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(this, true);
         tilføjBrandbil.setVisible(true);
-        
-               // continue here when the dialog box is closed (disposed).
+
+        // continue here when the dialog box is closed (disposed).
         BEVehicle vehicle = tilføjBrandbil.getVehicle();
         if (vehicle != null) // a team has been created in the dialog box.
         {
-          
+                allVehicle.add(vehicle);
+                vehicleTableModel.setVehicleList(allVehicle);
+                tblVehicle.repaint();
+            try {
+                BLLvehicle.getInstance().Create(vehicle);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_btnTilføjActionPerformed
 
@@ -273,11 +287,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
     private javax.swing.JButton btnTilføj;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblRegNr;
+    private javax.swing.JTable tblVehicle;
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextArea txtDesc;
     private javax.swing.JTextField txtModel;
