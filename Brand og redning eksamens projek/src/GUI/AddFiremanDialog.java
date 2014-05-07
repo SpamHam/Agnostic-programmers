@@ -13,8 +13,8 @@ import BE.BEFireman;
  */
 public class AddFiremanDialog extends javax.swing.JDialog {
 
-private BEFireman fireman = null;
-    
+    private BEFireman fireman = null;
+
     /**
      * Creates new form AddFiremanDialog
      */
@@ -37,15 +37,15 @@ private BEFireman fireman = null;
         if (chkboxLederUddannet.isSelected()) {
             leaderUddannet = true;
         }
-        
+        System.out.println(fireman.getCPR() + fireman.getFirstName() + fireman.getLastName() + fireman.getAddress() + fireman.getPhoneNr() + fireman.getPaymentNr() + fireman.getCallNr());
+
         fireman = new BEFireman(CPR, forNavn, callNr, adresse, callNr, callNr, paymentNr, leaderUddannet);
-    
+
     }
- 
-    public BEFireman getNewFireman(){
-    return fireman;
+
+    public BEFireman getNewFireman() {
+        return fireman;
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

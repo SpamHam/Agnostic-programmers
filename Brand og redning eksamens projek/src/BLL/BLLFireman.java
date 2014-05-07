@@ -56,7 +56,6 @@ public class BLLFireman {
 
     public ArrayList<BE.BEFireman> getAll() throws Exception {
         ArrayList<BE.BEFireman> res = new ArrayList<>();
-        System.out.println("Jacobs mors patter er større end Mortens!");
         try {
             res = DALCFireman.getInstance().read();
         } catch (SQLServerException ex) {
