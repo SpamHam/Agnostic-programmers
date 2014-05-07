@@ -28,7 +28,7 @@
               <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Component id="UpdateFieldsPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="16" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="BackButton" pref="96" max="32767" attributes="0"/>
                   <Component id="RemoveButton" alignment="1" pref="96" max="32767" attributes="0"/>
@@ -43,18 +43,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace pref="14" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="UpdateFieldsPanel" min="-2" max="-2" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                               <Component id="AddButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="UpdateButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="RemoveButton" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="UpdateFieldsPanel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Component id="BackButton" min="-2" max="-2" attributes="0"/>
@@ -137,37 +137,70 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Component id="jLabelCall" min="-2" pref="48" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="jLabelTlf" max="32767" attributes="0"/>
-                      <Component id="jLabelCPR" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabelFornavn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabelEfternavn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jLabelAddresse" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jLabelEfternavn" alignment="0" pref="67" max="32767" attributes="0"/>
+                      <Component id="lblPaymentNr" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="TxtCall" pref="121" max="32767" attributes="0"/>
-                      <Component id="TxtTlf" alignment="0" max="32767" attributes="0"/>
-                      <Component id="ChBoxLeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="TxtFornavn" alignment="0" pref="121" max="32767" attributes="0"/>
-                      <Component id="TxtEfternavn" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TxtAddress" alignment="1" max="32767" attributes="0"/>
-                      <Component id="TxtCPR" alignment="0" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="ChBoxLeader" min="-2" max="-2" attributes="0"/>
+                              <Component id="TxtEfternavn" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
+                          <Component id="txtPaymentNr" min="-2" pref="121" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
+              </Group>
+              <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="jLabelCall" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="TxtCall" min="-2" pref="121" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelAddresse" max="32767" attributes="0"/>
+                              <Component id="jLabelTlf" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtTlf" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="TxtAddress" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelFornavn" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="lblCPR" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="TxtFornavn" pref="121" max="32767" attributes="0"/>
+                              <Component id="lblsetCPR" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace pref="14" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabelCPR" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TxtCPR" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblCPR" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblsetCPR" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -195,29 +228,27 @@
                       <Component id="jLabelCall" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="ChBoxLeader" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="0" pref="8" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabelCPR">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="CPR"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabelFornavn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Fornavn"/>
+            <Property name="horizontalAlignment" type="int" value="2"/>
+            <Property name="text" type="java.lang.String" value="Fornavn:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelEfternavn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Efternavn"/>
+            <Property name="text" type="java.lang.String" value="Efternavn:"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="TxtCPR">
         </Component>
         <Component class="javax.swing.JTextField" name="TxtEfternavn">
         </Component>
@@ -225,7 +256,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelAddresse">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Addresse"/>
+            <Property name="text" type="java.lang.String" value="Addresse:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtAddress">
@@ -234,10 +265,22 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabelCall">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Call Nr."/>
+            <Property name="text" type="java.lang.String" value="Call Nr:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="TxtTlf">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabelTlf">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tlf. Nr:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtPaymentNr">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPaymentNr">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="L&#xf8;n Nr:"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="ChBoxLeader">
           <Properties>
@@ -247,9 +290,14 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChBoxLeaderActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabelTlf">
+        <Component class="javax.swing.JLabel" name="lblCPR">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Tlf. Nr."/>
+            <Property name="text" type="java.lang.String" value="CPR:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblsetCPR">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
       </SubComponents>
