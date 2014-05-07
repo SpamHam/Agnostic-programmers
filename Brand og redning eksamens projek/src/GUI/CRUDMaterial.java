@@ -234,13 +234,13 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
         try {
-            BLL.BLLMaterial.getInstance().Update( new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim(), Integer.parseInt(txtAntal.getText().trim())));
+            BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim(), Integer.parseInt(txtAntal.getText().trim())));
+            allMaterials = BLL.BLLMaterial.getInstance().getAll();
+            materialTableModel.setMaterialList(allMaterials);
+            materialTableModel.fireTableDataChanged();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
-        materialTableModel.setMaterialList(allMaterials);
-        jTable1.repaint();
-        materialTableModel.fireTableDataChanged();
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
