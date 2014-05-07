@@ -13,10 +13,10 @@ package BE;
 public class BETimePlan {
 
     
-    private String Stilling, navn, Koeretoej;
-    private int Koert, Tidsrum, StationsVagt;
+    private String Stilling, navn, Koeretoej, Tidsrum;
+    private int Koert, StationsVagt;
 
-    public BETimePlan(String Stilling, String navn, int Koert, int Tidsrum, int StationsVagt, String Koeretoej) {
+    public BETimePlan(String Stilling, String navn, int Koert, String Tidsrum, int StationsVagt, String Koeretoej) {
         this.Stilling = Stilling;
         this.navn = navn;
         this.Koert = Koert;
@@ -55,11 +55,11 @@ public class BETimePlan {
         this.Koert = Koert;
     }
 
-    public int getTidsrum() {
+    public String getTidsrum() {
         return Tidsrum;
     }
 
-    public void setTidsrum(int Tidsrum) {
+    public void setTidsrum(String Tidsrum) {
         this.Tidsrum = Tidsrum;
     }
 

@@ -18,7 +18,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     private String[] colNames = {"Stilling", "Navn", "Tidsrum", "Kørt", "Stations Vagt", "Køretøj"};
 
-    private Class[] classes = {String.class, String.class, Integer.class, Integer.class, Integer.class, String.class};
+    private Class[] classes = {String.class, String.class, String.class, Integer.class, Integer.class, String.class};
 
     public TimePlanTableModel(ArrayList<BETimePlan> allTimePlans) {
         timePlan = allTimePlans;
@@ -107,12 +107,18 @@ public class TimePlanTableModel extends AbstractTableModel {
     {
         BETimePlan row = timePlan.get(rowIndex);
         switch (columnIndex){
+            case 0:
+               row.setStilling((String) aValue);
+                break;
             case 2: 
-              row.setTidsrum((Integer) aValue);
+              row.setTidsrum((String) aValue);
+                break;
             case 3: 
              row.setKoert((Integer) aValue);
+                break;
             case 4:
                row.setStationsVagt((Integer) aValue);
+                break;
     } 
    }
 
