@@ -65,9 +65,15 @@ public class CRUDFireman extends javax.swing.JFrame {
                 TxtCPR.setText(allFiremans.get(selectedRow).getCPR());
                 TxtFornavn.setText(allFiremans.get(selectedRow).getFirstName());
                 TxtEfternavn.setText(allFiremans.get(selectedRow).getLastName());
+                TxtAddress.setText(allFiremans.get(selectedRow).getAddress());
+                TxtTlf.setText(allFiremans.get(selectedRow).getPhoneNr());
+                TxtCall.setText(allFiremans.get(selectedRow).getCallNr());
+                ChBoxLeader.setSelected(allFiremans.get(selectedRow).isLeaderTrained());
             }
         });
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
