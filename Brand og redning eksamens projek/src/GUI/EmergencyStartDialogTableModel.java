@@ -24,7 +24,7 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
     
     public EmergencyStartDialogTableModel(ArrayList<Object> pik){
         startTider = pik;
-        System.out.println(startTider.size() + "Morten sutter pik");
+        
     }
 
     @Override

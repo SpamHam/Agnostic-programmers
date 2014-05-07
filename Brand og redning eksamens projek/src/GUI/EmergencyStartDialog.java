@@ -26,6 +26,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     
     
     
+    
 
     /**
      * Creates new form EmergencyStartDialog
@@ -38,6 +39,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         tableUdrykningsOversigt.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
         tableUdrykningsOversigt.setRowSorter(sorter);
+        setTitle("Liste over udrykningstider");
       
         tableUdrykningsOversigt.getTableHeader().setReorderingAllowed(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -98,8 +100,6 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         tableUdrykningsOversigt = new javax.swing.JTable();
         btnAfslut = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btnAdd = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -116,7 +116,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(tableUdrykningsOversigt);
 
-        btnAfslut.setText("Afslut udrykning");
+        btnAfslut.setText("Lav ODINRapport");
         btnAfslut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAfslutActionPerformed(evt);
@@ -131,20 +131,6 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             }
         });
 
-        btnAdd.setText("Tilføj");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("Test");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -156,12 +142,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(69, 69, 69)
                         .addComponent(btnAfslut)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -174,9 +156,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAfslut)
-                    .addComponent(btnBack)
-                    .addComponent(btnAdd)
-                    .addComponent(jButton1))
+                    .addComponent(btnBack))
                 .addGap(20, 20, 20))
         );
 
@@ -197,26 +177,13 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
      dispose();
     }//GEN-LAST:event_btnAfslutActionPerformed
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    add();
-        
-        
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        hej();
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAfslut;
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableUdrykningsOversigt;
     // End of variables declaration//GEN-END:variables
