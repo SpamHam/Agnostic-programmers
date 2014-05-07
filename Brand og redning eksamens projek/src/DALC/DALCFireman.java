@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import BE.BEFireman;
 
 /**
  *
@@ -89,8 +90,7 @@ public class DALCFireman {
             String CallNr = result.getString("CallNumber");
             String PaymentNr = result.getString("PaymentNr");
             boolean isLeaderTrained = result.getBoolean("LeaderTrained");
-
-            BE.BEFireman c = new BE.BEFireman(CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
+            BEFireman c = new BEFireman(CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
             res.add(c);
         }
         return res;
