@@ -7,6 +7,8 @@ package GUI;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -19,13 +21,13 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
-    ArrayList<BE.BEMaterial> allMateriale = new ArrayList<>();
+    ArrayList<BE.BEMaterial> allMaterials = new ArrayList<>();
     //
     private int selectedRow;
 
     private void initMaterial() {
         try {
-            allMateriale = BLL.BLLMaterial.getInstance().getAll();
+            allMaterials = BLL.BLLMaterial.getInstance().getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -37,7 +39,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     public CRUDMaterial() {
         initComponents();
         initMaterial();
-        materialTableModel = new CRUDMaterialTableModel(allMateriale);
+        materialTableModel = new CRUDMaterialTableModel(allMaterials);
         jTable1.setModel(materialTableModel);
         jTable1.setRowSorter(sorter);
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -57,8 +59,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
-                txtMaterial.setText(allMateriale.get(selectedRow).getM_Materiale());
-                txtAntal.setText(Integer.toString(allMateriale.get(selectedRow).getM_Antal()));
+                txtMaterial.setText(allMaterials.get(selectedRow).getM_Materiale());
+                txtAntal.setText(Integer.toString(allMaterials.get(selectedRow).getM_Antal()));
             }
         });
     }
@@ -213,10 +215,32 @@ public class CRUDMaterial extends javax.swing.JFrame {
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
         AddMaterialDialog tilføjMaterial = new AddMaterialDialog(this, true);
         tilføjMaterial.setVisible(true);
+        // continue here when the dialog box is closed (disposed).
+        BE.BEMaterial Material = tilføjMaterial.getMaterial();
+        if (Material != null) // a car has been created in the dialog box.
+        {
+            //allCars.add(car);
+            try {
+                BLL.BLLMaterial.getInstance().Create(Material);
+                allMaterials = BLL.BLLMaterial.getInstance().getAll();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            materialTableModel.setMaterialList(allMaterials);
+            materialTableModel.fireTableDataChanged();
+
+        }
     }//GEN-LAST:event_btnTilføjActionPerformed
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-
+        try {
+            BLL.BLLMaterial.getInstance().Update( new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim(), Integer.parseInt(txtAntal.getText().trim())));
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        materialTableModel.setMaterialList(allMaterials);
+        jTable1.repaint();
+        materialTableModel.fireTableDataChanged();
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed

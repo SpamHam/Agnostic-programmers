@@ -68,7 +68,7 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
      *
      * @param ODINList
      */
-    public void setCarList(ArrayList<BE.BEMaterial> MaterialList) {
+    public void setMaterialList(ArrayList<BE.BEMaterial> MaterialList) {
        m_allMaterial = MaterialList;
     }
 

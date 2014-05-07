@@ -38,7 +38,7 @@ public class BEMaterial {
     /**
      * @return the m_UdrykningsID
      */
-    public int getM_UdrykningsID() {
+    public int getM_ID() {
         return m_UdrykningsID;
     }
 

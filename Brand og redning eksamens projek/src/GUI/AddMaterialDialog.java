@@ -4,19 +4,33 @@
  */
 package GUI;
 
+import BE.BEMaterial;
+
 /**
  *
  * @author Kathrine
  */
 public class AddMaterialDialog extends javax.swing.JDialog {
+    private BEMaterial Material;
 
     /**
      * Creates new form AddMaterialDialog
+     *
+     * @param parent
+     * @param modal
      */
     public AddMaterialDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setTitle("Tilføj materiale");
+    }
+
+    private void addMaterial() {
+        Material = new BE.BEMaterial(txtMateriale.getText());
+    }
+
+    public BE.BEMaterial getMaterial() {
+        return Material;
     }
 
     /**
@@ -39,6 +53,11 @@ public class AddMaterialDialog extends javax.swing.JDialog {
         lblMateriale.setText("Materiale:");
 
         btnTilfoej.setText("Tilføj");
+        btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTilfoejActionPerformed(evt);
+            }
+        });
 
         btnLuk.setText("Luk");
         btnLuk.addActionListener(new java.awt.event.ActionListener() {
@@ -85,6 +104,11 @@ public class AddMaterialDialog extends javax.swing.JDialog {
     private void btnLukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukActionPerformed
         dispose();
     }//GEN-LAST:event_btnLukActionPerformed
+
+    private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+      addMaterial();
+      dispose();
+    }//GEN-LAST:event_btnTilfoejActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLuk;

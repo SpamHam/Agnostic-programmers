@@ -84,10 +84,11 @@ public class DALCMaterial {
      * @throws SQLException
      */
     public void update(BE.BEMaterial u) throws SQLException {
-        String sql = "update Materialz set Materiale=?, Antal=?";
+        String sql = "update Materials set Materiale=?, Antal=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getM_Materiale());
-        ps.setInt(4, u.getM_Antal());
+        ps.setInt(2, u.getM_Antal());
+        ps.setInt(3, u.getM_ID());
         ps.executeUpdate();
     }
 
