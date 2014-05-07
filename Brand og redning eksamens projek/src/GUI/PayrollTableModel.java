@@ -5,24 +5,23 @@
 package GUI;
 
 import javax.swing.table.AbstractTableModel;
-import BE.BESalary;
 import java.util.ArrayList;
-
 
 /**
  *
  * @author Kathrine
  */
 public class PayrollTableModel extends AbstractTableModel {
-    
-    ArrayList<BESalary> allSalary;
-    String [] colNames = {"Navn", "Løn nr.", "Brand Brandmand", "Brand Holdleder", "Standby Station Brandmand", "Standby Station Holdleder", "Arb på station/andet", "Øvelser Brandmnad", "Øvelser Holdleder", "Vagt Brandmand Helligdage", "Vagt Brandmand Hverdage", "Vagt Holdleder Helligdage", "Vagt Holdleder Hverdage"};  
-    Class [] classes = {String.class, Integer.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class};
-     
-    public PayrollTableModel(ArrayList<BESalary> salary){
+
+    ArrayList<BE.BETableSalary> allSalary;
+    String[] colNames = {"Navn", "Løn nr.", "Brand Brandmand", "Brand Holdleder", "Standby Station Brandmand", "Standby Station Holdleder", "Arb på station/andet", "Øvelser Brandmnad", "Øvelser Holdleder", "Vagt Brandmand Helligdage", "Vagt Brandmand Hverdage", "Vagt Holdleder Helligdage", "Vagt Holdleder Hverdage"};
+    Class[] classes = {String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class};
+
+    public PayrollTableModel(ArrayList<BE.BETableSalary> salary) {
         allSalary = salary;
         fireTableDataChanged();
     }
+
     @Override
     public int getRowCount() {
         return allSalary.size();
@@ -35,29 +34,39 @@ public class PayrollTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        BESalary e = allSalary.get(rowIndex);
-        switch(columnIndex){
+        BE.BETableSalary e = allSalary.get(rowIndex);
+        switch (columnIndex) {
             case 0:
-                return e.getODIN(); 
-            case 1: 
-                return e.getCPR();
+                return e.getNavn();
+            case 1:
+                return e.getSalaryNumber();
             case 2:
-                return e.getRole();
+                return e.getBrandBrandmand();
             case 3:
-                return e.getSalaryCode();
-            case 4: 
-                return e.getHours();
+                return e.getBrandHoldleder();
+            case 4:
+                return e.getStandbyStationBrandmand();
             case 5:
-                return e.getDate();
-            case 6:    
-                return e.getTypeOfWork();
-            case 7: 
-                
+                return e.getStandbyStationHoldleder();
+            case 6:
+                return e.getArbejdeStationAndet();
+            case 7:
+                return e.getØvelserBrandmand();
+            case 8:
+                return e.getØvelserHoldeder();
+            case 9:
+                return e.getVagtBrandmandHeligdage();
+            case 10:
+                return e.getVagtBrandmandHverdage();
+            case 11:
+                return e.getVagtHoldledereHeligdage();
+            case 12:
+                return e.getØvelserHoldeder();
         }
         return false;
     }
-    
-        @Override
+
+    @Override
     public String getColumnName(int col) {
 
         return colNames[col];
@@ -70,16 +79,22 @@ public class PayrollTableModel extends AbstractTableModel {
 
     @Override
     public boolean isCellEditable(int row, int col) {
-         switch (col) {
-         case 0: return false;
-         case 1: return false;
-         case 2: return true;
-         case 3: return true;
-         case 4: return true;
-         case 5: return false;
-         default:
-             return false;
-         }
+        switch (col) {
+            case 0:
+                return false;
+            case 1:
+                return false;
+            case 2:
+                return true;
+            case 3:
+                return true;
+            case 4:
+                return true;
+            case 5:
+                return false;
+            default:
+                return false;
+        }
     }
 
     /**
@@ -87,7 +102,7 @@ public class PayrollTableModel extends AbstractTableModel {
      *
      * @param carList the list of employees to show in the JTable.
      */
-    public void setTimePlanStatusList(ArrayList<BESalary> salaryList) {
+    public void setTimePlanStatusList(ArrayList<BE.BETableSalary> salaryList) {
         allSalary = salaryList;
     }
 
@@ -98,8 +113,8 @@ public class PayrollTableModel extends AbstractTableModel {
      * @param row the index for the employee in the employees list.
      * @return the employee at the given row index.
      */
-    public BESalary getTimePlanByRow(int row) {
+    public BE.BETableSalary getTimePlanByRow(int row) {
         return allSalary.get(row);
     }
-    
+
 }

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package GUI;
+
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,26 +16,23 @@ import javax.swing.table.TableRowSorter;
  * @author Claus
  */
 public class Payroll extends javax.swing.JFrame {
+
     PayrollTableModel Payrollmodel;
     TableRowSorter<TableModel> sorter;
-    ArrayList<BE.BESalary> allSalary = new ArrayList<>();
+    ArrayList<BE.BETableSalary> allSalary = new ArrayList<>();
     BLL.BLLPayroll m_Payroll;
-    
-    public void initSalary(){
-        allSalary = null;
-    }
-    
+
     /**
      * Creates new form Payroll
      */
     public Payroll() {
         try {
             this.m_Payroll = BLL.BLLPayroll.getInstance();
+            allSalary = m_Payroll.getAllTableSalary();
         } catch (Exception ex) {
             Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
         }
         initComponents();
-        initSalary();
         setTitle("Time oversigt");
         Payrollmodel = new PayrollTableModel(allSalary);
         jtableLoenOversigt.setModel(Payrollmodel);
@@ -44,8 +41,8 @@ public class Payroll extends javax.swing.JFrame {
         jtableLoenOversigt.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
-        public static void main(String args[]) {
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
