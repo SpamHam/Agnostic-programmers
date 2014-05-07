@@ -28,13 +28,12 @@ public class Timeplan extends javax.swing.JFrame {
 //    private void initTimePlan() {
 //        allTime = MyBLLTimePlan.getAll();
 //    }
-
     /**
      * Creates new form Timeplan
      */
     public Timeplan() {
         initComponents();
-       // initTimePlan();
+        // initTimePlan();
         TimeTableModel = new TimePlanTableModel(allTime);
         jtableTeamTabel.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
@@ -81,6 +80,14 @@ public class Timeplan extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jtableTeamTabel);
 
+        txtAndetTekst.setMinimumSize(new java.awt.Dimension(290, 20));
+        txtAndetTekst.setPreferredSize(new java.awt.Dimension(290, 20));
+        txtAndetTekst.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtAndetTekstActionPerformed(evt);
+            }
+        });
+
         btnVaelgTeam.setText("Vælg Team");
         btnVaelgTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -109,12 +116,12 @@ public class Timeplan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAndetTekst)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtAndetTekst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnVaelgTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -131,13 +138,13 @@ public class Timeplan extends javax.swing.JFrame {
                     .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtAndetTekst, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnVaelgTeam))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNaesteSide)
                     .addComponent(btnLukVindue))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addGap(6, 6, 6))
         );
 
         pack();
@@ -180,13 +187,17 @@ public class Timeplan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnNaesteSideActionPerformed
 
     private void cmbTypeIndsatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeIndsatsActionPerformed
- if(cmbTypeIndsats.getSelectedItem().toString().equalsIgnoreCase("Andet")){
-     txtAndetTekst.setVisible(true);
- }
-     else
-     txtAndetTekst.setVisible(false);
- 
+        if (cmbTypeIndsats.getSelectedItem().toString().trim().equalsIgnoreCase("Andet")) {
+            txtAndetTekst.setVisible(true);
+        } else {
+            txtAndetTekst.setVisible(false);
+        }
+
     }//GEN-LAST:event_cmbTypeIndsatsActionPerformed
+
+    private void txtAndetTekstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAndetTekstActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtAndetTekstActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
