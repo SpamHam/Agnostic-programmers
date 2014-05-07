@@ -43,7 +43,7 @@ public class BLLFireman {
     }
 
     public void Create(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
             Error.NotEnougthInfo("creating a fireman.");
         } else {
             try {
@@ -56,6 +56,7 @@ public class BLLFireman {
 
     public ArrayList<BE.BEFireman> getAll() throws Exception {
         ArrayList<BE.BEFireman> res = new ArrayList<>();
+        System.out.println("Jacobs mors patter er større end Mortens!");
         try {
             res = DALCFireman.getInstance().read();
         } catch (SQLServerException ex) {
@@ -65,7 +66,7 @@ public class BLLFireman {
     }
 
     public void Update(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr() == 0 || b.getPaymentNr() == 0) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
             Error.NotEnougthInfo("updating a fireman.");
         } else {
             try {
