@@ -121,7 +121,7 @@ public class PDFGenerator {
     for (BETimePlan row : rowData){
     table.addCell(row.getStilling());
     table.addCell(row.getNavn());
-    table.addCell("" + row.getTidsrum());
+    table.addCell(row.getTidsrum());
     table.addCell("" + row.getKoert());
     table.addCell("" + row.getStationsVagt());
     table.addCell(row.getKoeretoej());
