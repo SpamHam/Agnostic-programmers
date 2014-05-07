@@ -89,7 +89,7 @@ public class DALCSalary {
         ResultSet result = stm.getResultSet();
         while (result.next()) {
 
-            int ODIN = result.getInt("ODIN");
+            int ODIN = result.getInt("ODINnr");
             String CPR = result.getString("CPR");
             String Role = result.getString("Role");
             int SalaryCode = result.getInt("SalaryCode");

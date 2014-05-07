@@ -82,29 +82,57 @@ public class BLLPayroll {
      */
     public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
         int count = 0;
+        boolean first = false, somethingNew = false;
         ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>();
         ArrayList<BE.BETableSalary> UncompressedTable = convertToTable();
+        ArrayList<String> Unique = new ArrayList<>();
+        Unique.add("0000000");
         for (BE.BETableSalary a : UncompressedTable) {
-            for (BE.BETableSalary b : UncompressedTable) {
-                if (a.getNavn().equalsIgnoreCase(b.getNavn())) {
-                    BE.BETableSalary ny = new BE.BETableSalary(UncompressedTable.get(count).getNavn(), UncompressedTable.get(count).getSalaryNumber(),
-                            UncompressedTable.get(count).getBrandBrandmand() + b.getBrandBrandmand(),
-                            UncompressedTable.get(count).getBrandHoldleder() + b.getBrandHoldleder(),
-                            UncompressedTable.get(count).getStandbyStationBrandmand() + b.getStandbyStationBrandmand(),
-                            UncompressedTable.get(count).getStandbyStationHoldleder() + b.getStandbyStationHoldleder(),
-                            UncompressedTable.get(count).getArbejdeStationAndet() + b.getArbejdeStationAndet(),
-                            UncompressedTable.get(count).getØvelserBrandmand() + b.getØvelserBrandmand(),
-                            UncompressedTable.get(count).getØvelserHoldeder() + b.getØvelserHoldeder(),
-                            UncompressedTable.get(count).getVagtBrandmandHeligdage() + b.getVagtBrandmandHeligdage(),
-                            UncompressedTable.get(count).getVagtBrandmandHverdage() + b.getVagtBrandmandHverdage(),
-                            UncompressedTable.get(count).getVagtHoldledereHeligdage() + b.getVagtHoldledereHeligdage(),
-                            UncompressedTable.get(count).getVagtHoldledereHverdage() + b.getVagtHoldledereHverdage());
-                    UncompressedTable.set(count, ny);
-                    UncompressedTable.remove(b);
+            if (!Unique.contains(a.getNavn())) {
+                for (BE.BETableSalary b : UncompressedTable) {
+                    if (a.getNavn().equalsIgnoreCase(b.getNavn())) {
+                        if (first) {
+                            somethingNew = true;
+                            System.out.println(
+                                    UncompressedTable.get(count).getNavn() + " "
+                                    + UncompressedTable.get(count).getSalaryNumber() + " "
+                                    + UncompressedTable.get(count).getBrandBrandmand() + " "
+                                    + UncompressedTable.get(count).getBrandHoldleder() + " "
+                                    + UncompressedTable.get(count).getStandbyStationBrandmand() + " "
+                                    + UncompressedTable.get(count).getStandbyStationHoldleder() + " "
+                                    + UncompressedTable.get(count).getArbejdeStationAndet() + " "
+                                    + UncompressedTable.get(count).getØvelserBrandmand() + " "
+                                    + UncompressedTable.get(count).getØvelserHoldeder() + " "
+                                    + UncompressedTable.get(count).getVagtBrandmandHeligdage() + " "
+                                    + UncompressedTable.get(count).getVagtBrandmandHverdage() + " "
+                                    + UncompressedTable.get(count).getVagtHoldledereHeligdage() + " "
+                                    + UncompressedTable.get(count).getVagtHoldledereHverdage());
+                            BE.BETableSalary ny = new BE.BETableSalary(UncompressedTable.get(count).getNavn(), UncompressedTable.get(count).getSalaryNumber(),
+                                    UncompressedTable.get(count).getBrandBrandmand() + b.getBrandBrandmand(),
+                                    UncompressedTable.get(count).getBrandHoldleder() + b.getBrandHoldleder(),
+                                    UncompressedTable.get(count).getStandbyStationBrandmand() + b.getStandbyStationBrandmand(),
+                                    UncompressedTable.get(count).getStandbyStationHoldleder() + b.getStandbyStationHoldleder(),
+                                    UncompressedTable.get(count).getArbejdeStationAndet() + b.getArbejdeStationAndet(),
+                                    UncompressedTable.get(count).getØvelserBrandmand() + b.getØvelserBrandmand(),
+                                    UncompressedTable.get(count).getØvelserHoldeder() + b.getØvelserHoldeder(),
+                                    UncompressedTable.get(count).getVagtBrandmandHeligdage() + b.getVagtBrandmandHeligdage(),
+                                    UncompressedTable.get(count).getVagtBrandmandHverdage() + b.getVagtBrandmandHverdage(),
+                                    UncompressedTable.get(count).getVagtHoldledereHeligdage() + b.getVagtHoldledereHeligdage(),
+                                    UncompressedTable.get(count).getVagtHoldledereHverdage() + b.getVagtHoldledereHverdage());
+                            UncompressedTable.set(count, ny);
+                        } else {
+                            first = true;
+                        }
+                    }
                 }
             }
-            CompressedTable.add(UncompressedTable.get(count));
-            count++;
+            if (somethingNew == true) {
+                somethingNew = false;
+                first = true;
+                Unique.add(count, a.getNavn());
+                CompressedTable.add(UncompressedTable.get(count));
+                count++;
+            }
         }
         return CompressedTable;
     }

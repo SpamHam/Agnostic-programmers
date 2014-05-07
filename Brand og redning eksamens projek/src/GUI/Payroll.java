@@ -6,8 +6,7 @@
 package GUI;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -20,17 +19,15 @@ public class Payroll extends javax.swing.JFrame {
     PayrollTableModel Payrollmodel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BETableSalary> allSalary = new ArrayList<>();
-    BLL.BLLPayroll m_Payroll;
 
     /**
      * Creates new form Payroll
      */
     public Payroll() {
         try {
-            this.m_Payroll = BLL.BLLPayroll.getInstance();
-            allSalary = m_Payroll.getAllTableSalary();
+            allSalary = BLL.BLLPayroll.getInstance().getAllTableSalary();
         } catch (Exception ex) {
-            Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
         setTitle("Time oversigt");
