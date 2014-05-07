@@ -10,12 +10,8 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
-import java.awt.Color;
 import java.awt.event.MouseEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.border.Border;
 
 /**
  *
@@ -50,7 +46,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
         tblVehicle.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        TxtReg.setEditable(false);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblVehicle.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -64,7 +59,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblVehicle.getSelectedRow();
-                TxtReg.setText(allVehicle.get(selectedRow).getM_registrationNr());
+                lblReg.setText(allVehicle.get(selectedRow).getM_registrationNr());
                 txtBrand.setText(allVehicle.get(selectedRow).getM_model());
                 txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
                 txtDesc.setText(allVehicle.get(selectedRow).getM_description());
@@ -93,10 +88,10 @@ public class CRUDVehicle extends javax.swing.JFrame {
         lblModel = new javax.swing.JLabel();
         lblBrand = new javax.swing.JLabel();
         txtBrand = new javax.swing.JTextField();
-        TxtReg = new javax.swing.JTextField();
         lblRegNr = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDesc = new javax.swing.JTextArea();
+        lblReg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 300));
@@ -158,9 +153,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         lblBrand.setText("Mærke");
 
-        TxtReg.setEditable(false);
-        TxtReg.setBackground(new java.awt.Color(255, 255, 255));
-
         lblRegNr.setText("Reg. Nr.");
 
         txtDesc.setColumns(20);
@@ -179,9 +171,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
                             .addComponent(lblBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblRegNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(54, 54, 54)
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtReg, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
+                            .addComponent(lblReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
                         .addComponent(lblModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(54, 54, 54)
@@ -193,9 +185,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
         UpdateFieldsPanelLayout.setVerticalGroup(
             UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblRegNr)
-                    .addComponent(TxtReg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblRegNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblReg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -207,7 +199,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDesc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 186, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -290,7 +282,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtReg;
     private javax.swing.JPanel UpdateFieldsPanel;
     private javax.swing.JButton btnFjern;
     private javax.swing.JButton btnOpdatere;
@@ -301,6 +292,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDesc;
     private javax.swing.JLabel lblModel;
+    private javax.swing.JLabel lblReg;
     private javax.swing.JLabel lblRegNr;
     private javax.swing.JTable tblVehicle;
     private javax.swing.JTextField txtBrand;

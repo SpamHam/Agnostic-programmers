@@ -128,9 +128,9 @@
                               <Component id="lblRegNr" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="TxtReg" min="-2" pref="61" max="-2" attributes="0"/>
-                              <Component id="txtBrand" min="-2" pref="61" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="txtBrand" pref="61" max="32767" attributes="0"/>
+                              <Component id="lblReg" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -148,9 +148,9 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblRegNr" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="TxtReg" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="lblRegNr" max="32767" attributes="0"/>
+                      <Component id="lblReg" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -165,7 +165,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblDesc" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" pref="180" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="186" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,14 +190,6 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtBrand">
         </Component>
-        <Component class="javax.swing.JTextField" name="TxtReg">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblRegNr">
           <Properties>
             <Property name="text" type="java.lang.String" value="Reg. Nr."/>
@@ -218,6 +210,8 @@
             </Component>
           </SubComponents>
         </Container>
+        <Component class="javax.swing.JLabel" name="lblReg">
+        </Component>
       </SubComponents>
     </Container>
   </SubComponents>

@@ -8,7 +8,9 @@ package GUI;
 import BE.BEMaterial;
 import BE.BETimePlan;
 import BLL.BLLTimePlan;
+import Utility.PDFGenerator;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableModel;
@@ -23,7 +25,9 @@ public class Timeplan extends javax.swing.JFrame {
     TimePlanTableModel TimeTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
+    ArrayList<String> colNames;
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
+    PDFGenerator pdfGen;
 
 //    private void initTimePlan() {
 //        allTime = MyBLLTimePlan.getAll();
@@ -180,6 +184,17 @@ public class Timeplan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLukVindueActionPerformed
 
     private void btnNaesteSideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNaesteSideActionPerformed
+        colNames = new ArrayList<>();
+     for(int i=0; i<TimeTableModel.getColumnCount(); i++){
+        colNames.add(TimeTableModel.getColumnName(i));
+     }
+        pdfGen = new PDFGenerator(allTime, colNames);
+        try {
+            pdfGen.run();
+            JOptionPane.showMessageDialog(this, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
         dispose();
         ODINReport odinReport = new ODINReport();
         odinReport.setVisible(true);
