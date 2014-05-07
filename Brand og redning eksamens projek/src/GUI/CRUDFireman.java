@@ -9,8 +9,6 @@ import BE.BEFireman;
 import BLL.BLLFireman;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
