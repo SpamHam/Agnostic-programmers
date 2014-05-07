@@ -89,6 +89,11 @@ public class CRUDMaterial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnFjern.setText("Fjern");
+        btnFjern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFjernActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -241,6 +246,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        btnOpdatere.setEnabled(false);
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
@@ -248,6 +254,18 @@ public class CRUDMaterial extends javax.swing.JFrame {
         AdminstrationMenu admin = new AdminstrationMenu();
         admin.setVisible(true);
     }//GEN-LAST:event_btnTilbageActionPerformed
+
+    private void btnFjernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernActionPerformed
+        //TODO after Salary
+        /*    try {
+        BLL.BLLMaterial.getInstance().remove(allMaterials.get(selectedRow));
+        allMaterials = BLL.BLLMaterial.getInstance().getAll();
+        materialTableModel.setMaterialList(allMaterials);
+        materialTableModel.fireTableDataChanged();
+        } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }*/
+    }//GEN-LAST:event_btnFjernActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UpdateFieldsPanel;
