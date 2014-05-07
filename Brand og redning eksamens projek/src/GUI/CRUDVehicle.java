@@ -10,10 +10,12 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
+import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.border.Border;
 
 /**
  *
@@ -48,6 +50,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         tblVehicle.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        TxtReg.setEditable(false);
         btnOpdatere.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblVehicle.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -65,12 +68,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 txtBrand.setText(allVehicle.get(selectedRow).getM_model());
                 txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
                 txtDesc.setText(allVehicle.get(selectedRow).getM_description());
-            }
-                        
-          public BEVehicle updateSelectedRow (MouseEvent evt){
-            selectedRow = tblVehicle.getSelectedRow();
-            BEVehicle H = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), allVehicle.get(selectedRow).getM_model(), allVehicle.get(selectedRow).getM_mærke(), allVehicle.get(selectedRow).getM_description());
-            return H;
             }
         });
     }
@@ -161,6 +158,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         lblBrand.setText("Mærke");
 
+        TxtReg.setEditable(false);
+        TxtReg.setBackground(new java.awt.Color(255, 255, 255));
+
         lblRegNr.setText("Reg. Nr.");
 
         txtDesc.setColumns(20);
@@ -249,7 +249,18 @@ public class CRUDVehicle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-      
+            selectedRow = tblVehicle.getSelectedRow();
+            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(),txtBrand.getText(),txtModel.getText(),txtDesc.getText()
+            );
+             allVehicle.set(selectedRow, updateVehicle);
+             vehicleTableModel.setVehicleList(allVehicle);
+             vehicleTableModel.fireTableDataChanged();
+             tblVehicle.repaint();
+          try {
+            BLLvehicle.getInstance().Update(updateVehicle);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnOpdatereActionPerformed
 
     private void btnTilføjActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilføjActionPerformed
