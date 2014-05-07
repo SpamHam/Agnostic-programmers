@@ -25,7 +25,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
-    public void Add() {
+    private void Add() {
         String CPR = txtCPR.getText().trim();
         String forNavn = txtFornavn.getText().trim();
         String efterNavn = txtEfternavn.getText().trim();
@@ -37,10 +37,8 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         if (chkboxLederUddannet.isSelected()) {
             leaderUddannet = true;
         }
-        System.out.println(fireman.getCPR() + fireman.getFirstName() + fireman.getLastName() + fireman.getAddress() + fireman.getPhoneNr() + fireman.getPaymentNr() + fireman.getCallNr());
-
-        fireman = new BEFireman(CPR, forNavn, callNr, adresse, callNr, callNr, paymentNr, leaderUddannet);
-
+        
+        fireman = new BEFireman(CPR, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet);
     }
 
     public BEFireman getNewFireman() {
@@ -204,6 +202,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_chkboxLederUddannetActionPerformed
 
     private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+        Add();
         dispose();
     }//GEN-LAST:event_btnTilfoejActionPerformed
 

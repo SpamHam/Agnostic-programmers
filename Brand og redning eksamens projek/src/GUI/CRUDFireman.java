@@ -281,19 +281,19 @@ public class CRUDFireman extends javax.swing.JFrame {
         firemanDialog.setLocationRelativeTo(this);
 
         BEFireman fireman = firemanDialog.getNewFireman();
-        System.out.println(fireman.getCPR() + fireman.getFirstName() + fireman.getLastName() + fireman.getAddress() + fireman.getPhoneNr() + fireman.getPaymentNr() + fireman.getCallNr());
         if (fireman != null) // a team has been created in the dialog box.
         {
             if (!allFiremans.isEmpty()) {
                 try {
                     BLLFireman.getInstance().Create(fireman);
+                    allFiremans.add(fireman);
+                    FiremanTableModel.setCRUDFiremanList(allFiremans);
+                    jTable1.repaint();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
-            FiremanTableModel.setCRUDFiremanList(allFiremans);
-            jTable1.repaint();
         }
     }//GEN-LAST:event_AddButtonActionPerformed
 
