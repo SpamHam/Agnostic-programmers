@@ -158,7 +158,7 @@ public class BLLPayroll {
                 VagtBrandmandHverdage = 1;
             }
         }
-        BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), Integer.toString(f.getPaymentNr()), BrandBrandmand * S.getHours(), BrandHoldleder * S.getHours(), StandbyStationBrandmand * S.getHours(), StandbyStationHoldleder * S.getHours(), ArbejdeStationAndet * S.getHours(), ØvelserBrandmand * S.getHours(), ØvelserHoldeder * S.getHours(), VagtBrandmandHeligdage * S.getHours(), VagtBrandmandHverdage * S.getHours(), VagtHoldledereHeligdage * S.getHours(), VagtHoldledereHverdage * S.getHours());
+        BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), f.getPaymentNr(), BrandBrandmand * S.getHours(), BrandHoldleder * S.getHours(), StandbyStationBrandmand * S.getHours(), StandbyStationHoldleder * S.getHours(), ArbejdeStationAndet * S.getHours(), ØvelserBrandmand * S.getHours(), ØvelserHoldeder * S.getHours(), VagtBrandmandHeligdage * S.getHours(), VagtBrandmandHverdage * S.getHours(), VagtHoldledereHeligdage * S.getHours(), VagtHoldledereHverdage * S.getHours());
         return ts;
     }
 
