@@ -19,6 +19,7 @@ public class ODINReport extends javax.swing.JFrame {
     ChooseMaterialsTableModel MaterialModel;
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
+    private String currentTime;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
 
@@ -36,6 +37,31 @@ public class ODINReport extends javax.swing.JFrame {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
+    
+        public ODINReport(String t) {
+        initComponents();
+        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
+        sorter = new TableRowSorter<TableModel>(MaterialModel);
+        setTitle("ODIN Report");
+        this.setVisible(true);
+        ShowIndsatteStyrker();
+        ShowSkadeslidte();
+        currentTime = t;
+        setTime();
+        
+        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+    }
+        
+        private void setTime(){
+            
+            String dato = currentTime.substring(8, 18);
+            String tid = currentTime.substring(19);
+            txtAlarmModtaget.setText(tid);
+            jDateChooserDato.setDateFormatString(dato);
+            
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.

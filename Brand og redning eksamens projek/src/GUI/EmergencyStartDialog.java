@@ -177,7 +177,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
     private void btnAfslutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfslutActionPerformed
      //ODINReport report = new ODINReport(tableUdrykningsOversigt.getSelectedRow(), startTider);
-     ODINReport report = new ODINReport();   
+     ODINReport report = new ODINReport(startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString());   
      report.setVisible(true);
      
      dispose();
