@@ -44,5 +44,13 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         return startTider.get(rowIndex);    }
+    
+    public void setTimePlanStatusList(ArrayList<Object> timeList) {
+        startTider = timeList;
+        fireTableDataChanged();
+        
+    }
 
     }
+
+

@@ -14,7 +14,9 @@ import javax.swing.JTextField;
 public class EmergencyStartAddDialog extends javax.swing.JDialog {
     
     ArrayList<Object> addTider = new ArrayList<>();
-    EmergencyStartDialogTableModel StartTableModel;
+    EmergencyStartDialog start;
+    EmergencyStart a;
+    
 
     /**
      * Creates new form EmergencyStartAddDialog
@@ -23,6 +25,12 @@ public class EmergencyStartAddDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         addTider = hej;
+        start = new EmergencyStartDialog(a, true, addTider);
+    }
+    
+    public EmergencyStartAddDialog(java.awt.Frame parent, boolean modal){
+        super(parent, modal);
+        initComponents();
     }
     
     
@@ -32,6 +40,13 @@ public class EmergencyStartAddDialog extends javax.swing.JDialog {
         //System.out.println(time);
         return time;        
     }
+    
+    public ArrayList<Object> startList(){
+        
+        return addTider;
+    }
+    
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -112,9 +127,10 @@ public class EmergencyStartAddDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-    addTider.add(AddEmergencyStart());
-        System.out.println(addTider.size());
-    //StartTableModel.fireTableDataChanged();
+    //addTider.add(AddEmergencyStart());
+    
+     
+    
     //dispose();
     }//GEN-LAST:event_btnAddActionPerformed
 

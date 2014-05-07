@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+
 /**
  *
  * @author Kathrine
@@ -18,6 +19,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     private ArrayList<Object> startTider = new ArrayList<>();
     EmergencyStartDialogTableModel StartTableModel;
     TableRowSorter<TableModel> sorter;
+    EmergencyStartAddDialog addDialog;
     
     
     
@@ -40,10 +42,33 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         
     }
     
-    private void hej(){
-        for(int i = 0; i < startTider.size(); i++){
-        System.out.println(startTider.get(i));
-        }
+    public void hej(){
+         
+       String t = startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString();
+       String a = t.substring(8, 18);
+        System.out.println(a);
+        
+    }
+    
+    private void add(){
+            EmergencyStartAddDialog addDialog = new EmergencyStartAddDialog(start, true, startTider);
+        addDialog.setVisible(true);
+        // continue here when the dialog box is closed (disposed)
+        ArrayList<Object> a = addDialog.startList();
+        if(a != null){
+            if(startTider != null){
+                for(int i = 0; i < a.size(); i++){
+                    startTider.add(a.get(i));
+                }
+                    
+            }else{
+                startTider = a;
+            }
+        
+            StartTableModel.setTimePlanStatusList(startTider);
+            StartTableModel.fireTableDataChanged();
+            tableUdrykningsOversigt.repaint();
+        }    
     }
 
     /**
@@ -60,6 +85,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         btnAfslut = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -98,6 +124,13 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("Test");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +142,9 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnAfslut)
                         .addGap(18, 18, 18)
                         .addComponent(btnAdd)
@@ -126,7 +161,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAfslut)
                     .addComponent(btnBack)
-                    .addComponent(btnAdd))
+                    .addComponent(btnAdd)
+                    .addComponent(jButton1))
                 .addGap(20, 20, 20))
         );
 
@@ -140,14 +176,23 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnAfslutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfslutActionPerformed
-     startTider.remove(tableUdrykningsOversigt.getSelectedRow());
-     StartTableModel.fireTableDataChanged();
+     //ODINReport report = new ODINReport(tableUdrykningsOversigt.getSelectedRow(), startTider);
+     ODINReport report = new ODINReport();   
+     report.setVisible(true);
+     
+     dispose();
     }//GEN-LAST:event_btnAfslutActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        EmergencyStartAddDialog addDialog = new EmergencyStartAddDialog(start, true, startTider);
-        addDialog.setVisible(true);
+    add();
+        
+        
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        hej();
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,6 +202,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnAfslut;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tableUdrykningsOversigt;
     // End of variables declaration//GEN-END:variables

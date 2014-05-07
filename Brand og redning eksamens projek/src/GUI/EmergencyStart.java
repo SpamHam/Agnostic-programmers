@@ -128,6 +128,7 @@ public class EmergencyStart extends javax.swing.JFrame {
     private void btnUdrykningsTiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUdrykningsTiderActionPerformed
         EmergencyStartDialog start = new EmergencyStartDialog(this, rootPaneCheckingEnabled, Udrykningstider);
         start.setVisible(true);
+        dispose();
         
     }//GEN-LAST:event_btnUdrykningsTiderActionPerformed
 
