@@ -4,7 +4,10 @@
  */
 package GUI;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -44,9 +47,20 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     
     public void hej(){
          
-       String t = startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString();
-       String a = t.substring(8, 18);
-        System.out.println(a);
+     	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+	String a = startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString();
+        String dateInString = "12/12/2012";//a.substring(8, 18);
+        
+ 
+	try {
+ 
+		Date date = formatter.parse(dateInString);
+		System.out.println(date);
+		//System.out.println(formatter.format(date));
+ 
+	} catch (ParseException e) {
+		e.printStackTrace();
+	}
         
     }
     

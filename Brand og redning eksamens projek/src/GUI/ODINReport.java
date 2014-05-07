@@ -6,7 +6,12 @@
 package GUI;
 
 import BE.BEMaterial;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -56,10 +61,22 @@ public class ODINReport extends javax.swing.JFrame {
         
         private void setTime(){
             
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dato = currentTime.substring(8, 18);
             String tid = currentTime.substring(19);
-            txtAlarmModtaget.setText(tid);
-            jDateChooserDato.setDateFormatString(dato);
+            
+        try {
+            Date date = formatter.parse(dato);
+            
+          txtAlarmModtaget.setText(tid);
+          jDateChooserDato.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(ODINReport.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+            
+           
             
         }
 

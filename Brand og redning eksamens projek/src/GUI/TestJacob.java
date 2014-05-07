@@ -44,7 +44,7 @@ public class TestJacob {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                EmergencyStart a = new EmergencyStart();
+                ODINReport a = new ODINReport();
                 a.setVisible(true);
                                   
             }
