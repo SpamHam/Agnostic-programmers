@@ -245,14 +245,8 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIndsatsLeder">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Morten Kofoed"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtHoldLeder">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Jens Fabricius"/>
-      </Properties>
     </Component>
     <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserDato">
     </Component>
@@ -267,9 +261,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAlarmModtaget">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="13:25"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtAlarmModtagetActionPerformed"/>
       </Events>
@@ -280,9 +271,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtUgeDag">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Mandag"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblBrandReportNr">
       <Properties>
@@ -290,9 +278,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtBrandReportNr">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="1258"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblEvaReportNr">
       <Properties>
@@ -307,9 +292,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtMelding">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ilde brand ved br&#xf8;nden"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JCheckBox" name="chkBoxSkadeslidte">
       <Properties>

@@ -153,15 +153,10 @@ public class ODINReport extends javax.swing.JFrame {
 
         lblHoldLeder.setText("Hold Leder:");
 
-        txtIndsatsLeder.setText("Morten Kofoed");
-
-        txtHoldLeder.setText("Jens Fabricius");
-
         lblDato.setText("Dato:");
 
         lblAlarmModtaget.setText("Alarm Modtaget:");
 
-        txtAlarmModtaget.setText("13:25");
         txtAlarmModtaget.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtAlarmModtagetActionPerformed(evt);
@@ -170,17 +165,11 @@ public class ODINReport extends javax.swing.JFrame {
 
         lblUgeDag.setText("Uge Dag:");
 
-        txtUgeDag.setText("Mandag");
-
         lblBrandReportNr.setText("Brand Report Nr:");
-
-        txtBrandReportNr.setText("1258");
 
         lblEvaReportNr.setText("EVA Report Nr:");
 
         lblMelding.setText("Melding:");
-
-        txtMelding.setText("Ilde brand ved brønden");
 
         chkBoxSkadeslidte.setText("Skadeslidte");
         chkBoxSkadeslidte.addActionListener(new java.awt.event.ActionListener() {
