@@ -39,7 +39,7 @@ public class EmergencyStart extends javax.swing.JFrame {
 	 //Timestamp m_time = new Timestamp(date.getTime());
          //String time = m_time.toString();
          
-         return new DateConverter(DateConverter.DATE_HOURS_MINUTES_SECONDS).getDate();
+         return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
         
     }
 
