@@ -138,19 +138,19 @@ public class BLLPayroll {
         double BrandBrandmand = 0, BrandHoldleder = 0, StandbyStationBrandmand = 0, StandbyStationHoldleder = 0, ArbejdeStationAndet = 0, ØvelserBrandmand = 0, ØvelserHoldeder = 0, VagtBrandmandHeligdage = 0, VagtBrandmandHverdage = 0, VagtHoldledereHeligdage = 0, VagtHoldledereHverdage = 0;
         BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(S.getCPR());
         if (S.getTypeOfWork().equalsIgnoreCase("Øvelse")) {
-            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
                 ØvelserHoldeder = 1;
             } else {
                 ØvelserBrandmand = 1;
             }
         } else if (S.getTypeOfWork().equalsIgnoreCase("Indsats")) {
-            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
                 BrandHoldleder = 1;
             } else {
                 BrandBrandmand = 1;
             }
         } else if (S.getTypeOfWork().equalsIgnoreCase("Stand-By")) {
-            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
                 StandbyStationHoldleder = 1;
             } else {
                 StandbyStationBrandmand = 1;
@@ -158,13 +158,13 @@ public class BLLPayroll {
         } else if (S.getTypeOfWork().equalsIgnoreCase("Andet")) {
             ArbejdeStationAndet = 1;
         } else if (S.getTypeOfWork().equalsIgnoreCase("Vagt") && S.isIsHoliday()) {
-            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
                 VagtHoldledereHeligdage = 1;
             } else {
                 VagtBrandmandHeligdage = 1;
             }
         } else if (S.getTypeOfWork().equalsIgnoreCase("Vagt") && !S.isIsHoliday()) {
-            if (S.getRole().equalsIgnoreCase("Holdleder")) {
+            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
                 VagtHoldledereHverdage = 1;
             } else {
                 VagtBrandmandHverdage = 1;
