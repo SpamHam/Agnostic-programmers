@@ -112,7 +112,7 @@ public class BLLPayroll {
             }
             if (somethingNew == true) {
                 somethingNew = false;
-                first = true;
+                first = false;
                 Unique.add(count, a.getNavn());
                 CompressedTable.add(UncompressedTable.get(count));
                 count++;
