@@ -55,7 +55,7 @@ public class BLLPayroll {
     }
 
     public void CreateMonthly(BE.BESalary b) throws Exception {
-        if (b.getODIN() == 0 || b.getCPR().isEmpty() || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+        if (b.getODIN() == 0 || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
             Error.NotEnougthInfo("creating a SalaryReport.");
         } else {
             try {
@@ -114,7 +114,7 @@ public class BLLPayroll {
     }
 
     private BETableSalary SalaryTotableSalary(BESalary s) throws Exception {
-        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getCPR());
+        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getID());
         double[] Index = new double[12];
         int IndexLocation = 0;
         IndexLocation += 2 * s.getTypeOfWork(); //BrandBrandmand = 0 BrandHoldleder = 1 StandbyStationBrandmand = 2 StandbyStationHoldleder = 3 ArbejdeStationAndet = 4 ØvelserBrandmand = 6 ØvelserHoldleder = 6 VagtBrandmandHeligdage = 8 VagtBrandmandHverdage = 9 VagtHoldledereHeligdage = 10 VagtHoldlederHverdage = 11;        

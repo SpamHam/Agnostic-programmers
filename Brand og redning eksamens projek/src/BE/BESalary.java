@@ -11,14 +11,14 @@ package BE;
  */
 public class BESalary {
 
-    private String CPR, Role, SalaryCode, Date ;
-    private int ODIN, TypeOfWork;
+    private String Role, SalaryCode, Date ;
+    private int ID, ODIN, TypeOfWork;
     private double Hours;
     private boolean isHoliday;
     
-    public BESalary(int ODIN, String CPR, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday){
+    public BESalary(int ODIN, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday){
         this.ODIN = ODIN;
-        this.CPR = CPR;
+        this.ID = ID;
         this.Role = Role;
         this.SalaryCode = SalaryCode;
         this.Hours = Hours;
@@ -27,9 +27,9 @@ public class BESalary {
         this.isHoliday = isHoliday;
     }
     
-        public BESalary(int ODIN, String CPR, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork){
+        public BESalary(int ODIN, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork){
         this.ODIN = ODIN;
-        this.CPR = CPR;
+        this.ID = ID;
         this.Role = Role;
         this.SalaryCode = SalaryCode;
         this.Hours = Hours;
@@ -39,17 +39,17 @@ public class BESalary {
     }
 
     /**
-     * @return the CPR
+     * @return the ID
      */
-    public String getCPR() {
-        return CPR;
+    public int getID() {
+        return ID;
     }
 
     /**
-     * @param CPR the CPR to set
+     * @param ID the ID to set
      */
-    public void setCPR(String CPR) {
-        this.CPR = CPR;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     /**

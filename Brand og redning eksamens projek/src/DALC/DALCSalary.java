@@ -95,7 +95,7 @@ public class DALCSalary {
         while (result.next()) {
 
             int ODIN = result.getInt("ODINnr");
-            String CPR = result.getString("CPR");
+            int ID = result.getString("ID");
             String Role = result.getString("Role");
             String SalaryCode = result.getString("SalaryCode");
             double Hours = result.getDouble("Hours");
@@ -103,7 +103,7 @@ public class DALCSalary {
             int TypeOfWork = result.getInt("TypeOfWork");
             boolean isHoliday = result.getBoolean("isHoliday");
 
-            BE.BESalary c = new BE.BESalary(ODIN, CPR, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+            BE.BESalary c = new BE.BESalary(ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
             res.add(c);
         }
         return res;
