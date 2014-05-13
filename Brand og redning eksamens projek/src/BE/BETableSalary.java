@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class BETableSalary {
 
     private String Navn, SalaryNumber;
-    private ArrayList<Double> Index;
+    private double[] Index;
 
-    public BETableSalary(String Navn, String SalaryNumber, ArrayList<Double> Index) {
+    public BETableSalary(String Navn, String SalaryNumber, double[] Index) {
         this.Navn = Navn;
         this.SalaryNumber = SalaryNumber;
         this.Index = Index;
@@ -53,14 +53,14 @@ public class BETableSalary {
     /**
      * @return the Index
      */
-    public ArrayList<Double> getIndex() {
+    public double[] getIndex() {
         return Index;
     }
 
     /**
      * @param Index the Index to set
      */
-    public void setIndex(ArrayList<Double> Index) {
+    public void setIndex(double[] Index) {
         this.Index = Index;
     }
 }

@@ -69,10 +69,8 @@ public class BLLPayroll {
     public ArrayList<BE.BESalary> getAll() throws Exception {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         try {
-            System.out.println("1");
             res = DALCSalary.getInstance().read();
         } catch (SQLServerException ex) {
-            System.out.println("2");
             Error.StorageUnreachable(".");
         }
         return res;
@@ -85,16 +83,17 @@ public class BLLPayroll {
     public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
         ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>();
         ArrayList<BE.BETableSalary> UncompressedTable = convertToTable();
-        ArrayList<Double> Index = new ArrayList<>();
+        double[] Index = new double[12];
         ArrayList<String> Unique = new ArrayList<>();
         for (BE.BETableSalary a : UncompressedTable) {
             for (BE.BETableSalary b : UncompressedTable) {
                 if (a.getNavn().equalsIgnoreCase(b.getNavn()) && (Unique.isEmpty() || !Unique.contains(a.getNavn()))) {
-                    Index.addAll(b.getIndex());
-                    Index.toString();
+                    for (int i = 0; i <= 11; i++) {
+                        Index[i] = Index[i] + b.getIndex()[i];
+                    }
                 }
             }
-            Index.clear();
+            Index = new double[12];
             Unique.add(a.getNavn());
             CompressedTable.add(new BETableSalary(a.getNavn(), a.getSalaryNumber(), Index));
         }
@@ -116,13 +115,13 @@ public class BLLPayroll {
 
     private BETableSalary SalaryTotableSalary(BESalary s) throws Exception {
         BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getCPR());
-        ArrayList<Double> Index = new ArrayList<>();
+        double[] Index = new double[12];
         int IndexLocation = 0;
         IndexLocation += 2 * s.getTypeOfWork(); //BrandBrandmand = 0 BrandHoldleder = 1 StandbyStationBrandmand = 2 StandbyStationHoldleder = 3 ArbejdeStationAndet = 4 ØvelserBrandmand = 6 ØvelserHoldleder = 6 VagtBrandmandHeligdage = 8 VagtBrandmandHverdage = 9 VagtHoldledereHeligdage = 10 VagtHoldlederHverdage = 11;        
         if (s.getRole().trim().equalsIgnoreCase("Holdleder") && s.getTypeOfWork() != 2) {//if its "andet" then there are no differents if he is a "Holdleder". 
             IndexLocation += 1; //Holdleder
         }
-        Index.add(IndexLocation, s.getHours());
+        Index[IndexLocation] = s.getHours();
         BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), s.getSalaryCode(), Index);
         return ts;
     }

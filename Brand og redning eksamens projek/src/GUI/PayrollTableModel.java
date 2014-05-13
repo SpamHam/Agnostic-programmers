@@ -41,27 +41,27 @@ public class PayrollTableModel extends AbstractTableModel {
             case 1:
                 return e.getSalaryNumber();
             case 2:
-                return e.getIndex().get(0);
+                return e.getIndex()[0];
             case 3:
-                return e.getIndex().get(1);
+                return e.getIndex()[1];
             case 4:
-                return e.getIndex().get(2);
+                return e.getIndex()[2];
             case 5:
-                return e.getIndex().get(3);
+                return e.getIndex()[3];
             case 6:
-                return e.getIndex().get(4);
+                return e.getIndex()[4];
             case 7:
-                return e.getIndex().get(6);
+                return e.getIndex()[6];
             case 8:
-                return e.getIndex().get(7);
+                return e.getIndex()[7];
             case 9:
-                return e.getIndex().get(8);
+                return e.getIndex()[8];
             case 10:
-                return e.getIndex().get(9);
+                return e.getIndex()[9];
             case 11:
-                return e.getIndex().get(10);
+                return e.getIndex()[10];
             case 12:
-                return e.getIndex().get(11);
+                return e.getIndex()[11];
         }
         return false;
     }
