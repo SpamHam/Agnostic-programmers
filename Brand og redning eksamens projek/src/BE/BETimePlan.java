@@ -16,6 +16,16 @@ public class BETimePlan {
     private String Stilling, navn, Koeretoej, Tidsrum;
     private int Koert, StationsVagt;
 
+    /**
+     * Constructor used for packaging Rank, Name,
+     * Timeframe, Driven time, Shift at the station and Vehicle for a timesheet
+     * @param Stilling String
+     * @param navn String
+     * @param Tidsrum String
+     * @param Koert int
+     * @param StationsVagt int
+     * @param Koeretoej String
+     */
     public BETimePlan(String Stilling, String navn, String Tidsrum, int Koert, int StationsVagt, String Koeretoej) {
         this.Stilling = Stilling;
         this.navn = navn;
@@ -25,6 +35,11 @@ public class BETimePlan {
         this.Koeretoej = Koeretoej;
     }
     
+    /**
+     * Constructor used for packaging name and vehicle used for the timesheet
+     * @param navn String
+     * @param Koeretoej int
+     */
     public BETimePlan(String navn, String Koeretoej){
     this.navn = navn;
     this.Koeretoej = Koeretoej;

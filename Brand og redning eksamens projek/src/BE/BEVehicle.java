@@ -12,15 +12,18 @@ public class BEVehicle {
 
     private String m_registrationNr, m_mærke, m_model, m_description;
 
+    /**
+     * Constructor used for creating / updating a vehicle
+     * @param registrationNr
+     * @param mærke
+     * @param model
+     * @param description 
+     */
     public BEVehicle(String registrationNr, String mærke, String model, String description) {
         m_registrationNr = registrationNr;
         m_mærke = mærke;
         m_model = model;
         m_description = description;
-
-    }
-
-    public BEVehicle() {
 
     }
 
