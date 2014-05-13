@@ -32,6 +32,12 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
         return colNames.length;
     }
 
+    /**
+     * Retrieves the data from the selected row & column
+     * @param rowIndex
+     * @param columnIndex
+     * @return 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
            BEVehicle e = m_allVehicle.get(rowIndex);
@@ -64,23 +70,14 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
         return false;
     }
         /**
-     * Sets the content of the table model to the given list of ODINReport.
+     * Sets the content of the table model to the given list of VehicleList.
      *
-     * @param ODINList
+     * @param VehicleList
      */
     public void setVehicleList(ArrayList<BE.BEVehicle> VehicleList) {
        m_allVehicle = VehicleList;
        fireTableDataChanged();
     }
 
-    /**
-     * Return the employee instance from the table model with the given row
-     * index.
-     *
-     * @param row the index for the employee in the employees list.
-     * @return the employee at the given row index.
-     */
-    //public ? getSongByRow(int row) {
-     //   return rentalAgreements.get(row);
     
 }

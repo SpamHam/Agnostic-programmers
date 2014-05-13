@@ -18,6 +18,10 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
     private final String[] colNames = {"Material", "Antal"};
     private final Class[] classes = {String.class, Integer.class};
     
+    /**
+     * Sets the Material table and updates it
+     * @param allMaterial 
+     */
     public CRUDMaterialTableModel(ArrayList<BE.BEMaterial> allMaterial){
         m_allMaterial = allMaterial;
         fireTableDataChanged();
@@ -33,6 +37,12 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
     return colNames.length;
     }
 
+    /**
+     * Retrieves the data from the selected row & column
+     * @param rowIndex
+     * @param columnIndex
+     * @return 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
               BE.BEMaterial e = m_allMaterial.get(rowIndex);
@@ -64,22 +74,11 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
         return false;
     }
         /**
-     * Sets the content of the table model to the given list of ODINReport.
-     *
-     * @param ODINList
+     * Sets the content of the table model to the given list of Material.
+     * @param MaterialList
      */
     public void setMaterialList(ArrayList<BE.BEMaterial> MaterialList) {
        m_allMaterial = MaterialList;
     }
-
-    /**
-     * Return the employee instance from the table model with the given row
-     * index.
-     *
-     * @param row the index for the employee in the employees list.
-     * @return the employee at the given row index.
-     */
-    //public ? getSongByRow(int row) {
-     //   return rentalAgreements.get(row);
     
 }

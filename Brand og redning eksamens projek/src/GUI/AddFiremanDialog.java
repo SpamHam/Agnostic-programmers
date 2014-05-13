@@ -25,6 +25,9 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Creates a Business Entity from the information entered in the textfields
+     */
     private void Add() {
         String CPR = txtCPR.getText().trim();
         String forNavn = txtFornavn.getText().trim();
@@ -41,6 +44,10 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         fireman = new BEFireman(CPR, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet);
     }
 
+    /**
+     *  Returns the Business Entity created from the Add function
+     * @return fireman
+     */
     public BEFireman getNewFireman() {
         return fireman;
     }

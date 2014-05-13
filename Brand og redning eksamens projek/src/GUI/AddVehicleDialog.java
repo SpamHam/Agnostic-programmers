@@ -11,7 +11,9 @@ import BE.BEVehicle;
  * @author Kathrine
  */
 public class AddVehicleDialog extends javax.swing.JDialog {
-BEVehicle res;
+
+    BEVehicle res;
+
     /**
      * Creates new form AddVehicleDialog
      */
@@ -140,17 +142,27 @@ BEVehicle res;
     }//GEN-LAST:event_btnLukVindueActionPerformed
 
     private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
-        
+        Add();
+        dispose();
+    }//GEN-LAST:event_btnTilfoejActionPerformed
+   /**
+    * Creates a Business Entity from the information entered in the textfields
+    */
+    public void Add() {
         String reg = txtRegNr.getText();
         String brand = txtMaerke.getText();
         String model = txtModel.getText();
         String descrip = txtBeskrivelse.getText();
-         res = new BEVehicle(reg, brand, model, descrip);
-         dispose();
-    }//GEN-LAST:event_btnTilfoejActionPerformed
+        res = new BEVehicle(reg, brand, model, descrip);
+    }
 
-    public BEVehicle getVehicle(){
-    return res;
+    /**
+     * Returns the Business Entity created from the Add function
+     *
+     * @return
+     */
+    public BEVehicle getVehicle() {
+        return res;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLukVindue;

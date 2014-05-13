@@ -19,6 +19,10 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
     private String[] colNames = {"CPR", "Fornavn", "Efternavn"};
     private Class[] classes = {Integer.class, String.class, String.class};
 
+ /**
+  * Replace the firemanList with the data from allFiremanLists
+  * @param allFiremanLists 
+  */
     public CRUDFiremanTableModel(ArrayList<BE.BEFireman> allFiremanLists) {
         firemanList = allFiremanLists;
 
@@ -45,11 +49,21 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
         return false;
     }
 
+    /**
+     * Sets the Fireman table and updates it
+     * @param fireList 
+     */
     public void setCRUDFiremanList(ArrayList<BE.BEFireman> fireList) {
         firemanList = fireList;
         fireTableDataChanged();
     }
 
+    /**
+     * Retrieves the data from the selected row & column
+     * @param rowIndex
+     * @param columnIndex
+     * @return 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         BE.BEFireman e = firemanList.get(rowIndex);

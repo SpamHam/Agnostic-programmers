@@ -25,6 +25,9 @@ public class CRUDFireman extends javax.swing.JFrame {
     //
     private int selectedRow;
 
+    /**
+     * Populates the allFiremans ArrayList
+     */
     private void initFiremans() {
         try {
             allFiremans = BLL.BLLFireman.getInstance().getAll();
@@ -50,6 +53,12 @@ public class CRUDFireman extends javax.swing.JFrame {
         UpdateFieldsPanel.setVisible(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            /**
+             * When clicking a row it enables the Update button and Sets the
+             * visibility of textfields required for the update function
+             *
+             * @param evt
+             */
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onRowSelected(evt
@@ -58,6 +67,12 @@ public class CRUDFireman extends javax.swing.JFrame {
                 UpdateFieldsPanel.setVisible(true);
             }
 
+            /**
+             * Populates the data in textfields required for the update function
+             * when clicking a row in a table
+             *
+             * @param evt
+             */
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
                 lblsetCPR.setText(allFiremans.get(selectedRow).getCPR());
@@ -71,12 +86,16 @@ public class CRUDFireman extends javax.swing.JFrame {
             }
         });
     }
-    
-        private void updateFireman() {
+
+    /**
+     * Retrieves the information from textfields and packs them into a Business
+     * Entity. Then updates the SQL and table afterwards
+     */
+    private void updateFireman() {
         try {
             BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getCPR(), TxtFornavn.getText(), TxtEfternavn.getText(),
-                                                    TxtAddress.getText(),TxtTlf.getText(), TxtCall.getText(),
-                                                    txtPaymentNr.getText(), ChBoxLeader.isSelected());
+                    TxtAddress.getText(), TxtTlf.getText(), TxtCall.getText(),
+                    txtPaymentNr.getText(), ChBoxLeader.isSelected());
             BLL.BLLFireman.getInstance().Update(updateFireman);
             allFiremans.set(selectedRow, updateFireman);
             allFiremans = BLL.BLLFireman.getInstance().getAll();
@@ -87,9 +106,12 @@ public class CRUDFireman extends javax.swing.JFrame {
         }
     }
 
-        private void DeleteFireman(){
-        }
-        
+    /**
+     * Deletes a firemen in table & SQL from the selected row in the table
+     */
+    private void DeleteFireman() {
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -333,21 +355,20 @@ public class CRUDFireman extends javax.swing.JFrame {
         BEFireman fireman = firemanDialog.getNewFireman();
         if (fireman != null) // a team has been created in the dialog box.
         {
-                try {
-                    BLLFireman.getInstance().Create(fireman);
-                    allFiremans.add(fireman);
-                    FiremanTableModel.setCRUDFiremanList(allFiremans);
-                    jTable1.repaint();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            
+            try {
+                BLLFireman.getInstance().Create(fireman);
+                allFiremans.add(fireman);
+                FiremanTableModel.setCRUDFiremanList(allFiremans);
+                jTable1.repaint();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
 
         }
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void UpdateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateButtonActionPerformed
-updateFireman();
+        updateFireman();
     }//GEN-LAST:event_UpdateButtonActionPerformed
 
     private void ChBoxLeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChBoxLeaderActionPerformed
@@ -356,8 +377,7 @@ updateFireman();
 
     private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
         dispose();
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
+        openAdministrationMenu();
     }//GEN-LAST:event_BackButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -384,5 +404,10 @@ updateFireman();
     private javax.swing.JLabel lblsetCPR;
     private javax.swing.JTextField txtPaymentNr;
     // End of variables declaration//GEN-END:variables
+
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
 
 }
