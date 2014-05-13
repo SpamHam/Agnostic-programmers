@@ -5,10 +5,13 @@
 package GUI;
 
 import Utility.DateConverter;
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,32 +19,47 @@ import java.util.Date;
  */
 public class EmergencyStart extends javax.swing.JFrame {
     
-    ArrayList<Object> Udrykningstider = new ArrayList<>();
+    ArrayList<String> Udrykningstider = new ArrayList<>();
     
-    Object [][] tider = new Object[2][];
-    int i = 1;
+   
+ 
 
     /**
      * Creates new form EmergencyStart
      */
     public EmergencyStart() {
         initComponents();
+        
+        System.out.println(Udrykningstider.size());
         setTitle("Emergency Start");
+        
     }
     
-    public ArrayList getAll(){
-       
-        return Udrykningstider;
+    private void iniTimeStamps(){
+                try {
+            Udrykningstider = BLL.BLLEmergencyStart.getInstance().getAll();
+          
+        } catch (Exception ex) {
+            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
+    
+  
     public String currentTime(){
-        // Date date= new Date();
-	 //Timestamp m_time = new Timestamp(date.getTime());
-         //String time = m_time.toString();
+       
          
          return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
         
     }
+    
+    private void AddTime(){
+        txtSidsteUdrykning.setText(currentTime());
+        Udrykningstider.add(currentTime());
+        System.out.println(Udrykningstider.size());
+        
+    }
+ 
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,15 +136,16 @@ public class EmergencyStart extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        
-        txtSidsteUdrykning.setText(currentTime());
-        Udrykningstider.add(i + "       " + currentTime());
-        i++;
+       AddTime();
+     
+      
 
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnUdrykningsTiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUdrykningsTiderActionPerformed
-        EmergencyStartDialog start = new EmergencyStartDialog(this, rootPaneCheckingEnabled, Udrykningstider);
+        
+        EmergencyStartDialog start = new EmergencyStartDialog(this, true, Udrykningstider);
+        //System.out.println(Udrykningstider.size());
         start.setVisible(true);
         dispose();
         

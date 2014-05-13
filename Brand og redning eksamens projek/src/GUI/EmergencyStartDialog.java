@@ -8,6 +8,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,22 +21,37 @@ import javax.swing.table.TableRowSorter;
 public class EmergencyStartDialog extends javax.swing.JDialog {
     
     EmergencyStart start = new EmergencyStart();
-    private ArrayList<Object> startTider = new ArrayList<>();
+    private ArrayList<String> startTider = new ArrayList<>();
+    private ArrayList<String> nyeTider = new ArrayList<>();
     EmergencyStartDialogTableModel StartTableModel;
     TableRowSorter<TableModel> sorter;
-    EmergencyStartAddDialog addDialog;
     
     
     
+        private void iniTimeStamps(){
+                try {
+            startTider = BLL.BLLEmergencyStart.getInstance().getAll();
+          
+        } catch (Exception ex) {
+            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+        
+        
     
 
     /**
      * Creates new form EmergencyStartDialog
      */
-    public EmergencyStartDialog(java.awt.Frame parent, boolean modal, ArrayList<Object> hej) {
+    public EmergencyStartDialog(java.awt.Frame parent, boolean modal, ArrayList<String> tider) {
         super(parent, modal);
         initComponents();
-        startTider = hej;
+        //iniTimeStamps();
+        mergeTimeList();
+        System.out.println(startTider.size());
+        nyeTider = tider;
+        System.out.println("a");
+        System.out.println(nyeTider.size());
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
         tableUdrykningsOversigt.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
@@ -46,6 +63,16 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         
         
     }
+    
+    private void mergeTimeList(){
+        iniTimeStamps();
+        for(String i : nyeTider){
+            startTider.add(i);
+            System.out.println(i);
+        }
+    }
+
+   
     
     public void hej(){
          
@@ -66,26 +93,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         
     }
     
-    private void add(){
-            EmergencyStartAddDialog addDialog = new EmergencyStartAddDialog(start, true, startTider);
-        addDialog.setVisible(true);
-        // continue here when the dialog box is closed (disposed)
-        ArrayList<Object> a = addDialog.startList();
-        if(a != null){
-            if(startTider != null){
-                for(int i = 0; i < a.size(); i++){
-                    startTider.add(a.get(i));
-                }
-                    
-            }else{
-                startTider = a;
-            }
         
-            StartTableModel.setTimePlanStatusList(startTider);
-            StartTableModel.fireTableDataChanged();
-            tableUdrykningsOversigt.repaint();
-        }    
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -171,7 +180,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
     private void btnAfslutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfslutActionPerformed
      //ODINReport report = new ODINReport(tableUdrykningsOversigt.getSelectedRow(), startTider);
-     ODINReport report = new ODINReport(startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString());   
+     ODINReport report = new ODINReport();
+     report.setTime(startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString());
      report.setVisible(true);
      
      dispose();

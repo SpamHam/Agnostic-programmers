@@ -39,36 +39,42 @@ private DALCEmergencyStart() throws SQLServerException{
     Error = ErrorHandler.getInstance();
     m_connection = DBConnection.getInstance().getConnection();
     
+    
+    
 }
+
 
 
  public ArrayList<String> read() throws SQLException {
         ArrayList<String> res = timeStamps;
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from Fireman")) {
-            Error.Datatable("fireman");
+        if (!stm.execute("select * from EmergencyStamp")) {
+            Error.Datatable("emergencystamp");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {
 
-            String timeStamp = result.getString("TimeStamp");
-
+            String timeStamp = result.getString("eStart");
+             
             
             res.add(timeStamp);
+            
         }
+        
         return res;
+          
     }
  
  
      public void Delete(int index) throws SQLException {
-        String sql = "delete from TimeStamp where TimeStamp=?";
+        String sql = "delete from EmergencyStart where eStart=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, timeStamps.get(index));
         ps.executeUpdate();
     }
      
      public void Create(int index) throws SQLException {
-        String sql = "insert into TimeStamp values (?)";
+        String sql = "insert into EmergencyStart values (?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, timeStamps.get(index));
 

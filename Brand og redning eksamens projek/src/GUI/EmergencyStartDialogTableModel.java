@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
 public class EmergencyStartDialogTableModel extends AbstractTableModel{
     
     
-    private ArrayList<Object>  startTider;
+    private ArrayList<String>  startTider;
     
     private String [] colNames = {"Tider"};
     
@@ -22,7 +22,7 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
     
    
     
-    public EmergencyStartDialogTableModel(ArrayList<Object> pik){
+    public EmergencyStartDialogTableModel(ArrayList<String> pik){
         startTider = pik;
         
     }
@@ -45,7 +45,7 @@ public class EmergencyStartDialogTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         return startTider.get(rowIndex);    }
     
-    public void setTimePlanStatusList(ArrayList<Object> timeList) {
+    public void setTimePlanStatusList(ArrayList<String> timeList) {
         startTider = timeList;
         fireTableDataChanged();
         
