@@ -24,6 +24,11 @@ public class DALCVehicle {
     private static DALCVehicle m_instance;
     Connection M_connection;
 
+    /**
+     * Singleton to ensure that the class isn't instantiated more than once
+     * @return
+     * @throws SQLServerException 
+     */
     public static DALCVehicle getInstance() throws SQLServerException {
         if (m_instance == null) {
             m_instance = new DALCVehicle();
@@ -31,11 +36,20 @@ public class DALCVehicle {
         return m_instance;
     }
 
+    /**
+     * calls for a new instance of the connection
+     * @throws SQLServerException 
+     */
     private DALCVehicle() throws SQLServerException {
         M_connection = DALC.DBConnection.getInstance().getConnection();
         Error = Utility.ErrorHandler.getInstance();
     }
 
+    /**
+     * Creates an row in Vehicle table.
+     * @param e
+     * @throws SQLException 
+     */
     public void Create(BE.BEVehicle e) throws SQLException {
         String sql = "insert into Vehicle values (?,?,?,?)";
         PreparedStatement ps = M_connection.prepareStatement(sql);
@@ -46,6 +60,11 @@ public class DALCVehicle {
         ps.executeUpdate();
     }
 
+    /**
+     * Reads all rows from Vehicle table.
+     * @return
+     * @throws SQLException 
+     */
     public ArrayList<BE.BEVehicle> read() throws SQLException {
         ArrayList<BE.BEVehicle> res = new ArrayList<>();
         Statement stm = M_connection.createStatement();
@@ -66,6 +85,11 @@ public class DALCVehicle {
         return res;
     }
 
+    /**
+     * Update a row on selected RegistrationNr in Vehicle table
+     * @param u
+     * @throws SQLException 
+     */
     public void update(BE.BEVehicle u) throws SQLException {
         String sql = "update Vehicle set Brand=?, Model=?, Description=? where RegistrationNr=?";
         PreparedStatement ps = M_connection.prepareStatement(sql);
@@ -76,6 +100,11 @@ public class DALCVehicle {
         ps.executeUpdate();
     }
 
+    /**
+     * Removes an specific row from Vehicle table.
+     * @param e
+     * @throws SQLException 
+     */
     public void Delete(BE.BEVehicle e) throws SQLException {
         String sql = "delete from Vehicle where RegistrationNr=?";
         PreparedStatement ps = M_connection.prepareStatement(sql);

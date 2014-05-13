@@ -25,7 +25,7 @@ public class DALCSalary {
     Connection m_connection;
 
     /**
-     * Singleton
+     * Singleton to ensure that the class isn't instantiated more than once
      *
      * @return
      * @throws com.microsoft.sqlserver.jdbc.SQLServerException
@@ -47,7 +47,7 @@ public class DALCSalary {
     }
 
     /**
-     * Creates an row in DALCCar table.
+     * Creates an row in MonthlySalary table.
      *
      * @param e
      * @throws SQLException
@@ -63,6 +63,11 @@ public class DALCSalary {
         ps.executeUpdate();
     }
 
+    /**
+     * Creates a row in the SalaryReport table.
+     * @param e
+     * @throws SQLException 
+     */
     public void CreateSalary(BE.BESalary e) throws SQLException {
         String sql = "insert into SalaryReport values (?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
@@ -75,7 +80,7 @@ public class DALCSalary {
     }
 
     /**
-     * Reads all rows from car table.
+     * Reads all rows from MonthlySalary table.
      *
      * @return
      * @throws SQLException
@@ -105,7 +110,7 @@ public class DALCSalary {
     }
 
     /**
-     * Removes an specifik row from car table.
+     * Removes an specific row from MonthlySalary table.
      *
      * @param e
      * @throws java.sql.SQLException

@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 
-package BLL;
+package GUI;
 
 /**
  *
  * @author peter bærbar
  */
-public class BLLTimePlan {
-   
+public class EventExercutionException extends RuntimeException {
+
+    public EventExercutionException(String messages) {
+        super(messages);
+    }   
 }

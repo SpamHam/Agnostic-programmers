@@ -38,7 +38,7 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnLukVindue" min="-2" pref="95" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnNaesteSide" min="-2" pref="95" max="-2" attributes="0"/>
+                      <Component id="btnNextPage" min="-2" pref="95" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -58,8 +58,8 @@
               <Component id="jScrollPane1" min="-2" pref="475" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnNaesteSide" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnLukVindue" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnNextPage" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
           </Group>
@@ -128,14 +128,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVaelgTeamActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnNaesteSide">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="N&#xe6;ste Side"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNaesteSideActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="btnLukVindue">
       <Properties>
         <Property name="text" type="java.lang.String" value="Luk Vindue"/>
@@ -143,6 +135,11 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLukVindueActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnNextPage">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="N&#xe6;ste side"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

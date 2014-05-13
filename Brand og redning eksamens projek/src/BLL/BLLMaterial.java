@@ -19,9 +19,8 @@ public class BLLMaterial {
     private final Utility.ErrorHandler Error;
 
     /**
-     * Singleton
-     *
-     * @return
+     * Singleton to ensure that the class isn't instantiated more than once
+     * @return m_instance
      * @throws SQLServerException
      */
     public static BLLMaterial getInstance() throws Exception {
@@ -31,6 +30,10 @@ public class BLLMaterial {
         return m_instance;
     }
 
+    /**
+     * Instantiates the DALC Layer using the Singleton Pattern
+     * @throws Exception 
+     */
     private BLLMaterial() throws Exception {
         Error = Utility.ErrorHandler.getInstance();
         try {
@@ -40,6 +43,11 @@ public class BLLMaterial {
         }
     }
 
+    /**
+     * Function that calls the Create function from the DALC Layer. If any field is empty the function will return an error
+     * @param b
+     * @throws Exception 
+     */
     public void Create(BE.BEMaterial b) throws Exception {
         if (b.getM_Materiale().isEmpty()) {
             Error.NotEnougthInfo("creating a material.");
@@ -52,6 +60,11 @@ public class BLLMaterial {
         }
     }
 
+    /**
+     * A function that retrieves all material info from the database and inserts it into an ArrayList
+     * @return res
+     * @throws Exception 
+     */
     public ArrayList<BE.BEMaterial> getAll() throws Exception {
         ArrayList<BE.BEMaterial> res = new ArrayList<>();
         try {
@@ -62,6 +75,12 @@ public class BLLMaterial {
         return res;
     }
 
+    /**
+     * A function that calls the update function from the DALC Layer using Singleton
+     * If any field is left blank it will return an error
+     * @param b
+     * @throws Exception 
+     */
     public void Update(BE.BEMaterial b) throws Exception {
         if (b.getM_Materiale().isEmpty()) {
             Error.NotEnougthInfo("updating a material.");
@@ -74,6 +93,10 @@ public class BLLMaterial {
         }
     }
 
+    /**
+     * A function that calls the delete function from the DALC Layer using Singleton
+     * @throws Exception 
+     */
     public void remove() throws Exception {
         //TODO after Salary are done.
     }

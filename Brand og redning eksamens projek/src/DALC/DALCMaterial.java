@@ -23,6 +23,11 @@ public class DALCMaterial {
     private static DALCMaterial m_instance;
     Connection m_connection;
 
+    /**
+     * Singleton to ensure that the class isn't instantiated more than once
+     * @return
+     * @throws SQLServerException 
+     */
     public static DALCMaterial getInstance() throws SQLServerException {
         if (m_instance == null) {
             m_instance = new DALCMaterial();
@@ -40,7 +45,7 @@ public class DALCMaterial {
     }
 
     /**
-     * Creates an row in DALCCar table.
+     * Creates an row in Material table.
      *
      * @param e
      * @throws SQLException
@@ -54,7 +59,7 @@ public class DALCMaterial {
     }
 
     /**
-     * Reads all rows from car table.
+     * Reads all rows from Material table.
      *
      * @return
      * @throws SQLException
@@ -79,7 +84,7 @@ public class DALCMaterial {
     }
 
     /**
-     *
+     * Update a row on selected ID in Material table
      * @param u
      * @throws SQLException
      */
@@ -93,7 +98,7 @@ public class DALCMaterial {
     }
 
     /**
-     * Removes an specifik row from car table.
+     * Removes an specific row from Material table.
      *
      * @param e
      * @throws java.sql.SQLException
