@@ -31,7 +31,6 @@ public class Timeplan extends javax.swing.JFrame {
     BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
-    //PDFGenerator pdfGen;
     
     /**
      * Creates new form Timeplan

@@ -43,31 +43,29 @@ public class ODINReport extends javax.swing.JFrame {
 
     }
     
-        public ODINReport(String t) {
-        initComponents();
-        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
-        sorter = new TableRowSorter<TableModel>(MaterialModel);
-        setTitle("ODIN Report");
-        this.setVisible(true);
-        ShowIndsatteStyrker();
-        ShowSkadeslidte();
-        currentTime = t;
-        setTime();
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
-    }
+//        public ODINReport() {
+//        initComponents();
+//        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
+//        sorter = new TableRowSorter<TableModel>(MaterialModel);
+//        setTitle("ODIN Report");
+//        this.setVisible(true);
+//        ShowIndsatteStyrker();
+//        ShowSkadeslidte();
+//        currentTime = t;
+//        setTime();
+//        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+//
+//    }
         
         
         
-        private void setTime(){
-           
+        public void setTime(String t){
+            currentTime = t;
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
             String dato = currentTime.substring(8, 18);
             String tid = currentTime.substring(19);
-            
         try {
             Date date = formatter.parse(dato);
-            
           txtAlarmModtaget.setText(tid);
           jDateChooserDato.setDate(date);
         } catch (ParseException ex) {
@@ -375,6 +373,20 @@ public class ODINReport extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlarmModtagetActionPerformed
 
+    private void getOdinData(){
+    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    evaNr = txtEvaReportNr.getText();
+    fireNr = txtBrandReportNr.getText();
+    received = txtAlarmModtaget.getText();
+    date = txtUgeDag.getText();
+    message = txtMelding.getText();
+    name = txtNavn.getText();
+    address = txtAddresse.getText();
+    leader = txtIndsatsLeder.getText();
+    teamLeader = txtHoldLeder.getText();
+    weekday = txtUgeDag.getText();
+    }
+    
     private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
         materialsDialog.setLocationRelativeTo(this);
