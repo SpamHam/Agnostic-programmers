@@ -19,9 +19,9 @@ public class BLLVehicle {
     private final Utility.ErrorHandler Error;
 
     /**
-     * Singleton
+     * Singleton to ensure that the class isn't instantiated more than once
      *
-     * @return
+     * @return m_instance
      * @throws SQLServerException
      */
     public static BLLVehicle getInstance() throws Exception {
@@ -31,6 +31,10 @@ public class BLLVehicle {
         return m_instance;
     }
 
+    /**
+     * Instantiates the DALC Layer using the Singleton Pattern
+     * @throws Exception 
+     */
     private BLLVehicle() throws Exception {
         Error = Utility.ErrorHandler.getInstance();
         try {
@@ -40,6 +44,11 @@ public class BLLVehicle {
         }
     }
 
+    /**
+     * Function that calls the create function from the DALC Layer. If any field is empty the function will return an error
+     * @param b
+     * @throws Exception 
+     */
     public void Create(BE.BEVehicle b) throws Exception {
         if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
             Error.NotEnougthInfo("creating a vehicle");
@@ -52,6 +61,11 @@ public class BLLVehicle {
         }
     }
 
+    /**
+     * A function that retrieves all fireman info from the database and inserts it into an ArrayList
+     * @return res
+     * @throws Exception 
+     */
     public ArrayList<BE.BEVehicle> getAll() throws Exception {
         ArrayList<BE.BEVehicle> res = new ArrayList<>();
         try {
@@ -62,6 +76,12 @@ public class BLLVehicle {
         return res;
     }
 
+    /**
+     * A function that calls the update function from the DALC Layer using Singleton
+     * If any field is left blank it will return an error
+     * @param b
+     * @throws Exception 
+     */
     public void Update(BE.BEVehicle b) throws Exception {
         if (b.getM_registrationNr().isEmpty() || b.getM_mærke().isEmpty() || b.getM_model().isEmpty()) {
             Error.NotEnougthInfo("updating a vehicle.");
@@ -74,6 +94,10 @@ public class BLLVehicle {
         }
     }
 
+    /**
+     * A function that calls the delete function from the DALC Layer using Singleton
+     * @throws Exception 
+     */
     public void remove() throws Exception {
         //TODO after Salary are done.
     }
