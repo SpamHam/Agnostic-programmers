@@ -27,15 +27,9 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblFornavn" max="32767" attributes="0"/>
-                          <Component id="lblCPR" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="lblFornavn" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtFornavn" max="32767" attributes="0"/>
-                          <Component id="txtCPR" pref="113" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="txtFornavn" min="-2" pref="113" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -74,11 +68,6 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblCPR" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="txtCPR" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -109,7 +98,7 @@
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTilfoej" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnAnnuller" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -167,14 +156,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAddresse">
-    </Component>
-    <Component class="javax.swing.JLabel" name="lblCPR">
-      <Properties>
-        <Property name="horizontalAlignment" type="int" value="4"/>
-        <Property name="text" type="java.lang.String" value="CPR:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="txtCPR">
     </Component>
     <Component class="javax.swing.JButton" name="btnTilfoej">
       <Properties>

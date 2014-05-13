@@ -11,17 +11,18 @@ package BE;
  */
 public final class BEFireman {
 
-    private String CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr;
+    private String FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr;
+    private int ID;
     private boolean LeaderTrained;
 
     /**
      * Constructor used for packaging CPR, First Name and Last Name for a Fireman
-     * @param CPR String
+     * @param ID Int
      * @param FirstName String
      * @param LastName String
      */
-    public BEFireman(String CPR, String FirstName, String LastName) {
-        this.CPR = CPR;
+    public BEFireman(int ID, String FirstName, String LastName) {
+        this.ID = ID;
         this.FirstName = FirstName;
         this.LastName = LastName;
     }
@@ -38,7 +39,7 @@ public final class BEFireman {
 
     /**
      * Constructor used for creating / updating a fireman
-     * @param CPR String
+     * @param ID int
      * @param FirstName String
      * @param LastName String
      * @param Address String
@@ -47,9 +48,9 @@ public final class BEFireman {
      * @param PaymentNr String
      * @param LeaderTrained Boolean
      */
-    public BEFireman(String CPR, String FirstName, String LastName, String Address,
+    public BEFireman(int ID, String FirstName, String LastName, String Address,
                      String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained) {
-        this.setCPR(CPR);
+        this.setID(ID);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
         this.setAddress(Address);
@@ -62,15 +63,15 @@ public final class BEFireman {
     /**
      * @return the CPR
      */
-    public String getCPR() {
-        return CPR;
+    public int getID() {
+        return ID;
     }
 
     /**
-     * @param CPR the CPR to set
+     * @param ID the ID to set
      */
-    public void setCPR(String CPR) {
-        this.CPR = CPR;
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     /**

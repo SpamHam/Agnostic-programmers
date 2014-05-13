@@ -75,7 +75,6 @@ public class CRUDFireman extends javax.swing.JFrame {
              */
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
-                lblsetCPR.setText(allFiremans.get(selectedRow).getCPR());
                 TxtFornavn.setText(allFiremans.get(selectedRow).getFirstName());
                 TxtEfternavn.setText(allFiremans.get(selectedRow).getLastName());
                 TxtAddress.setText(allFiremans.get(selectedRow).getAddress());
@@ -93,7 +92,7 @@ public class CRUDFireman extends javax.swing.JFrame {
      */
     private void updateFireman() {
         try {
-            BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getCPR(), TxtFornavn.getText(), TxtEfternavn.getText(),
+            BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), TxtFornavn.getText(), TxtEfternavn.getText(),
                     TxtAddress.getText(), TxtTlf.getText(), TxtCall.getText(),
                     txtPaymentNr.getText(), ChBoxLeader.isSelected());
             BLL.BLLFireman.getInstance().Update(updateFireman);
@@ -141,8 +140,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         txtPaymentNr = new javax.swing.JTextField();
         lblPaymentNr = new javax.swing.JLabel();
         ChBoxLeader = new javax.swing.JCheckBox();
-        lblCPR = new javax.swing.JLabel();
-        lblsetCPR = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -222,10 +219,6 @@ public class CRUDFireman extends javax.swing.JFrame {
             }
         });
 
-        lblCPR.setText("CPR:");
-
-        lblsetCPR.setToolTipText("");
-
         javax.swing.GroupLayout UpdateFieldsPanelLayout = new javax.swing.GroupLayout(UpdateFieldsPanel);
         UpdateFieldsPanel.setLayout(UpdateFieldsPanelLayout);
         UpdateFieldsPanelLayout.setHorizontalGroup(
@@ -260,25 +253,15 @@ public class CRUDFireman extends javax.swing.JFrame {
                             .addComponent(TxtTlf, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(TxtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                                .addComponent(lblCPR)
-                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabelFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(TxtFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, 121, Short.MAX_VALUE)
-                            .addComponent(lblsetCPR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(TxtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
             UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCPR)
-                    .addComponent(lblsetCPR))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelFornavn))
@@ -399,9 +382,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTlf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblCPR;
     private javax.swing.JLabel lblPaymentNr;
-    private javax.swing.JLabel lblsetCPR;
     private javax.swing.JTextField txtPaymentNr;
     // End of variables declaration//GEN-END:variables
 

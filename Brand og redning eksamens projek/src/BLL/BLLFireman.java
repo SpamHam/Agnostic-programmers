@@ -49,7 +49,7 @@ public class BLLFireman {
  * @throws Exception 
  */
     public void Create(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
             Error.NotEnougthInfo("creating a fireman.");
         } else {
             try {
@@ -82,7 +82,7 @@ public class BLLFireman {
      * @throws Exception 
      */
     public void Update(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getCPR().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
             Error.NotEnougthInfo("updating a fireman.");
         } else {
             try {
@@ -106,13 +106,13 @@ public class BLLFireman {
      * @return
      * @throws Exception 
      */
-    BEFireman FiremanFromCPR(String cpr) throws Exception {
+    BEFireman FiremanFromCPR(int ID) throws Exception {
         for (BE.BEFireman f : getAll()) {
-            if (cpr.equalsIgnoreCase(f.getCPR())) {
+            if (ID == f.getID()) {
                 return f;
             }
         }
-        Error.StringEqualError(cpr);
+        Error.StringEqualError("" + ID);
         return null;
     }
 }

@@ -54,16 +54,15 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void Create(BE.BEFireman e) throws SQLException {
-        String sql = "insert into Fireman values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into Fireman values (?,?,?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, e.getCPR());
-        ps.setString(2, e.getFirstName());
-        ps.setString(3, e.getLastName());
-        ps.setString(4, e.getAddress());
-        ps.setString(5, e.getPhoneNr());
-        ps.setString(6, e.getCallNr());
-        ps.setString(7, e.getPaymentNr());
-        ps.setBoolean(8, e.isLeaderTrained());
+        ps.setString(1, e.getFirstName());
+        ps.setString(2, e.getLastName());
+        ps.setString(3, e.getAddress());
+        ps.setString(4, e.getPhoneNr());
+        ps.setString(5, e.getCallNr());
+        ps.setString(6, e.getPaymentNr());
+        ps.setBoolean(7, e.isLeaderTrained());
         ps.executeUpdate();
     }
 
@@ -82,7 +81,7 @@ public class DALCFireman {
         ResultSet result = stm.getResultSet();
         while (result.next()) {
 
-            String CPR = result.getString("CPR");
+            int ID = result.getInt("ID");
             String FirstName = result.getString("FirstName");
             String LastName = result.getString("LastName");
             String Address = result.getString("Address");
@@ -90,7 +89,7 @@ public class DALCFireman {
             String CallNr = result.getString("CallNumber");
             String PaymentNr = result.getString("PaymentNr");
             boolean isLeaderTrained = result.getBoolean("LeaderTrained");
-            BEFireman c = new BEFireman(CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
+            BEFireman c = new BEFireman(ID, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
             res.add(c);
         }
         return res;
@@ -102,7 +101,7 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void update(BE.BEFireman u) throws SQLException {
-        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=? where CPR=?";
+        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
         ps.setString(2, u.getLastName());
@@ -111,7 +110,7 @@ public class DALCFireman {
         ps.setString(5, u.getCallNr());
         ps.setString(6, u.getPaymentNr());
         ps.setBoolean(7, u.isLeaderTrained());
-        ps.setString(8, u.getCPR());
+        ps.setInt(8, u.getID());
         ps.executeUpdate();
     }
 
@@ -122,9 +121,9 @@ public class DALCFireman {
      * @throws java.sql.SQLException
      */
     public void Delete(BE.BEFireman e) throws SQLException {
-        String sql = "delete from Fireman where CPR=?";
+        String sql = "delete from Fireman where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, e.getCPR());
+        ps.setInt(1, e.getID());
         ps.executeUpdate();
     }
 }

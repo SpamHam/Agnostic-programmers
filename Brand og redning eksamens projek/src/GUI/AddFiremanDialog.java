@@ -29,7 +29,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
      * Creates a Business Entity from the information entered in the textfields
      */
     private void Add() {
-        String CPR = txtCPR.getText().trim();
+        int ID = 0;
         String forNavn = txtFornavn.getText().trim();
         String efterNavn = txtEfternavn.getText().trim();
         String adresse = txtAddresse.getText().trim();
@@ -41,7 +41,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
             leaderUddannet = true;
         }
         
-        fireman = new BEFireman(CPR, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet);
+        fireman = new BEFireman(ID, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet);
     }
 
     /**
@@ -72,8 +72,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         chkboxLederUddannet = new javax.swing.JCheckBox();
         lblFornavn = new javax.swing.JLabel();
         txtAddresse = new javax.swing.JTextField();
-        lblCPR = new javax.swing.JLabel();
-        txtCPR = new javax.swing.JTextField();
         btnTilfoej = new javax.swing.JButton();
         btnAnnuller = new javax.swing.JButton();
         txtPaymentNr = new javax.swing.JTextField();
@@ -103,9 +101,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         lblFornavn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFornavn.setText("Fornavn:");
 
-        lblCPR.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCPR.setText("CPR:");
-
         btnTilfoej.setText("Tilføj");
         btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,13 +125,9 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblCPR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtFornavn)
-                            .addComponent(txtCPR, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE)))
+                        .addComponent(txtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblCallNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,10 +157,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCPR)
-                    .addComponent(txtCPR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblFornavn)
                     .addComponent(txtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -194,7 +181,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                     .addComponent(lblPaymentNr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkboxLederUddannet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilfoej)
                     .addComponent(btnAnnuller))
@@ -222,14 +209,12 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnTilfoej;
     private javax.swing.JCheckBox chkboxLederUddannet;
     private javax.swing.JLabel lblAddresse;
-    private javax.swing.JLabel lblCPR;
     private javax.swing.JLabel lblCallNr;
     private javax.swing.JLabel lblEfternavn;
     private javax.swing.JLabel lblFornavn;
     private javax.swing.JLabel lblPaymentNr;
     private javax.swing.JLabel lblTlfNr;
     private javax.swing.JTextField txtAddresse;
-    private javax.swing.JTextField txtCPR;
     private javax.swing.JTextField txtCallNr;
     private javax.swing.JTextField txtEfternavn;
     private javax.swing.JTextField txtFornavn;

@@ -16,8 +16,8 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
 
     private ArrayList<BE.BEFireman> firemanList;
 
-    private String[] colNames = {"CPR", "Fornavn", "Efternavn"};
-    private Class[] classes = {Integer.class, String.class, String.class};
+    private String[] colNames = {"Fornavn", "Efternavn"};
+    private Class[] classes = {String.class, String.class};
 
  /**
   * Replace the firemanList with the data from allFiremanLists
@@ -69,10 +69,8 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
         BE.BEFireman e = firemanList.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return e.getCPR();
-            case 1:
                 return e.getFirstName();
-            case 2:
+            case 1:
                 return e.getLastName();
         }
             return null;
