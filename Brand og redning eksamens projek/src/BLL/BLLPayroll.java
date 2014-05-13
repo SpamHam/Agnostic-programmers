@@ -69,8 +69,10 @@ public class BLLPayroll {
     public ArrayList<BE.BESalary> getAll() throws Exception {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         try {
+            System.out.println("1");
             res = DALCSalary.getInstance().read();
         } catch (SQLServerException ex) {
+            System.out.println("2");
             Error.StorageUnreachable(".");
         }
         return res;
