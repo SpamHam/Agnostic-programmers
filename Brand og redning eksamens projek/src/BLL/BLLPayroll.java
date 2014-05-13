@@ -43,7 +43,7 @@ public class BLLPayroll {
     }
 
     public void CreateSalary(BE.BESalary b) throws Exception {
-        if (b.getODIN() == 0 || b.getTypeOfWork().isEmpty() || b.getDate().isEmpty()) {
+        if (b.getODIN() == 0 || b.getDate().isEmpty()) {
             Error.NotEnougthInfo("creating a SalaryReport.");
         } else {
             try {
@@ -55,7 +55,7 @@ public class BLLPayroll {
     }
 
     public void CreateMonthly(BE.BESalary b) throws Exception {
-        if (b.getODIN() == 0 || b.getCPR().isEmpty() || b.getRole().isEmpty() || b.getSalaryCode() == 0 || b.getHours() == 0) {
+        if (b.getODIN() == 0 || b.getCPR().isEmpty() || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
             Error.NotEnougthInfo("creating a SalaryReport.");
         } else {
             try {
@@ -81,42 +81,20 @@ public class BLLPayroll {
      * @return @throws Exception
      */
     public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
-        int count = 0;
-        boolean first = false, somethingNew = false;
         ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>();
         ArrayList<BE.BETableSalary> UncompressedTable = convertToTable();
+        ArrayList<Double> Index = new ArrayList<>();
         ArrayList<String> Unique = new ArrayList<>();
-        Unique.add("0000000");
         for (BE.BETableSalary a : UncompressedTable) {
             for (BE.BETableSalary b : UncompressedTable) {
-                if (a.getNavn().equalsIgnoreCase(b.getNavn()) && !Unique.contains(a.getNavn())) {
-                    if (first) {
-                        somethingNew = true;
-                        BE.BETableSalary ny = new BE.BETableSalary(UncompressedTable.get(count).getNavn(), UncompressedTable.get(count).getSalaryNumber(),
-                                UncompressedTable.get(count).getBrandBrandmand() + b.getBrandBrandmand(),
-                                UncompressedTable.get(count).getBrandHoldleder() + b.getBrandHoldleder(),
-                                UncompressedTable.get(count).getStandbyStationBrandmand() + b.getStandbyStationBrandmand(),
-                                UncompressedTable.get(count).getStandbyStationHoldleder() + b.getStandbyStationHoldleder(),
-                                UncompressedTable.get(count).getArbejdeStationAndet() + b.getArbejdeStationAndet(),
-                                UncompressedTable.get(count).getØvelserBrandmand() + b.getØvelserBrandmand(),
-                                UncompressedTable.get(count).getØvelserHoldeder() + b.getØvelserHoldeder(),
-                                UncompressedTable.get(count).getVagtBrandmandHeligdage() + b.getVagtBrandmandHeligdage(),
-                                UncompressedTable.get(count).getVagtBrandmandHverdage() + b.getVagtBrandmandHverdage(),
-                                UncompressedTable.get(count).getVagtHoldledereHeligdage() + b.getVagtHoldledereHeligdage(),
-                                UncompressedTable.get(count).getVagtHoldledereHverdage() + b.getVagtHoldledereHverdage());
-                        UncompressedTable.set(count, ny);
-                    } else {
-                        first = true;
-                    }
+                if (a.getNavn().equalsIgnoreCase(b.getNavn()) && (Unique.isEmpty() || !Unique.contains(a.getNavn()))) {
+                    Index.addAll(b.getIndex());
+                    Index.toString();
                 }
             }
-            if (somethingNew == true) {
-                somethingNew = false;
-                first = false;
-                Unique.add(count, a.getNavn());
-                CompressedTable.add(UncompressedTable.get(count));
-                count++;
-            }
+            Index.clear();
+            Unique.add(a.getNavn());
+            CompressedTable.add(new BETableSalary(a.getNavn(), a.getSalaryNumber(), Index));
         }
         return CompressedTable;
     }
@@ -134,43 +112,16 @@ public class BLLPayroll {
         return TableSalarys;
     }
 
-    private BETableSalary SalaryTotableSalary(BESalary S) throws Exception {
-        double BrandBrandmand = 0, BrandHoldleder = 0, StandbyStationBrandmand = 0, StandbyStationHoldleder = 0, ArbejdeStationAndet = 0, ØvelserBrandmand = 0, ØvelserHoldeder = 0, VagtBrandmandHeligdage = 0, VagtBrandmandHverdage = 0, VagtHoldledereHeligdage = 0, VagtHoldledereHverdage = 0;
-        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(S.getCPR());
-        if (S.getTypeOfWork().trim().equalsIgnoreCase("Øvelse")) {
-            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
-                ØvelserHoldeder = 1;
-            } else {
-                ØvelserBrandmand = 1;
-            }
-        } else if (S.getTypeOfWork().trim().equalsIgnoreCase("Indsats")) {
-            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
-                BrandHoldleder = 1;
-            } else {
-                BrandBrandmand = 1;
-            }
-        } else if (S.getTypeOfWork().trim().equalsIgnoreCase("Stand-By")) {
-            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
-                StandbyStationHoldleder = 1;
-            } else {
-                StandbyStationBrandmand = 1;
-            }
-        } else if (S.getTypeOfWork().trim().equalsIgnoreCase("Andet")) {
-            ArbejdeStationAndet = 1;
-        } else if (S.getTypeOfWork().trim().equalsIgnoreCase("Vagt") && S.isIsHoliday()) {
-            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
-                VagtHoldledereHeligdage = 1;
-            } else {
-                VagtBrandmandHeligdage = 1;
-            }
-        } else if (S.getTypeOfWork().trim().equalsIgnoreCase("Vagt") && !S.isIsHoliday()) {
-            if (S.getRole().trim().equalsIgnoreCase("Holdleder")) {
-                VagtHoldledereHverdage = 1;
-            } else {
-                VagtBrandmandHverdage = 1;
-            }
+    private BETableSalary SalaryTotableSalary(BESalary s) throws Exception {
+        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getCPR());
+        ArrayList<Double> Index = new ArrayList<>();
+        int IndexLocation = 0;
+        IndexLocation += 2 * s.getTypeOfWork(); //BrandBrandmand = 0 BrandHoldleder = 1 StandbyStationBrandmand = 2 StandbyStationHoldleder = 3 ArbejdeStationAndet = 4 ØvelserBrandmand = 6 ØvelserHoldleder = 6 VagtBrandmandHeligdage = 8 VagtBrandmandHverdage = 9 VagtHoldledereHeligdage = 10 VagtHoldlederHverdage = 11;        
+        if (s.getRole().trim().equalsIgnoreCase("Holdleder") && s.getTypeOfWork() != 2) {//if its "andet" then there are no differents if he is a "Holdleder". 
+            IndexLocation += 1; //Holdleder
         }
-        BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), f.getPaymentNr(), BrandBrandmand * S.getHours(), BrandHoldleder * S.getHours(), StandbyStationBrandmand * S.getHours(), StandbyStationHoldleder * S.getHours(), ArbejdeStationAndet * S.getHours(), ØvelserBrandmand * S.getHours(), ØvelserHoldeder * S.getHours(), VagtBrandmandHeligdage * S.getHours(), VagtBrandmandHverdage * S.getHours(), VagtHoldledereHeligdage * S.getHours(), VagtHoldledereHverdage * S.getHours());
+        Index.add(IndexLocation, s.getHours());
+        BE.BETableSalary ts = new BE.BETableSalary(f.getFirstName() + " " + f.getLastName(), s.getSalaryCode(), Index);
         return ts;
     }
 

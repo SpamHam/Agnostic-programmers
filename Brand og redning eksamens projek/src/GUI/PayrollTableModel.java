@@ -41,27 +41,27 @@ public class PayrollTableModel extends AbstractTableModel {
             case 1:
                 return e.getSalaryNumber();
             case 2:
-                return e.getBrandBrandmand();
+                return e.getIndex().get(0);
             case 3:
-                return e.getBrandHoldleder();
+                return e.getIndex().get(1);
             case 4:
-                return e.getStandbyStationBrandmand();
+                return e.getIndex().get(2);
             case 5:
-                return e.getStandbyStationHoldleder();
+                return e.getIndex().get(3);
             case 6:
-                return e.getArbejdeStationAndet();
+                return e.getIndex().get(4);
             case 7:
-                return e.getØvelserBrandmand();
+                return e.getIndex().get(6);
             case 8:
-                return e.getØvelserHoldeder();
+                return e.getIndex().get(7);
             case 9:
-                return e.getVagtBrandmandHeligdage();
+                return e.getIndex().get(8);
             case 10:
-                return e.getVagtBrandmandHverdage();
+                return e.getIndex().get(9);
             case 11:
-                return e.getVagtHoldledereHeligdage();
+                return e.getIndex().get(10);
             case 12:
-                return e.getØvelserHoldeder();
+                return e.getIndex().get(11);
         }
         return false;
     }

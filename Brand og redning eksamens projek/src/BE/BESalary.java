@@ -11,12 +11,12 @@ package BE;
  */
 public class BESalary {
 
-    private String CPR, Role, Date, TypeOfWork;
-    private int SalaryCode, Hours, ODIN;
+    private String CPR, Role, SalaryCode, Date ;
+    private int ODIN, TypeOfWork;
+    private double Hours;
     private boolean isHoliday;
     
-    public BESalary(int ODIN, String CPR, String Role, int SalaryCode, int Hours, String Date,
-                    String TypeOfWork, boolean isHoliday){
+    public BESalary(int ODIN, String CPR, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday){
         this.ODIN = ODIN;
         this.CPR = CPR;
         this.Role = Role;
@@ -27,7 +27,7 @@ public class BESalary {
         this.isHoliday = isHoliday;
     }
     
-        public BESalary(int ODIN, String CPR, String Role, int SalaryCode, int Hours, String Date, String TypeOfWork){
+        public BESalary(int ODIN, String CPR, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork){
         this.ODIN = ODIN;
         this.CPR = CPR;
         this.Role = Role;
@@ -83,42 +83,42 @@ public class BESalary {
     /**
      * @return the TypeOfWork
      */
-    public String getTypeOfWork() {
+    public int getTypeOfWork() {
         return TypeOfWork;
     }
 
     /**
      * @param TypeOfWork the TypeOfWork to set
      */
-    public void setTypeOfWork(String TypeOfWork) {
+    public void setTypeOfWork(int TypeOfWork) {
         this.TypeOfWork = TypeOfWork;
     }
 
     /**
      * @return the SalaryCode
      */
-    public int getSalaryCode() {
+    public String getSalaryCode() {
         return SalaryCode;
     }
 
     /**
      * @param SalaryCode the SalaryCode to set
      */
-    public void setSalaryCode(int SalaryCode) {
+    public void setSalaryCode(String SalaryCode) {
         this.SalaryCode = SalaryCode;
     }
 
     /**
      * @return the Hours
      */
-    public int getHours() {
+    public double getHours() {
         return Hours;
     }
 
     /**
      * @param Hours the Hours to set
      */
-    public void setHours(int Hours) {
+    public void setHours(double Hours) {
         this.Hours = Hours;
     }
 

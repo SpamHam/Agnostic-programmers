@@ -27,6 +27,7 @@ public class Payroll extends javax.swing.JFrame {
         try {
             allSalary = BLL.BLLPayroll.getInstance().getAllTableSalary();
         } catch (Exception ex) {
+            System.out.println("l");
                     JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         initComponents();
