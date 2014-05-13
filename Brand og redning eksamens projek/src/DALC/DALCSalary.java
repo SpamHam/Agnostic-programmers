@@ -58,8 +58,8 @@ public class DALCSalary {
         ps.setInt(1, e.getODIN());
         ps.setString(2, e.getCPR());
         ps.setString(3, e.getRole());
-        ps.setInt(4, e.getSalaryCode());
-        ps.setInt(5, e.getHours());
+        ps.setString(4, e.getSalaryCode());
+        ps.setDouble(5, e.getHours());
         ps.executeUpdate();
     }
 
@@ -68,7 +68,7 @@ public class DALCSalary {
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.setString(2, e.getDate());
-        ps.setString(3, e.getTypeOfWork());
+        ps.setInt(3, e.getTypeOfWork());
         ps.setBoolean(4, e.isIsHoliday());
         ps.executeUpdate();
 
@@ -92,10 +92,10 @@ public class DALCSalary {
             int ODIN = result.getInt("ODINnr");
             String CPR = result.getString("CPR");
             String Role = result.getString("Role");
-            int SalaryCode = result.getInt("SalaryCode");
-            int Hours = result.getInt("Hours");
+            String SalaryCode = result.getString("SalaryCode");
+            double Hours = result.getDouble("Hours");
             String Date = result.getString("Date");
-            String TypeOfWork = result.getString("TypeOfWork");
+            int TypeOfWork = result.getInt("TypeOfWork");
             boolean isHoliday = result.getBoolean("isHoliday");
 
             BE.BESalary c = new BE.BESalary(ODIN, CPR, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
