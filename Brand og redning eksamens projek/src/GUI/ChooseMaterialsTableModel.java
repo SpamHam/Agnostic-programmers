@@ -48,6 +48,12 @@ private ArrayList<BEMaterial> allSelectedMaterials;
         return classes[col];
     }
     
+    /**
+     * Sets wether the cell is edible or not
+     * @param row
+     * @param col
+     * @return 
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
          switch (col) {
@@ -58,16 +64,30 @@ private ArrayList<BEMaterial> allSelectedMaterials;
          }
     }
 
+    /**
+     * Sets the Material table and updates it
+     * @param materialList 
+     */
     public void setMaterialsStatusList(ArrayList<BEMaterial> materialList) {
         allSelectedMaterials = materialList;
         fireTableDataChanged();
     }    
     
-     public BEMaterial getTimePlanByRow(int row) {
+    /**
+     * Return the material for the selected row
+     * @param row
+     * @return 
+     */
+     public BEMaterial getMaterialsByRow(int row) {
         return allSelectedMaterials.get(row);
     }
    
-     
+     /**
+      * Retrieves the data from the selected row & column
+      * @param rowIndex
+      * @param columnIndex
+      * @return 
+      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         BEMaterial e = allSelectedMaterials.get(rowIndex);
@@ -81,6 +101,12 @@ private ArrayList<BEMaterial> allSelectedMaterials;
             return null;
         }     
 
+    /**
+     * Sets the typed value in the selected row
+     * @param aValue
+     * @param rowIndex
+     * @param columnIndex 
+     */
       @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex)
     {

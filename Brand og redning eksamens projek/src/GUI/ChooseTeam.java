@@ -8,7 +8,6 @@ package GUI;
 import BE.BEFireman;
 import BE.BETimePlan;
 import BE.BEVehicle;
-import BLL.BLLFireman;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -51,6 +50,9 @@ public class ChooseTeam extends javax.swing.JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+    /**
+     * Populates the Fireman ArrayList
+     */
     public void InitializeFiremen() {
         try {
             Firemen = BLL.BLLFireman.getInstance().getAll();
@@ -59,6 +61,9 @@ public class ChooseTeam extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Populates the Vehicles ArrayList
+     */
     public void InitializeVehicles() {
         try {
             Vehicles = BLL.BLLVehicle.getInstance().getAll();
@@ -67,6 +72,11 @@ public class ChooseTeam extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * A function that can move item between lists
+     * @param source
+     * @param target 
+     */
     private void moveItem(JList source, JList target) {
 
         int idx = source.getSelectedIndex();
@@ -80,6 +90,11 @@ public class ChooseTeam extends javax.swing.JDialog {
         modelSource.remove(idx);
     }
     
+    /**
+     * Returns the chosen vehicle from the list
+     * @param veh
+     * @return element
+     */
      private String chosenVehicle(JList veh) {
 
         int idx = veh.getSelectedIndex();
@@ -90,6 +105,9 @@ public class ChooseTeam extends javax.swing.JDialog {
         return element;
     }
 
+     /**
+      * Sets the firemen & vehicle chosen and packs them into a Business Entity
+      */
         private class BTNTilfoejActionListener implements ActionListener {
 
         @Override
@@ -103,11 +121,18 @@ public class ChooseTeam extends javax.swing.JDialog {
             dispose();
         }
     }
-        
+      
+        /**
+         * Returns the ArrayList ValgteFiremen
+         * @return ValgteFiremen
+         */
       public ArrayList<BETimePlan> getTeam(){
       return ValgteFiremen;
       }
     
+      /**
+       * Actionlistener for Buttons used for moving items between lists
+       */
     private class BTNMoveActionListener implements ActionListener {
 
         @Override
@@ -120,12 +145,18 @@ public class ChooseTeam extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Populates the allVehiclesList
+     */
     private void PopulateFiremanList() {
         for (BEVehicle m : Vehicles) {
             alleVehiclesListModel.addElement(m.getM_registrationNr());
         }
     }
 
+    /**
+     * Populates the allFiremenList
+     */
     private void PopulateVehicleList() {
         for (BEFireman m : Firemen) {
             alleFiremenListModel.addElement(m.getFirstName() + " " + m.getLastName());

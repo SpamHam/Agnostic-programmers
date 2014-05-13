@@ -6,7 +6,6 @@
 package GUI;
 
 import BE.BEMaterial;
-import BE.BEVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     DefaultListModel valgteListModel = new DefaultListModel();
 
     /**
-     * Creates new form ChooseMaterialsDialog
+     * Populates the Materials ArrayList
      */
     public void InitializeMaterials() {
         try {
@@ -53,6 +52,11 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
+/**
+ * A function that can move item between lists
+ * @param source
+ * @param target 
+ */    
     private void moveItem(JList source, JList target) {
 
         int idx = source.getSelectedIndex();
@@ -66,10 +70,17 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         modelSource.remove(idx);
     }
 
+    /**
+     * Returns the chosen materials
+     * @return valgteMaterials 
+     */
     public ArrayList<BEMaterial> getValgteMaterials() {
         return valgteMaterials;
     }
 
+    /**
+     * Actionlistener for Buttons used for moving items between lists
+     */
     private class BTNMoveActionListener implements ActionListener {
 
         @Override
@@ -82,6 +93,10 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         }
     }
 
+    /**
+     * Actionlistener on Tilfoej Button. Also adds the items on the valgteListModel to the
+     * valgteMaterials ArrayList
+     */
     private class BTNTilfoejActionListener implements ActionListener {
 
         @Override
@@ -93,7 +108,9 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
             dispose();
         }
     }
-
+/**
+ * Populates the alleListModel
+ */
     private void PopulateList() {
         for (BEMaterial m : Materials) {
             alleListModel.addElement(m.getM_Materiale());
