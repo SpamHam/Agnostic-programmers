@@ -26,7 +26,7 @@ public class DALCFireman {
     Connection m_connection;
 
     /**
-     * Singleton
+     * Singleton to ensure that the class isn't instantiated more than once
      *
      * @return
      * @throws com.microsoft.sqlserver.jdbc.SQLServerException
@@ -48,7 +48,7 @@ public class DALCFireman {
     }
 
     /**
-     * Creates an row in DALCCar table.
+     * Creates an row in Fireman table.
      *
      * @param e
      * @throws SQLException
@@ -68,7 +68,7 @@ public class DALCFireman {
     }
 
     /**
-     * Reads all rows from car table.
+     * Reads all rows from the Fireman table.
      *
      * @return
      * @throws SQLException
@@ -97,7 +97,7 @@ public class DALCFireman {
     }
 
     /**
-     *
+     * Updates a row on the selected CPR in Fireman table
      * @param u
      * @throws SQLException
      */
@@ -116,7 +116,7 @@ public class DALCFireman {
     }
 
     /**
-     * Removes an specifik row from car table.
+     * Removes an specific row from Fireman table.
      *
      * @param e
      * @throws java.sql.SQLException
