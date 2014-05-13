@@ -165,25 +165,45 @@ public class AdminstrationMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        CRUDFireman CRUDFiremanFrame = new CRUDFireman();
-        CRUDFiremanFrame.setLocationRelativeTo(this);
-        CRUDFiremanFrame.setVisible(true);
+        openFiremanFrame();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        CRUDVehicle CRUDVehicleFrame = new CRUDVehicle();
-        CRUDVehicleFrame.setLocationRelativeTo(this);
-        CRUDVehicleFrame.setVisible(true);
+        openVehicleFrame();
         dispose();    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        openMaterialsFrame();
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    /**
+     * Opens the CRUDFireman frame
+     */
+    private void openFiremanFrame() {
+        CRUDFireman CRUDFiremanFrame = new CRUDFireman();
+        CRUDFiremanFrame.setLocationRelativeTo(this);
+        CRUDFiremanFrame.setVisible(true);
+    }
+
+    /**
+     * Opens the CRUDVehicle frame
+     */
+    private void openVehicleFrame() {
+        CRUDVehicle CRUDVehicleFrame = new CRUDVehicle();
+        CRUDVehicleFrame.setLocationRelativeTo(this);
+        CRUDVehicleFrame.setVisible(true);
+    }
+
+    /**
+     * Opens the CRUDMaterial frame
+     */
+    private void openMaterialsFrame() {
         CRUDMaterial CRUDMaterialFrame = new CRUDMaterial();
         CRUDMaterialFrame.setLocationRelativeTo(this);
         CRUDMaterialFrame.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }
 
     /**
      * @param args the command line arguments
@@ -194,7 +214,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {

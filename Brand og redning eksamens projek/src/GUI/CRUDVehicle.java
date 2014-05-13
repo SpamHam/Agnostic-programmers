@@ -26,6 +26,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
     //
     private int selectedRow;
 
+    /**
+     * Populates the allVehicle ArrayList
+     */
     private void initVehicle() {
         try {
             allVehicle = BLLvehicle.getInstance().getAll();
@@ -50,6 +53,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
         UpdateFieldsPanel.setVisible(false);
         tblVehicle.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
+
+            /**
+             * When clicking a row it enables the Update button and Sets the
+             * visibility of textfields required for the update function
+             */
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onRowSelected(evt
                 );
@@ -57,6 +65,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 UpdateFieldsPanel.setVisible(true);
             }
 
+            /**
+             * Populates the data in textfields required for the update function
+             * when clicking a row in a table
+             *
+             * @param evt
+             */
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblVehicle.getSelectedRow();
                 lblReg.setText(allVehicle.get(selectedRow).getM_registrationNr());
@@ -241,14 +255,14 @@ public class CRUDVehicle extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpdatereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpdatereActionPerformed
-            selectedRow = tblVehicle.getSelectedRow();
-            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(),txtBrand.getText(),txtModel.getText(),txtDesc.getText()
-            );
-             allVehicle.set(selectedRow, updateVehicle);
-             vehicleTableModel.setVehicleList(allVehicle);
-             vehicleTableModel.fireTableDataChanged();
-             tblVehicle.repaint();
-          try {
+        selectedRow = tblVehicle.getSelectedRow();
+        BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtBrand.getText(), txtModel.getText(), txtDesc.getText()
+        );
+        allVehicle.set(selectedRow, updateVehicle);
+        vehicleTableModel.setVehicleList(allVehicle);
+        vehicleTableModel.fireTableDataChanged();
+        tblVehicle.repaint();
+        try {
             BLLvehicle.getInstance().Update(updateVehicle);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -263,9 +277,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
         BEVehicle vehicle = tilføjBrandbil.getVehicle();
         if (vehicle != null) // a team has been created in the dialog box.
         {
-                allVehicle.add(vehicle);
-                vehicleTableModel.setVehicleList(allVehicle);
-                tblVehicle.repaint();
+            allVehicle.add(vehicle);
+            vehicleTableModel.setVehicleList(allVehicle);
+            tblVehicle.repaint();
             try {
                 BLLvehicle.getInstance().Create(vehicle);
             } catch (Exception ex) {
@@ -276,10 +290,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
         dispose();
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
+        openAdministrationMenu();
     }//GEN-LAST:event_btnTilbageActionPerformed
 
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UpdateFieldsPanel;

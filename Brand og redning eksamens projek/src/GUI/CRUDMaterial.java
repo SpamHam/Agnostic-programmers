@@ -7,8 +7,6 @@ package GUI;
 
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -25,6 +23,9 @@ public class CRUDMaterial extends javax.swing.JFrame {
     //
     private int selectedRow;
 
+    /**
+     * Populates the allMaterials ArrayList
+     */
     private void initMaterial() {
         try {
             allMaterials = BLL.BLLMaterial.getInstance().getAll();
@@ -49,6 +50,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
         UpdateFieldsPanel.setVisible(false);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
 
+            /**
+             * When clicking a row it enables the Update button and Sets the
+             * visibility of textfields required for the update function
+             *
+             * @param evt
+             */
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 onRowSelected(evt
@@ -57,6 +64,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
                 UpdateFieldsPanel.setVisible(true);
             }
 
+            /**
+             * Populates the data in textfields required for the update function
+             * when clicking a row in a table
+             *
+             * @param evt
+             */
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = jTable1.getSelectedRow();
                 txtMaterial.setText(allMaterials.get(selectedRow).getM_Materiale());
@@ -251,20 +264,19 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
     private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
         dispose();
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
+        openAdministrationMenu();
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void btnFjernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernActionPerformed
         //TODO after Salary
         /*    try {
-        BLL.BLLMaterial.getInstance().remove(allMaterials.get(selectedRow));
-        allMaterials = BLL.BLLMaterial.getInstance().getAll();
-        materialTableModel.setMaterialList(allMaterials);
-        materialTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-        JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }*/
+         BLL.BLLMaterial.getInstance().remove(allMaterials.get(selectedRow));
+         allMaterials = BLL.BLLMaterial.getInstance().getAll();
+         materialTableModel.setMaterialList(allMaterials);
+         materialTableModel.fireTableDataChanged();
+         } catch (Exception ex) {
+         JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+         }*/
     }//GEN-LAST:event_btnFjernActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -280,4 +292,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
     private javax.swing.JTextField txtAntal;
     private javax.swing.JTextField txtMaterial;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Opens the Administration Menu frame
+     */
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
 }
