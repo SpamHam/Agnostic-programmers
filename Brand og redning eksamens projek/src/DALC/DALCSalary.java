@@ -56,7 +56,7 @@ public class DALCSalary {
         String sql = "insert into MonthlySalary values (?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
-        ps.setString(2, e.getCPR());
+        ps.setInt(2, e.getID());
         ps.setString(3, e.getRole());
         ps.setString(4, e.getSalaryCode());
         ps.setDouble(5, e.getHours());
@@ -95,7 +95,7 @@ public class DALCSalary {
         while (result.next()) {
 
             int ODIN = result.getInt("ODINnr");
-            int ID = result.getString("ID");
+            int ID = result.getInt("ID");
             String Role = result.getString("Role");
             String SalaryCode = result.getString("SalaryCode");
             double Hours = result.getDouble("Hours");
