@@ -48,26 +48,32 @@ public class PDFGenerator {
       Font.BOLD);
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames;
-  
+
+  /**
+   * Constructor for Time Plan section
+   * @param allTime
+   * @param colNames 
+   */
   public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
   this.allTime = allTime;
   this.colNames = colNames;
- //String fileName = new DateConverter(DateConverter.DAY_MONTH_TIME).getDate();
   FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
   }
   
+  public PDFGenerator(){}
+  
+  
+  
   public void run() throws Exception{
-      try {
+
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
       addMetaData(document);
-      createODIN(document);
+      createTimePlan(document);
       document.close();
-    } catch (Exception e) {
-      throw new Exception ("Kunne ikke generer PDF");
     }
-  }
+  
 
   // iText allows to add metadata to the PDF which can be viewed in your Adobe
   // Reader
@@ -80,7 +86,12 @@ public class PDFGenerator {
     document.addCreator("BORR");
   }
 
-  private void createODIN(Document document)
+  /**
+   * Generator the time plan section of the PDF
+   * @param document
+   * @throws DocumentException 
+   */
+  private void createTimePlan(Document document)
       throws DocumentException {
     Paragraph odinRaport = new Paragraph();
     // We add one empty line
@@ -108,6 +119,14 @@ public class PDFGenerator {
     document.add(odinRaport);
 
   }
+  
+  /**
+   * generates the time table for the time plan section of the pdf
+   * @param para
+   * @param rowData
+   * @param colNames
+   * @throws BadElementException 
+   */
 
   private void createTable(Paragraph para, ArrayList<BETimePlan> rowData, ArrayList<String> colNames)
       throws BadElementException {
@@ -128,7 +147,11 @@ public class PDFGenerator {
     table.addCell(row.getKoeretoej());
 }
   }
-
+/**
+ * adds an empty line
+ * @param paragraph
+ * @param number 
+ */
   private void addEmptyLine(Paragraph paragraph, int number) {
     for (int i = 0; i < number; i++) {
       paragraph.add(new Paragraph(" "));
