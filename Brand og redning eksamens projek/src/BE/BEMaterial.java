@@ -10,8 +10,8 @@ package BE;
  */
 public class BEMaterial {
 
-    private int m_UdrykningsID, m_Antal;
-    private String m_Materiale;
+    private int m_emergencyID, m_Amount;
+    private String m_Material;
 
     /**
      * Constructor used for packaging Materiale and Antal for Materials
@@ -20,8 +20,8 @@ public class BEMaterial {
      */
     public BEMaterial(String Materiale, int Antal) {
 
-        m_Materiale = Materiale;
-        m_Antal = Antal;
+        m_Material = Materiale;
+        m_Amount = Antal;
 
     }
     
@@ -33,9 +33,9 @@ public class BEMaterial {
      */
     public BEMaterial(int ID, String Materiale, int Antal) {
 
-        m_UdrykningsID = ID;
-        m_Materiale = Materiale;
-        m_Antal = Antal;
+        m_emergencyID = ID;
+        m_Material = Materiale;
+        m_Amount = Antal;
 
     }
     
@@ -44,49 +44,49 @@ public class BEMaterial {
      * @param Materiale String
      */
       public BEMaterial(String Materiale) {
-        m_Materiale = Materiale;
+        m_Material = Materiale;
     }
 
     /**
      * @return the m_UdrykningsID
      */
     public int getM_ID() {
-        return m_UdrykningsID;
+        return m_emergencyID;
     }
 
     /**
      * @param m_UdrykningsID the m_UdrykningsID to set
      */
     public void setM_UdrykningsID(int m_UdrykningsID) {
-        this.m_UdrykningsID = m_UdrykningsID;
+        this.m_emergencyID = m_UdrykningsID;
     }
 
     /**
      * @return the m_Materiale
      */
     public String getM_Materiale() {
-        return m_Materiale;
+        return m_Material;
     }
 
     /**
      * @param m_Materiale the m_Materiale to set
      */
     public void setM_Materiale(String m_Materiale) {
-        this.m_Materiale = m_Materiale;
+        this.m_Material = m_Materiale;
     }
 
     /**
      * @return the m_Antal
      */
     public int getM_Antal() {
-        return m_Antal;
+        return m_Amount;
     }
 
     /**
      * @param m_Antal the m_Antal to set
      */
     public void setM_Antal(int m_Antal) {
-        this.m_Antal = m_Antal;
+        this.m_Amount = m_Antal;
     }
 
 }

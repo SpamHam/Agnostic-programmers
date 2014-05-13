@@ -61,7 +61,7 @@ public final class BEFireman {
     }
 
     /**
-     * @return the CPR
+     * @return the ID
      */
     public int getID() {
         return ID;
