@@ -14,17 +14,39 @@ public final class BEFireman {
     private String CPR, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr;
     private boolean LeaderTrained;
 
+    /**
+     * Constructor used for packaging CPR, First Name and Last Name for a Fireman
+     * @param CPR String
+     * @param FirstName String
+     * @param LastName String
+     */
     public BEFireman(String CPR, String FirstName, String LastName) {
         this.CPR = CPR;
         this.FirstName = FirstName;
         this.LastName = LastName;
     }
 
+    /**
+     * Constructor used for packaging First Name and Last Name for a Fireman
+     * @param FirstName String
+     * @param LastName String
+     */
     public BEFireman(String FirstName, String LastName) {
         this.FirstName = FirstName;
         this.LastName = LastName;
     }
 
+    /**
+     * Constructor used for creating / updating a fireman
+     * @param CPR String
+     * @param FirstName String
+     * @param LastName String
+     * @param Address String
+     * @param PhoneNr String
+     * @param CallNr String
+     * @param PaymentNr String
+     * @param LeaderTrained Boolean
+     */
     public BEFireman(String CPR, String FirstName, String LastName, String Address,
                      String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained) {
         this.setCPR(CPR);

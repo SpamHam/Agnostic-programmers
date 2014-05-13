@@ -13,12 +13,24 @@ public class BEMaterial {
     private int m_UdrykningsID, m_Antal;
     private String m_Materiale;
 
+    /**
+     * Constructor used for packaging Materiale and Antal for Materials
+     * @param Materiale String
+     * @param Antal int
+     */
     public BEMaterial(String Materiale, int Antal) {
 
         m_Materiale = Materiale;
         m_Antal = Antal;
 
     }
+    
+    /**
+     * Constructor used for packaging ID, Materiale and Antal for a Fireman
+     * @param ID int
+     * @param Materiale String
+     * @param Antal int
+     */
     public BEMaterial(int ID, String Materiale, int Antal) {
 
         m_UdrykningsID = ID;
@@ -27,12 +39,12 @@ public class BEMaterial {
 
     }
     
+    /**
+     * Constructor used for packaging Materiale name only
+     * @param Materiale String
+     */
       public BEMaterial(String Materiale) {
         m_Materiale = Materiale;
-    }
-
-    public BEMaterial() {
-
     }
 
     /**
