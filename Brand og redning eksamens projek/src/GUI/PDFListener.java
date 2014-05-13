@@ -14,7 +14,7 @@ public interface PDFListener {
    
     /**
      * implementing classes will have to override the PDFPerformed method 
-     * @param event from the PDF_formatEvent class
+     * @param event type FormatEventPDF
      */
     public void PDFPerformed(FormatEventPDF event);
 }

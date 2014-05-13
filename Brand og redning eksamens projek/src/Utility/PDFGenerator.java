@@ -11,9 +11,9 @@ package Utility;
  * @author peter bærbar
  */
 
+import BE.BEMaterial;
 import BE.BETimePlan;
 import java.io.FileOutputStream;
-import java.util.Date;
 
 
 import com.itextpdf.text.BadElementException;
@@ -48,7 +48,11 @@ public class PDFGenerator {
       Font.BOLD);
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames;
-
+  private ArrayList<BEMaterial> allMaterial;
+  private ArrayList<String> allForces;
+  private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+  
+  
   /**
    * Constructor for Time Plan section
    * @param allTime
@@ -60,7 +64,23 @@ public class PDFGenerator {
   FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
   }
   
-  public PDFGenerator(){}
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String> allForces, String date, String received,
+                      String fireNr, String evaNr, String message, String name, String address, String leader, 
+                      String teamLeader, String weekday){
+  this.allMaterial = allMaterial;
+  this.allForces = allForces;
+  this.date = date;
+  this.received = received;
+  this.fireNr = fireNr;
+  this.evaNr = evaNr;
+  this.message = message;
+  this.name = name;
+  this.address = address;
+  this.leader = leader;
+  this.teamLeader = teamLeader;
+  this.weekday = weekday;
+  
+  }
   
   
   

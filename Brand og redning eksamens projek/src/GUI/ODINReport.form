@@ -50,83 +50,75 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jpanelIndsatteStyrker" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jpanelIndsatteStyrker" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="btnTilbage" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnGem" min="-2" pref="69" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="btnSave" min="-2" pref="73" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Component id="chkBoxIndsatteStyrker" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="chkBoxSkadeslidte" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="chkBoxIndsatteStyrker" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="chkBoxSkadeslidte" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblBrandReportNr" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblEvaReportNr" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMelding" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblNavn" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblAddresse" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtMelding" pref="157" max="32767" attributes="0"/>
-                                          <Component id="txtEvaReportNr" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
-                                          <Component id="txtBrandReportNr" min="-2" pref="63" max="-2" attributes="0"/>
-                                          <Component id="txtNavn" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtAddresse" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                                  <Group type="102" alignment="1" attributes="0">
-                                      <Component id="txtAlarmModtaget" min="-2" pref="65" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="lblBrandReportNr" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblEvaReportNr" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMelding" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblNavn" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblAddresse" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="18" max="32767" attributes="0"/>
-                              <Component id="jScrollPane3" min="-2" pref="279" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtMelding" pref="157" max="32767" attributes="0"/>
+                                  <Component id="txtEvaReportNr" alignment="0" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Component id="txtBrandReportNr" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Component id="txtNavn" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="txtAddresse" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="lblAlarmModtaget" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblHeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblSubHeader" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="lblDato" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                              <Component id="jDateChooserDato" min="-2" pref="127" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblIndsatsLeder" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblHoldLeder" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
-                                          <Component id="lblUgeDag" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblMaterialerBrugt" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="txtHoldLeder" max="32767" attributes="0"/>
-                                          <Component id="txtIndsatsLeder" max="32767" attributes="0"/>
-                                          <Component id="txtUgeDag" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
-                                          <Component id="btnTilfoejMaterialer" pref="166" max="32767" attributes="0"/>
-                                      </Group>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="txtAlarmModtaget" min="-2" pref="65" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="18" max="32767" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="279" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="lblAlarmModtaget" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblHeader" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblSubHeader" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="lblDato" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Component id="jDateChooserDato" min="-2" pref="127" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblIndsatsLeder" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblHoldLeder" alignment="0" min="-2" pref="55" max="-2" attributes="0"/>
+                                  <Component id="lblUgeDag" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblMaterialerBrugt" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="txtHoldLeder" max="32767" attributes="0"/>
+                                  <Component id="txtIndsatsLeder" max="32767" attributes="0"/>
+                                  <Component id="txtUgeDag" alignment="0" min="-2" pref="81" max="-2" attributes="0"/>
+                                  <Component id="btnTilfoejMaterialer" pref="166" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -204,7 +196,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTilbage" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnGem" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnSave" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
@@ -331,11 +323,6 @@
         <Property name="text" type="java.lang.String" value="Materialer Brugt:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnGem">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Gem"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="btnTilbage">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tilbage"/>
@@ -424,5 +411,10 @@
         </Container>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnSave">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gem"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>
