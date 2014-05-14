@@ -31,15 +31,15 @@ public class AddFiremanDialog extends javax.swing.JDialog {
      */
     private void Add() {
         int ID = 0;
-        String forNavn = txtFornavn.getText().trim();
-        String efterNavn = txtEfternavn.getText().trim();
-        String adresse = txtAddresse.getText().trim();
-        String tlfNr = txtTlfNr.getText().trim();
+        String forNavn = txtFirstName.getText().trim();
+        String efterNavn = txtLastName.getText().trim();
+        String adresse = txtAddress.getText().trim();
+        String tlfNr = txtTelephoneNr.getText().trim();
         String callNr = txtCallNr.getText().trim();
         String paymentNr = txtPaymentNr.getText().trim();
         boolean leaderUddannet = false;
         String hiredDate = ((JTextField) jDateHiredDate.getDateEditor().getUiComponent()).getText();
-        if (chkboxLederUddannet.isSelected()) {
+        if (chkboxIsLeaderTrained.isSelected()) {
             leaderUddannet = true;
         }
         
@@ -63,65 +63,65 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblEfternavn = new javax.swing.JLabel();
+        lblLastName = new javax.swing.JLabel();
         lblAddresse = new javax.swing.JLabel();
-        lblTlfNr = new javax.swing.JLabel();
+        lblTelephoneNr = new javax.swing.JLabel();
         lblCallNr = new javax.swing.JLabel();
-        txtTlfNr = new javax.swing.JTextField();
-        txtFornavn = new javax.swing.JTextField();
+        txtTelephoneNr = new javax.swing.JTextField();
+        txtFirstName = new javax.swing.JTextField();
         txtCallNr = new javax.swing.JTextField();
-        txtEfternavn = new javax.swing.JTextField();
-        chkboxLederUddannet = new javax.swing.JCheckBox();
-        lblFornavn = new javax.swing.JLabel();
-        txtAddresse = new javax.swing.JTextField();
-        btnTilfoej = new javax.swing.JButton();
-        btnAnnuller = new javax.swing.JButton();
+        txtLastName = new javax.swing.JTextField();
+        chkboxIsLeaderTrained = new javax.swing.JCheckBox();
+        lblFirstName = new javax.swing.JLabel();
+        txtAddress = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
         txtPaymentNr = new javax.swing.JTextField();
         lblPaymentNr = new javax.swing.JLabel();
         jDateHiredDate = new com.toedter.calendar.JDateChooser();
-        jLabel1 = new javax.swing.JLabel();
+        lblHiredDate = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblEfternavn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblEfternavn.setText("Efternavn:");
+        lblLastName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblLastName.setText("Efternavn:");
 
         lblAddresse.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblAddresse.setText("Addresse:");
 
-        lblTlfNr.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblTlfNr.setText("Tlf. Nr:");
+        lblTelephoneNr.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblTelephoneNr.setText("Tlf. Nr:");
 
         lblCallNr.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCallNr.setText("Call Nr:");
+        lblCallNr.setText("Tilkalds Nr:");
 
-        chkboxLederUddannet.setText("Leder Uddannet");
-        chkboxLederUddannet.addActionListener(new java.awt.event.ActionListener() {
+        chkboxIsLeaderTrained.setText("Leder Uddannet");
+        chkboxIsLeaderTrained.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkboxLederUddannetActionPerformed(evt);
+                chkboxIsLeaderTrainedActionPerformed(evt);
             }
         });
 
-        lblFornavn.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblFornavn.setText("Fornavn:");
+        lblFirstName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblFirstName.setText("Fornavn:");
 
-        btnTilfoej.setText("Tilføj");
-        btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Tilføj");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilfoejActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        btnAnnuller.setText("Annuller");
-        btnAnnuller.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Annuller");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAnnullerActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
         lblPaymentNr.setText("Løn nr:");
 
-        jLabel1.setText("Ansættelses Dato");
+        lblHiredDate.setText("Ansættelses Dato:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -129,57 +129,64 @@ public class AddFiremanDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnAnnuller)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTilfoej, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(lblFornavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCancel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lblCallNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblTlfNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblAddresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblEfternavn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblPaymentNr, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtPaymentNr)
-                                .addComponent(txtAddresse)
-                                .addComponent(txtEfternavn)
-                                .addComponent(txtTlfNr)
-                                .addComponent(txtCallNr, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(lblFirstName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(lblCallNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblTelephoneNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblAddresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblLastName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lblPaymentNr, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txtPaymentNr)
+                                        .addComponent(txtAddress)
+                                        .addComponent(txtLastName)
+                                        .addComponent(txtTelephoneNr)
+                                        .addComponent(txtCallNr, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
+                        .addComponent(lblHiredDate)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkboxLederUddannet)
-                            .addComponent(jDateHiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(chkboxIsLeaderTrained)
+                                .addGap(10, 10, 10))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jDateHiredDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblFornavn)
-                    .addComponent(txtFornavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblFirstName)
+                    .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblEfternavn)
-                    .addComponent(txtEfternavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLastName)
+                    .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAddresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblAddresse))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtTlfNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTlfNr))
+                    .addComponent(txtTelephoneNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTelephoneNr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCallNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,49 +198,49 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateHiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblHiredDate))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(chkboxLederUddannet)
+                .addComponent(chkboxIsLeaderTrained)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilfoej)
-                    .addComponent(btnAnnuller))
+                    .addComponent(btnAdd)
+                    .addComponent(btnCancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chkboxLederUddannetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxLederUddannetActionPerformed
+    private void chkboxIsLeaderTrainedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxIsLeaderTrainedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_chkboxLederUddannetActionPerformed
+    }//GEN-LAST:event_chkboxIsLeaderTrainedActionPerformed
 
-    private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Add();
         dispose();
-    }//GEN-LAST:event_btnTilfoejActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
-    private void btnAnnullerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnnullerActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btnAnnullerActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAnnuller;
-    private javax.swing.JButton btnTilfoej;
-    private javax.swing.JCheckBox chkboxLederUddannet;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JCheckBox chkboxIsLeaderTrained;
     private com.toedter.calendar.JDateChooser jDateHiredDate;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblAddresse;
     private javax.swing.JLabel lblCallNr;
-    private javax.swing.JLabel lblEfternavn;
-    private javax.swing.JLabel lblFornavn;
+    private javax.swing.JLabel lblFirstName;
+    private javax.swing.JLabel lblHiredDate;
+    private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblPaymentNr;
-    private javax.swing.JLabel lblTlfNr;
-    private javax.swing.JTextField txtAddresse;
+    private javax.swing.JLabel lblTelephoneNr;
+    private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCallNr;
-    private javax.swing.JTextField txtEfternavn;
-    private javax.swing.JTextField txtFornavn;
+    private javax.swing.JTextField txtFirstName;
+    private javax.swing.JTextField txtLastName;
     private javax.swing.JTextField txtPaymentNr;
-    private javax.swing.JTextField txtTlfNr;
+    private javax.swing.JTextField txtTelephoneNr;
     // End of variables declaration//GEN-END:variables
 }

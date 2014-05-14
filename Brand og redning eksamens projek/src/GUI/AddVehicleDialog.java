@@ -33,46 +33,46 @@ public class AddVehicleDialog extends javax.swing.JDialog {
     private void initComponents() {
 
         lblRegNr = new javax.swing.JLabel();
-        lblMaerke = new javax.swing.JLabel();
+        lblBrand = new javax.swing.JLabel();
         lblModel = new javax.swing.JLabel();
         txtRegNr = new javax.swing.JTextField();
-        txtMaerke = new javax.swing.JTextField();
+        txtBrand = new javax.swing.JTextField();
         txtModel = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtBeskrivelse = new javax.swing.JTextArea();
-        lblBeskrivelse = new javax.swing.JLabel();
-        btnTilfoej = new javax.swing.JButton();
-        btnLukVindue = new javax.swing.JButton();
+        txtDescription = new javax.swing.JTextArea();
+        lblDescription = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblRegNr.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRegNr.setText("Reg nr:");
 
-        lblMaerke.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblMaerke.setText("Mærke:");
+        lblBrand.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblBrand.setText("Mærke:");
 
         lblModel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblModel.setText("Model:");
 
-        txtBeskrivelse.setColumns(20);
-        txtBeskrivelse.setRows(5);
-        jScrollPane1.setViewportView(txtBeskrivelse);
+        txtDescription.setColumns(20);
+        txtDescription.setRows(5);
+        jScrollPane1.setViewportView(txtDescription);
 
-        lblBeskrivelse.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblBeskrivelse.setText("Beskrivelse:");
+        lblDescription.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblDescription.setText("Beskrivelse:");
 
-        btnTilfoej.setText("Tilføj");
-        btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Tilføj");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilfoejActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        btnLukVindue.setText("Luk vindue");
-        btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Annuller");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLukVindueActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -86,12 +86,12 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblBeskrivelse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lblDescription, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtMaerke, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(txtBrand, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(txtModel)))
                             .addGroup(layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -99,13 +99,13 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblRegNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblMaerke, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
+                            .addComponent(lblBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE))
                         .addGap(12, 12, 12)
                         .addComponent(txtRegNr))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLukVindue)
+                        .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTilfoej)))
+                        .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,8 +117,8 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                     .addComponent(txtRegNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMaerke)
-                    .addComponent(txtMaerke, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblBrand)
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblModel)
@@ -126,33 +126,33 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBeskrivelse))
+                    .addComponent(lblDescription))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilfoej)
-                    .addComponent(btnLukVindue))
+                    .addComponent(btnAdd)
+                    .addComponent(btnCancel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btnLukVindueActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         Add();
         dispose();
-    }//GEN-LAST:event_btnTilfoejActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
    /**
     * Creates a Business Entity from the information entered in the textfields
     */
     public void Add() {
         String reg = txtRegNr.getText();
-        String brand = txtMaerke.getText();
+        String brand = txtBrand.getText();
         String model = txtModel.getText();
-        String descrip = txtBeskrivelse.getText();
+        String descrip = txtDescription.getText();
         res = new BEVehicle(reg, brand, model, descrip);
     }
 
@@ -165,15 +165,15 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         return res;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLukVindue;
-    private javax.swing.JButton btnTilfoej;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblBeskrivelse;
-    private javax.swing.JLabel lblMaerke;
+    private javax.swing.JLabel lblBrand;
+    private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblRegNr;
-    private javax.swing.JTextArea txtBeskrivelse;
-    private javax.swing.JTextField txtMaerke;
+    private javax.swing.JTextField txtBrand;
+    private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtModel;
     private javax.swing.JTextField txtRegNr;
     // End of variables declaration//GEN-END:variables

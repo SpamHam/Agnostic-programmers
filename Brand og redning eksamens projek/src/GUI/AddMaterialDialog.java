@@ -29,7 +29,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
      * Creates a Business Entity from the information entered in the textfields
      */
     private void addMaterial() {
-        Material = new BE.BEMaterial(txtMateriale.getText());
+        Material = new BE.BEMaterial(txtMaterialName.getText());
     }
 
     /**
@@ -49,29 +49,32 @@ public class AddMaterialDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblMateriale = new javax.swing.JLabel();
-        txtMateriale = new javax.swing.JTextField();
-        btnTilfoej = new javax.swing.JButton();
-        btnLuk = new javax.swing.JButton();
+        lblMaterialName = new javax.swing.JLabel();
+        txtMaterialName = new javax.swing.JTextField();
+        btnAdd = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
+        lblGuide = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        lblMateriale.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lblMateriale.setText("Materiale:");
+        lblMaterialName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblMaterialName.setText("Materiale navn:");
 
-        btnTilfoej.setText("Tilføj");
-        btnTilfoej.addActionListener(new java.awt.event.ActionListener() {
+        btnAdd.setText("Tilføj");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilfoejActionPerformed(evt);
+                btnAddActionPerformed(evt);
             }
         });
 
-        btnLuk.setText("Luk");
-        btnLuk.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Annuller");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLukActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
+
+        lblGuide.setText("Indtast et nyt materiale navn");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,48 +82,54 @@ public class AddMaterialDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 128, Short.MAX_VALUE)
-                        .addComponent(btnLuk)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnTilfoej))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMateriale)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtMateriale)))
+                        .addComponent(lblGuide)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(lblMaterialName)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtMaterialName, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(16, 16, 16)
+                .addComponent(lblGuide)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblMateriale)
-                    .addComponent(txtMateriale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtMaterialName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaterialName))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilfoej)
-                    .addComponent(btnLuk))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCancel)
+                    .addComponent(btnAdd))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnLukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btnLukActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
-    private void btnTilfoejActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejActionPerformed
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
       addMaterial();
       dispose();
-    }//GEN-LAST:event_btnTilfoejActionPerformed
+    }//GEN-LAST:event_btnAddActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLuk;
-    private javax.swing.JButton btnTilfoej;
-    private javax.swing.JLabel lblMateriale;
-    private javax.swing.JTextField txtMateriale;
+    private javax.swing.JButton btnAdd;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JLabel lblGuide;
+    private javax.swing.JLabel lblMaterialName;
+    private javax.swing.JTextField txtMaterialName;
     // End of variables declaration//GEN-END:variables
 }

@@ -38,14 +38,14 @@ public class ChooseTeam extends javax.swing.JDialog {
         InitializeVehicles();
         ActionListener BTNListener = new BTNMoveActionListener();
         ActionListener BTNFoejListener = new BTNTilfoejActionListener();
-        btnFoejTilTeam.addActionListener(BTNListener);
-        btnFjernFraTeam.addActionListener(BTNListener);
-        jlistAlleBraendmaend.setModel(alleFiremenListModel);
-        jlistVaelgTeamMedlemmer.setModel(valgteFiremenListModel);
-        jlistVaelgEnBil.setModel(alleVehiclesListModel);
+        btnAddToTeam.addActionListener(BTNListener);
+        btnRemoveFromTeam.addActionListener(BTNListener);
+        jlistAllFiremen.setModel(alleFiremenListModel);
+        jlistChosenFiremen.setModel(valgteFiremenListModel);
+        jlistChooseACar.setModel(alleVehiclesListModel);
         PopulateFiremanList();
         PopulateVehicleList();
-    btnTilfoejTeam.addActionListener(BTNFoejListener);
+    btnAddTeam.addActionListener(BTNFoejListener);
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -113,8 +113,8 @@ public class ChooseTeam extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-            String fireman = (String) jlistVaelgTeamMedlemmer.getModel().getElementAt(i);
-            String vehicle = chosenVehicle(jlistVaelgEnBil);
+            String fireman = (String) jlistChosenFiremen.getModel().getElementAt(i);
+            String vehicle = chosenVehicle(jlistChooseACar);
           BETimePlan temp = new BETimePlan (fireman, vehicle);
              ValgteFiremen.add(i, temp);
             }
@@ -137,10 +137,10 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == btnFoejTilTeam) {
-                moveItem(jlistAlleBraendmaend, jlistVaelgTeamMedlemmer);
+            if (e.getSource() == btnAddToTeam) {
+                moveItem(jlistAllFiremen, jlistChosenFiremen);
             } else {
-                moveItem(jlistVaelgTeamMedlemmer, jlistAlleBraendmaend);
+                moveItem(jlistChosenFiremen, jlistAllFiremen);
             }
         }
     }
@@ -173,48 +173,48 @@ public class ChooseTeam extends javax.swing.JDialog {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jlistAlleBraendmaend = new javax.swing.JList();
+        jlistAllFiremen = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jlistVaelgTeamMedlemmer = new javax.swing.JList();
-        btnFoejTilTeam = new javax.swing.JButton();
-        btnFjernFraTeam = new javax.swing.JButton();
+        jlistChosenFiremen = new javax.swing.JList();
+        btnAddToTeam = new javax.swing.JButton();
+        btnRemoveFromTeam = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jlistVaelgEnBil = new javax.swing.JList();
-        lblAlleBraendMaend = new javax.swing.JLabel();
-        lblValgteTeamMedlemmer = new javax.swing.JLabel();
-        lblVaelgEnBil = new javax.swing.JLabel();
-        btnTilfoejTeam = new javax.swing.JButton();
-        btnLukVindue = new javax.swing.JButton();
+        jlistChooseACar = new javax.swing.JList();
+        lblAllFiremen = new javax.swing.JLabel();
+        lblChosenTeamMembers = new javax.swing.JLabel();
+        lblChooseACar = new javax.swing.JLabel();
+        btnAddTeam = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jlistAlleBraendmaend);
+        jScrollPane1.setViewportView(jlistAllFiremen);
 
-        jScrollPane2.setViewportView(jlistVaelgTeamMedlemmer);
+        jScrollPane2.setViewportView(jlistChosenFiremen);
 
-        btnFoejTilTeam.setText("Føj til Team");
-        btnFoejTilTeam.addActionListener(new java.awt.event.ActionListener() {
+        btnAddToTeam.setText("Føj til Team");
+        btnAddToTeam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFoejTilTeamActionPerformed(evt);
+                btnAddToTeamActionPerformed(evt);
             }
         });
 
-        btnFjernFraTeam.setText("Fjern fra Team");
+        btnRemoveFromTeam.setText("Fjern fra Team");
 
-        jScrollPane3.setViewportView(jlistVaelgEnBil);
+        jScrollPane3.setViewportView(jlistChooseACar);
 
-        lblAlleBraendMaend.setText("Alle brændmand:");
+        lblAllFiremen.setText("Alle brændmand:");
 
-        lblValgteTeamMedlemmer.setText("Valgte team medlemmer:");
+        lblChosenTeamMembers.setText("Valgte team medlemmer:");
 
-        lblVaelgEnBil.setText("Vælg en bil:");
+        lblChooseACar.setText("Vælg en bil:");
 
-        btnTilfoejTeam.setText("Tilføj Team");
+        btnAddTeam.setText("Tilføj Team");
 
-        btnLukVindue.setText("Luk Vindue");
-        btnLukVindue.addActionListener(new java.awt.event.ActionListener() {
+        btnCancel.setText("Annuller");
+        btnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLukVindueActionPerformed(evt);
+                btnCancelActionPerformed(evt);
             }
         });
 
@@ -229,23 +229,23 @@ public class ChooseTeam extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnFjernFraTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnFoejTilTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addComponent(lblAlleBraendMaend))
+                            .addComponent(btnRemoveFromTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddToTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(lblAllFiremen))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblValgteTeamMedlemmer))
+                    .addComponent(lblChosenTeamMembers))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblVaelgEnBil))
+                    .addComponent(lblChooseACar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnLukVindue)
+                .addComponent(btnCancel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnTilfoejTeam)
+                .addComponent(btnAddTeam)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -255,9 +255,9 @@ public class ChooseTeam extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblValgteTeamMedlemmer)
-                            .addComponent(lblAlleBraendMaend)
-                            .addComponent(lblVaelgEnBil))
+                            .addComponent(lblChosenTeamMembers)
+                            .addComponent(lblAllFiremen)
+                            .addComponent(lblChooseACar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,41 +265,41 @@ public class ChooseTeam extends javax.swing.JDialog {
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
-                        .addComponent(btnFoejTilTeam)
+                        .addComponent(btnAddToTeam)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnFjernFraTeam)))
+                        .addComponent(btnRemoveFromTeam)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilfoejTeam)
-                    .addComponent(btnLukVindue))
+                    .addComponent(btnAddTeam)
+                    .addComponent(btnCancel))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnFoejTilTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFoejTilTeamActionPerformed
+    private void btnAddToTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToTeamActionPerformed
 
-    }//GEN-LAST:event_btnFoejTilTeamActionPerformed
+    }//GEN-LAST:event_btnAddToTeamActionPerformed
 
-    private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
+    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
         dispose();
-    }//GEN-LAST:event_btnLukVindueActionPerformed
+    }//GEN-LAST:event_btnCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFjernFraTeam;
-    private javax.swing.JButton btnFoejTilTeam;
-    private javax.swing.JButton btnLukVindue;
-    private javax.swing.JButton btnTilfoejTeam;
+    private javax.swing.JButton btnAddTeam;
+    private javax.swing.JButton btnAddToTeam;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnRemoveFromTeam;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JList jlistAlleBraendmaend;
-    private javax.swing.JList jlistVaelgEnBil;
-    private javax.swing.JList jlistVaelgTeamMedlemmer;
-    private javax.swing.JLabel lblAlleBraendMaend;
-    private javax.swing.JLabel lblVaelgEnBil;
-    private javax.swing.JLabel lblValgteTeamMedlemmer;
+    private javax.swing.JList jlistAllFiremen;
+    private javax.swing.JList jlistChooseACar;
+    private javax.swing.JList jlistChosenFiremen;
+    private javax.swing.JLabel lblAllFiremen;
+    private javax.swing.JLabel lblChooseACar;
+    private javax.swing.JLabel lblChosenTeamMembers;
     // End of variables declaration//GEN-END:variables
 }

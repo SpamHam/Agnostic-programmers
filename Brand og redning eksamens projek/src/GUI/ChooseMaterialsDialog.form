@@ -32,35 +32,35 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Component id="btnFjernFraMaterialer" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnRemoveFromChosenMaterials" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnFoejTilMaterialer" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="btnAddToChosenMaterials" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="lblAlleMaterialer" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblAllMaterials" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnAnnuller" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnTilfoejMaterialer" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblValgteMaterialer" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblChosenMaterials" min="-2" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnCancel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnAddMaterials" min="-2" pref="107" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,16 +70,16 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
-                      <Component id="btnFoejTilMaterialer" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnAddToChosenMaterials" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnFjernFraMaterialer" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRemoveFromChosenMaterials" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="lblValgteMaterialer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblAlleMaterialer" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblChosenMaterials" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblAllMaterials" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -90,8 +90,8 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnTilfoejMaterialer" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnAnnuller" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnAddMaterials" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnCancel" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -106,7 +106,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jlistValgteMaterialer">
+        <Component class="javax.swing.JList" name="jlistChosenMaterials">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
               <StringArray count="0"/>
@@ -122,68 +122,50 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JList" name="jlistAlleMaterialer">
+        <Component class="javax.swing.JList" name="jlistAllMaterials">
           <Properties>
             <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-              <StringArray count="17">
-                <StringItem index="0" value="HT-R&#xf8;r"/>
-                <StringItem index="1" value="Str&#xe5;ler&#xf8;r"/>
-                <StringItem index="2" value="B-Slanger"/>
-                <StringItem index="3" value="C-Slanger"/>
-                <StringItem index="4" value="R&#xf8;gdykkerapp."/>
-                <StringItem index="5" value="Flasker (300 bar)"/>
-                <StringItem index="6" value="Frig&#xf8;relsesmaterial"/>
-                <StringItem index="7" value="Overtryksventilator"/>
-                <StringItem index="8" value="Vandforbrug"/>
-                <StringItem index="9" value="Skumv&#xe6;ske"/>
-                <StringItem index="10" value="Lysmaterial"/>
-                <StringItem index="11" value="Pulverslukker"/>
-                <StringItem index="12" value="Kulsyreslukker"/>
-                <StringItem index="13" value="Flydesp&#xe6;rringer"/>
-                <StringItem index="14" value="Absordan/&quot;kattegrus&quot;"/>
-                <StringItem index="15" value="Arbsobent W"/>
-                <StringItem index="16" value="Engangspressinger"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnFjernFraMaterialer">
+    <Component class="javax.swing.JButton" name="btnRemoveFromChosenMaterials">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fjern fra Materialer"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnFoejTilMaterialer">
+    <Component class="javax.swing.JButton" name="btnAddToChosenMaterials">
       <Properties>
         <Property name="text" type="java.lang.String" value="F&#xf8;j til Materialer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFoejTilMaterialerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddToChosenMaterialsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblValgteMaterialer">
+    <Component class="javax.swing.JLabel" name="lblChosenMaterials">
       <Properties>
         <Property name="text" type="java.lang.String" value="Valgte Materialer:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnTilfoejMaterialer">
+    <Component class="javax.swing.JButton" name="btnAddMaterials">
       <Properties>
         <Property name="text" type="java.lang.String" value="Tilf&#xf8;j Materialer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTilfoejMaterialerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAddMaterialsActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnAnnuller">
+    <Component class="javax.swing.JButton" name="btnCancel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Annuller"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnnullerActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblAlleMaterialer">
+    <Component class="javax.swing.JLabel" name="lblAllMaterials">
       <Properties>
         <Property name="text" type="java.lang.String" value="Alle Materialer:"/>
       </Properties>
