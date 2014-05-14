@@ -4,6 +4,7 @@
  */
 package GUI;
 
+import Utility.DateConverter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -63,6 +64,9 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             for(String i : nyeTider){
             startTider.add(i);
             }
+            for(String i : startTider){
+                System.out.println(i);
+            }
         } catch (Exception ex) {
             Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -83,20 +87,45 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     public void hej(){
          
      	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-	String a = startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString();
+	//String a = startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString();
         String dateInString = "12/12/2012";//a.substring(8, 18);
         
  
 	try {
  
 		Date date = formatter.parse(dateInString);
-		System.out.println(date);
+                //date.getTime();
+		System.out.println(date.compareTo(date) < 0);
 		//System.out.println(formatter.format(date));
  
 	} catch (ParseException e) {
 		e.printStackTrace();
 	}
         
+    }
+    
+    private void test(){
+        System.out.println(DateConverter.getDate(DateConverter.YEAR));
+        for(String i : startTider){
+            
+            
+            String year = i.substring(6, 10);
+            String month = i.substring(0, 2);
+            String day = i.substring(3, 5);
+            
+            if(year.compareToIgnoreCase(DateConverter.getDate(DateConverter.YEAR)) == 0 ){//|| DateConverter.getDate(DateConverter.MONTH_DAY).equalsIgnoreCase("12/31")){
+                System.out.println(i + " 1");
+                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) == 0){
+                   System.out.println(i + " 2");
+                   if(day.compareToIgnoreCase("6") > 0){
+                       System.out.println(i + " 3");
+                       
+                   } 
+                }
+                
+            }
+
+        }
     }
     
         
@@ -115,6 +144,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         tableUdrykningsOversigt = new javax.swing.JTable();
         btnAfslut = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        btbTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -146,6 +176,13 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             }
         });
 
+        btbTest.setText("Test");
+        btbTest.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btbTestActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -157,7 +194,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addComponent(btbTest, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(btnAfslut)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack)))
@@ -171,7 +209,8 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAfslut)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(btbTest))
                 .addGap(20, 20, 20))
         );
 
@@ -193,11 +232,16 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
      dispose();
     }//GEN-LAST:event_btnAfslutActionPerformed
 
+    private void btbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTestActionPerformed
+        test();
+    }//GEN-LAST:event_btbTestActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btbTest;
     private javax.swing.JButton btnAfslut;
     private javax.swing.JButton btnBack;
     private javax.swing.JScrollPane jScrollPane1;
