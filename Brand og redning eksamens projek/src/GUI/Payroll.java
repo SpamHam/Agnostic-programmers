@@ -37,6 +37,7 @@ public class Payroll extends javax.swing.JFrame {
         jtableLoenOversigt.setRowSorter(sorter);
         jtableLoenOversigt.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     public static void main(String args[]) {
