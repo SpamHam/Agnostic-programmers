@@ -29,7 +29,7 @@ public class AddMaterialDialog extends javax.swing.JDialog {
      * Creates a Business Entity from the information entered in the textfields
      */
     private void addMaterial() {
-        Material = new BE.BEMaterial(txtMaterialName.getText());
+        Material = new BE.BEMaterial(0, txtMaterialName.getText());
     }
 
     /**

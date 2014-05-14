@@ -15,8 +15,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class CRUDMaterialTableModel extends AbstractTableModel{
     private ArrayList<BE.BEMaterial> m_allMaterial;
-    private final String[] colNames = {"Material", "Antal"};
-    private final Class[] classes = {String.class, Integer.class};
+    private final String[] colNames = {"Material"};
+    private final Class[] classes = {String.class};
     
     /**
      * Sets the Material table and updates it
@@ -48,11 +48,7 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
               BE.BEMaterial e = m_allMaterial.get(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return e.getM_Materiale();
-                case 1:
-                    return e.getM_Antal();
-                
-
+                    return e.getM_Materiale();           
             }
 
             return null; }

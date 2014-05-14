@@ -31,11 +31,10 @@ public class BEMaterial {
      * @param Materiale String
      * @param Antal int
      */
-    public BEMaterial(int ID, String Materiale, int Antal) {
+    public BEMaterial(int ID, String Materiale) {
 
         m_emergencyID = ID;
         m_Material = Materiale;
-        m_Amount = Antal;
 
     }
     

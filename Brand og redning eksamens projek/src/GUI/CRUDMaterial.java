@@ -75,7 +75,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblMaterial.getSelectedRow();
                 txtMaterial.setText(allMaterials.get(selectedRow).getM_Materiale());
-                txtAmount.setText(Integer.toString(allMaterials.get(selectedRow).getM_Antal()));
+
             }
         });
     }
@@ -104,10 +104,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
         tblMaterial = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         UpdateFieldsPanel = new javax.swing.JPanel();
-        txtAmount = new javax.swing.JTextField();
         txtMaterial = new javax.swing.JTextField();
         lblMateriale = new javax.swing.JLabel();
-        lblAmount = new javax.swing.JLabel();
         jPanelButtons = new javax.swing.JPanel();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -117,30 +115,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         tblMaterial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Material", "Antal"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(tblMaterial);
 
         btnBack.setText("Tilbage");
@@ -154,20 +134,14 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         lblMateriale.setText("Materiale:");
 
-        lblAmount.setText("Antal:");
-
         javax.swing.GroupLayout UpdateFieldsPanelLayout = new javax.swing.GroupLayout(UpdateFieldsPanel);
         UpdateFieldsPanel.setLayout(UpdateFieldsPanelLayout);
         UpdateFieldsPanelLayout.setHorizontalGroup(
             UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblMateriale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblAmount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblMateriale)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtAmount)
-                    .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
@@ -177,11 +151,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblMateriale))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAmount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblAmount))
-                .addContainerGap())
+                .addGap(31, 31, 31))
         );
 
         jPanelButtons.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
@@ -282,7 +252,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim(), Integer.parseInt(txtAmount.getText().trim())));
+            BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim()));
             allMaterials = BLL.BLLMaterial.getInstance().getAll();
             materialTableModel.setMaterialList(allMaterials);
             materialTableModel.fireTableDataChanged();
@@ -309,10 +279,8 @@ DeleteMaterial();
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanelButtons;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblAmount;
     private javax.swing.JLabel lblMateriale;
     private javax.swing.JTable tblMaterial;
-    private javax.swing.JTextField txtAmount;
     private javax.swing.JTextField txtMaterial;
     // End of variables declaration//GEN-END:variables
 
