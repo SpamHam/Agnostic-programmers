@@ -11,7 +11,7 @@ package BE;
  */
 public final class BEFireman {
 
-    private String FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr;
+    private String FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, HiredDate;
     private int ID;
     private boolean LeaderTrained;
 
@@ -40,6 +40,7 @@ public final class BEFireman {
     /**
      * Constructor used for creating / updating a fireman
      * @param ID int
+     * @param HiredDate String
      * @param FirstName String
      * @param LastName String
      * @param Address String
@@ -49,7 +50,7 @@ public final class BEFireman {
      * @param LeaderTrained Boolean
      */
     public BEFireman(int ID, String FirstName, String LastName, String Address,
-                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained) {
+                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
         this.setID(ID);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
@@ -58,6 +59,7 @@ public final class BEFireman {
         this.setCallNr(CallNr);
         this.setPaymentNr(PaymentNr);
         this.setLeaderTrained(LeaderTrained);
+        this.setHiredDate(HiredDate);
     }
 
     /**
@@ -170,6 +172,20 @@ public final class BEFireman {
      */
     public void setLeaderTrained(boolean LeaderTrained) {
         this.LeaderTrained = LeaderTrained;
+    }
+
+    /**
+     * @return the HiredDate
+     */
+    public String getHiredDate() {
+        return HiredDate;
+    }
+
+    /**
+     * @param HiredDate the HiredDate to set
+     */
+    public void setHiredDate(String HiredDate) {
+        this.HiredDate = HiredDate;
     }
 
 }

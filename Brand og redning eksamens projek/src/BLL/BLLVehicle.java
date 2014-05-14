@@ -98,7 +98,7 @@ public class BLLVehicle {
      * A function that calls the delete function from the DALC Layer using Singleton
      * @throws Exception 
      */
-    public void remove() throws Exception {
-        //TODO after Salary are done.
+    public void remove(BE.BEVehicle e) throws Exception {
+        DALCVehicle.Delete(e);
     }
 }

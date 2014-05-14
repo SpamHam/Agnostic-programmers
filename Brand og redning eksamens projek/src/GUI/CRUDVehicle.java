@@ -22,7 +22,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    BLLVehicle BLLvehicle;
+    private BLLVehicle BLLvehicle;
     //
     private int selectedRow;
 
@@ -81,6 +81,18 @@ public class CRUDVehicle extends javax.swing.JFrame {
         });
     }
 
+        private void DeleteVehicle() {
+        try {
+            BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
+            allVehicle = BLL.BLLVehicle.getInstance().getAll();
+            vehicleTableModel.setVehicleList(allVehicle);
+            vehicleTableModel.fireTableDataChanged();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -111,6 +123,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(700, 300));
 
         btnFjern.setText("Fjern");
+        btnFjern.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFjernActionPerformed(evt);
+            }
+        });
 
         btnOpdatere.setText("Opdatere");
         btnOpdatere.addActionListener(new java.awt.event.ActionListener() {
@@ -292,6 +309,10 @@ public class CRUDVehicle extends javax.swing.JFrame {
         dispose();
         openAdministrationMenu();
     }//GEN-LAST:event_btnTilbageActionPerformed
+
+    private void btnFjernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernActionPerformed
+DeleteVehicle();
+    }//GEN-LAST:event_btnFjernActionPerformed
 
     private void openAdministrationMenu() {
         AdminstrationMenu admin = new AdminstrationMenu();

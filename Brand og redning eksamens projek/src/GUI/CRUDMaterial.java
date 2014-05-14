@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BLL.BLLMaterial;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -20,6 +21,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMaterials = new ArrayList<>();
+    private BLLMaterial m_material;
     //
     private int selectedRow;
 
@@ -76,6 +78,17 @@ public class CRUDMaterial extends javax.swing.JFrame {
                 txtAntal.setText(Integer.toString(allMaterials.get(selectedRow).getM_Antal()));
             }
         });
+    }
+    
+        private void DeleteMaterial() {
+        try {
+            m_material.getInstance().remove(allMaterials.get(selectedRow));
+            allMaterials = BLL.BLLMaterial.getInstance().getAll();
+            materialTableModel.setMaterialList(allMaterials);
+            materialTableModel.fireTableDataChanged();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     /**
@@ -268,15 +281,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void btnFjernActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFjernActionPerformed
-        //TODO after Salary
-        /*    try {
-         BLL.BLLMaterial.getInstance().remove(allMaterials.get(selectedRow));
-         allMaterials = BLL.BLLMaterial.getInstance().getAll();
-         materialTableModel.setMaterialList(allMaterials);
-         materialTableModel.fireTableDataChanged();
-         } catch (Exception ex) {
-         JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-         }*/
+DeleteMaterial();
     }//GEN-LAST:event_btnFjernActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

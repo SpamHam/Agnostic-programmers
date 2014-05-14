@@ -49,7 +49,7 @@ public class BLLFireman {
  * @throws Exception 
  */
     public void Create(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
             Error.NotEnougthInfo("creating a fireman.");
         } else {
             try {
@@ -82,7 +82,7 @@ public class BLLFireman {
      * @throws Exception 
      */
     public void Update(BE.BEFireman b) throws Exception {
-        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty()) {
+        if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
             Error.NotEnougthInfo("updating a fireman.");
         } else {
             try {
@@ -96,8 +96,8 @@ public class BLLFireman {
  * A function that calls the delete function from the DALC Layer using Singleton
  * @throws Exception 
  */
-    public void remove() throws Exception {
-        //TODO after Salary are done.
+    public void remove(BE.BEFireman e) throws Exception {
+        DALCFireman.Delete(e);
     }
 
     /**

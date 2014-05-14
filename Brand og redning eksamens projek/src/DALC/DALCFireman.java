@@ -54,7 +54,7 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void Create(BE.BEFireman e) throws SQLException {
-        String sql = "insert into Fireman values (?,?,?,?,?,?,?)";
+        String sql = "insert into Fireman values (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getFirstName());
         ps.setString(2, e.getLastName());
@@ -63,6 +63,7 @@ public class DALCFireman {
         ps.setString(5, e.getCallNr());
         ps.setString(6, e.getPaymentNr());
         ps.setBoolean(7, e.isLeaderTrained());
+        ps.setString(8, e.getHiredDate());
         ps.executeUpdate();
     }
 
@@ -89,7 +90,8 @@ public class DALCFireman {
             String CallNr = result.getString("CallNumber");
             String PaymentNr = result.getString("PaymentNr");
             boolean isLeaderTrained = result.getBoolean("LeaderTrained");
-            BEFireman c = new BEFireman(ID, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained);
+            String HiredDate = result.getString("HiredDate");
+            BEFireman c = new BEFireman(ID, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained, HiredDate);
             res.add(c);
         }
         return res;
@@ -101,7 +103,7 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void update(BE.BEFireman u) throws SQLException {
-        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=? where ID=?";
+        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=?, HiredDate=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
         ps.setString(2, u.getLastName());
@@ -110,7 +112,8 @@ public class DALCFireman {
         ps.setString(5, u.getCallNr());
         ps.setString(6, u.getPaymentNr());
         ps.setBoolean(7, u.isLeaderTrained());
-        ps.setInt(8, u.getID());
+        ps.setString(8, u.getHiredDate());
+        ps.setInt(9, u.getID());
         ps.executeUpdate();
     }
 

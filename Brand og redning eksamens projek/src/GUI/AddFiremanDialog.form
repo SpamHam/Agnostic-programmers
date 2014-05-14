@@ -23,43 +23,48 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="lblFornavn" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                      <Component id="txtFornavn" min="-2" pref="113" max="-2" attributes="0"/>
+                      <Component id="btnAnnuller" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnTilfoej" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblCallNr" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblTlfNr" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblAddresse" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblEfternavn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblPaymentNr" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="lblFornavn" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <Component id="txtFornavn" min="-2" pref="113" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="lblCallNr" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblTlfNr" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblAddresse" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblEfternavn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblPaymentNr" alignment="1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txtPaymentNr" max="32767" attributes="0"/>
-                              <Component id="txtAddresse" pref="113" max="32767" attributes="0"/>
+                              <Component id="txtAddresse" max="32767" attributes="0"/>
                               <Component id="txtEfternavn" max="32767" attributes="0"/>
                               <Component id="txtTlfNr" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtCallNr" alignment="0" max="32767" attributes="0"/>
+                              <Component id="txtCallNr" alignment="0" min="-2" pref="113" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
+                          <Component id="jDateHiredDate" min="-2" pref="113" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace min="0" pref="35" max="32767" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
-              <Component id="btnAnnuller" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="btnTilfoej" min="-2" pref="67" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -95,6 +100,11 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="txtPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="lblPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jDateHiredDate" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="chkboxLederUddannet" min="-2" max="-2" attributes="0"/>
@@ -177,7 +187,14 @@
     </Component>
     <Component class="javax.swing.JLabel" name="lblPaymentNr">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Payment Nr:"/>
+        <Property name="text" type="java.lang.String" value="L&#xf8;n nr:"/>
+      </Properties>
+    </Component>
+    <Component class="com.toedter.calendar.JDateChooser" name="jDateHiredDate">
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Ans&#xe6;ttelses Dato"/>
       </Properties>
     </Component>
   </SubComponents>

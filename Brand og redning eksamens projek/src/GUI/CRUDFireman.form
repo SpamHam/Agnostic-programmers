@@ -26,16 +26,16 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="UpdateFieldsPanel" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="BackButton" pref="96" max="32767" attributes="0"/>
-                  <Component id="RemoveButton" alignment="1" pref="96" max="32767" attributes="0"/>
-                  <Component id="UpdateButton" max="32767" attributes="0"/>
-                  <Component id="AddButton" max="32767" attributes="0"/>
-              </Group>
               <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="UpdateButton" min="-2" pref="96" max="-2" attributes="0"/>
+                  <Component id="AddButton" min="-2" pref="96" max="-2" attributes="0"/>
+                  <Component id="RemoveButton" alignment="0" min="-2" pref="96" max="-2" attributes="0"/>
+                  <Component id="BackButton" min="-2" pref="96" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -49,7 +49,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="AddButton" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
                               <Component id="UpdateButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="RemoveButton" min="-2" max="-2" attributes="0"/>
@@ -74,6 +74,9 @@
           <Dimension value="[55, 23]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RemoveButtonActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -138,27 +141,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabelEfternavn" alignment="0" pref="67" max="32767" attributes="0"/>
-                      <Component id="lblPaymentNr" alignment="0" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="ChBoxLeader" min="-2" max="-2" attributes="0"/>
-                              <Component id="TxtEfternavn" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="jLabelEfternavn" alignment="0" pref="69" max="32767" attributes="0"/>
+                              <Component id="lblPaymentNr" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace pref="7" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                  <Component id="ChBoxLeader" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtPaymentNr" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="TxtEfternavn" alignment="1" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
-                          <Component id="txtPaymentNr" min="-2" pref="121" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-              </Group>
-              <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabelCall" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -176,9 +172,15 @@
                           </Group>
                       </Group>
                       <Group type="102" alignment="1" attributes="0">
-                          <Component id="jLabelFornavn" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jLabelFornavn" max="32767" attributes="0"/>
+                              <Component id="lblHiredDate" max="32767" attributes="0"/>
+                          </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="TxtFornavn" min="-2" pref="121" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="TxtFornavn" min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="txtHiredDate" alignment="0" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -188,7 +190,11 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace pref="20" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="txtHiredDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblHiredDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="TxtFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabelFornavn" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -218,7 +224,7 @@
                       <Component id="txtPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblPaymentNr" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                   <Component id="ChBoxLeader" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -275,6 +281,13 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ChBoxLeaderActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtHiredDate">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblHiredDate">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Ansat:"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
