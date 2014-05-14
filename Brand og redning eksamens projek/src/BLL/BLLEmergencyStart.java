@@ -34,11 +34,12 @@ public class BLLEmergencyStart {
         DALCeStart = DALCEmergencyStart.getInstance();
     }
     
-    public void Create(ArrayList<String> timeStamp, int index) throws Exception{
-        if(timeStamp.get(index).isEmpty()){
+    public void Create(ArrayList<String> timeStamp, String time) throws Exception{
+        if(timeStamp.isEmpty()){
             Error.NotEnougthInfo("creating timestamp");
         }
-        DALCeStart.getInstance().Create(index);
+        DALCeStart.getInstance().Create(time);
+        System.out.println("jacob er lækker");
         
     }
     

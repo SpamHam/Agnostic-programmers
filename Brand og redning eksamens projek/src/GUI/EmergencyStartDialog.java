@@ -28,14 +28,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     
     
     
-        private void iniTimeStamps(){
-                try {
-            startTider = BLL.BLLEmergencyStart.getInstance().getAll();
-          
-        } catch (Exception ex) {
-            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
         
         
     
@@ -46,10 +39,10 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     public EmergencyStartDialog(java.awt.Frame parent, boolean modal, ArrayList<String> tider) {
         super(parent, modal);
         initComponents();
-        //iniTimeStamps();
-        mergeTimeList();
-        System.out.println(startTider.size());
         nyeTider = tider;
+        iniTimeStamps();
+        //mergeTimeList();
+        System.out.println(startTider.size());
         System.out.println("a");
         System.out.println(nyeTider.size());
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
@@ -64,12 +57,25 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         
     }
     
+            private void iniTimeStamps(){
+                try {
+            startTider = BLL.BLLEmergencyStart.getInstance().getAll();
+            for(String i : nyeTider){
+            startTider.add(i);
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     private void mergeTimeList(){
         iniTimeStamps();
         for(String i : nyeTider){
             startTider.add(i);
-            System.out.println(i);
+            
+            //System.out.println(i);
         }
+        
     }
 
    

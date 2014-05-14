@@ -67,16 +67,16 @@ private DALCEmergencyStart() throws SQLServerException{
  
  
      public void Delete(int index) throws SQLException {
-        String sql = "delete from EmergencyStart where eStart=?";
+        String sql = "delete from EmergencyStamp where eStart=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, timeStamps.get(index));
         ps.executeUpdate();
     }
      
-     public void Create(int index) throws SQLException {
-        String sql = "insert into EmergencyStart values (?)";
+     public void Create(String time) throws SQLException {
+        String sql = "insert into EmergencyStamp values (?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, timeStamps.get(index));
+        ps.setString(1, time);
 
         ps.executeUpdate();
     }
