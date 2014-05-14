@@ -6,12 +6,16 @@
 package GUI;
 
 import BE.BEMaterial;
+import BLL.BLLPDF;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -21,32 +25,72 @@ import javax.swing.table.TableRowSorter;
  */
 public class ODINReport extends javax.swing.JFrame {
 
-    ChooseMaterialsTableModel MaterialModel;
+    ChooseMaterialsTableModel materialModel;
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
+    ArrayList<String> materialColNames;
+    ArrayList<String> forcesColNames = new ArrayList<>();
+    ArrayList<String> allforces = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     private String currentTime;
     boolean chkboxIndsatteStyrker = false;
     boolean chkboxSkadeslidte = false;
+    private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
+    BLLPDF BLLPDF = new BLLPDF();
+     String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
 
     /**
      * Creates new form ODINReport
      */
     public ODINReport() {
         initComponents();
-        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
-        sorter = new TableRowSorter<TableModel>(MaterialModel);
+        setPDFListener(BLLPDF); // sets the BLLPDF as observer
+        materialModel = new ChooseMaterialsTableModel(allMaterials);
+        sorter = new TableRowSorter<TableModel>(materialModel);
         setTitle("ODIN Report");
         this.setVisible(true);
         ShowIndsatteStyrker();
         ShowSkadeslidte();
+        ActionListener BTNPDFListener = new BTNPDFActionListener();
+        btnSave.addActionListener(BTNPDFListener);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
+
+    
+      public void setPDFListener(PDFListener PDFListener){
+        this.PDFListener = PDFListener;
+    }
+    
+    
+    /**
+     * anonymous inner class listening on the create pdf button
+     */
+     private class BTNPDFActionListener implements ActionListener {
+     @Override
+        public void actionPerformed(ActionEvent e) {
+               getOdinData();
+               firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces,forcesColNames,date, received, fireNr, evaNr,message,name,address,leader,teamLeader,weekday));   
+        }
+    }
+     /**
+      * Fires the PDF event
+      * @param event type FormatEventPDF
+      */
+     public void firePDFEvent(FormatEventPDF event){
+        if (PDFListener != null){
+               try{
+               PDFListener.PDFTimePlanPerformed(event);
+             JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
     
 //        public ODINReport() {
 //        initComponents();
-//        MaterialModel = new ChooseMaterialsTableModel(allMaterials);
-//        sorter = new TableRowSorter<TableModel>(MaterialModel);
+//        materialModel = new ChooseMaterialsTableModel(allMaterials);
+//        sorter = new TableRowSorter<TableModel>(materialModel);
 //        setTitle("ODIN Report");
 //        this.setVisible(true);
 //        ShowIndsatteStyrker();
@@ -114,7 +158,7 @@ public class ODINReport extends javax.swing.JFrame {
         btnTilbage = new javax.swing.JButton();
         chkBoxIndsatteStyrker = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jtableMaterialer1 = new javax.swing.JTable();
+        tblMaterial = new javax.swing.JTable();
         jpanelIndsatteStyrker = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtableIndsatteStyrker = new javax.swing.JTable();
@@ -201,7 +245,7 @@ public class ODINReport extends javax.swing.JFrame {
             }
         });
 
-        jtableMaterialer1.setModel(new javax.swing.table.DefaultTableModel(
+        tblMaterial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -209,7 +253,7 @@ public class ODINReport extends javax.swing.JFrame {
                 "Materiale", "Antal"
             }
         ));
-        jScrollPane3.setViewportView(jtableMaterialer1);
+        jScrollPane3.setViewportView(tblMaterial);
 
         jtableIndsatteStyrker.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -374,7 +418,7 @@ public class ODINReport extends javax.swing.JFrame {
     }//GEN-LAST:event_txtAlarmModtagetActionPerformed
 
     private void getOdinData(){
-    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    getMaterialColNames();
     evaNr = txtEvaReportNr.getText();
     fireNr = txtBrandReportNr.getText();
     received = txtAlarmModtaget.getText();
@@ -386,6 +430,13 @@ public class ODINReport extends javax.swing.JFrame {
     teamLeader = txtHoldLeder.getText();
     weekday = txtUgeDag.getText();
     }
+    
+  private void getMaterialColNames(){
+     materialColNames = new ArrayList<>();
+     for(int i=0; i<materialModel.getColumnCount(); i++){
+        materialColNames.add(materialModel.getColumnName(i));
+       }
+     }
     
     private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
@@ -403,11 +454,11 @@ public class ODINReport extends javax.swing.JFrame {
             } else {
                 allMaterials = rent;
             }
-            jtableMaterialer1.setModel(MaterialModel);
-            jtableMaterialer1.setRowSorter(sorter);
-            jtableMaterialer1.getTableHeader().setReorderingAllowed(false);
+            tblMaterial.setModel(materialModel);
+            tblMaterial.setRowSorter(sorter);
+            tblMaterial.getTableHeader().setReorderingAllowed(false);
 
-            MaterialModel.setMaterialsStatusList(allMaterials);
+            materialModel.setMaterialsStatusList(allMaterials);
         }
     }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
 
@@ -440,7 +491,6 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpanelIndsatteStyrker;
     private javax.swing.JTable jtableIndsatteStyrker;
-    private javax.swing.JTable jtableMaterialer1;
     private javax.swing.JLabel lblAddresse;
     private javax.swing.JLabel lblAlarmModtaget;
     private javax.swing.JLabel lblBrandReportNr;
@@ -454,6 +504,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblNavn;
     private javax.swing.JLabel lblSubHeader;
     private javax.swing.JLabel lblUgeDag;
+    private javax.swing.JTable tblMaterial;
     private javax.swing.JTextField txtAddresse;
     private javax.swing.JTextField txtAlarmModtaget;
     private javax.swing.JTextField txtBrandReportNr;

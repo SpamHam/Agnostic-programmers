@@ -17,13 +17,21 @@ import Utility.PDFGenerator;
  */
 public class BLLPDF implements PDFListener  {
     PDFGenerator pdfGen;
+    
     @Override
-    public void PDFPerformed(FormatEventPDF event) {
-    pdfGen = new PDFGenerator(event.getTime(), event.getColNames());
-    try {
+    public void PDFTimePlanPerformed(FormatEventPDF event) {
+    pdfGen = new PDFGenerator(event.getTime(), event.getMatrialeColNames());
+   }
+
+    @Override
+    public void PDFOdinPerformed(FormatEventPDF event) {
+        pdfGen = new PDFGenerator(event.getMaterial(),event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(),
+                event.getDate(),event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(),
+                event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
+            try {
         pdfGen.run();
     } catch (Exception ex) {
         throw new EventExercutionException("PDF kunne ikke genereres");
-    }
-    }
+    }  
+ }
 }

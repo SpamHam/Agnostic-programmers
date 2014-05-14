@@ -178,7 +178,7 @@ public class Timeplan extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLukVindueActionPerformed
     
     /**
-     * anonymous inner class listening for the create pdf button
+     * anonymous inner class listening on the create pdf button
      */
      private class BTNPDFActionListener implements ActionListener {
      @Override
@@ -194,7 +194,7 @@ public class Timeplan extends javax.swing.JFrame {
      public void firePDFEvent(FormatEventPDF event){
         if (PDFListener != null){
                try{
-               PDFListener.PDFPerformed(event);
+               PDFListener.PDFTimePlanPerformed(event);
              JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
              } catch(EventExercutionException eex){
              JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

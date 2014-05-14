@@ -49,7 +49,9 @@ public class PDFGenerator {
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames;
   private ArrayList<BEMaterial> allMaterial;
+  private ArrayList<String> materialColNames;
   private ArrayList<String> allForces;
+  private ArrayList<String> forcesColName;
   private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
   
   
@@ -61,14 +63,16 @@ public class PDFGenerator {
   public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
   this.allTime = allTime;
   this.colNames = colNames;
-  FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
   }
   
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String> allForces, String date, String received,
-                      String fireNr, String evaNr, String message, String name, String address, String leader, 
-                      String teamLeader, String weekday){
+  
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<String> allForces,
+          ArrayList<String> forcesColName,String date, String received,String fireNr, String evaNr, String message, 
+          String name, String address, String leader, String teamLeader, String weekday){
   this.allMaterial = allMaterial;
+  this.materialColNames = materialColName;
   this.allForces = allForces;
+  this.forcesColName = forcesColName;
   this.date = date;
   this.received = received;
   this.fireNr = fireNr;
@@ -79,18 +83,17 @@ public class PDFGenerator {
   this.leader = leader;
   this.teamLeader = teamLeader;
   this.weekday = weekday;
-  
   }
   
   
   
   public void run() throws Exception{
-
+      FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
       addMetaData(document);
-      createTimePlan(document);
+      createTimePlanPage(document);
       document.close();
     }
   
@@ -111,13 +114,15 @@ public class PDFGenerator {
    * @param document
    * @throws DocumentException 
    */
-  private void createTimePlan(Document document)
+  private void createTimePlanPage(Document document)
       throws DocumentException {
     Paragraph odinRaport = new Paragraph();
     // We add one empty line
     addEmptyLine(odinRaport, 1);
     // Lets write a big header
-    odinRaport.add(new Paragraph("ODIN Rapport nr. 1", Header));
+    Paragraph title = new Paragraph("ODIN Rapport", Header); 
+    title.setAlignment(Element.ALIGN_CENTER);
+    odinRaport.add(title);
     addEmptyLine(odinRaport, 1);
     odinRaport.add(new Paragraph("Brand & Redning Esbjerg",
         smallBold));
@@ -136,15 +141,51 @@ public class PDFGenerator {
   addEmptyLine(odinRaport, 3);
     odinRaport.add(new Paragraph("Dette dokument er lavet i systemet Borr",
         redFont));
+    document.newPage(); // new page
+    odinRaport.add(title);
+    addEmptyLine(odinRaport, 2);
+    odinRaport.add(new Paragraph("Dato: " + date,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Indsats Leder: " + leader,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Uge dag: " + weekday,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Alarm Modtaget: " + received,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Skadslidte",
+        smallBold));
+    odinRaport.add(new Paragraph("Navn: " + name,
+        small));
+    addEmptyLine(odinRaport, 1);
+    odinRaport.add(new Paragraph("Adresse" + address,
+        small));
+    addEmptyLine(odinRaport, 2);
+    odinRaport.add(new Paragraph("Materialer Brugt",
+        smallBold));
+    addEmptyLine(odinRaport, 1);
+    createMaterialTable(odinRaport, allMaterial, materialColNames);   
     document.add(odinRaport);
 
   }
   
   /**
    * generates the time table for the time plan section of the pdf
-   * @param para
-   * @param rowData
-   * @param colNames
+   * @param para type IText paragraph
+   * @param rowData type ArrayList<BETimePlan>
+   * @param colNames type ArrayList<String>
    * @throws BadElementException 
    */
 
@@ -167,6 +208,39 @@ public class PDFGenerator {
     table.addCell(row.getKoeretoej());
 }
   }
+  
+  
+  private void createMaterialTable(Paragraph para, ArrayList<BEMaterial> rowData, ArrayList<String> colNames)
+      throws BadElementException {
+    PdfPTable table = new PdfPTable(colNames.size());
+
+    for (String col : colNames){
+    PdfPCell c1 = new PdfPCell(new Phrase(col));
+    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(c1);
+     }
+     para.add(table);
+    for (BEMaterial row : rowData){
+    table.addCell(row.getM_Materiale());
+    table.addCell("" + row.getM_Antal());
+    }
+  }
+  
+//    private void createForcesTable(Paragraph para, ArrayList<String> rowData, ArrayList<String> colNames)
+//      throws BadElementException {
+//    PdfPTable table = new PdfPTable(colNames.size());
+//
+//    for (String col : colNames){
+//    PdfPCell c1 = new PdfPCell(new Phrase(col));
+//    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+//    table.addCell(c1);
+//     }
+//     para.add(table);
+//    for (BEMaterial row : rowData){
+//    table.addCell(row.getM_Materiale());
+//    table.addCell("" + row.getM_Antal());
+//    }
+//  }
 /**
  * adds an empty line
  * @param paragraph
