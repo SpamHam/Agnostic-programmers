@@ -84,23 +84,15 @@ public class PayrollTableModel extends AbstractTableModel {
                 return false;
             case 1:
                 return false;
-            case 2:
-                return true;
-            case 3:
-                return true;
-            case 4:
-                return true;
-            case 5:
-                return false;
             default:
-                return false;
+                return true;
         }
     }
 
     /**
      * Sets the content of the table model to the given list of cars.
      *
-     * @param carList the list of employees to show in the JTable.
+     * @param salaryList
      */
     public void setTimePlanStatusList(ArrayList<BE.BETableSalary> salaryList) {
         allSalary = salaryList;
@@ -117,4 +109,60 @@ public class PayrollTableModel extends AbstractTableModel {
         return allSalary.get(row);
     }
 
+    @Override
+    public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+        BE.BETableSalary row = allSalary.get(rowIndex);
+        double[] idx = row.getIndex();
+        switch (columnIndex) {
+            case 2:
+                idx[0] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 3:
+                idx[1] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 4:
+                idx[2] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 5:
+                idx[3] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 6:
+                idx[4] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 7:
+                idx[5] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 8:
+                idx[6] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 9:
+                idx[7] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 10:
+                idx[8] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 11:
+                idx[9] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 12:
+                idx[10] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+            case 13:
+                idx[11] = ((double) aValue);
+                row.setIndex(idx);
+                break;
+
+        }
+    }
 }

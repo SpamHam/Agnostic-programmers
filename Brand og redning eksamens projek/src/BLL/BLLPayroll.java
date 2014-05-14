@@ -5,8 +5,6 @@
  */
 package BLL;
 
-import BE.BESalary;
-import BE.BETableSalary;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
 
@@ -33,6 +31,10 @@ public class BLLPayroll {
         return m_instance;
     }
 
+    /**
+     * 
+     * @throws Exception 
+     */
     private BLLPayroll() throws Exception {
         Error = Utility.ErrorHandler.getInstance();
         try {
@@ -42,6 +44,11 @@ public class BLLPayroll {
         }
     }
 
+    /**
+     * 
+     * @param b
+     * @throws Exception 
+     */
     public void CreateSalary(BE.BESalary b) throws Exception {
         if (b.getODIN() == 0 || b.getDate().isEmpty()) {
             Error.NotEnougthInfo("creating a SalaryReport.");
@@ -54,6 +61,11 @@ public class BLLPayroll {
         }
     }
 
+    /**
+     * 
+     * @param b
+     * @throws Exception 
+     */
     public void CreateMonthly(BE.BESalary b) throws Exception {
         if (b.getODIN() == 0 || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
             Error.NotEnougthInfo("creating a SalaryReport.");
@@ -66,6 +78,11 @@ public class BLLPayroll {
         }
     }
 
+    /**
+     * 
+     * @return
+     * @throws Exception 
+     */
     public ArrayList<BE.BESalary> getAll() throws Exception {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         try {
@@ -77,27 +94,39 @@ public class BLLPayroll {
     }
 
     /**
-     *
-     * @return @throws Exception
+     * 
+     * @return
+     * @throws Exception 
      */
     public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
-        ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>();
-        ArrayList<BE.BETableSalary> UncompressedTable = convertToTable();
-        double[] Index = new double[12];
+        ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>(), UncompressedTable = convertToTable();
         ArrayList<String> Unique = new ArrayList<>();
         for (BE.BETableSalary a : UncompressedTable) {
-            for (BE.BETableSalary b : UncompressedTable) {
-                if (a.getNavn().equalsIgnoreCase(b.getNavn()) && (Unique.isEmpty() || !Unique.contains(a.getNavn()))) {
-                    for (int i = 0; i <= 11; i++) {
-                        Index[i] = Index[i] + b.getIndex()[i];
-                    }
-                }
+            if (Unique.isEmpty() || !Unique.contains(a.getNavn())) {
+                CompressedTable.add(new BE.BETableSalary(a.getNavn(), a.getSalaryNumber(), getAllDataForGivenFireman(UncompressedTable, a)));
+                Unique.add(a.getNavn());
             }
-            Index = new double[12];
-            Unique.add(a.getNavn());
-            CompressedTable.add(new BETableSalary(a.getNavn(), a.getSalaryNumber(), Index));
         }
         return CompressedTable;
+    }
+
+    /**
+     *
+     * @param UncompressedTable
+     * @param a
+     * @param Unique
+     * @return
+     */
+    private double[] getAllDataForGivenFireman(ArrayList<BE.BETableSalary> UncompressedTable, BE.BETableSalary a) {
+        double[] Index = new double[12];
+        for (BE.BETableSalary b : UncompressedTable) {
+            if (a.getNavn().equalsIgnoreCase(b.getNavn())) {
+                for (int i = 0; i <= 11; i++) {
+                    Index[i] = Index[i] + b.getIndex()[i];
+                }
+            }
+        }
+        return Index;
     }
 
     /**
@@ -107,13 +136,19 @@ public class BLLPayroll {
     private ArrayList<BE.BETableSalary> convertToTable() throws Exception {
         ArrayList<BE.BETableSalary> TableSalarys = new ArrayList<>();
         for (BE.BESalary S : getAll()) {
-            BETableSalary ts = SalaryTotableSalary(S);
+            BE.BETableSalary ts = SalaryTotableSalary(S);
             TableSalarys.add(ts);
         }
         return TableSalarys;
     }
 
-    private BETableSalary SalaryTotableSalary(BESalary s) throws Exception {
+    /**
+     * 
+     * @param s
+     * @return
+     * @throws Exception 
+     */
+    private BE.BETableSalary SalaryTotableSalary(BE.BESalary s) throws Exception {
         BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getID());
         double[] Index = new double[12];
         int IndexLocation = 0;
