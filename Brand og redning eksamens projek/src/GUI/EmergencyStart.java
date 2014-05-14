@@ -55,7 +55,7 @@ public class EmergencyStart extends javax.swing.JFrame {
     
     private void AddTime(){
         txtSidsteUdrykning.setText(currentTime());
-        Udrykningstider.add(currentTime());
+        //Udrykningstider.add(currentTime());
         try {
             BLL.BLLEmergencyStart.getInstance().Create(Udrykningstider, currentTime());
         } catch (Exception ex) {

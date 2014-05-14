@@ -35,9 +35,9 @@ public class BLLEmergencyStart {
     }
     
     public void Create(ArrayList<String> timeStamp, String time) throws Exception{
-        if(timeStamp.isEmpty()){
-            Error.NotEnougthInfo("creating timestamp");
-        }
+//        if(timeStamp.isEmpty()){
+//            Error.NotEnougthInfo("creating timestamp");
+//        }
         DALCeStart.getInstance().Create(time);
         System.out.println("jacob er lækker");
         
