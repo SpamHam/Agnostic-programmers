@@ -14,7 +14,7 @@ import java.util.ArrayList;
 public class PayrollTableModel extends AbstractTableModel {
 
     ArrayList<BE.BETableSalary> allSalary;
-    String[] colNames = {"Navn", "Løn nr.", "Brand Brandmand", "Brand Holdleder", "Standby Station Brandmand", "Standby Station Holdleder", "Arb på station/andet", "Øvelser Brandmnad", "Øvelser Holdleder", "Vagt Brandmand Helligdage", "Vagt Brandmand Hverdage", "Vagt Holdleder Helligdage", "Vagt Holdleder Hverdage"};
+    String[] colNames = {"<html>Brandmand<br>Navn<br>&nbsp", "<html>Løn nr.<br>&nbsp<br>&nbsp", "<html>Brand<br>Brandmand<br>&nbsp", "<html>Brand<br>Holdleder<br>&nbsp", "<html>Standby<br>Station<br>Brandmand", "<html>Standby<br>Station<br>Holdleder", "<html>Arb på<br>station/andet<br>&nbsp", "<html>Øvelser<br>Brandmnad<br>&nbsp", "<html>Øvelser<br>Holdleder<br>&nbsp", "<html>Vagt<br>Brandmand<br>Helligdage", "<html>Vagt<br>Brandmand<br>Hverdage", "<html>Vagt<br>Holdleder<br>Helligdage", "<html>Vagt<br>Holdleder<br>Hverdage"};
     Class[] classes = {String.class, String.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class, Double.class};
 
     public PayrollTableModel(ArrayList<BE.BETableSalary> salary) {

@@ -37,6 +37,7 @@ public class Payroll extends javax.swing.JFrame {
         tblPayroll.setRowSorter(sorter);
         tblPayroll.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        
     }
 
     public static void main(String args[]) {

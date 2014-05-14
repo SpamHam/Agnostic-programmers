@@ -18,19 +18,22 @@ public class FormatEventPDF {
     ArrayList<BETimePlan> allTime;
     ArrayList<BEMaterial> allMaterial;
     ArrayList<String> allForces;
-    ArrayList<String> colNames;
-   private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    private ArrayList<String> matrialeColNames;
+    private ArrayList<String> forcesColNames;
+    private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
     
     public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> colNames ){
     this.allTime = allTime;
-    this.colNames = colNames;
+    this.matrialeColNames = colNames;
     }
     
-    public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> allForces, String date, String received,
-                      String fireNr, String evaNr, String message, String name, String address, String leader, 
-                      String teamLeader, String weekday){
+  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames, ArrayList<String> allForces,
+          ArrayList<String> forcesColNames, String date, String received, String fireNr, String evaNr, String message,
+          String name, String address, String leader, String teamLeader, String weekday){
   this.allMaterial = allMaterial;
+  this.matrialeColNames = materialColNames;
   this.allForces = allForces;
+  this.forcesColNames = forcesColNames;
   this.date = date;
   this.received = received;
   this.fireNr = fireNr;
@@ -46,8 +49,8 @@ public class FormatEventPDF {
     public ArrayList<BETimePlan> getTime(){
     return allTime;
     }
-    public ArrayList<String> getColNames(){
-    return colNames;
+    public ArrayList<String> getMatrialeColNames(){
+    return matrialeColNames;
     }
     
     public ArrayList<BEMaterial> getMaterial(){
@@ -95,4 +98,11 @@ public class FormatEventPDF {
   public String getWeekday(){
   return weekday;
   }   
+
+    /**
+     * @return the forcesColNames
+     */
+    public ArrayList<String> getForcesColNames() {
+        return forcesColNames;
+    }
 }
