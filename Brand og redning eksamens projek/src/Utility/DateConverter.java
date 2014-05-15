@@ -23,6 +23,8 @@ public static final int DATE_HOURS_MINUTES_SECONDS = 2;
 public static final int YEAR = 3;
 public static final int MONTH_DAY = 4;
 public static final int MONTH = 5;
+public static final int DAY = 6;
+public static final int TIME = 7;
 
 private static final  String[] MONTHS = {"januar", "februar", "marts", "april", "maj", "juni",
   "juli", "august", "september", "oktober", "november", "december"};
@@ -60,6 +62,10 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
              return "MM/dd";
          case 5:
              return "MM";
+         case 6:
+             return "dd";
+         case 7:
+             return "hh:mm:ss";
          default:
             throw new IllegalArgumentException("Incorrect typeFormat code value");
             }

@@ -105,28 +105,65 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }
     
     private void test(){
-        System.out.println(DateConverter.getDate(DateConverter.YEAR));
+        
         for(String i : startTider){
-            
+            System.out.println(DateConverter.getDate(DateConverter.MONTH )+ "jacob");
             
             String year = i.substring(6, 10);
             String month = i.substring(0, 2);
             String day = i.substring(3, 5);
+            String time = i.substring(11, 19);
+            int CurrentDay = Integer.parseInt(DateConverter.getDate(DateConverter.DAY )) -2;
+            String deadLine = Integer.toString(CurrentDay);
             
-            if(year.compareToIgnoreCase(DateConverter.getDate(DateConverter.YEAR)) == 0 ){//|| DateConverter.getDate(DateConverter.MONTH_DAY).equalsIgnoreCase("12/31")){
-                System.out.println(i + " 1");
-                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) == 0){
-                   System.out.println(i + " 2");
-                   if(day.compareToIgnoreCase("6") > 0){
-                       System.out.println(i + " 3");
+            if(year.compareToIgnoreCase(DateConverter.getDate(DateConverter.YEAR)) >= 0 || DateConverter.getDate(DateConverter.MONTH_DAY).equalsIgnoreCase("12/31") ){
+                //System.out.println(time + "hej");
+                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) == 0 || day.equalsIgnoreCase("28") || day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")){
+                  // System.out.println(i + " 2");
+                   if(checkForEvenOrAudMonth(month, CurrentDay)){
                        
-                   } 
+                       
+                   if(day.compareToIgnoreCase(deadLine) >= 0 && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                       
+                       System.out.println(i + " er større end" + deadLine);
+                       
+                   }
+                       System.out.println(i + " er lige måneder");
+                   }
                 }
                 
             }
 
         }
     }
+    
+    
+    
+    private boolean checkForEvenOrAudMonth(String time, int currentDay){
+     
+        int currentMonth = Integer.parseInt(time);
+            if(currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8 || currentMonth == 10 || currentMonth == 12){ //|| month == 08){
+            currentDay = 29;
+            return true;
+            }
+              currentDay = 28;
+              return false;
+           
+        }
+    
+    private void removeTime(){
+        int a = 2;
+        if(test2(a)){
+            System.out.println(a);
+        }
+    }
+        private boolean test2(int b){
+            b = 23;
+            return true;
+        }
+               
+        
+    
     
         
     
