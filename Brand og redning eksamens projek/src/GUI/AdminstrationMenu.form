@@ -64,8 +64,8 @@
               <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnFiremanMenu" min="-2" max="-2" attributes="0"/>
                   <Component id="jPanelFiremanMenu" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnFiremanMenu" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -91,23 +91,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Adminstration Menu"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnFiremanMenu">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Brandmand Menu"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[115, 25]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[115, 25]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[115, 25]"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFiremanMenuActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
     </Component>
@@ -314,6 +297,20 @@
     <Component class="javax.swing.JButton" name="btnMaterialMenu">
       <Properties>
         <Property name="text" type="java.lang.String" value="Matriale Menu"/>
+        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[115, 25]"/>
+        </Property>
+        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[115, 25]"/>
+        </Property>
+        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+          <Dimension value="[115, 25]"/>
+        </Property>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnFiremanMenu">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Brandmand Menu"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[115, 25]"/>
         </Property>

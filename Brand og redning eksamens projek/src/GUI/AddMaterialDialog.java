@@ -13,6 +13,7 @@ import java.awt.event.ActionListener;
  * @author Kathrine
  */
 public class AddMaterialDialog extends javax.swing.JDialog {
+
     private BEMaterial Material;
 
     /**
@@ -40,7 +41,8 @@ public class AddMaterialDialog extends javax.swing.JDialog {
 
     /**
      * Returns the Business Entity created from the Add function
-     * @return 
+     *
+     * @return
      */
     public BE.BEMaterial getMaterial() {
         return Material;
@@ -49,26 +51,28 @@ public class AddMaterialDialog extends javax.swing.JDialog {
     /**
      * anonymous inner class listening on the Add button
      */
-    private class AddListener implements ActionListener{
+    private class AddListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        addMaterial();
+            addMaterial();
+            dispose();
         }
-        
+
     }
-    
+
     /**
      * anonymous inner class listening on the Cancel button
      */
-    private class CancelListener implements ActionListener{
+    private class CancelListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
         }
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

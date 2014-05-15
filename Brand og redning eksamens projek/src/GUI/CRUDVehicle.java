@@ -49,6 +49,19 @@ public class CRUDVehicle extends javax.swing.JFrame {
         tblVehicle.setModel(vehicleTableModel);
         tblVehicle.setRowSorter(sorter);
         tblVehicle.getTableHeader().setReorderingAllowed(false);
+        
+        /**
+         * All ActionListeners are listed here
+         */
+        ActionListener BTNAdd = new AddListener();
+        btnAdd.addActionListener(BTNAdd);
+        ActionListener BTNUpdate = new UpdateListener();
+        btnUpdate.addActionListener(BTNUpdate);
+        ActionListener BTNRemove = new RemoveListener();
+        btnRemove.addActionListener(BTNRemove);
+        ActionListener BTNBack = new BackListener();
+        btnBack.addActionListener(BTNBack);
+        
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUpdate.setEnabled(false);

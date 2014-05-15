@@ -45,7 +45,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         initComponents();
         initMaterial();
         ActionListener BTNAdd = new AddListener();
-        
+
         /**
          * All ActionListeners are listed here
          */
@@ -56,7 +56,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         btnRemove.addActionListener(BTNRemove);
         ActionListener BTNBack = new BackListener();
         btnBack.addActionListener(BTNBack);
-        
+
         materialTableModel = new CRUDMaterialTableModel(allMaterials);
         tblMaterial.setModel(materialTableModel);
         tblMaterial.setRowSorter(sorter);
@@ -113,26 +113,27 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        AddMaterialDialog tilføjMaterial = new AddMaterialDialog(null, true);
-        tilføjMaterial.setVisible(true);
-        // continue here when the dialog box is closed (disposed).
-        BE.BEMaterial Material = tilføjMaterial.getMaterial();
-        if (Material != null) // a car has been created in the dialog box.
-        {
-            //allCars.add(car);
-            try {
-                BLL.BLLMaterial.getInstance().Create(Material);
-                allMaterials = BLL.BLLMaterial.getInstance().getAll();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-            materialTableModel.setMaterialList(allMaterials);
-            materialTableModel.fireTableDataChanged();
+            AddMaterialDialog tilføjMaterial = new AddMaterialDialog(null, true);
+            tilføjMaterial.setVisible(true);
+            // continue here when the dialog box is closed (disposed).
+            BE.BEMaterial Material = tilføjMaterial.getMaterial();
+            if (Material != null) // a car has been created in the dialog box.
+            {
+                //allCars.add(car);
+                try {
+                    BLL.BLLMaterial.getInstance().Create(Material);
+                    allMaterials = BLL.BLLMaterial.getInstance().getAll();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                materialTableModel.setMaterialList(allMaterials);
+                materialTableModel.fireTableDataChanged();
 
-        }        }
-        
+            }
+        }
+
     }
-    
+
     /**
      * anonymous inner class listening on the Update button
      */
@@ -140,19 +141,19 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-                try {
-            BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim()));
-            allMaterials = BLL.BLLMaterial.getInstance().getAll();
-            materialTableModel.setMaterialList(allMaterials);
-            materialTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            try {
+                BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim()));
+                allMaterials = BLL.BLLMaterial.getInstance().getAll();
+                materialTableModel.setMaterialList(allMaterials);
+                materialTableModel.fireTableDataChanged();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            btnUpdate.setEnabled(false);
         }
-        btnUpdate.setEnabled(false);
-        }
-        
+
     }
-    
+
     /**
      * anonymous inner class listening on the Remove button
      */
@@ -169,11 +170,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        dispose();
-        openAdministrationMenu();
+            dispose();
+            openAdministrationMenu();
         }
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

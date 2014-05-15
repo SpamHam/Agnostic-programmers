@@ -23,10 +23,16 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Add a vehicle");
+        
+        /**
+         * All ActionListeners are listed here
+         */
         ActionListener BTNAddListener = new AddListener();
         btnAdd.addActionListener(BTNAddListener);
         ActionListener BTNCancelListener = new CancelListener();
         btnCancel.addActionListener(BTNCancelListener);
+        
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -148,6 +154,7 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             Add();
+            dispose();
         }
         
     }    

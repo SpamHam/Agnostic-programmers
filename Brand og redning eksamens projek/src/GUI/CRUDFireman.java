@@ -52,12 +52,19 @@ public class CRUDFireman extends javax.swing.JFrame {
         tblFiremen.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandmand oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        /**
+         * All ActionListeners are listed here
+         */
         ActionListener BTNAdd = new AddListener();
         btnAdd.addActionListener(BTNAdd);
         ActionListener BTNUpdate = new UpdateListener();
         btnUpdate.addActionListener(BTNUpdate);
         ActionListener BTNRemove = new RemoveListener();
         btnRemove.addActionListener(BTNRemove);
+        ActionListener BTNBack = new BackListener();
+        btnBack.addActionListener(BTNBack);
+
         btnUpdate.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblFiremen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,55 +135,66 @@ public class CRUDFireman extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-   
-    private class AddListener implements ActionListener{
+
+    private class AddListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        AddFiremanDialog firemanDialog = new AddFiremanDialog(null, true);
-        firemanDialog.setVisible(true);
-        firemanDialog.setLocationRelativeTo(null);
+            AddFiremanDialog firemanDialog = new AddFiremanDialog(null, true);
+            firemanDialog.setVisible(true);
+            firemanDialog.setLocationRelativeTo(null);
 
-        BEFireman fireman = firemanDialog.getNewFireman();
-        if (fireman != null) // a team has been created in the dialog box.
-        {
-            try {
-                BLLFireman.getInstance().Create(fireman);
-                allFiremans.add(fireman);
-                FiremanTableModel.setCRUDFiremanList(allFiremans);
-                tblFiremen.repaint();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            BEFireman fireman = firemanDialog.getNewFireman();
+            if (fireman != null) // a team has been created in the dialog box.
+            {
+                try {
+                    BLLFireman.getInstance().Create(fireman);
+                    allFiremans.add(fireman);
+                    FiremanTableModel.setCRUDFiremanList(allFiremans);
+                    tblFiremen.repaint();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+
             }
+        }
 
-        }
-        }
-        
     }
-    
+
     /**
      * anonymous inner class listening on the Update button
      */
-    private class UpdateListener implements ActionListener{
+    private class UpdateListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             updateFireman();
         }
-        
+
     }
-    
-    
+
     /**
      * anonymous inner class listening on the Remove button
      */
-    private class RemoveListener implements ActionListener{
+    private class RemoveListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        DeleteFireman();
+            DeleteFireman();
         }
-        
+
+    }
+
+    private class BackListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            openAdministrationMenu();
+            
+
+        }
+
     }
 
     /**
@@ -203,14 +221,14 @@ public class CRUDFireman extends javax.swing.JFrame {
         lblTelephoneNr = new javax.swing.JLabel();
         txtPaymentNr = new javax.swing.JTextField();
         lblPaymentNr = new javax.swing.JLabel();
-        ChBoxIsLeaderTrained = new javax.swing.JCheckBox();
         txtHiredDate = new javax.swing.JTextField();
         lblHiredDate = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
+        ChBoxIsLeaderTrained = new javax.swing.JCheckBox();
         jpanelButtons = new javax.swing.JPanel();
         btnRemove = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -257,14 +275,9 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         lblPaymentNr.setText("Løn Nr:");
 
-        ChBoxIsLeaderTrained.setText("Leader Uddannet");
-        ChBoxIsLeaderTrained.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChBoxIsLeaderTrainedActionPerformed(evt);
-            }
-        });
-
         lblHiredDate.setText("Ansat:");
+
+        ChBoxIsLeaderTrained.setText("Leader Uddannet");
 
         javax.swing.GroupLayout UpdateFieldsPanelLayout = new javax.swing.GroupLayout(UpdateFieldsPanel);
         UpdateFieldsPanel.setLayout(UpdateFieldsPanelLayout);
@@ -282,9 +295,6 @@ public class CRUDFireman extends javax.swing.JFrame {
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtHiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addComponent(ChBoxIsLeaderTrained)
-                        .addGap(12, 12, 12))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
                         .addComponent(lblLastName, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -300,10 +310,12 @@ public class CRUDFireman extends javax.swing.JFrame {
                         .addComponent(lblCallNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtCallNr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
                         .addComponent(lblPaymentNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(8, 8, 8)
-                        .addComponent(txtPaymentNr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ChBoxIsLeaderTrained)
+                            .addComponent(txtPaymentNr, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
@@ -340,14 +352,6 @@ public class CRUDFireman extends javax.swing.JFrame {
                 .addComponent(ChBoxIsLeaderTrained))
         );
 
-        btnBack.setText("Tilbage");
-        btnBack.setPreferredSize(new java.awt.Dimension(100, 23));
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
         jpanelButtons.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
 
         btnRemove.setText("Fjern");
@@ -378,6 +382,9 @@ public class CRUDFireman extends javax.swing.JFrame {
                 .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        btnBack.setText("Tilbage");
+        btnBack.setPreferredSize(new java.awt.Dimension(100, 23));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -391,7 +398,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                         .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -404,22 +411,13 @@ public class CRUDFireman extends javax.swing.JFrame {
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(148, 148, 148)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ChBoxIsLeaderTrainedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChBoxIsLeaderTrainedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChBoxIsLeaderTrainedActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
-        openAdministrationMenu();
-    }//GEN-LAST:event_btnBackActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ChBoxIsLeaderTrained;

@@ -78,7 +78,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         txtFirstName = new javax.swing.JTextField();
         txtCallNr = new javax.swing.JTextField();
         txtLastName = new javax.swing.JTextField();
-        chkboxIsLeaderTrained = new javax.swing.JCheckBox();
         lblFirstName = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
         txtPaymentNr = new javax.swing.JTextField();
@@ -87,6 +86,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         lblHiredDate = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        chkboxIsLeaderTrained = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -102,13 +102,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         lblCallNr.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCallNr.setText("Tilkalds Nr:");
 
-        chkboxIsLeaderTrained.setText("Leder Uddannet");
-        chkboxIsLeaderTrained.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkboxIsLeaderTrainedActionPerformed(evt);
-            }
-        });
-
         lblFirstName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFirstName.setText("Fornavn:");
 
@@ -119,6 +112,8 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         btnAdd.setText("Tilføj");
 
         btnCancel.setText("Annuller");
+
+        chkboxIsLeaderTrained.setText("Leder Uddannet");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,10 +155,9 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(chkboxIsLeaderTrained)
-                                .addGap(10, 10, 10))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jDateHiredDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addContainerGap())))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jDateHiredDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,9 +190,9 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateHiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblHiredDate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(chkboxIsLeaderTrained)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnCancel)
@@ -209,10 +203,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void chkboxIsLeaderTrainedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxIsLeaderTrainedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkboxIsLeaderTrainedActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -242,6 +232,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             Add();
+            dispose();
         }
     }
 

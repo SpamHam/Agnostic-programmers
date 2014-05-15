@@ -26,8 +26,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         ActionListener BTNMaterialsMenu = new MaterialsListener();
         btnMaterialMenu.addActionListener(BTNMaterialsMenu);
     }
-    
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -59,7 +58,8 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                 new AdminstrationMenu().setVisible(true);
             }
         });
-    }  
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -70,7 +70,6 @@ public class AdminstrationMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnFiremanMenu = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jPanelFiremanMenu = new javax.swing.JPanel();
         lblFiremanMenu1 = new javax.swing.JLabel();
@@ -89,21 +88,12 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         lblMaterialMenu4 = new javax.swing.JLabel();
         btnVehicleMenu = new javax.swing.JButton();
         btnMaterialMenu = new javax.swing.JButton();
+        btnFiremanMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 0, 18)); // NOI18N
         jLabel1.setText("Adminstration Menu");
-
-        btnFiremanMenu.setText("Brandmand Menu");
-        btnFiremanMenu.setMaximumSize(new java.awt.Dimension(115, 25));
-        btnFiremanMenu.setMinimumSize(new java.awt.Dimension(115, 25));
-        btnFiremanMenu.setPreferredSize(new java.awt.Dimension(115, 25));
-        btnFiremanMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFiremanMenuActionPerformed(evt);
-            }
-        });
 
         jPanelFiremanMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
@@ -223,6 +213,11 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         btnMaterialMenu.setMinimumSize(new java.awt.Dimension(115, 25));
         btnMaterialMenu.setPreferredSize(new java.awt.Dimension(115, 25));
 
+        btnFiremanMenu.setText("Brandmand Menu");
+        btnFiremanMenu.setMaximumSize(new java.awt.Dimension(115, 25));
+        btnFiremanMenu.setMinimumSize(new java.awt.Dimension(115, 25));
+        btnFiremanMenu.setPreferredSize(new java.awt.Dimension(115, 25));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -258,8 +253,8 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -274,11 +269,6 @@ public class AdminstrationMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnFiremanMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiremanMenuActionPerformed
-        openFiremanFrame();
-        dispose();
-    }//GEN-LAST:event_btnFiremanMenuActionPerformed
 
     /**
      * Opens the CRUDFireman frame
@@ -307,37 +297,40 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         CRUDMaterialFrame.setVisible(true);
     }
 
-/**
- * anonymous inner class listening on the FiremanMenu button
- */    
-    private class FiremanListener implements ActionListener{
+    /**
+     * anonymous inner class listening on the FiremanMenu button
+     */
+    private class FiremanListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        openFiremanFrame();
+            dispose();
+            openFiremanFrame();
         }
-        
+
     }
 
     /**
      * anonymous inner class listening on the VehicleMenu button
      */
-    private class VehicleListener implements ActionListener{
+    private class VehicleListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        openVehicleFrame();
+            dispose();
+            openVehicleFrame();
         }
-        
+
     }
-    
-    private class MaterialsListener implements ActionListener{
+
+    private class MaterialsListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        openMaterialsFrame();
+            dispose();
+            openMaterialsFrame();
         }
-        
+
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiremanMenu;
