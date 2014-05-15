@@ -5,7 +5,6 @@
  */
 package GUI;
 
-
 import BE.BETimePlan;
 import BLL.BLLPDF;
 import BLL.BLLTimePlan;
@@ -28,10 +27,10 @@ public class Timeplan extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     ArrayList<String> colNames;
-    BLLTimePlan MyBLLTimePlan = new BLLTimePlan();
+ 
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
-    
+
     /**
      * Creates new form Timeplan
      */
@@ -176,37 +175,40 @@ public class Timeplan extends javax.swing.JFrame {
     private void btnLukVindueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLukVindueActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btnLukVindueActionPerformed
-    
+
     /**
      * anonymous inner class listening on the create pdf button
      */
-     private class BTNPDFActionListener implements ActionListener {
-     @Override
+    private class BTNPDFActionListener implements ActionListener {
+
+        @Override
         public void actionPerformed(ActionEvent e) {
-               getColNames();
-               firePDFEvent(new FormatEventPDF(allTime, colNames));   
+            getColNames();
+            firePDFEvent(new FormatEventPDF(allTime, colNames));
         }
     }
-     /**
-      * Fires the PDF event
-      * @param event type FormatEventPDF
-      */
-     public void firePDFEvent(FormatEventPDF event){
-        if (PDFListener != null){
-             try{
-               PDFListener.PDFTimePlanPerformed(event);
-               System.out.println("next");
-             JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
+
+    /**
+     * Fires the PDF event
+     *
+     * @param event type FormatEventPDF
+     */
+    public void firePDFEvent(FormatEventPDF event) {
+        if (PDFListener != null) {
+            try {
+                PDFListener.PDFTimePlanPerformed(event);
+                System.out.println("next");
+                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
         dispose();
         ODINReport report = new ODINReport();
         report.setVisible(true);
         report.setLocationRelativeTo(this);
-     }
-     
+    }
+
     private void cmbTypeIndsatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeIndsatsActionPerformed
         if (cmbTypeIndsats.getSelectedItem().toString().trim().equalsIgnoreCase("Andet")) {
             txtAndetTekst.setVisible(true);
@@ -216,17 +218,17 @@ public class Timeplan extends javax.swing.JFrame {
 
     }//GEN-LAST:event_cmbTypeIndsatsActionPerformed
 
-    private void getColNames(){
-     colNames = new ArrayList<>();
-     for(int i=0; i<TimeTableModel.getColumnCount(); i++){
-        colNames.add(TimeTableModel.getColumnName(i));
-       }
-     }
-    
-    public void setPDFListener(PDFListener PDFListener){
+    private void getColNames() {
+        colNames = new ArrayList<>();
+        for (int i = 0; i < TimeTableModel.getColumnCount(); i++) {
+            colNames.add(TimeTableModel.getColumnName(i));
+        }
+    }
+
+    public void setPDFListener(PDFListener PDFListener) {
         this.PDFListener = PDFListener;
     }
-    
+
     private void txtAndetTekstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAndetTekstActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAndetTekstActionPerformed
