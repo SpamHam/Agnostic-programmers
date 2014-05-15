@@ -152,14 +152,21 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         }
     
     private void removeTime(){
-        int a = 2;
-        if(test2(a)){
-            System.out.println(a);
-        }
+        int a;
+        a = test3();
+        System.out.println(a);
+       
     }
-        private boolean test2(int b){
-            b = 23;
+        private boolean test2(){
+           
             return true;
+        }
+        
+        private int test3(){
+            if(test2()){
+                return 29;
+            }
+        return 28;
         }
                
         
@@ -270,7 +277,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAfslutActionPerformed
 
     private void btbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTestActionPerformed
-        test();
+        removeTime();
     }//GEN-LAST:event_btbTestActionPerformed
 
     /**
