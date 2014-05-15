@@ -66,6 +66,13 @@ public class PDFGenerator {
     this.colNames = colNames;
   }
   
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName,String date, String received){
+    this.allMaterial = allMaterial;
+    this.materialColNames = materialColName;
+    this.date = date;
+    this.received = received;
+  }
+  
 
   public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<String> allForces,
           ArrayList<String> forcesColName, String date, String received,String fireNr, String evaNr, String message, 
@@ -99,7 +106,7 @@ public class PDFGenerator {
     }
   
    public void runCreateOdinPDF() throws Exception{
-     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+ "O" + ".pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
@@ -165,37 +172,37 @@ public class PDFGenerator {
          title.setAlignment(Element.ALIGN_CENTER);
         odinRaport.add(title);
         addEmptyLine(odinRaport, 2);
-        odinRaport.add(new Paragraph("Dato: " + date,
+       odinRaport.add(new Paragraph("Dato: " + date,
                 small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Indsats Leder: " + leader,
-                small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
-                small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Uge dag: " + weekday,
-                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Indsats Leder: " + leader,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Uge dag: " + weekday,
+//                small));
         addEmptyLine(odinRaport, 1);
         odinRaport.add(new Paragraph("Alarm Modtaget: " + received,
                 small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
-                small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
-                small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Skadslidte",
-                smallBold));
-        odinRaport.add(new Paragraph("Navn: " + name,
-                small));
-        addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Adresse" + address,
-                small));
-        addEmptyLine(odinRaport, 2);
-        odinRaport.add(new Paragraph("Materialer Brugt",
-                smallBold));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Skadslidte",
+//                smallBold));
+//        odinRaport.add(new Paragraph("Navn: " + name,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Adresse" + address,
+//                small));
+//        addEmptyLine(odinRaport, 2);
+//        odinRaport.add(new Paragraph("Materialer Brugt",
+//                smallBold));
         addEmptyLine(odinRaport, 1);
         createMaterialTable(odinRaport, allMaterial, materialColNames);
         document.add(odinRaport);
@@ -242,7 +249,10 @@ public class PDFGenerator {
      para.add(table);
     for (BEMaterial row : rowData){
     table.addCell(row.getM_Materiale());
-    table.addCell("" + row.getM_Antal());
+    PdfPCell data = new PdfPCell(new Phrase(""+row.getM_Antal()));
+    data.setHorizontalAlignment(Element.ALIGN_RIGHT);
+    table.addCell(data);
+    //table.addCell("" + row.getM_Antal());
     }
   }
   
