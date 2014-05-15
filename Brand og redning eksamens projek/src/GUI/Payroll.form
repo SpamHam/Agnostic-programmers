@@ -35,7 +35,11 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jDateChooserPickADate" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="btnPrintToPDF" alignment="1" min="-2" pref="125" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="btnDetaljer" min="-2" pref="125" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnPrintToPDF" min="-2" pref="125" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -54,7 +58,10 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="453" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnPrintToPDF" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnPrintToPDF" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDetaljer" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -173,6 +180,11 @@
     <Component class="javax.swing.JButton" name="btnPrintToPDF">
       <Properties>
         <Property name="text" type="java.lang.String" value="Print til PDF"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDetaljer">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Detaljer"/>
       </Properties>
     </Component>
   </SubComponents>

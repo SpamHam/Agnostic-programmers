@@ -50,7 +50,7 @@ public class BLLTimePlan {
      * @return
      */
     public String getTypeOfWorkFromInt(int role) {
-        return TypeOfWork[role];
+        return TypeOfWork[role - 1];
     }
 
     /**
