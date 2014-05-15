@@ -6,32 +6,29 @@
 
 package BLL;
 
+
 import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
 import Utility.PDFGenerator;
+
 
 /**
  *
  * @author peter bærbar
  */
 public class BLLPDF implements PDFListener  {
+    //ArrayList<BETimePlan> m_timePlan = new ArrayList<>();
+    //ArrayList<String> m_timePlanColNames = new ArrayList<>();
     PDFGenerator pdfGen;
-    
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-    pdfGen = new PDFGenerator(event.getTime(), event.getMatrialeColNames());
-   }
-
-    @Override
-    public void PDFOdinPerformed(FormatEventPDF event) {
-        pdfGen = new PDFGenerator(event.getMaterial(),event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(),
-                event.getDate(),event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(),
-                event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
-            try {
+    pdfGen = new PDFGenerator(event.getTime(),event.getTimeColNames());
+        try {
         pdfGen.run();
     } catch (Exception ex) {
         throw new EventExercutionException("PDF kunne ikke genereres");
-    }  
- }
+     }
+   }
+
 }

@@ -193,31 +193,20 @@ public class Timeplan extends javax.swing.JFrame {
       */
      public void firePDFEvent(FormatEventPDF event){
         if (PDFListener != null){
-               try{
+             try{
                PDFListener.PDFTimePlanPerformed(event);
+               System.out.println("next");
              JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
              } catch(EventExercutionException eex){
              JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
              }
           }
+        dispose();
+        ODINReport report = new ODINReport();
+        report.setVisible(true);
+        report.setLocationRelativeTo(this);
      }
-    
-    
-//    private void someMethod(){
-//        getColNames();
-//        pdfGen = new PDFGenerator(allTime, colNames);
-//        try {
-//            pdfGen.run();
-//            JOptionPane.showMessageDialog(this, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//        dispose();
-//        ODINReport odinReport = new ODINReport();
-//        odinReport.setVisible(true);
-//        odinReport.setLocationRelativeTo(this);
-//
-//}
+     
     private void cmbTypeIndsatsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTypeIndsatsActionPerformed
         if (cmbTypeIndsats.getSelectedItem().toString().trim().equalsIgnoreCase("Andet")) {
             txtAndetTekst.setVisible(true);

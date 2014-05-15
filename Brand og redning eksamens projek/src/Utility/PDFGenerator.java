@@ -48,11 +48,12 @@ public class PDFGenerator {
       Font.BOLD);
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames;
-  private ArrayList<BEMaterial> allMaterial;
-  private ArrayList<String> materialColNames;
-  private ArrayList<String> allForces;
-  private ArrayList<String> forcesColName;
-  private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+  public static final int CREATE_TIME_PLAN_PDF = 0; 
+//  private ArrayList<BEMaterial> allMaterial;
+//  private ArrayList<String> materialColNames;
+//  private ArrayList<String> allForces;
+//  private ArrayList<String> forcesColName;
+//  private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
   
   
   /**
@@ -60,35 +61,52 @@ public class PDFGenerator {
    * @param allTime
    * @param colNames 
    */
+  
   public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
   this.allTime = allTime;
   this.colNames = colNames;
+   FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
   }
   
+//   public PDFGenerator(){
+//   //FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+//  }
   
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<String> allForces,
-          ArrayList<String> forcesColName,String date, String received,String fireNr, String evaNr, String message, 
-          String name, String address, String leader, String teamLeader, String weekday){
-  this.allMaterial = allMaterial;
-  this.materialColNames = materialColName;
-  this.allForces = allForces;
-  this.forcesColName = forcesColName;
-  this.date = date;
-  this.received = received;
-  this.fireNr = fireNr;
-  this.evaNr = evaNr;
-  this.message = message;
-  this.name = name;
-  this.address = address;
-  this.leader = leader;
-  this.teamLeader = teamLeader;
-  this.weekday = weekday;
-  }
+//  public void setTimePlan(ArrayList<BETimePlan> timePlan){
+//  allTime = timePlan;
+//  }
+//  
+//  public void setColNames(ArrayList<String> colNames){
+//  this.colNames = colNames;
+//  }
+  
+
+//  public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames, ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<String> allForces,
+//          ArrayList<String> forcesColName,String date, String received,String fireNr, String evaNr, String message, 
+//          String name, String address, String leader, String teamLeader, String weekday){
+//  this.allTime = allTime;
+//  this.colNames = colNames;
+//  this.allMaterial = allMaterial;
+//  this.materialColNames = materialColName;
+//  this.allForces = allForces;
+//  this.forcesColName = forcesColName;
+//  this.date = date;
+//  this.received = received;
+//  this.fireNr = fireNr;
+//  this.evaNr = evaNr;
+//  this.message = message;
+//  this.name = name;
+//  this.address = address;
+//  this.leader = leader;
+//  this.teamLeader = teamLeader;
+//  this.weekday = weekday;
+//  FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+//  }
   
   
   
   public void run() throws Exception{
-      FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
@@ -120,9 +138,9 @@ public class PDFGenerator {
     // We add one empty line
     addEmptyLine(odinRaport, 1);
     // Lets write a big header
-    Paragraph title = new Paragraph("ODIN Rapport", Header); 
-    title.setAlignment(Element.ALIGN_CENTER);
-    odinRaport.add(title);
+//    Paragraph title = new Paragraph("ODIN Rapport", Header); 
+//    title.setAlignment(Element.ALIGN_CENTER);
+//    odinRaport.add(title);
     addEmptyLine(odinRaport, 1);
     odinRaport.add(new Paragraph("Brand & Redning Esbjerg",
         smallBold));
@@ -141,45 +159,49 @@ public class PDFGenerator {
   addEmptyLine(odinRaport, 3);
     odinRaport.add(new Paragraph("Dette dokument er lavet i systemet Borr",
         redFont));
-    document.newPage(); // new page
-    odinRaport.add(title);
-    addEmptyLine(odinRaport, 2);
-    odinRaport.add(new Paragraph("Dato: " + date,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Indsats Leder: " + leader,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Uge dag: " + weekday,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Alarm Modtaget: " + received,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Skadslidte",
-        smallBold));
-    odinRaport.add(new Paragraph("Navn: " + name,
-        small));
-    addEmptyLine(odinRaport, 1);
-    odinRaport.add(new Paragraph("Adresse" + address,
-        small));
-    addEmptyLine(odinRaport, 2);
-    odinRaport.add(new Paragraph("Materialer Brugt",
-        smallBold));
-    addEmptyLine(odinRaport, 1);
-    createMaterialTable(odinRaport, allMaterial, materialColNames);   
+    //document.newPage(); // new page
+    //ODINBackPage(odinRaport, title);   
     document.add(odinRaport);
 
   }
+
+//    private void ODINBackPage(Paragraph odinRaport, Paragraph title) throws BadElementException {
+//        odinRaport.add(title);
+//        addEmptyLine(odinRaport, 2);
+//        odinRaport.add(new Paragraph("Dato: " + date,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Indsats Leder: " + leader,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Uge dag: " + weekday,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Alarm Modtaget: " + received,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Skadslidte",
+//                smallBold));
+//        odinRaport.add(new Paragraph("Navn: " + name,
+//                small));
+//        addEmptyLine(odinRaport, 1);
+//        odinRaport.add(new Paragraph("Adresse" + address,
+//                small));
+//        addEmptyLine(odinRaport, 2);
+//        odinRaport.add(new Paragraph("Materialer Brugt",
+//                smallBold));
+//        addEmptyLine(odinRaport, 1);
+//        createMaterialTable(odinRaport, allMaterial, materialColNames);
+//    }
   
   /**
    * generates the time table for the time plan section of the pdf
