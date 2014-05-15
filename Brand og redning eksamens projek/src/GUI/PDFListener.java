@@ -18,4 +18,5 @@ public interface PDFListener {
      */
     public void PDFTimePlanPerformed(FormatEventPDF event);
     
+    public void PDFOdinPerformed(FormatEventPDF event);
 }

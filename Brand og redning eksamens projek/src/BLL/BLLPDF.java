@@ -18,8 +18,6 @@ import Utility.PDFGenerator;
  * @author peter bærbar
  */
 public class BLLPDF implements PDFListener  {
-    //ArrayList<BETimePlan> m_timePlan = new ArrayList<>();
-    //ArrayList<String> m_timePlanColNames = new ArrayList<>();
     PDFGenerator pdfGen;
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
@@ -27,8 +25,18 @@ public class BLLPDF implements PDFListener  {
         try {
         pdfGen.runCreateTimePlanPDF();
     } catch (Exception ex) {
-        throw new EventExercutionException("PDF kunne ikke genereres");
+        throw new EventExercutionException("Time plan PDF kunne ikke genereres");
      }
    }
+
+    @Override
+    public void PDFOdinPerformed(FormatEventPDF event) {
+        pdfGen = new PDFGenerator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), event.getDate(), event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(), event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
+      try {
+        pdfGen.runCreateTimePlanPDF();
+    } catch (Exception ex) {
+        throw new EventExercutionException("ODIN PDF kunne ikke genereres");
+     }
+    }
 
 }

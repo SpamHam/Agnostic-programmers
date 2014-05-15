@@ -56,7 +56,10 @@ public class ODINReport extends javax.swing.JFrame {
 
     }
 
-    
+    /**
+     * 
+     * @param PDFListener 
+     */
       public void setPDFListener(PDFListener PDFListener){
         this.PDFListener = PDFListener;
     }
@@ -68,41 +71,30 @@ public class ODINReport extends javax.swing.JFrame {
      private class BTNPDFOdinActionListener implements ActionListener {
      @Override
         public void actionPerformed(ActionEvent e) {
-              // getOdinData();
-               //firePDFEvent();   
+               getOdinData();
+              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
+                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
         }
     }
-     /**
-      * Fires the PDF event
-      * 
-      */
-//     public void firePDFEvent(){
-//        if (PDFListener != null){
-//               try{
-//               PDFListener.PDFOdinPerformed();
-//             JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-//             } catch(EventExercutionException eex){
-//             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//             }
-//          }
-//     }
-    
-//        public ODINReport() {
-//        initComponents();
-//        materialModel = new ChooseMaterialsTableModel(allMaterials);
-//        sorter = new TableRowSorter<TableModel>(materialModel);
-//        setTitle("ODIN Report");
-//        this.setVisible(true);
-//        ShowIndsatteStyrker();
-//        ShowSkadeslidte();
-//        currentTime = t;
-//        setTime();
-//        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-//
-//    }
+    /**
+     * 
+     * @param event 
+     */
+     public void firePDFEvent(FormatEventPDF event){
+        if (PDFListener != null){
+            try{
+              PDFListener.PDFOdinPerformed(event);
+             JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
         
-        
-        
+       /**
+        * 
+        * @param t 
+        */ 
         public void setTime(String t){
             currentTime = t;
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -416,27 +408,31 @@ public class ODINReport extends javax.swing.JFrame {
     private void txtAlarmModtagetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlarmModtagetActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAlarmModtagetActionPerformed
-
-//    private void getOdinData(){
-//    getMaterialColNames();
-//    evaNr = txtEvaReportNr.getText();
-//    fireNr = txtBrandReportNr.getText();
-//    received = txtAlarmModtaget.getText();
-//    date = txtUgeDag.getText();
-//    message = txtMelding.getText();
-//    name = txtNavn.getText();
-//    address = txtAddresse.getText();
-//    leader = txtIndsatsLeder.getText();
-//    teamLeader = txtHoldLeder.getText();
-//    weekday = txtUgeDag.getText();
-//    }
-    
-//  private void getMaterialColNames(){
-//     materialColNames = new ArrayList<>();
-//     for(int i=0; i<materialModel.getColumnCount(); i++){
-//        materialColNames.add(materialModel.getColumnName(i));
-//       }
-//     }
+/**
+ * 
+ */
+    private void getOdinData(){
+    getMaterialColNames();
+    evaNr = txtEvaReportNr.getText();
+    fireNr = txtBrandReportNr.getText();
+    received = txtAlarmModtaget.getText();
+    date = txtUgeDag.getText();
+    message = txtMelding.getText();
+    name = txtNavn.getText();
+    address = txtAddresse.getText();
+    leader = txtIndsatsLeder.getText();
+    teamLeader = txtHoldLeder.getText();
+    weekday = txtUgeDag.getText();
+    }
+   /**
+    * 
+    */ 
+  private void getMaterialColNames(){
+     materialColNames = new ArrayList<>();
+     for(int i=0; i<materialModel.getColumnCount(); i++){
+        materialColNames.add(materialModel.getColumnName(i));
+       }
+     }
     
     private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
