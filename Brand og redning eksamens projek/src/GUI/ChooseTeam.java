@@ -36,16 +36,24 @@ public class ChooseTeam extends javax.swing.JDialog {
         initComponents();
         InitializeFiremen();
         InitializeVehicles();
+        
+        /**
+         * All ActionListeners are listed here
+         */
         ActionListener BTNListener = new BTNMoveActionListener();
         ActionListener BTNFoejListener = new BTNTilfoejActionListener();
+        ActionListener BTNCancel= new CancelListener();
+        btnCancel.addActionListener(BTNCancel);
         btnAddToTeam.addActionListener(BTNListener);
         btnRemoveFromTeam.addActionListener(BTNListener);
+        btnAddTeam.addActionListener(BTNFoejListener);
+        
         jlistAllFiremen.setModel(alleFiremenListModel);
         jlistChosenFiremen.setModel(valgteFiremenListModel);
         jlistChooseACar.setModel(alleVehiclesListModel);
         PopulateFiremanList();
         PopulateVehicleList();
-        btnAddTeam.addActionListener(BTNFoejListener);
+        
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
