@@ -45,7 +45,7 @@ public class ChooseTeam extends javax.swing.JDialog {
         jlistChooseACar.setModel(alleVehiclesListModel);
         PopulateFiremanList();
         PopulateVehicleList();
-    btnAddTeam.addActionListener(BTNFoejListener);
+        btnAddTeam.addActionListener(BTNFoejListener);
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
@@ -74,8 +74,9 @@ public class ChooseTeam extends javax.swing.JDialog {
 
     /**
      * A function that can move item between lists
+     *
      * @param source
-     * @param target 
+     * @param target
      */
     private void moveItem(JList source, JList target) {
 
@@ -89,13 +90,14 @@ public class ChooseTeam extends javax.swing.JDialog {
         DefaultListModel modelSource = (DefaultListModel) source.getModel();
         modelSource.remove(idx);
     }
-    
+
     /**
      * Returns the chosen vehicle from the list
+     *
      * @param veh
      * @return element
      */
-     private String chosenVehicle(JList veh) {
+    private String chosenVehicle(JList veh) {
 
         int idx = veh.getSelectedIndex();
         if (idx == -1) {
@@ -105,34 +107,35 @@ public class ChooseTeam extends javax.swing.JDialog {
         return element;
     }
 
-     /**
-      * Sets the firemen & vehicle chosen and packs them into a Business Entity
-      */
-        private class BTNTilfoejActionListener implements ActionListener {
+    /**
+     * Sets the firemen & vehicle chosen and packs them into a Business Entity
+     */
+    private class BTNTilfoejActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-            String fireman = (String) jlistChosenFiremen.getModel().getElementAt(i);
-            String vehicle = chosenVehicle(jlistChooseACar);
-          BETimePlan temp = new BETimePlan (fireman, vehicle);
-             ValgteFiremen.add(i, temp);
+                String fireman = (String) jlistChosenFiremen.getModel().getElementAt(i);
+                String vehicle = chosenVehicle(jlistChooseACar);
+                BETimePlan temp = new BETimePlan(fireman, vehicle);
+                ValgteFiremen.add(i, temp);
             }
             dispose();
         }
     }
-      
-        /**
-         * Returns the ArrayList ValgteFiremen
-         * @return ValgteFiremen
-         */
-      public ArrayList<BETimePlan> getTeam(){
-      return ValgteFiremen;
-      }
-    
-      /**
-       * Actionlistener for Buttons used for moving items between lists
-       */
+
+    /**
+     * Returns the ArrayList ValgteFiremen
+     *
+     * @return ValgteFiremen
+     */
+    public ArrayList<BETimePlan> getTeam() {
+        return ValgteFiremen;
+    }
+
+    /**
+     * Actionlistener for Buttons used for moving items between lists
+     */
     private class BTNMoveActionListener implements ActionListener {
 
         @Override
@@ -143,6 +146,18 @@ public class ChooseTeam extends javax.swing.JDialog {
                 moveItem(jlistChosenFiremen, jlistAllFiremen);
             }
         }
+    }
+
+    /**
+     * anonymos inner class listening on the Cancel button
+     */
+    private class CancelListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+        }
+
     }
 
     /**
@@ -176,7 +191,6 @@ public class ChooseTeam extends javax.swing.JDialog {
         jlistAllFiremen = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
         jlistChosenFiremen = new javax.swing.JList();
-        btnAddToTeam = new javax.swing.JButton();
         btnRemoveFromTeam = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jlistChooseACar = new javax.swing.JList();
@@ -184,6 +198,7 @@ public class ChooseTeam extends javax.swing.JDialog {
         lblChosenTeamMembers = new javax.swing.JLabel();
         lblChooseACar = new javax.swing.JLabel();
         btnAddTeam = new javax.swing.JButton();
+        btnAddToTeam = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -191,13 +206,6 @@ public class ChooseTeam extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jlistAllFiremen);
 
         jScrollPane2.setViewportView(jlistChosenFiremen);
-
-        btnAddToTeam.setText("Føj til Team");
-        btnAddToTeam.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddToTeamActionPerformed(evt);
-            }
-        });
 
         btnRemoveFromTeam.setText("Fjern fra Team");
 
@@ -211,12 +219,9 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         btnAddTeam.setText("Tilføj Team");
 
+        btnAddToTeam.setText("Føj til Team");
+
         btnCancel.setText("Annuller");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -277,14 +282,6 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddToTeamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToTeamActionPerformed
-
-    }//GEN-LAST:event_btnAddToTeamActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

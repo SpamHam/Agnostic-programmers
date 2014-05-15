@@ -41,11 +41,18 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         initComponents();
         InitializeMaterials();
         setTitle("Materiale Oversigt");
+        
+        /**
+         * ActionListeners are listed here
+         */
         ActionListener BTNListener = new BTNMoveActionListener();
         ActionListener BTNTilfoejListener = new BTNTilfoejActionListener();
+        ActionListener BTNCancel = new CancelListener();
         btnAddToChosenMaterials.addActionListener(BTNListener);
         btnRemoveFromChosenMaterials.addActionListener(BTNListener);
         btnAddMaterials.addActionListener(BTNTilfoejListener);
+        btnCancel.addActionListener(BTNCancel);
+        
         jlistAllMaterials.setModel(alleListModel);
         jlistChosenMaterials.setModel(valgteListModel);
         PopulateList();
@@ -79,7 +86,19 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * Actionlistener for Buttons used for moving items between lists
+     * anonymous inner class listening on the Cancel button
+     */
+    private class CancelListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+        }
+        
+    }
+    
+    /**
+     * anonymos class that listens on the AddToChoosenMaterials & RemoveFromChosenMaterials
      */
     private class BTNMoveActionListener implements ActionListener {
 
@@ -94,8 +113,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * Actionlistener on Tilfoej Button. Also adds the items on the valgteListModel to the
-     * valgteMaterials ArrayList
+     * anonymos class that listens on the AddMaterials
      */
     private class BTNTilfoejActionListener implements ActionListener {
 
@@ -108,6 +126,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
             dispose();
         }
     }
+    
 /**
  * Populates the alleListModel
  */
@@ -130,12 +149,12 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
         jlistChosenMaterials = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlistAllMaterials = new javax.swing.JList();
-        btnRemoveFromChosenMaterials = new javax.swing.JButton();
-        btnAddToChosenMaterials = new javax.swing.JButton();
         lblChosenMaterials = new javax.swing.JLabel();
-        btnAddMaterials = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         lblAllMaterials = new javax.swing.JLabel();
+        btnCancel = new javax.swing.JButton();
+        btnAddToChosenMaterials = new javax.swing.JButton();
+        btnRemoveFromChosenMaterials = new javax.swing.JButton();
+        btnAddMaterials = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -143,32 +162,17 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
         jScrollPane1.setViewportView(jlistAllMaterials);
 
-        btnRemoveFromChosenMaterials.setText("Fjern fra Materialer");
-
-        btnAddToChosenMaterials.setText("Føj til Materialer");
-        btnAddToChosenMaterials.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddToChosenMaterialsActionPerformed(evt);
-            }
-        });
-
         lblChosenMaterials.setText("Valgte Materialer:");
 
-        btnAddMaterials.setText("Tilføj Materialer");
-        btnAddMaterials.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMaterialsActionPerformed(evt);
-            }
-        });
+        lblAllMaterials.setText("Alle Materialer:");
 
         btnCancel.setText("Annuller");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
 
-        lblAllMaterials.setText("Alle Materialer:");
+        btnAddToChosenMaterials.setText("Føj til Materialer");
+
+        btnRemoveFromChosenMaterials.setText("Fjern fra Materialer");
+
+        btnAddMaterials.setText("Tilføj Materialer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,29 +183,24 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(btnRemoveFromChosenMaterials))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnAddToChosenMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(btnAddToChosenMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnRemoveFromChosenMaterials)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(lblAllMaterials)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblChosenMaterials)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnAddMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblChosenMaterials)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAddMaterials)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,25 +223,13 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAddMaterials)
-                    .addComponent(btnCancel))
+                    .addComponent(btnCancel)
+                    .addComponent(btnAddMaterials))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAddToChosenMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddToChosenMaterialsActionPerformed
-
-    }//GEN-LAST:event_btnAddToChosenMaterialsActionPerformed
-
-    private void btnAddMaterialsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMaterialsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddMaterialsActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddMaterials;
