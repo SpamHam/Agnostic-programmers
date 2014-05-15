@@ -32,8 +32,8 @@ public class BLLPayroll {
     }
 
     /**
-     * 
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     private BLLPayroll() throws Exception {
         Error = Utility.ErrorHandler.getInstance();
@@ -45,9 +45,9 @@ public class BLLPayroll {
     }
 
     /**
-     * 
+     *
      * @param b
-     * @throws Exception 
+     * @throws Exception
      */
     public void CreateSalary(BE.BESalary b) throws Exception {
         if (b.getODIN() == 0 || b.getDate().isEmpty()) {
@@ -62,9 +62,9 @@ public class BLLPayroll {
     }
 
     /**
-     * 
+     *
      * @param b
-     * @throws Exception 
+     * @throws Exception
      */
     public void CreateMonthly(BE.BESalary b) throws Exception {
         if (b.getODIN() == 0 || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
@@ -79,9 +79,8 @@ public class BLLPayroll {
     }
 
     /**
-     * 
-     * @return
-     * @throws Exception 
+     *
+     * @return @throws Exception
      */
     public ArrayList<BE.BESalary> getAll() throws Exception {
         ArrayList<BE.BESalary> res = new ArrayList<>();
@@ -94,9 +93,8 @@ public class BLLPayroll {
     }
 
     /**
-     * 
-     * @return
-     * @throws Exception 
+     *
+     * @return @throws Exception
      */
     public ArrayList<BE.BETableSalary> getAllTableSalary() throws Exception {
         ArrayList<BE.BETableSalary> CompressedTable = new ArrayList<>(), UncompressedTable = convertToTable();
@@ -143,13 +141,13 @@ public class BLLPayroll {
     }
 
     /**
-     * 
+     *
      * @param s
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     private BE.BETableSalary SalaryTotableSalary(BE.BESalary s) throws Exception {
-        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromCPR(s.getID());
+        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(s.getID());
         double[] Index = new double[12];
         int IndexLocation = 0;
         IndexLocation += 2 * s.getTypeOfWork(); //BrandBrandmand = 0 BrandHoldleder = 1 StandbyStationBrandmand = 2 StandbyStationHoldleder = 3 ArbejdeStationAndet = 4 ØvelserBrandmand = 6 ØvelserHoldleder = 6 VagtBrandmandHeligdage = 8 VagtBrandmandHverdage = 9 VagtHoldledereHeligdage = 10 VagtHoldlederHverdage = 11;        
@@ -163,5 +161,15 @@ public class BLLPayroll {
 
     public void remove() throws Exception {
         //TODO after Salary are done.
+    }
+
+    public void update(BE.BESalary e) throws Exception {
+        if (!(e.getHours() < 0)) {
+            try {
+                DALC.DALCSalary.getInstance().Update(e);
+            } catch (SQLServerException ex) {
+                Error.StorageUnreachable(".");
+            }
+        }
     }
 }

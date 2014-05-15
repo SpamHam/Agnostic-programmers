@@ -65,8 +65,9 @@ public class DALCSalary {
 
     /**
      * Creates a row in the SalaryReport table.
+     *
      * @param e
-     * @throws SQLException 
+     * @throws SQLException
      */
     public void CreateSalary(BE.BESalary e) throws SQLException {
         String sql = "insert into SalaryReport values (?,?,?,?)";
@@ -120,5 +121,12 @@ public class DALCSalary {
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.executeUpdate();
+    }
+
+    public void Update(BE.BESalary e) throws SQLException {
+        String sql = "update MonthlySalary set Hours=? where ODINnr=?";
+        PreparedStatement ps = m_connection.prepareStatement(sql);
+        ps.setDouble(1, e.getHours());
+        ps.setInt(2, e.getODIN());
     }
 }

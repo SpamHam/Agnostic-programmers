@@ -106,7 +106,7 @@ public class BLLFireman {
      * @return
      * @throws Exception 
      */
-    BEFireman FiremanFromCPR(int ID) throws Exception {
+    public BEFireman FiremanFromID(int ID) throws Exception {
         for (BE.BEFireman f : getAll()) {
             if (ID == f.getID()) {
                 return f;
