@@ -7,6 +7,8 @@ package GUI;
 
 import BE.BEFireman;
 import BLL.BLLFireman;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -50,6 +52,12 @@ public class CRUDFireman extends javax.swing.JFrame {
         tblFiremen.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandmand oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ActionListener BTNAdd = new AddListener();
+        btnAdd.addActionListener(BTNAdd);
+        ActionListener BTNUpdate = new UpdateListener();
+        btnUpdate.addActionListener(BTNUpdate);
+        ActionListener BTNRemove = new RemoveListener();
+        btnRemove.addActionListener(BTNRemove);
         btnUpdate.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblFiremen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,6 +128,56 @@ public class CRUDFireman extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+   
+    private class AddListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        AddFiremanDialog firemanDialog = new AddFiremanDialog(null, true);
+        firemanDialog.setVisible(true);
+        firemanDialog.setLocationRelativeTo(null);
+
+        BEFireman fireman = firemanDialog.getNewFireman();
+        if (fireman != null) // a team has been created in the dialog box.
+        {
+            try {
+                BLLFireman.getInstance().Create(fireman);
+                allFiremans.add(fireman);
+                FiremanTableModel.setCRUDFiremanList(allFiremans);
+                tblFiremen.repaint();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        }
+        }
+        
+    }
+    
+    /**
+     * anonymous inner class listening on the Update button
+     */
+    private class UpdateListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            updateFireman();
+        }
+        
+    }
+    
+    
+    /**
+     * anonymous inner class listening on the Remove button
+     */
+    private class RemoveListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        DeleteFireman();
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,9 +208,9 @@ public class CRUDFireman extends javax.swing.JFrame {
         lblHiredDate = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         jpanelButtons = new javax.swing.JPanel();
+        btnRemove = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
-        btnRemove = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -224,7 +282,6 @@ public class CRUDFireman extends javax.swing.JFrame {
                             .addComponent(txtFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtHiredDate, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addComponent(ChBoxIsLeaderTrained)
                         .addGap(12, 12, 12))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
@@ -293,38 +350,23 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         jpanelButtons.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
 
+        btnRemove.setText("Fjern");
+        btnRemove.setPreferredSize(new java.awt.Dimension(55, 23));
+
         btnAdd.setText("Tilføj");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
 
         btnUpdate.setText("Opdater");
         btnUpdate.setMaximumSize(new java.awt.Dimension(55, 23));
         btnUpdate.setMinimumSize(new java.awt.Dimension(55, 23));
         btnUpdate.setPreferredSize(new java.awt.Dimension(55, 23));
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
-
-        btnRemove.setText("Fjern");
-        btnRemove.setPreferredSize(new java.awt.Dimension(55, 23));
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout jpanelButtonsLayout = new javax.swing.GroupLayout(jpanelButtons);
         jpanelButtons.setLayout(jpanelButtonsLayout);
         jpanelButtonsLayout.setHorizontalGroup(
             jpanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnRemove, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpanelButtonsLayout.setVerticalGroup(
             jpanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -332,7 +374,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -370,30 +412,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        AddFiremanDialog firemanDialog = new AddFiremanDialog(this, true);
-        firemanDialog.setVisible(true);
-        firemanDialog.setLocationRelativeTo(this);
-
-        BEFireman fireman = firemanDialog.getNewFireman();
-        if (fireman != null) // a team has been created in the dialog box.
-        {
-            try {
-                BLLFireman.getInstance().Create(fireman);
-                allFiremans.add(fireman);
-                FiremanTableModel.setCRUDFiremanList(allFiremans);
-                tblFiremen.repaint();
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        updateFireman();
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
     private void ChBoxIsLeaderTrainedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChBoxIsLeaderTrainedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ChBoxIsLeaderTrainedActionPerformed
@@ -402,11 +420,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         dispose();
         openAdministrationMenu();
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-     DeleteFireman();
-     
-    }//GEN-LAST:event_btnRemoveActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ChBoxIsLeaderTrained;

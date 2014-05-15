@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 
@@ -81,7 +83,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         });
     }
 
-        private void DeleteVehicle() {
+    private void DeleteVehicle() {
         try {
             BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
             allVehicle = BLL.BLLVehicle.getInstance().getAll();
@@ -91,8 +93,87 @@ public class CRUDVehicle extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
+
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
+
+    /**
+     * anonymous inner class listening on the Add button
+     */
+    private class AddListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(null, true);
+            tilføjBrandbil.setVisible(true);
+
+            // continue here when the dialog box is closed (disposed).
+            BEVehicle vehicle = tilføjBrandbil.getVehicle();
+            if (vehicle != null) // a team has been created in the dialog box.
+            {
+                allVehicle.add(vehicle);
+                vehicleTableModel.setVehicleList(allVehicle);
+                tblVehicle.repaint();
+                try {
+                    BLLvehicle.getInstance().Create(vehicle);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+
+    }
+
+    /**
+     * anonymous inner class listening on the Update button
+     */
+    private class UpdateListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            selectedRow = tblVehicle.getSelectedRow();
+            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
+            );
+            allVehicle.set(selectedRow, updateVehicle);
+            vehicleTableModel.setVehicleList(allVehicle);
+            vehicleTableModel.fireTableDataChanged();
+            tblVehicle.repaint();
+            try {
+                BLLvehicle.getInstance().Update(updateVehicle);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
+
+    /**
+     * anonymous inner class listening on the Remove button
+     */
+    private class RemoveListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            DeleteVehicle();
+        }
+
+    }
+
+    /**
+     * anonymous inner class listening on the Back button
+     */
+    private class BackListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            openAdministrationMenu();
+        }
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -102,7 +183,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnBack = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblVehicle = new javax.swing.JTable();
         UpdateFieldsPanel = new javax.swing.JPanel();
@@ -117,18 +197,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
         lblRegNr = new javax.swing.JLabel();
         jPanelFunktioner = new javax.swing.JPanel();
         btnRemove = new javax.swing.JButton();
-        btnUpdate = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
+        btnUpdate = new javax.swing.JButton();
+        btnBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(700, 300));
-
-        btnBack.setText("Tilbage");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         tblVehicle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -225,43 +299,34 @@ public class CRUDVehicle extends javax.swing.JFrame {
         jPanelFunktioner.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
 
         btnRemove.setText("Fjern");
-        btnRemove.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRemoveActionPerformed(evt);
-            }
-        });
-
-        btnUpdate.setText("Opdatere");
-        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUpdateActionPerformed(evt);
-            }
-        });
 
         btnAdd.setText("Tilføj");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
+
+        btnUpdate.setText("Opdatere");
 
         javax.swing.GroupLayout jPanelFunktionerLayout = new javax.swing.GroupLayout(jPanelFunktioner);
         jPanelFunktioner.setLayout(jPanelFunktionerLayout);
         jPanelFunktionerLayout.setHorizontalGroup(
             jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
         );
         jPanelFunktionerLayout.setVerticalGroup(
             jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunktionerLayout.createSequentialGroup()
-                .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(5, 5, 5)
-                .addComponent(btnUpdate)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btnRemove))
+            .addGroup(jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunktionerLayout.createSequentialGroup()
+                    .addContainerGap(29, Short.MAX_VALUE)
+                    .addComponent(btnUpdate)
+                    .addContainerGap(29, Short.MAX_VALUE)))
         );
+
+        btnBack.setText("Tilbage");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,13 +335,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 17, Short.MAX_VALUE)
                 .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanelFunktioner, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(10, 10, 10))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanelFunktioner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,53 +360,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
-        selectedRow = tblVehicle.getSelectedRow();
-        BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
-        );
-        allVehicle.set(selectedRow, updateVehicle);
-        vehicleTableModel.setVehicleList(allVehicle);
-        vehicleTableModel.fireTableDataChanged();
-        tblVehicle.repaint();
-        try {
-            BLLvehicle.getInstance().Update(updateVehicle);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_btnUpdateActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(this, true);
-        tilføjBrandbil.setVisible(true);
-
-        // continue here when the dialog box is closed (disposed).
-        BEVehicle vehicle = tilføjBrandbil.getVehicle();
-        if (vehicle != null) // a team has been created in the dialog box.
-        {
-            allVehicle.add(vehicle);
-            vehicleTableModel.setVehicleList(allVehicle);
-            tblVehicle.repaint();
-            try {
-                BLLvehicle.getInstance().Create(vehicle);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
-        openAdministrationMenu();
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRemoveActionPerformed
-DeleteVehicle();
-    }//GEN-LAST:event_btnRemoveActionPerformed
-
-    private void openAdministrationMenu() {
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel UpdateFieldsPanel;

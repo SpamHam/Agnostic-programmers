@@ -5,6 +5,9 @@
  */
 package GUI;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Son Of Satan
@@ -16,7 +19,15 @@ public class AdminstrationMenu extends javax.swing.JFrame {
      */
     public AdminstrationMenu() {
         initComponents();
+        ActionListener BTNFiremanMenu = new FiremanListener();
+        btnFiremanMenu.addActionListener(BTNFiremanMenu);
+        ActionListener BTNVehicleMenu = new VehicleListener();
+        btnVehicleMenu.addActionListener(BTNVehicleMenu);
+        ActionListener BTNMaterialsMenu = new MaterialsListener();
+        btnMaterialMenu.addActionListener(BTNMaterialsMenu);
     }
+    
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -60,9 +71,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         btnFiremanMenu = new javax.swing.JButton();
-        btnVehicleMenu = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        btnMaterialMenu = new javax.swing.JButton();
         jPanelFiremanMenu = new javax.swing.JPanel();
         lblFiremanMenu1 = new javax.swing.JLabel();
         lblFiremanMenu2 = new javax.swing.JLabel();
@@ -78,6 +87,8 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         lblMaterialMenu2 = new javax.swing.JLabel();
         lblMaterialMenu3 = new javax.swing.JLabel();
         lblMaterialMenu4 = new javax.swing.JLabel();
+        btnVehicleMenu = new javax.swing.JButton();
+        btnMaterialMenu = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,26 +102,6 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         btnFiremanMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFiremanMenuActionPerformed(evt);
-            }
-        });
-
-        btnVehicleMenu.setText("Brandbil Menu");
-        btnVehicleMenu.setMaximumSize(new java.awt.Dimension(100, 25));
-        btnVehicleMenu.setMinimumSize(new java.awt.Dimension(100, 25));
-        btnVehicleMenu.setPreferredSize(new java.awt.Dimension(100, 25));
-        btnVehicleMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVehicleMenuActionPerformed(evt);
-            }
-        });
-
-        btnMaterialMenu.setText("Matriale Menu");
-        btnMaterialMenu.setMaximumSize(new java.awt.Dimension(115, 25));
-        btnMaterialMenu.setMinimumSize(new java.awt.Dimension(115, 25));
-        btnMaterialMenu.setPreferredSize(new java.awt.Dimension(115, 25));
-        btnMaterialMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMaterialMenuActionPerformed(evt);
             }
         });
 
@@ -134,7 +125,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                     .addComponent(lblFiremanMenu2)
                     .addComponent(lblFiremanMenu3)
                     .addComponent(lblFiremanMenu4))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 98, Short.MAX_VALUE))
         );
         jPanelFiremanMenuLayout.setVerticalGroup(
             jPanelFiremanMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,7 +197,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                     .addComponent(lblMaterialMenu2)
                     .addComponent(lblMaterialMenu3)
                     .addComponent(lblMaterialMenu4))
-                .addGap(0, 105, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanelMaterialMenuLayout.setVerticalGroup(
             jPanelMaterialMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -221,6 +212,16 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                 .addComponent(lblMaterialMenu4)
                 .addGap(0, 11, Short.MAX_VALUE))
         );
+
+        btnVehicleMenu.setText("Brandbil Menu");
+        btnVehicleMenu.setMaximumSize(new java.awt.Dimension(100, 25));
+        btnVehicleMenu.setMinimumSize(new java.awt.Dimension(100, 25));
+        btnVehicleMenu.setPreferredSize(new java.awt.Dimension(100, 25));
+
+        btnMaterialMenu.setText("Matriale Menu");
+        btnMaterialMenu.setMaximumSize(new java.awt.Dimension(115, 25));
+        btnMaterialMenu.setMinimumSize(new java.awt.Dimension(115, 25));
+        btnMaterialMenu.setPreferredSize(new java.awt.Dimension(115, 25));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -238,18 +239,16 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                                 .addComponent(btnFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jPanelFiremanMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btnVehicleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btnMaterialMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addGap(2, 2, 2)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jPanelVehicleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jPanelMaterialMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jPanelVehicleMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanelMaterialMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -263,10 +262,9 @@ public class AdminstrationMenu extends javax.swing.JFrame {
                     .addComponent(jPanelFiremanMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnVehicleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3))
-                    .addComponent(jPanelVehicleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel3)
+                    .addComponent(jPanelVehicleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVehicleMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelMaterialMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -281,15 +279,6 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         openFiremanFrame();
         dispose();
     }//GEN-LAST:event_btnFiremanMenuActionPerformed
-
-    private void btnVehicleMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVehicleMenuActionPerformed
-        openVehicleFrame();
-        dispose();    }//GEN-LAST:event_btnVehicleMenuActionPerformed
-
-    private void btnMaterialMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaterialMenuActionPerformed
-        openMaterialsFrame();
-        dispose();
-    }//GEN-LAST:event_btnMaterialMenuActionPerformed
 
     /**
      * Opens the CRUDFireman frame
@@ -318,7 +307,38 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         CRUDMaterialFrame.setVisible(true);
     }
 
+/**
+ * anonymous inner class listening on the FiremanMenu button
+ */    
+    private class FiremanListener implements ActionListener{
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        openFiremanFrame();
+        }
+        
+    }
+
+    /**
+     * anonymous inner class listening on the VehicleMenu button
+     */
+    private class VehicleListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        openVehicleFrame();
+        }
+        
+    }
+    
+    private class MaterialsListener implements ActionListener{
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        openMaterialsFrame();
+        }
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnFiremanMenu;
     private javax.swing.JButton btnMaterialMenu;

@@ -6,6 +6,8 @@
 package GUI;
 
 import BE.BEFireman;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JTextField;
 
 /**
@@ -23,6 +25,10 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         setTitle("Tilføj en Brandmand");
+        ActionListener BTNAddListener = new AddListener();
+        btnAdd.addActionListener(BTNAddListener);
+        ActionListener BTNCancelListener = new CancelListener();
+        btnCancel.addActionListener(BTNCancelListener);
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
@@ -42,12 +48,13 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         if (chkboxIsLeaderTrained.isSelected()) {
             leaderUddannet = true;
         }
-        
+
         fireman = new BEFireman(ID, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet, hiredDate);
     }
 
     /**
-     *  Returns the Business Entity created from the Add function
+     * Returns the Business Entity created from the Add function
+     *
      * @return fireman
      */
     public BEFireman getNewFireman() {
@@ -74,12 +81,12 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         chkboxIsLeaderTrained = new javax.swing.JCheckBox();
         lblFirstName = new javax.swing.JLabel();
         txtAddress = new javax.swing.JTextField();
-        btnAdd = new javax.swing.JButton();
-        btnCancel = new javax.swing.JButton();
         txtPaymentNr = new javax.swing.JTextField();
         lblPaymentNr = new javax.swing.JLabel();
         jDateHiredDate = new com.toedter.calendar.JDateChooser();
         lblHiredDate = new javax.swing.JLabel();
+        btnAdd = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -105,23 +112,13 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         lblFirstName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblFirstName.setText("Fornavn:");
 
-        btnAdd.setText("Tilføj");
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
-            }
-        });
-
-        btnCancel.setText("Annuller");
-        btnCancel.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelActionPerformed(evt);
-            }
-        });
-
         lblPaymentNr.setText("Løn nr:");
 
         lblHiredDate.setText("Ansættelses Dato:");
+
+        btnAdd.setText("Tilføj");
+
+        btnCancel.setText("Annuller");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,10 +199,12 @@ public class AddFiremanDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(chkboxIsLeaderTrained)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnCancel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCancel)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -214,15 +213,6 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     private void chkboxIsLeaderTrainedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkboxIsLeaderTrainedActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_chkboxIsLeaderTrainedActionPerformed
-
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        Add();
-        dispose();
-    }//GEN-LAST:event_btnAddActionPerformed
-
-    private void btnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelActionPerformed
-        dispose();
-    }//GEN-LAST:event_btnCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
@@ -243,4 +233,28 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     private javax.swing.JTextField txtPaymentNr;
     private javax.swing.JTextField txtTelephoneNr;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * anonymous inner class listening on the Add button
+     */
+    private class AddListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            Add();
+        }
+    }
+
+    /**
+     * anonymous inner class listening on the Cancel button
+     */
+    private class CancelListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+        }
+
+    }
+
 }
