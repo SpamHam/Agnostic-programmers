@@ -25,7 +25,7 @@ public class BLLPDF implements PDFListener  {
     public void PDFTimePlanPerformed(FormatEventPDF event) {
     pdfGen = new PDFGenerator(event.getTime(),event.getTimeColNames());
         try {
-        pdfGen.run();
+        pdfGen.runCreateTimePlanPDF();
     } catch (Exception ex) {
         throw new EventExercutionException("PDF kunne ikke genereres");
      }

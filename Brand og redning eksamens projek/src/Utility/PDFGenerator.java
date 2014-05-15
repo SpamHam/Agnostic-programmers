@@ -61,16 +61,15 @@ public class PDFGenerator {
    * @param allTime
    * @param colNames 
    */
-  
   public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
   this.allTime = allTime;
   this.colNames = colNames;
-   FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
   }
   
-//   public PDFGenerator(){
-//   //FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
-//  }
+  public void createTimePlanPDF(){
+  
+  }
+   
   
 //  public void setTimePlan(ArrayList<BETimePlan> timePlan){
 //  allTime = timePlan;
@@ -105,7 +104,17 @@ public class PDFGenerator {
   
   
   
-  public void run() throws Exception{
+  public void runCreateTimePlanPDF() throws Exception{
+     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+      Document document = new Document();
+      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+      document.open();
+      addMetaData(document);
+      createTimePlanPage(document);
+      document.close();
+    }
+  
+   public void runCreateOdinPDF() throws Exception{
      FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
@@ -138,9 +147,9 @@ public class PDFGenerator {
     // We add one empty line
     addEmptyLine(odinRaport, 1);
     // Lets write a big header
-//    Paragraph title = new Paragraph("ODIN Rapport", Header); 
-//    title.setAlignment(Element.ALIGN_CENTER);
-//    odinRaport.add(title);
+    Paragraph title = new Paragraph("ODIN Rapport", Header); 
+    title.setAlignment(Element.ALIGN_CENTER);
+    odinRaport.add(title);
     addEmptyLine(odinRaport, 1);
     odinRaport.add(new Paragraph("Brand & Redning Esbjerg",
         smallBold));
