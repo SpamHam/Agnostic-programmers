@@ -156,7 +156,7 @@ public class AdminstrationMenu extends javax.swing.JFrame {
         jPanelVehicleMenuLayout.setVerticalGroup(
             jPanelVehicleMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVehicleMenuLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
+                .addContainerGap()
                 .addComponent(lblVehicleMenu1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblVehicleMenu2)
