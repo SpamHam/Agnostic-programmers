@@ -47,11 +47,14 @@ public class FormatEventPDF {
 //  this.weekday = weekday;
 //  }
   
-  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,String date, String received){
+  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<String> allForces,
+          ArrayList<String> forcesColNames,String date, String received){
   this.date = date;
   this.received = received;
   this.allMaterial = allMaterial;
   this.matrialeColNames = materialColNames;
+  this.allForces = allForces;
+  this.forcesColNames = forcesColNames;
   }
     
     public ArrayList<BETimePlan> getTime(){

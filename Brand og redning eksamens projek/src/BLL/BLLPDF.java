@@ -11,8 +11,6 @@ import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
 import Utility.PDFGenerator;
-import com.sun.org.apache.xalan.internal.lib.ExsltDatetime;
-
 
 /**
  *
@@ -33,7 +31,7 @@ public class BLLPDF implements PDFListener  {
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
       //  pdfGen = new PDFGenerator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), event.getDate(), event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(), event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
-      pdfGen = new PDFGenerator(event.getMaterial(),event.getMatrialeColNames(),event.getDate(),event.getReceived());
+      pdfGen = new PDFGenerator(event.getMaterial(),event.getMatrialeColNames(),event.getForces(),event.getForcesColNames(),event.getDate(),event.getReceived());
         try {
         pdfGen.runCreateOdinPDF();
     } catch (Exception ex) {

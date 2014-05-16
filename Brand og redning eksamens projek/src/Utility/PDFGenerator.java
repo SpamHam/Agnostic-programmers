@@ -66,9 +66,12 @@ public class PDFGenerator {
     this.colNames = colNames;
   }
   
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName,String date, String received){
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName,ArrayList<String> allForces,
+          ArrayList<String> forcesColName, String date, String received){
     this.allMaterial = allMaterial;
     this.materialColNames = materialColName;
+    this.allForces = allForces;
+    this.forcesColName = forcesColName;
     this.date = date;
     this.received = received;
   }
@@ -205,6 +208,8 @@ public class PDFGenerator {
 //                smallBold));
         addEmptyLine(odinRaport, 1);
         createMaterialTable(odinRaport, allMaterial, materialColNames);
+        addEmptyLine(odinRaport, 2);
+        createForcesTable(odinRaport, allForces, forcesColName);
         document.add(odinRaport);
     }
   
@@ -256,21 +261,21 @@ public class PDFGenerator {
     }
   }
   
-//    private void createForcesTable(Paragraph para, ArrayList<String> rowData, ArrayList<String> colNames)
-//      throws BadElementException {
-//    PdfPTable table = new PdfPTable(colNames.size());
-//
-//    for (String col : colNames){
-//    PdfPCell c1 = new PdfPCell(new Phrase(col));
-//    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
-//    table.addCell(c1);
-//     }
-//     para.add(table);
-//    for (BEMaterial row : rowData){
-//    table.addCell(row.getM_Materiale());
-//    table.addCell("" + row.getM_Antal());
-//    }
-//  }
+    private void createForcesTable(Paragraph para, ArrayList<String> rowData, ArrayList<String> colNames)
+      throws BadElementException {
+    PdfPTable table = new PdfPTable(colNames.size());
+
+    for (String col : colNames){
+    PdfPCell c1 = new PdfPCell(new Phrase(col));
+    c1.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(c1);
+     }
+     para.add(table);
+    for (String row : rowData){
+    table.addCell(row);
+    //table.addCell("" + row.getM_Antal());
+    }
+  }
 /**
  * adds an empty line
  * @param paragraph
