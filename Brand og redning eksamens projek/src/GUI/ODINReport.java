@@ -448,8 +448,8 @@ public class ODINReport extends javax.swing.JFrame {
     message = txtMessage.getText();
     name = txtName.getText();
     address = txtAddress.getText();
-    leader = txtTeamLeader.getText();
-    teamLeader = txtLeader.getText();
+    teamLeader = txtTeamLeader.getText();
+    leader = txtLeader.getText();
     weekday = txtWeekday.getText();
     }
    /**

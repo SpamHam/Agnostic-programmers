@@ -39,14 +39,16 @@ import java.util.ArrayList;
 public class PDFGenerator {
    //private String FILE;
   private String FILE = "c:/PDF/";
-  final private static Font Header = new Font(Font.FontFamily.TIMES_ROMAN, 18,
+  final private static Font Header = new Font(Font.FontFamily.TIMES_ROMAN, 20,
       Font.BOLD);
  final private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 6,
       Font.NORMAL, BaseColor.RED);
   final private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
       Font.BOLD);
-  final private static Font small = new Font(Font.FontFamily.TIMES_ROMAN, 10,
+  final private static Font small = new Font(Font.FontFamily.TIMES_ROMAN, 12,
       Font.NORMAL);
+  final private static Font big = new Font(Font.FontFamily.TIMES_ROMAN, 14,
+      Font.BOLD);
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames; 
   private ArrayList<BEMaterial> allMaterial;
@@ -181,19 +183,49 @@ public class PDFGenerator {
         odinRaport.add(new Chunk("Dato: ",smallBold));
         odinRaport.add(new Phrase(date,
                 small));
-        odinRaport.add(new Phrase("             ",
+        odinRaport.add(new Phrase("                          ",
                 small));
         odinRaport.add(new Chunk("Indsats Leder: " , smallBold));
         odinRaport.add(new Phrase( teamLeader,
                 small));
-        addEmptyLine(odinRaport, 1);
+ //       addEmptyLine(odinRaport, 1);
 //        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
 //                small));
 //        addEmptyLine(odinRaport, 1);
 //        odinRaport.add(new Paragraph("Uge dag: " + weekday,
 //                small));
+        addEmptyLine(odinRaport, 2);
+        odinRaport.add(new Chunk("Alarm Modtaget: " , smallBold));
+        odinRaport.add(new Phrase( received,
+                small));
+        odinRaport.add(new Phrase("                          ",
+                small));
+        odinRaport.add(new Chunk("Uge dag: " , smallBold));
+        odinRaport.add(new Phrase( weekday,
+                small));
+       addEmptyLine(odinRaport, 2);
+        odinRaport.add(new Chunk("Brand report Nr: " , smallBold));
+        odinRaport.add(new Phrase( fireNr,
+                small));
+        odinRaport.add(new Phrase("                          ",
+                small));
+         odinRaport.add(new Chunk("EVA Nr: " , smallBold));
+        odinRaport.add(new Phrase( evaNr,
+                small));
+        addEmptyLine(odinRaport, 2);
+         odinRaport.add(new Chunk("Melding: " , smallBold));
+        odinRaport.add(new Phrase( message,
+                small));
+        addEmptyLine(odinRaport, 2);
+        odinRaport.add(new Chunk("Skadeslidte: " , big));
         addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Paragraph("Alarm Modtaget: " + received,
+        odinRaport.add(new Chunk("Navn: " , smallBold));
+        odinRaport.add(new Phrase( name,
+                small));
+        odinRaport.add(new Phrase("                          ",
+                small));
+         odinRaport.add(new Chunk("Adresse: " , smallBold));
+        odinRaport.add(new Phrase( address,
                 small));
 //        addEmptyLine(odinRaport, 1);
 //        odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
@@ -213,8 +245,10 @@ public class PDFGenerator {
 //        odinRaport.add(new Paragraph("Materialer Brugt",
 //                smallBold));
         addEmptyLine(odinRaport, 1);
+        odinRaport.add(new Chunk("Brugte materialer: " , big));
         createMaterialTable(odinRaport, allMaterial, materialColNames);
         addEmptyLine(odinRaport, 2);
+        odinRaport.add(new Chunk("Indsatte Styrker: " , big));
         createForcesTable(odinRaport, allForces, forcesColName);
         document.add(odinRaport);
     }
