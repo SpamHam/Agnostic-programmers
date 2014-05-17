@@ -86,7 +86,8 @@ public class ODINReport extends javax.swing.JFrame {
                getOdinData();
 //              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
 //                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
-        firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,received));
+        firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,
+                        received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));
         }
     }
      
@@ -128,7 +129,7 @@ public class ODINReport extends javax.swing.JFrame {
         try {
             Date date = formatter.parse(dato);
           txtRecived.setText(tid);
-          dcDato.setDate(date);
+          dcDate.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(ODINReport.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -153,7 +154,7 @@ public class ODINReport extends javax.swing.JFrame {
         lblLeader = new javax.swing.JLabel();
         txtTeamLeader = new javax.swing.JTextField();
         txtLeader = new javax.swing.JTextField();
-        dcDato = new com.toedter.calendar.JDateChooser();
+        dcDate = new com.toedter.calendar.JDateChooser();
         lblDate = new javax.swing.JLabel();
         lblRecived = new javax.swing.JLabel();
         txtRecived = new javax.swing.JTextField();
@@ -275,16 +276,10 @@ public class ODINReport extends javax.swing.JFrame {
 
         tblForces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Vogn Nr", "Kørsl 1/2", "Bemanding"
+
             }
         ));
         jScrollPane1.setViewportView(tblForces);
@@ -353,7 +348,7 @@ public class ODINReport extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lblDate)
                                         .addGap(60, 60, 60)
-                                        .addComponent(dcDato, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTeamLeader)
@@ -386,7 +381,7 @@ public class ODINReport extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(dcDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(dcDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblWeekday)
@@ -449,7 +444,7 @@ public class ODINReport extends javax.swing.JFrame {
     evaNr = txtEvaNr.getText();
     fireNr = txtFireNr.getText();
     received = txtRecived.getText();
-    date = ((JTextField) dcDato.getDateEditor().getUiComponent()).getText();
+    date = ((JTextField) dcDate.getDateEditor().getUiComponent()).getText();
     message = txtMessage.getText();
     name = txtName.getText();
     address = txtAddress.getText();
@@ -480,6 +475,7 @@ public class ODINReport extends javax.swing.JFrame {
 
         // continue here when the dialog box is closed (disposed).
         ArrayList<BEMaterial> mat = materialsDialog.getValgteMaterials();
+        //System.out.println(mat.get(0).getMaterial());
         if (mat != null) // a material has been created in the dialog box.
         {
             if (!allMaterials.isEmpty()) {
@@ -492,7 +488,7 @@ public class ODINReport extends javax.swing.JFrame {
             tblMaterial.setModel(materialModel);
             tblMaterial.setRowSorter(sorter);
             tblMaterial.getTableHeader().setReorderingAllowed(false);
-
+                
             materialModel.setMaterialsStatusList(allMaterials);
         }
     }//GEN-LAST:event_btnAddMaterialActionPerformed
@@ -520,7 +516,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JButton btnSave;
     private javax.swing.JCheckBox chkBoxForces;
     private javax.swing.JCheckBox chkBoxWounded;
-    private com.toedter.calendar.JDateChooser dcDato;
+    private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

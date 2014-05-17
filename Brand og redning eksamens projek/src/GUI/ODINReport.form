@@ -97,7 +97,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblDate" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                                      <Component id="dcDato" min="-2" pref="127" max="-2" attributes="0"/>
+                                      <Component id="dcDate" min="-2" pref="127" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
@@ -143,7 +143,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="dcDato" max="32767" attributes="0"/>
+                      <Component id="dcDate" max="32767" attributes="0"/>
                       <Component id="lblDate" max="32767" attributes="0"/>
                   </Group>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -242,7 +242,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtLeader">
     </Component>
-    <Component class="com.toedter.calendar.JDateChooser" name="dcDato">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcDate">
     </Component>
     <Component class="javax.swing.JLabel" name="lblDate">
       <Properties>
@@ -405,30 +405,10 @@
             <Component class="javax.swing.JTable" name="tblForces">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="3" rowCount="7">
-                    <Column editable="true" title="Vogn Nr" type="java.lang.Object"/>
-                    <Column editable="true" title="K&#xf8;rsl 1/2" type="java.lang.Object"/>
-                    <Column editable="true" title="Bemanding" type="java.lang.Object"/>
-                  </Table>
+                  <Table columnCount="0" rowCount="0"/>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                  <TableColumnModel selectionModel="0">
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                      <Title/>
-                      <Editor/>
-                      <Renderer/>
-                    </Column>
-                  </TableColumnModel>
+                  <TableColumnModel selectionModel="0"/>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

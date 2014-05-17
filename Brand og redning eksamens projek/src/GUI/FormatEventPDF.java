@@ -49,13 +49,23 @@ public class FormatEventPDF {
 //  }
   
   public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<BEForces> allForces,
-          ArrayList<String> forcesColNames,String date, String received){
-  this.date = date;
-  this.received = received;
-  this.allMaterial = allMaterial;
-  this.matrialeColNames = materialColNames;
-  this.allForces = allForces;
-  this.forcesColNames = forcesColNames;
+         ArrayList<String> forcesColNames,String date, String received,String fireNr, String evaNr, String message,
+        String name, String address, String leader, String teamLeader, String weekday){
+      this.date = date;
+      this.received = received;
+      this.allMaterial = allMaterial;
+      this.matrialeColNames = materialColNames;
+      this.allForces = allForces;
+      this.forcesColNames = forcesColNames;
+      this.fireNr = fireNr;
+      this.evaNr = evaNr;
+      this.message = message;
+      this.name = name;
+      this.address = address;
+      this.leader = leader;
+      this.teamLeader = teamLeader;
+      this.weekday = weekday;
+
   }
     
     public ArrayList<BETimePlan> getTime(){

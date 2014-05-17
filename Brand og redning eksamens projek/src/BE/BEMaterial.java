@@ -42,7 +42,7 @@ public class BEMaterial {
      * @param material String
      */
       public BEMaterial(String material) {
-        material = material;
+        this.material = material;
     }
 
     /**

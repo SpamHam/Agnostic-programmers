@@ -181,10 +181,12 @@ public class PDFGenerator {
         odinRaport.add(new Chunk("Dato: ",smallBold));
         odinRaport.add(new Phrase(date,
                 small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Indsats Leder: " + leader,
-//                small));
-//        addEmptyLine(odinRaport, 1);
+        odinRaport.add(new Phrase("             ",
+                small));
+        odinRaport.add(new Chunk("Indsats Leder: " , smallBold));
+        odinRaport.add(new Phrase( teamLeader,
+                small));
+        addEmptyLine(odinRaport, 1);
 //        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
 //                small));
 //        addEmptyLine(odinRaport, 1);
