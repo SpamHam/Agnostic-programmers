@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -176,7 +177,11 @@ public class PDFGenerator {
          title.setAlignment(Element.ALIGN_CENTER);
         odinRaport.add(title);
         addEmptyLine(odinRaport, 2);
-       odinRaport.add(new Paragraph("Dato: " + date,
+       //odinRaport.add(new Paragraph("Dato: " + date,
+         //       small));
+       
+        odinRaport.add(new Chunk("Dato: ",smallBold));
+        odinRaport.add(new Phrase(date,
                 small));
 //        addEmptyLine(odinRaport, 1);
 //        odinRaport.add(new Paragraph("Indsats Leder: " + leader,
