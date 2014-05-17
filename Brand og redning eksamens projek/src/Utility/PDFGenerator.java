@@ -39,7 +39,6 @@ import java.util.ArrayList;
 public class PDFGenerator {
    //private String FILE;
   private String FILE = "c:/PDF/";
- // DateFactory myDate;
   final private static Font Header = new Font(Font.FontFamily.TIMES_ROMAN, 18,
       Font.BOLD);
  final private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 6,
@@ -49,8 +48,7 @@ public class PDFGenerator {
   final private static Font small = new Font(Font.FontFamily.TIMES_ROMAN, 10,
       Font.NORMAL);
   private ArrayList<BETimePlan> allTime;
-  private ArrayList<String> colNames;
-  public static final int CREATE_TIME_PLAN_PDF = 0; 
+  private ArrayList<String> colNames; 
   private ArrayList<BEMaterial> allMaterial;
   private ArrayList<String> materialColNames;
   private ArrayList<BEForces> allForces;
@@ -238,22 +236,22 @@ public class PDFGenerator {
      }
      para.add(table);
     for (BETimePlan row : rowData){
-    PdfPCell pos = new PdfPCell(new Phrase(row.getStilling(),small));
+    PdfPCell pos = new PdfPCell(new Phrase(row.getTitle(),small));
     pos.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(pos);
-    PdfPCell name = new PdfPCell(new Phrase(row.getNavn(),small));
+    PdfPCell name = new PdfPCell(new Phrase(row.getName(),small));
     name.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(name);
-    PdfPCell time = new PdfPCell(new Phrase(row.getTidsrum(),small));
+    PdfPCell time = new PdfPCell(new Phrase(row.getTime(),small));
     time.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(time);
-    PdfPCell road = new PdfPCell(new Phrase(""+row.getKoert(),small));
+    PdfPCell road = new PdfPCell(new Phrase(""+row.getHours(),small));
     road.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(road);
-    PdfPCell stat = new PdfPCell(new Phrase("" + row.getStationsVagt(),small));
+    PdfPCell stat = new PdfPCell(new Phrase("" + row.getStationHours(),small));
     stat.setHorizontalAlignment(Element.ALIGN_CENTER);   
     table.addCell(stat);
-    PdfPCell veh = new PdfPCell(new Phrase(row.getKoeretoej(),small));
+    PdfPCell veh = new PdfPCell(new Phrase(row.getVehicle(),small));
     veh.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(veh);
     }
@@ -271,12 +269,12 @@ public class PDFGenerator {
      }
      para.add(table);
     for (BEMaterial row : rowData){
-    PdfPCell data1 = new PdfPCell(new Phrase(row.getM_Materiale(),small));
-    data1.setHorizontalAlignment(Element.ALIGN_CENTER);
-    table.addCell(data1);
-    PdfPCell data = new PdfPCell(new Phrase(""+row.getM_Antal(),small));
-    data.setHorizontalAlignment(Element.ALIGN_CENTER);
-    table.addCell(data);
+    PdfPCell mat = new PdfPCell(new Phrase(row.getM_Materiale(),small));
+    mat.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(mat);
+    PdfPCell amount = new PdfPCell(new Phrase(""+row.getM_Antal(),small));
+    amount.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(amount);
     //table.addCell("" + row.getM_Antal());
     }
   }

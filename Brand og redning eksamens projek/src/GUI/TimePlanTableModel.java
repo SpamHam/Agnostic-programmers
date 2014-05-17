@@ -86,17 +86,17 @@ public class TimePlanTableModel extends AbstractTableModel {
         BETimePlan e = timePlan.get(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return e.getStilling();
+                    return e.getTitle();
                 case 1:
-                    return e.getNavn();
+                    return e.getName();
                 case 2:
-                    return e.getTidsrum();
+                    return e.getTime();
                 case 3:
-                    return e.getKoert();
+                    return e.getHours();
                 case 4:
-                    return e.getStationsVagt();
+                    return e.getStationHours();
                 case 5:
-                    return e.getKoeretoej();
+                    return e.getVehicle();
             }
 
             return null;
@@ -108,16 +108,16 @@ public class TimePlanTableModel extends AbstractTableModel {
         BETimePlan row = timePlan.get(rowIndex);
         switch (columnIndex){
             case 0:
-               row.setStilling((String) aValue);
+               row.setTitle((String) aValue);
                 break;
             case 2: 
-              row.setTidsrum((String) aValue);
+              row.setTime((String) aValue);
                 break;
             case 3: 
-             row.setKoert((Integer) aValue);
+             row.setHours((Integer) aValue);
                 break;
             case 4:
-               row.setStationsVagt((Integer) aValue);
+               row.setStationHours((Integer) aValue);
                 break;
     } 
    }
