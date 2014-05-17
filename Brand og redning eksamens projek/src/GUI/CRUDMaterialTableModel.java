@@ -48,7 +48,7 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
               BE.BEMaterial e = m_allMaterial.get(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return e.getM_Materiale();           
+                    return e.getMaterial();           
             }
 
             return null; }

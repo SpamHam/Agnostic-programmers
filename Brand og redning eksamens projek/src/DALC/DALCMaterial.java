@@ -53,7 +53,7 @@ public class DALCMaterial {
     public void Create(BE.BEMaterial e) throws SQLException {
         String sql = "insert into Materials values (?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, e.getM_Materiale());
+        ps.setString(1, e.getMaterial());
         ps.executeUpdate();
     }
 
@@ -89,8 +89,8 @@ public class DALCMaterial {
     public void update(BE.BEMaterial u) throws SQLException {
         String sql = "update Materials set Materiale=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, u.getM_Materiale());
-        ps.setInt(2, u.getM_ID());
+        ps.setString(1, u.getMaterial());
+        ps.setInt(2, u.getEmergencyID());
         ps.executeUpdate();
     }
 
@@ -103,7 +103,7 @@ public class DALCMaterial {
     public void Delete(BE.BEMaterial e) throws SQLException {
         String sql = "delete from Materials where Materiale=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, e.getM_Materiale());
+        ps.setString(1, e.getMaterial());
         ps.executeUpdate();
     }
 }

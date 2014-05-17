@@ -269,13 +269,13 @@ public class PDFGenerator {
      }
      para.add(table);
     for (BEMaterial row : rowData){
-    PdfPCell mat = new PdfPCell(new Phrase(row.getM_Materiale(),small));
+    PdfPCell mat = new PdfPCell(new Phrase(row.getMaterial(),small));
     mat.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(mat);
-    PdfPCell amount = new PdfPCell(new Phrase(""+row.getM_Antal(),small));
+    PdfPCell amount = new PdfPCell(new Phrase(""+row.getAmount(),small));
     amount.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(amount);
-    //table.addCell("" + row.getM_Antal());
+    //table.addCell("" + row.getAmount());
     }
   }
   
@@ -299,7 +299,7 @@ public class PDFGenerator {
     PdfPCell force = new PdfPCell(new Phrase(row.getForces(),small));
     force.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(force);
-    //table.addCell("" + row.getM_Antal());
+    //table.addCell("" + row.getAmount());
     }
   }
 /**

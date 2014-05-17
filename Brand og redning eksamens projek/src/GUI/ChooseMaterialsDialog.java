@@ -132,7 +132,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
  */
     private void PopulateList() {
         for (BEMaterial m : Materials) {
-            alleListModel.addElement(m.getM_Materiale());
+            alleListModel.addElement(m.getMaterial());
         }
     }
 

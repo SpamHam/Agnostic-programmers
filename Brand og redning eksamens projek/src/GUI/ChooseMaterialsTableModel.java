@@ -93,9 +93,9 @@ private ArrayList<BEMaterial> allSelectedMaterials;
         BEMaterial e = allSelectedMaterials.get(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return e.getM_Materiale();
+                    return e.getMaterial();
                 case 1:
-                    return e.getM_Antal();
+                    return e.getAmount();
             }
 
             return null;
@@ -113,7 +113,7 @@ private ArrayList<BEMaterial> allSelectedMaterials;
         BEMaterial row = allSelectedMaterials.get(rowIndex);
         switch (columnIndex){
             case 1: 
-              row.setM_Antal((Integer) aValue);
+              row.setAmount((Integer) aValue);
     } 
    }
 
