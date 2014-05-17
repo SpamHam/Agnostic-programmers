@@ -127,7 +127,7 @@ public class ODINReport extends javax.swing.JFrame {
             String tid = currentTime.substring(19);
         try {
             Date date = formatter.parse(dato);
-          txtAlarmModtaget.setText(tid);
+          txtRecived.setText(tid);
           dcDato.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(ODINReport.class.getName()).log(Level.SEVERE, null, ex);
@@ -149,31 +149,31 @@ public class ODINReport extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         lblHeader = new javax.swing.JLabel();
         lblSubHeader = new javax.swing.JLabel();
-        lblIndsatsLeder = new javax.swing.JLabel();
-        lblHoldLeder = new javax.swing.JLabel();
-        txtIndsatsLeder = new javax.swing.JTextField();
-        txtHoldLeder = new javax.swing.JTextField();
+        lblTeamLeader = new javax.swing.JLabel();
+        lblLeader = new javax.swing.JLabel();
+        txtTeamLeader = new javax.swing.JTextField();
+        txtLeader = new javax.swing.JTextField();
         dcDato = new com.toedter.calendar.JDateChooser();
-        lblDato = new javax.swing.JLabel();
-        lblAlarmModtaget = new javax.swing.JLabel();
-        txtAlarmModtaget = new javax.swing.JTextField();
-        lblUgeDag = new javax.swing.JLabel();
-        txtUgeDag = new javax.swing.JTextField();
-        lblBrandReportNr = new javax.swing.JLabel();
-        txtBrandReportNr = new javax.swing.JTextField();
+        lblDate = new javax.swing.JLabel();
+        lblRecived = new javax.swing.JLabel();
+        txtRecived = new javax.swing.JTextField();
+        lblWeekday = new javax.swing.JLabel();
+        txtWeekday = new javax.swing.JTextField();
+        lblFiretNr = new javax.swing.JLabel();
+        txtFireNr = new javax.swing.JTextField();
         lblEvaReportNr = new javax.swing.JLabel();
-        txtEvaReportNr = new javax.swing.JTextField();
+        txtEvaNr = new javax.swing.JTextField();
         lblMelding = new javax.swing.JLabel();
-        txtMelding = new javax.swing.JTextField();
-        chkBoxSkadeslidte = new javax.swing.JCheckBox();
+        txtMessage = new javax.swing.JTextField();
+        chkBoxWounded = new javax.swing.JCheckBox();
         lblNavn = new javax.swing.JLabel();
-        lblAddresse = new javax.swing.JLabel();
-        txtNavn = new javax.swing.JTextField();
-        txtAddresse = new javax.swing.JTextField();
-        btnTilfoejMaterialer = new javax.swing.JButton();
-        lblMaterialerBrugt = new javax.swing.JLabel();
-        btnTilbage = new javax.swing.JButton();
-        chkBoxIndsatteStyrker = new javax.swing.JCheckBox();
+        lblAddress = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        btnAddMaterial = new javax.swing.JButton();
+        lblMaterialUsed = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        chkBoxForces = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblMaterial = new javax.swing.JTable();
         jpanelIndsatteStyrker = new javax.swing.JPanel();
@@ -206,60 +206,60 @@ public class ODINReport extends javax.swing.JFrame {
         lblSubHeader.setForeground(new java.awt.Color(255, 0, 51));
         lblSubHeader.setText("Station 4.24");
 
-        lblIndsatsLeder.setText("Indsats Leder:");
+        lblTeamLeader.setText("Indsats Leder:");
 
-        lblHoldLeder.setText("Hold Leder:");
+        lblLeader.setText("Hold Leder:");
 
-        lblDato.setText("Dato:");
+        lblDate.setText("Dato:");
 
-        lblAlarmModtaget.setText("Alarm Modtaget:");
+        lblRecived.setText("Alarm Modtaget:");
 
-        txtAlarmModtaget.addActionListener(new java.awt.event.ActionListener() {
+        txtRecived.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlarmModtagetActionPerformed(evt);
+                txtRecivedActionPerformed(evt);
             }
         });
 
-        lblUgeDag.setText("Uge Dag:");
+        lblWeekday.setText("Uge Dag:");
 
-        lblBrandReportNr.setText("Brand Report Nr:");
+        lblFiretNr.setText("Brand Report Nr:");
 
         lblEvaReportNr.setText("EVA Report Nr:");
 
         lblMelding.setText("Melding:");
 
-        chkBoxSkadeslidte.setText("Skadeslidte");
-        chkBoxSkadeslidte.addActionListener(new java.awt.event.ActionListener() {
+        chkBoxWounded.setText("Skadeslidte");
+        chkBoxWounded.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxSkadeslidteActionPerformed(evt);
+                chkBoxWoundedActionPerformed(evt);
             }
         });
 
         lblNavn.setText("Navn:");
 
-        lblAddresse.setText("Addresse:");
+        lblAddress.setText("Addresse:");
 
-        btnTilfoejMaterialer.setText("Tilføj Materialer");
-        btnTilfoejMaterialer.addActionListener(new java.awt.event.ActionListener() {
+        btnAddMaterial.setText("Tilføj Materialer");
+        btnAddMaterial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilfoejMaterialerActionPerformed(evt);
+                btnAddMaterialActionPerformed(evt);
             }
         });
 
-        lblMaterialerBrugt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblMaterialerBrugt.setText("Materialer Brugt:");
+        lblMaterialUsed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMaterialUsed.setText("Materialer Brugt:");
 
-        btnTilbage.setText("Tilbage");
-        btnTilbage.addActionListener(new java.awt.event.ActionListener() {
+        btnBack.setText("Tilbage");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilbageActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        chkBoxIndsatteStyrker.setText("Indsatte Styrker:");
-        chkBoxIndsatteStyrker.addActionListener(new java.awt.event.ActionListener() {
+        chkBoxForces.setText("Indsatte Styrker:");
+        chkBoxForces.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxIndsatteStyrkerActionPerformed(evt);
+                chkBoxForcesActionPerformed(evt);
             }
         });
 
@@ -317,55 +317,55 @@ public class ODINReport extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAddForces)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTilbage)
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkBoxIndsatteStyrker)
-                            .addComponent(chkBoxSkadeslidte)
+                            .addComponent(chkBoxForces)
+                            .addComponent(chkBoxWounded)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblBrandReportNr)
+                                    .addComponent(lblFiretNr)
                                     .addComponent(lblEvaReportNr)
                                     .addComponent(lblMelding)
                                     .addComponent(lblNavn)
-                                    .addComponent(lblAddresse))
+                                    .addComponent(lblAddress))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMelding, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                                    .addComponent(txtEvaReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBrandReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNavn)
-                                    .addComponent(txtAddresse)))
+                                    .addComponent(txtMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(txtEvaNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFireNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName)
+                                    .addComponent(txtAddress)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRecived, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(94, 94, 94)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAlarmModtaget)
+                            .addComponent(lblRecived)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblHeader)
                                     .addComponent(lblSubHeader)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblDato)
+                                        .addComponent(lblDate)
                                         .addGap(60, 60, 60)
                                         .addComponent(dcDato, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIndsatsLeder)
-                                    .addComponent(lblHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblUgeDag)
-                                    .addComponent(lblMaterialerBrugt))
+                                    .addComponent(lblTeamLeader)
+                                    .addComponent(lblLeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblWeekday)
+                                    .addComponent(lblMaterialUsed))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtHoldLeder)
-                                    .addComponent(txtIndsatsLeder)
-                                    .addComponent(txtUgeDag, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnTilfoejMaterialer, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                                    .addComponent(txtLeader)
+                                    .addComponent(txtTeamLeader)
+                                    .addComponent(txtWeekday, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAddMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -376,59 +376,59 @@ public class ODINReport extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblHeader)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblIndsatsLeder)
-                        .addComponent(txtIndsatsLeder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTeamLeader)
+                        .addComponent(txtTeamLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubHeader)
-                    .addComponent(lblHoldLeder)
-                    .addComponent(txtHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLeader)
+                    .addComponent(txtLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(dcDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblUgeDag)
-                        .addComponent(txtUgeDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblWeekday)
+                        .addComponent(txtWeekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAlarmModtaget)
-                    .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaterialerBrugt)
-                    .addComponent(btnTilfoejMaterialer, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRecived)
+                    .addComponent(txtRecived, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaterialUsed)
+                    .addComponent(btnAddMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBrandReportNr)
-                            .addComponent(txtBrandReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFiretNr)
+                            .addComponent(txtFireNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEvaReportNr)
-                            .addComponent(txtEvaReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEvaNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblMelding)
-                            .addComponent(txtMelding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(chkBoxSkadeslidte)
+                        .addComponent(chkBoxWounded)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNavn)
-                            .addComponent(txtNavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAddresse)
-                            .addComponent(txtAddresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblAddress)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(chkBoxIndsatteStyrker)
+                .addComponent(chkBoxForces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilbage)
+                    .addComponent(btnBack)
                     .addComponent(btnSave)
                     .addComponent(btnAddForces))
                 .addContainerGap())
@@ -437,25 +437,25 @@ public class ODINReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAlarmModtagetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlarmModtagetActionPerformed
+    private void txtRecivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecivedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlarmModtagetActionPerformed
+    }//GEN-LAST:event_txtRecivedActionPerformed
 /**
  * 
  */
     private void getOdinData(){
     getMaterialColNames();
     getForcesColNames();
-    evaNr = txtEvaReportNr.getText();
-    fireNr = txtBrandReportNr.getText();
-    received = txtAlarmModtaget.getText();
+    evaNr = txtEvaNr.getText();
+    fireNr = txtFireNr.getText();
+    received = txtRecived.getText();
     date = ((JTextField) dcDato.getDateEditor().getUiComponent()).getText();
-    message = txtMelding.getText();
-    name = txtNavn.getText();
-    address = txtAddresse.getText();
-    leader = txtIndsatsLeder.getText();
-    teamLeader = txtHoldLeder.getText();
-    weekday = txtUgeDag.getText();
+    message = txtMessage.getText();
+    name = txtName.getText();
+    address = txtAddress.getText();
+    leader = txtTeamLeader.getText();
+    teamLeader = txtLeader.getText();
+    weekday = txtWeekday.getText();
     }
    /**
     * 
@@ -473,7 +473,7 @@ public class ODINReport extends javax.swing.JFrame {
     }
   }
     
-    private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
+    private void btnAddMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMaterialActionPerformed
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
         materialsDialog.setLocationRelativeTo(this);
         materialsDialog.setVisible(true);
@@ -495,67 +495,67 @@ public class ODINReport extends javax.swing.JFrame {
 
             materialModel.setMaterialsStatusList(allMaterials);
         }
-    }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
+    }//GEN-LAST:event_btnAddMaterialActionPerformed
 
-    private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
         Timeplan timePlanFrame = new Timeplan();
         timePlanFrame.setLocationRelativeTo(this);
         timePlanFrame.setVisible(true);
-    }//GEN-LAST:event_btnTilbageActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed
+    private void chkBoxForcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxForcesActionPerformed
         ShowForces();
-    }//GEN-LAST:event_chkBoxIndsatteStyrkerActionPerformed
+    }//GEN-LAST:event_chkBoxForcesActionPerformed
 
-    private void chkBoxSkadeslidteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxSkadeslidteActionPerformed
+    private void chkBoxWoundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxWoundedActionPerformed
         ShowWounded();
-    }//GEN-LAST:event_chkBoxSkadeslidteActionPerformed
+    }//GEN-LAST:event_chkBoxWoundedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAddForces;
+    private javax.swing.JButton btnAddMaterial;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnTilbage;
-    private javax.swing.JButton btnTilfoejMaterialer;
-    private javax.swing.JCheckBox chkBoxIndsatteStyrker;
-    private javax.swing.JCheckBox chkBoxSkadeslidte;
+    private javax.swing.JCheckBox chkBoxForces;
+    private javax.swing.JCheckBox chkBoxWounded;
     private com.toedter.calendar.JDateChooser dcDato;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpanelIndsatteStyrker;
-    private javax.swing.JLabel lblAddresse;
-    private javax.swing.JLabel lblAlarmModtaget;
-    private javax.swing.JLabel lblBrandReportNr;
-    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEvaReportNr;
+    private javax.swing.JLabel lblFiretNr;
     private javax.swing.JLabel lblHeader;
-    private javax.swing.JLabel lblHoldLeder;
-    private javax.swing.JLabel lblIndsatsLeder;
-    private javax.swing.JLabel lblMaterialerBrugt;
+    private javax.swing.JLabel lblLeader;
+    private javax.swing.JLabel lblMaterialUsed;
     private javax.swing.JLabel lblMelding;
     private javax.swing.JLabel lblNavn;
+    private javax.swing.JLabel lblRecived;
     private javax.swing.JLabel lblSubHeader;
-    private javax.swing.JLabel lblUgeDag;
+    private javax.swing.JLabel lblTeamLeader;
+    private javax.swing.JLabel lblWeekday;
     private javax.swing.JTable tblForces;
     private javax.swing.JTable tblMaterial;
-    private javax.swing.JTextField txtAddresse;
-    private javax.swing.JTextField txtAlarmModtaget;
-    private javax.swing.JTextField txtBrandReportNr;
-    private javax.swing.JTextField txtEvaReportNr;
-    private javax.swing.JTextField txtHoldLeder;
-    private javax.swing.JTextField txtIndsatsLeder;
-    private javax.swing.JTextField txtMelding;
-    private javax.swing.JTextField txtNavn;
-    private javax.swing.JTextField txtUgeDag;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtEvaNr;
+    private javax.swing.JTextField txtFireNr;
+    private javax.swing.JTextField txtLeader;
+    private javax.swing.JTextField txtMessage;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRecived;
+    private javax.swing.JTextField txtTeamLeader;
+    private javax.swing.JTextField txtWeekday;
     // End of variables declaration//GEN-END:variables
 /*
      A function to Hide/Show the table for Forces
      */
     private void ShowForces() {
-        if (chkBoxIndsatteStyrker.isSelected()) {
+        if (chkBoxForces.isSelected()) {
             isForcesSelected = true;
 
         } else {
@@ -571,14 +571,14 @@ public class ODINReport extends javax.swing.JFrame {
      A function to Hide/Show the text areas and labels for Wounded
      */
     private void ShowWounded() {
-        if (chkBoxSkadeslidte.isSelected()) {
+        if (chkBoxWounded.isSelected()) {
             isWounded = true;
         } else {
             isWounded = false;
         }
         lblNavn.setVisible(isWounded);
-        lblAddresse.setVisible(isWounded);
-        txtNavn.setVisible(isWounded);
-        txtAddresse.setVisible(isWounded);
+        lblAddress.setVisible(isWounded);
+        txtName.setVisible(isWounded);
+        txtAddress.setVisible(isWounded);
     }
 }

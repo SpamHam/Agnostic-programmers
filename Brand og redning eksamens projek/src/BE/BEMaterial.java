@@ -6,7 +6,7 @@ package BE;
 
 /**
  *
- * @author Kathrine
+ * @author Peter
  */
 public class BEMaterial {
 
