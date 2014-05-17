@@ -64,18 +64,19 @@ private ArrayList<BEForces> allSelectedForces;
              return false;
          }
     }
+    
 
     /**
-     * Sets the Material table and updates it
-     * @param materialList 
+     * Sets the forces table and updates it
+     * @param forcesList 
      */
-    public void setMaterialsStatusList(ArrayList<BEForces> materialList) {
-        allSelectedForces = materialList;
+    public void setForcesList(ArrayList<BEForces> forcesList) {
+        allSelectedForces = forcesList;
         fireTableDataChanged();
     }    
     
     /**
-     * Return the material for the selected row
+     * Return the forces for the selected row
      * @param row
      * @return 
      */
@@ -117,10 +118,13 @@ private ArrayList<BEForces> allSelectedForces;
         switch (columnIndex){
             case 0: 
               row.setCarID((String) aValue);
+                break;
             case 1:
                row.setTypeOfAlarm((String) aValue);
+                break;
             case 2:
                 row.setForces((String) aValue);
+                break;
     }
         
    }

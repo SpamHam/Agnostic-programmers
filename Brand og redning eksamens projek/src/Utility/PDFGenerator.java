@@ -46,7 +46,7 @@ public class PDFGenerator {
   final private static Font smallBold = new Font(Font.FontFamily.TIMES_ROMAN, 12,
       Font.BOLD);
   final private static Font small = new Font(Font.FontFamily.TIMES_ROMAN, 10,
-      Font.BOLD);
+      Font.NORMAL);
   private ArrayList<BETimePlan> allTime;
   private ArrayList<String> colNames;
   public static final int CREATE_TIME_PLAN_PDF = 0; 
@@ -227,19 +227,31 @@ public class PDFGenerator {
     PdfPTable table = new PdfPTable(colNames.size());
 
     for (String col : colNames){
-    PdfPCell c1 = new PdfPCell(new Phrase(col));
+    PdfPCell c1 = new PdfPCell(new Phrase(col,smallBold));
     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(c1);
      }
      para.add(table);
     for (BETimePlan row : rowData){
-    table.addCell(row.getStilling());
-    table.addCell(row.getNavn());
-    table.addCell(row.getTidsrum());
-    table.addCell("" + row.getKoert());
-    table.addCell("" + row.getStationsVagt());
-    table.addCell(row.getKoeretoej());
-}
+    PdfPCell pos = new PdfPCell(new Phrase(row.getStilling(),small));
+    pos.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(pos);
+    PdfPCell name = new PdfPCell(new Phrase(row.getNavn(),small));
+    name.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(name);
+    PdfPCell time = new PdfPCell(new Phrase(row.getTidsrum(),small));
+    time.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(time);
+    PdfPCell road = new PdfPCell(new Phrase(""+row.getKoert(),small));
+    road.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(road);
+    PdfPCell stat = new PdfPCell(new Phrase("" + row.getStationsVagt(),small));
+    stat.setHorizontalAlignment(Element.ALIGN_CENTER);   
+    table.addCell(stat);
+    PdfPCell veh = new PdfPCell(new Phrase(row.getKoeretoej(),small));
+    veh.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(veh);
+    }
   }
   
   
@@ -248,15 +260,17 @@ public class PDFGenerator {
     PdfPTable table = new PdfPTable(colNames.size());
 
     for (String col : colNames){
-    PdfPCell c1 = new PdfPCell(new Phrase(col));
+    PdfPCell c1 = new PdfPCell(new Phrase(col,smallBold));
     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(c1);
      }
      para.add(table);
     for (BEMaterial row : rowData){
-    table.addCell(row.getM_Materiale());
-    PdfPCell data = new PdfPCell(new Phrase(""+row.getM_Antal()));
-    data.setHorizontalAlignment(Element.ALIGN_RIGHT);
+    PdfPCell data1 = new PdfPCell(new Phrase(row.getM_Materiale(),small));
+    data1.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(data1);
+    PdfPCell data = new PdfPCell(new Phrase(""+row.getM_Antal(),small));
+    data.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(data);
     //table.addCell("" + row.getM_Antal());
     }
@@ -267,15 +281,21 @@ public class PDFGenerator {
     PdfPTable table = new PdfPTable(colNames.size());
 
     for (String col : colNames){
-    PdfPCell c1 = new PdfPCell(new Phrase(col));
+    PdfPCell c1 = new PdfPCell(new Phrase(col,smallBold));
     c1.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(c1);
      }
      para.add(table);
     for (BEForces row : rowData){
-    table.addCell(row.getCarID());
-    table.addCell(row.getTypeOfAlarm());
-    table.addCell(row.getForces());
+    PdfPCell car = new PdfPCell(new Phrase(row.getCarID(),small));
+    car.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(car);
+    PdfPCell type = new PdfPCell(new Phrase(row.getTypeOfAlarm(),small));
+    type.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(type);
+    PdfPCell force = new PdfPCell(new Phrase(row.getForces(),small));
+    force.setHorizontalAlignment(Element.ALIGN_CENTER);
+    table.addCell(force);
     //table.addCell("" + row.getM_Antal());
     }
   }

@@ -47,20 +47,23 @@ public class ODINReport extends javax.swing.JFrame {
     public ODINReport() {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
+        // sets the model for the material table
         materialModel = new ChooseMaterialsTableModel(allMaterials);
         sorter = new TableRowSorter<TableModel>(materialModel);
-        
+        //sets the model for the forces table
         forcesTableModel = new ForcesTableModel(allforces);
         tblForces.setModel(forcesTableModel);
         tblForces.getTableHeader().setReorderingAllowed(false);
-        tblForces.addRowSelectionInterval(0, 2);
         
         setTitle("ODIN Report");
         this.setVisible(true);
         ShowForces();
         ShowWounded();
+        //sets the ActionListener for the button "save" and addForces
         ActionListener BTNPDFOdinListener = new BTNPDFOdinActionListener();
         btnSave.addActionListener(BTNPDFOdinListener);
+        ActionListener BTNAddForces = new BTNAddForcesActionListener();
+        btnAddForces.addActionListener(BTNAddForces);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
@@ -84,6 +87,18 @@ public class ODINReport extends javax.swing.JFrame {
 //              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
 //                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
         firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,received));
+        }
+    }
+     
+      /**
+     * anonymous inner class listening on the create pdf button
+     */
+     private class BTNAddForcesActionListener implements ActionListener {
+     @Override
+        public void actionPerformed(ActionEvent e) {
+           BEForces emptyLine = new BEForces("", "", ""); //adds a empty row to the table 
+           allforces.add(emptyLine);
+           forcesTableModel.setForcesList(allforces);
         }
     }
     /**
@@ -165,6 +180,7 @@ public class ODINReport extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblForces = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
+        btnAddForces = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -288,6 +304,8 @@ public class ODINReport extends javax.swing.JFrame {
 
         btnSave.setText("Gem");
 
+        btnAddForces.setText("Tilføj en Styrke");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,7 +315,8 @@ public class ODINReport extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnAddForces)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnTilbage)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -410,7 +429,8 @@ public class ODINReport extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTilbage)
-                    .addComponent(btnSave))
+                    .addComponent(btnSave)
+                    .addComponent(btnAddForces))
                 .addContainerGap())
         );
 
@@ -426,7 +446,6 @@ public class ODINReport extends javax.swing.JFrame {
     private void getOdinData(){
     getMaterialColNames();
     getForcesColNames();
-    getForces();
     evaNr = txtEvaReportNr.getText();
     fireNr = txtBrandReportNr.getText();
     received = txtAlarmModtaget.getText();
@@ -447,14 +466,6 @@ public class ODINReport extends javax.swing.JFrame {
         materialColNames.add(materialModel.getColumnName(i));
        }
      }
-  
-  private void getForces(){
-  for (int i=0; i<forcesTableModel.getRowCount(); i++){
-    allforces.add(forcesTableModel.getForcesByRow(i));
-      System.out.println(allforces.get(i).getForces());
-      
-    }
-  }
   
   private void getForcesColNames(){
   for (int i=0; i<forcesTableModel.getColumnCount(); i++){
@@ -503,6 +514,7 @@ public class ODINReport extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddForces;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnTilbage;
     private javax.swing.JButton btnTilfoejMaterialer;
@@ -550,6 +562,7 @@ public class ODINReport extends javax.swing.JFrame {
             isForcesSelected = false;
 
         }
+        btnAddForces.setVisible(isForcesSelected);
         jpanelIndsatteStyrker.setVisible(isForcesSelected);
 
     }
