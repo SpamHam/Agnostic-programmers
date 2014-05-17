@@ -6,6 +6,7 @@
 
 package GUI;
 
+import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 public class FormatEventPDF {
     private ArrayList<BETimePlan> allTime;
     ArrayList<BEMaterial> allMaterial;
-    ArrayList<String> allForces;
+    ArrayList<BEForces> allForces;
     private ArrayList<String> timeColNames;
     private ArrayList<String> matrialeColNames;
     private ArrayList<String> forcesColNames;
@@ -47,7 +48,7 @@ public class FormatEventPDF {
 //  this.weekday = weekday;
 //  }
   
-  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<String> allForces,
+  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<BEForces> allForces,
           ArrayList<String> forcesColNames,String date, String received){
   this.date = date;
   this.received = received;
@@ -67,7 +68,7 @@ public class FormatEventPDF {
     public ArrayList<BEMaterial> getMaterial(){
     return allMaterial;
     }
-    public ArrayList<String> getForces(){
+    public ArrayList<BEForces> getForces(){
     return allForces;
     }
     

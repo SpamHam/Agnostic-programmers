@@ -11,6 +11,7 @@ package Utility;
  * @author peter bærbar
  */
 
+import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
 import java.io.FileOutputStream;
@@ -51,7 +52,7 @@ public class PDFGenerator {
   public static final int CREATE_TIME_PLAN_PDF = 0; 
   private ArrayList<BEMaterial> allMaterial;
   private ArrayList<String> materialColNames;
-  private ArrayList<String> allForces;
+  private ArrayList<BEForces> allForces;
   private ArrayList<String> forcesColName;
   private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
   
@@ -66,7 +67,7 @@ public class PDFGenerator {
     this.colNames = colNames;
   }
   
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName,ArrayList<String> allForces,
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColName,ArrayList<BEForces> allForces,
           ArrayList<String> forcesColName, String date, String received){
     this.allMaterial = allMaterial;
     this.materialColNames = materialColName;
@@ -77,7 +78,7 @@ public class PDFGenerator {
   }
   
 
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<String> allForces,
+  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<BEForces> allForces,
           ArrayList<String> forcesColName, String date, String received,String fireNr, String evaNr, String message, 
           String name, String address, String leader, String teamLeader, String weekday){
         this.allMaterial = allMaterial;
@@ -261,7 +262,7 @@ public class PDFGenerator {
     }
   }
   
-    private void createForcesTable(Paragraph para, ArrayList<String> rowData, ArrayList<String> colNames)
+    private void createForcesTable(Paragraph para, ArrayList<BEForces> rowData, ArrayList<String> colNames)
       throws BadElementException {
     PdfPTable table = new PdfPTable(colNames.size());
 
@@ -271,8 +272,10 @@ public class PDFGenerator {
     table.addCell(c1);
      }
      para.add(table);
-    for (String row : rowData){
-    table.addCell(row);
+    for (BEForces row : rowData){
+    table.addCell(row.getCarID());
+    table.addCell(row.getTypeOfAlarm());
+    table.addCell(row.getForces());
     //table.addCell("" + row.getM_Antal());
     }
   }

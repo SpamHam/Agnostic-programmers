@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.BEForces;
 import BE.BEMaterial;
 import BLL.BLLPDF;
 import java.awt.event.ActionEvent;
@@ -27,17 +28,18 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel materialModel;
+    ForcesTableModel forcesTableModel; 
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
     ArrayList<String> materialColNames = new ArrayList<>();
     ArrayList<String> forcesColNames = new ArrayList<>();
-    ArrayList<String> allforces = new ArrayList<>();
+    ArrayList<BEForces> allforces = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     private String currentTime;
-    boolean chkboxIndsatteStyrker = false;
-    boolean chkboxSkadeslidte = false;
+    boolean isForcesSelected = false;
+    boolean isWounded = false;
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
-     String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
 
     /**
      * Creates new form ODINReport
@@ -47,10 +49,16 @@ public class ODINReport extends javax.swing.JFrame {
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
         materialModel = new ChooseMaterialsTableModel(allMaterials);
         sorter = new TableRowSorter<TableModel>(materialModel);
+        
+        forcesTableModel = new ForcesTableModel(allforces);
+        tblForces.setModel(forcesTableModel);
+        tblForces.getTableHeader().setReorderingAllowed(false);
+        tblForces.addRowSelectionInterval(0, 2);
+        
         setTitle("ODIN Report");
         this.setVisible(true);
-        ShowIndsatteStyrker();
-        ShowSkadeslidte();
+        ShowForces();
+        ShowWounded();
         ActionListener BTNPDFOdinListener = new BTNPDFOdinActionListener();
         btnSave.addActionListener(BTNPDFOdinListener);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -155,7 +163,7 @@ public class ODINReport extends javax.swing.JFrame {
         tblMaterial = new javax.swing.JTable();
         jpanelIndsatteStyrker = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtableIndsatteStyrker = new javax.swing.JTable();
+        tblForces = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -249,19 +257,21 @@ public class ODINReport extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblMaterial);
 
-        jtableIndsatteStyrker.setModel(new javax.swing.table.DefaultTableModel(
+        tblForces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1341", "", null, null},
-                {"2338", "", null, null},
-                {"2349", "", null, null},
-                {"2351", "", null, null},
-                {"ST Vagt", null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Vogn Nr:", "Kørsel 1 / 2", "Bemanding", "Afvigelse"
+                "Vogn Nr", "Kørsl 1/2", "Bemanding"
             }
         ));
-        jScrollPane1.setViewportView(jtableIndsatteStyrker);
+        jScrollPane1.setViewportView(tblForces);
 
         javax.swing.GroupLayout jpanelIndsatteStyrkerLayout = new javax.swing.GroupLayout(jpanelIndsatteStyrker);
         jpanelIndsatteStyrker.setLayout(jpanelIndsatteStyrkerLayout);
@@ -415,6 +425,8 @@ public class ODINReport extends javax.swing.JFrame {
  */
     private void getOdinData(){
     getMaterialColNames();
+    getForcesColNames();
+    getForces();
     evaNr = txtEvaReportNr.getText();
     fireNr = txtBrandReportNr.getText();
     received = txtAlarmModtaget.getText();
@@ -435,6 +447,20 @@ public class ODINReport extends javax.swing.JFrame {
         materialColNames.add(materialModel.getColumnName(i));
        }
      }
+  
+  private void getForces(){
+  for (int i=0; i<forcesTableModel.getRowCount(); i++){
+    allforces.add(forcesTableModel.getForcesByRow(i));
+      System.out.println(allforces.get(i).getForces());
+      
+    }
+  }
+  
+  private void getForcesColNames(){
+  for (int i=0; i<forcesTableModel.getColumnCount(); i++){
+      forcesColNames.add(forcesTableModel.getColumnName(i));
+    }
+  }
     
     private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
         ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
@@ -442,15 +468,15 @@ public class ODINReport extends javax.swing.JFrame {
         materialsDialog.setVisible(true);
 
         // continue here when the dialog box is closed (disposed).
-        ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
-        if (rent != null) // a material has been created in the dialog box.
+        ArrayList<BEMaterial> mat = materialsDialog.getValgteMaterials();
+        if (mat != null) // a material has been created in the dialog box.
         {
             if (!allMaterials.isEmpty()) {
-                for (int i = 0; i < rent.size(); i++) {
-                    allMaterials.add(rent.get(i));
+                for (int i = 0; i < mat.size(); i++) {
+                    allMaterials.add(mat.get(i));
                 }
             } else {
-                allMaterials = rent;
+                allMaterials = mat;
             }
             tblMaterial.setModel(materialModel);
             tblMaterial.setRowSorter(sorter);
@@ -468,11 +494,11 @@ public class ODINReport extends javax.swing.JFrame {
     }//GEN-LAST:event_btnTilbageActionPerformed
 
     private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed
-        ShowIndsatteStyrker();
+        ShowForces();
     }//GEN-LAST:event_chkBoxIndsatteStyrkerActionPerformed
 
     private void chkBoxSkadeslidteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxSkadeslidteActionPerformed
-        ShowSkadeslidte();
+        ShowWounded();
     }//GEN-LAST:event_chkBoxSkadeslidteActionPerformed
 
 
@@ -488,7 +514,6 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpanelIndsatteStyrker;
-    private javax.swing.JTable jtableIndsatteStyrker;
     private javax.swing.JLabel lblAddresse;
     private javax.swing.JLabel lblAlarmModtaget;
     private javax.swing.JLabel lblBrandReportNr;
@@ -502,6 +527,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblNavn;
     private javax.swing.JLabel lblSubHeader;
     private javax.swing.JLabel lblUgeDag;
+    private javax.swing.JTable tblForces;
     private javax.swing.JTable tblMaterial;
     private javax.swing.JTextField txtAddresse;
     private javax.swing.JTextField txtAlarmModtaget;
@@ -514,32 +540,32 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JTextField txtUgeDag;
     // End of variables declaration//GEN-END:variables
 /*
-     A function to Hide/Show the table for Indsatte Styrker
+     A function to Hide/Show the table for Forces
      */
-    private void ShowIndsatteStyrker() {
+    private void ShowForces() {
         if (chkBoxIndsatteStyrker.isSelected()) {
-            chkboxIndsatteStyrker = true;
+            isForcesSelected = true;
 
         } else {
-            chkboxIndsatteStyrker = false;
+            isForcesSelected = false;
 
         }
-        jpanelIndsatteStyrker.setVisible(chkboxIndsatteStyrker);
+        jpanelIndsatteStyrker.setVisible(isForcesSelected);
 
     }
 
     /*
-     A function to Hide/Show the text areas and labels for Skadeslidte
+     A function to Hide/Show the text areas and labels for Wounded
      */
-    private void ShowSkadeslidte() {
+    private void ShowWounded() {
         if (chkBoxSkadeslidte.isSelected()) {
-            chkboxSkadeslidte = true;
+            isWounded = true;
         } else {
-            chkboxSkadeslidte = false;
+            isWounded = false;
         }
-        lblNavn.setVisible(chkboxSkadeslidte);
-        lblAddresse.setVisible(chkboxSkadeslidte);
-        txtNavn.setVisible(chkboxSkadeslidte);
-        txtAddresse.setVisible(chkboxSkadeslidte);
+        lblNavn.setVisible(isWounded);
+        lblAddresse.setVisible(isWounded);
+        txtNavn.setVisible(isWounded);
+        txtAddresse.setVisible(isWounded);
     }
 }

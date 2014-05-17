@@ -159,7 +159,7 @@ public class Timeplan extends javax.swing.JFrame {
         ArrayList<BETimePlan> plan = chooseTeam.getTeam();
         if (plan != null) // a team has been created in the dialog box.
         {
-            if (!allTime.isEmpty()) { // checks if there is entries in the time plan 
+            if (!allTime.isEmpty()) { // checks if there already is entries in the time plan arraylist 
                 for (int i = 0; i < plan.size(); i++) {
                     allTime.add(plan.get(i));
                 }
