@@ -160,57 +160,26 @@ public class PDFGenerator {
 
     private void createOdinPage(Document document) 
         throws DocumentException {
-        // creates tabs
-        Chunk tab1 = new Chunk(new VerticalPositionMark(), 100, true);
-        Chunk tab2 = new Chunk(new VerticalPositionMark(), 350, true);
+        Chunk tab1 = new Chunk(new VerticalPositionMark(), 200, true);// creates tabs
+        Chunk tab2 = new Chunk(new VerticalPositionMark(), 310, true);
         Paragraph odinRaport = new Paragraph(); 
         Paragraph title = new Paragraph("ODIN Rapport", Header); 
          title.setAlignment(Element.ALIGN_CENTER);
         odinRaport.add(title);
         addEmptyLine(odinRaport, 2);
-        
-        odinRaport.add(new Chunk("Dato: ", smallBold));
-        odinRaport.add(new Phrase(date, small));
+        addDate(odinRaport);
         addEmptyLine(odinRaport, 1);
-        
-        odinRaport.add(new Chunk("Indsats Leder: ",smallBold));
-        odinRaport.add(new Phrase(teamLeader,
-                small));
-        odinRaport.add(new Chunk(tab2));
-        odinRaport.add(new Chunk("Hold Leder: " , smallBold));
-        odinRaport.add(new Phrase( leader,
-                small));
-        
+        printLeaders(odinRaport, tab2);    
         addEmptyLine(odinRaport, 2);
-        odinRaport.add(new Chunk("Alarm Modtaget: " , smallBold));
-        odinRaport.add(new Phrase( received,
-                small));
-        odinRaport.add(new Chunk(tab2));
-        odinRaport.add(new Chunk("Uge dag: " , smallBold));
-        odinRaport.add(new Phrase( weekday,
-                small));
+        printReceived(odinRaport, tab2);
        addEmptyLine(odinRaport, 2);
-        odinRaport.add(new Chunk("Brand report Nr: " , smallBold));
-        odinRaport.add(new Phrase( fireNr,
-                small));
-        odinRaport.add(new Chunk(tab2));
-         odinRaport.add(new Chunk("EVA Nr: " , smallBold));
-        odinRaport.add(new Phrase( evaNr,
-                small));
+        addSpecification(odinRaport, tab2);
         addEmptyLine(odinRaport, 2);
-         odinRaport.add(new Chunk("Melding: " , smallBold));
-        odinRaport.add(new Phrase( message,
-                small));
+        addMessage(odinRaport);
         addEmptyLine(odinRaport, 2);
         odinRaport.add(new Chunk("Skadeslidte: " , big));
         addEmptyLine(odinRaport, 1);
-        odinRaport.add(new Chunk("Navn: " , smallBold));
-        odinRaport.add(new Phrase( name,
-                small));
-        odinRaport.add(new Chunk(tab1));
-         odinRaport.add(new Chunk("Adresse: " , smallBold));
-        odinRaport.add(new Phrase( address,
-                small));
+        addWounded(odinRaport, tab1);
         addEmptyLine(odinRaport, 1);
         odinRaport.add(new Chunk("Brugte materialer: " , big));
         createMaterialTable(odinRaport, allMaterial, materialColNames);
@@ -221,6 +190,56 @@ public class PDFGenerator {
         odinRaport.add(new Paragraph("Dette dokument er lavet i systemet BORR",
         redFont));
         document.add(odinRaport);
+    }
+
+    private void addMessage(Paragraph odinRaport) {
+        odinRaport.add(new Chunk("Melding: " , smallBold));
+        odinRaport.add(new Phrase( message,small));
+    }
+
+    private void addDate(Paragraph odinRaport) {
+        odinRaport.add(new Chunk("Dato: ", smallBold));
+        odinRaport.add(new Phrase(date, small));
+    }
+
+    private void addWounded(Paragraph odinRaport, Chunk tab1) {
+        odinRaport.add(new Chunk("Navn: " , smallBold));
+        odinRaport.add(new Phrase( name,
+                small));
+        odinRaport.add(new Chunk(tab1));
+        odinRaport.add(new Chunk("Adresse: " , smallBold));
+        odinRaport.add(new Phrase( address,
+                small));
+    }
+
+    private void addSpecification(Paragraph odinRaport, Chunk tab2) {
+        odinRaport.add(new Chunk("Brand report Nr: " , smallBold));
+        odinRaport.add(new Phrase( fireNr,
+                small));
+        odinRaport.add(new Chunk(tab2));
+        odinRaport.add(new Chunk("EVA Nr: " , smallBold));
+        odinRaport.add(new Phrase( evaNr,
+                small));
+    }
+
+    private void printReceived(Paragraph odinRaport, Chunk tab2) {
+        odinRaport.add(new Chunk("Alarm Modtaget: " , smallBold));
+        odinRaport.add(new Phrase( received,
+                small));
+        odinRaport.add(new Chunk(tab2));
+        odinRaport.add(new Chunk("Uge dag: " , smallBold));
+        odinRaport.add(new Phrase( weekday,
+                small));
+    }
+
+    private void printLeaders(Paragraph odinRaport, Chunk tab2) {
+        odinRaport.add(new Chunk("Indsats Leder: ",smallBold));
+        odinRaport.add(new Phrase(teamLeader,
+                small));
+        odinRaport.add(new Chunk(tab2));
+        odinRaport.add(new Chunk("Hold Leder: " , smallBold));
+        odinRaport.add(new Phrase( leader,
+                small));
     }
   
   /**
