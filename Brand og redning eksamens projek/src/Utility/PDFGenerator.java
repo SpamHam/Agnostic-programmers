@@ -167,6 +167,7 @@ public class PDFGenerator {
       + DateConverter.getDate(DateConverter.WEEKDAY_DAY_MONTH_YEAR_TIME), smallBold));
     addEmptyLine(odinRaport, 2);
     odinRaport.add(new Paragraph("Time Plan:",big));
+    addEmptyLine(odinRaport, 1);
     createTimeTable(odinRaport, allTime, colNames);
     addEmptyLine(odinRaport, 3);
     odinRaport.add(new Paragraph("Dette dokument er lavet i systemet BORR",

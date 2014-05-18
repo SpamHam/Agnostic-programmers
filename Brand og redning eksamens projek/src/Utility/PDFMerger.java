@@ -12,6 +12,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -37,15 +38,14 @@ public class PDFMerger {
 //    }
     
     public void MergePDF() throws FileNotFoundException{
-      //          try {
+        
+            int f = new File("c:/PDF/").listFiles().length; //gets the current number of ODIN reports
+            f++; // adds 1 to the number
             List<InputStream> pdfs = new ArrayList<InputStream>();
             pdfs.add(new FileInputStream("c:/PDF/tempTimePlan.pdf"));
             pdfs.add(new FileInputStream("c:/PDF/tempODIN.pdf"));
-            OutputStream output = new FileOutputStream("c:/PDF/merge.pdf");
+            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr"+f+".pdf");
             concatPDFs(pdfs, output, true);
-       // } catch (Exception e) {
-         //   e.printStackTrace();
-        //}
     }
  
     private void concatPDFs(List<InputStream> streamOfPDFFiles,
