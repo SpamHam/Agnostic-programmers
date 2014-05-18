@@ -40,10 +40,10 @@ public class DeleteTempPDF {
 //    runDelete();
 //    }
    public void runDelete(){
-    String fileName1 = "c:/PDF/tempTimePlan.pdf";
-    String fileName2 = "c:/PDF/tempODIN.pdf";
+    String fileName1 = "c:/PDF/temp/tempTimePlan.pdf";
+    String fileName2 = "c:/PDF/temp/tempODIN.pdf";
     File f = new File(fileName1);
-   File f2 = new File(fileName2);
+    File f2 = new File(fileName2);
        deleteFile(f);
        deleteFile(f2);
    }

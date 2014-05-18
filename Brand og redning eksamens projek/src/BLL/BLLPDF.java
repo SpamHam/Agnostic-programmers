@@ -10,6 +10,7 @@ package BLL;
 import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
+import Utility.DeleteTempPDF;
 import Utility.PDFGenerator;
 import Utility.PDFMerger;
 import java.io.FileNotFoundException;
@@ -47,6 +48,7 @@ public class BLLPDF implements PDFListener  {
         } catch (FileNotFoundException ex) {
             throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         }
+        DeleteTempPDF dtp = new DeleteTempPDF();
+        dtp.runDelete();
     }
-
 }

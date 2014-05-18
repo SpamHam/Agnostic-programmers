@@ -39,12 +39,11 @@ public class PDFMerger {
     
     public void MergePDF() throws FileNotFoundException{
         
-            int f = new File("c:/PDF/").listFiles().length; //gets the current number of ODIN reports
-            f++; // adds 1 to the number
+            int f = new File("c:/PDF/").listFiles().length; //gets the current number of files in the pdf directory; minimum 1 file(temp folder)
             List<InputStream> pdfs = new ArrayList<InputStream>();
-            pdfs.add(new FileInputStream("c:/PDF/tempTimePlan.pdf"));
-            pdfs.add(new FileInputStream("c:/PDF/tempODIN.pdf"));
-            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr"+f+".pdf");
+            pdfs.add(new FileInputStream("c:/PDF/temp/tempTimePlan.pdf"));
+            pdfs.add(new FileInputStream("c:/PDF/temp/tempODIN.pdf"));
+            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr "+f+".pdf");
             concatPDFs(pdfs, output, true);
     }
  

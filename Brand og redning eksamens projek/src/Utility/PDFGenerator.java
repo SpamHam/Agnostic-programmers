@@ -39,7 +39,7 @@ import java.util.ArrayList;
 
 public class PDFGenerator {
    //private String FILE;
-  private String FILE = "c:/PDF/";
+  private String FILE = "c:/PDF/temp/";
   final private static Font Header = new Font(Font.FontFamily.TIMES_ROMAN, 20,
       Font.BOLD);
  final private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 6,
