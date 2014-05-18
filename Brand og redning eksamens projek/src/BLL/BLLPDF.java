@@ -11,6 +11,10 @@ import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
 import Utility.PDFGenerator;
+import Utility.PDFMerger;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +28,7 @@ public class BLLPDF implements PDFListener  {
         try {
         pdfGen.runCreateTimePlanPDF();
     } catch (Exception ex) {
-        throw new EventExercutionException("Time plan PDF kunne ikke genereres");
+        throw new EventExercutionException("Time plan PDF kunne ikke gemmes");
      }
    }
 
@@ -35,8 +39,14 @@ public class BLLPDF implements PDFListener  {
         try {
         pdfGen.runCreateOdinPDF();
     } catch (Exception ex) {
-        throw new EventExercutionException("ODIN PDF kunne ikke genereres");
+        throw new EventExercutionException("ODIN Rapport kunne ikke gemmes");
      }
+        PDFMerger merger = new PDFMerger();
+        try {
+            merger.MergePDF();
+        } catch (FileNotFoundException ex) {
+            throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
+        }
     }
 
 }

@@ -60,7 +60,7 @@ public class PDFGenerator {
   
   
   /**
-   * Constructor for Time Plan page
+   * Constructor for the Time Plan page
    * @param allTime
    * @param colNames 
    */
@@ -68,7 +68,23 @@ public class PDFGenerator {
     this.allTime = allTime;
     this.colNames = colNames;
   }
-
+/**
+ * Constructor for the ODIN Page
+ * @param allMaterial
+ * @param materialColName
+ * @param allForces
+ * @param forcesColName
+ * @param date
+ * @param received
+ * @param fireNr
+ * @param evaNr
+ * @param message
+ * @param name
+ * @param address
+ * @param leader
+ * @param teamLeader
+ * @param weekday 
+ */
   public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<BEForces> allForces,
           ArrayList<String> forcesColName, String date, String received,String fireNr, String evaNr, String message, 
           String name, String address, String leader, String teamLeader, String weekday){
@@ -89,9 +105,12 @@ public class PDFGenerator {
   }
   
   
-  
+  /**
+   * Generates the time plan PDF
+   * @throws Exception 
+   */
   public void runCreateTimePlanPDF() throws Exception{
-     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) + ".pdf";
+     FILE = FILE + "tempTimePlan.pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
@@ -99,9 +118,12 @@ public class PDFGenerator {
       createTimePlanPage(document);
       document.close();
     }
-  
+  /**
+   * Generates the ODIN PDF
+   * @throws Exception 
+   */
    public void runCreateOdinPDF() throws Exception{
-     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+ "O" + ".pdf";
+     FILE = FILE + "tempODIN.pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE));
       document.open();
