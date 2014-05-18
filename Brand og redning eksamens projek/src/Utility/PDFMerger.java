@@ -41,7 +41,7 @@ public class PDFMerger {
     public void MergePDF() throws FileNotFoundException, Exception{
         
             int f = new File("c:/PDF/").listFiles().length; //gets the current number of files and folders in the pdf directory;
-                                                            //minimum file in this foder = 1(temp folder)
+                                                            //minimum file in this folder = 1(temp folder)
             List<InputStream> pdfs = new ArrayList<InputStream>();
             pdfs.add(new FileInputStream("c:/PDF/temp/tempTimePlan.pdf"));
             pdfs.add(new FileInputStream("c:/PDF/temp/tempODIN.pdf"));
