@@ -49,6 +49,10 @@ public class BLLPDF implements PDFListener  {
             throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         }
         DeleteTempPDF dtp = new DeleteTempPDF();
-        dtp.runDelete();
+        try {
+            dtp.runDelete();
+        } catch (FileNotFoundException ex) {
+          throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
+        }
     }
 }

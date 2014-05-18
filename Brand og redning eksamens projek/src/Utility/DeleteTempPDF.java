@@ -7,6 +7,7 @@
 package Utility;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -39,7 +40,12 @@ public class DeleteTempPDF {
 //    public static void main(String[] args) {
 //    runDelete();
 //    }
-   public void runDelete(){
+    
+    /**
+     * Deletes the temp pdf's
+     * @throws FileNotFoundException 
+     */
+   public void runDelete() throws FileNotFoundException {
     String fileName1 = "c:/PDF/temp/tempTimePlan.pdf";
     String fileName2 = "c:/PDF/temp/tempODIN.pdf";
     File f = new File(fileName1);
@@ -47,10 +53,14 @@ public class DeleteTempPDF {
        deleteFile(f);
        deleteFile(f2);
    }
-   
-private void deleteFile(File file){
+   /**
+    * Deletes the temp pdf's
+    * @param file
+    * @throws FileNotFoundException 
+    */
+private void deleteFile(File file) throws FileNotFoundException {
    if (!file.exists())
-      throw new IllegalArgumentException(
+      throw new FileNotFoundException(
           "Delete: no such file or directory: " + file);
     if (!file.canWrite())
       throw new IllegalArgumentException("Delete: write protected: "
