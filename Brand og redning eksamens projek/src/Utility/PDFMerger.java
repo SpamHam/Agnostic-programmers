@@ -38,7 +38,7 @@ public class PDFMerger {
 //        }
 //    }
     
-    public void MergePDF() throws FileNotFoundException{
+    public void MergePDF() throws FileNotFoundException, Exception{
         
             int f = new File("c:/PDF/").listFiles().length; //gets the current number of files and folders in the pdf directory;
                                                             //minimum file in this foder = 1(temp folder)
@@ -50,7 +50,7 @@ public class PDFMerger {
     }
  
     private void concatPDFs(List<InputStream> streamOfPDFFiles,
-            OutputStream outputStream, boolean paginate) {
+            OutputStream outputStream, boolean paginate) throws Exception {
  
         Document document = new Document();
         try {
@@ -59,7 +59,7 @@ public class PDFMerger {
             document.close();
             outputStream.close();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new Exception(e.getMessage());
         } finally {
             if (document.isOpen())
                 document.close();
@@ -67,7 +67,7 @@ public class PDFMerger {
                 if (outputStream != null)
                     outputStream.close();
             } catch (IOException ioe) {
-                ioe.printStackTrace();
+                throw new Exception(ioe.getMessage());
             }
         }
     }
@@ -86,8 +86,6 @@ public class PDFMerger {
         PdfWriter writer = PdfWriter.getInstance(document, outputStream);
         
         document.open();
-     //   PdfContentByte cb = writer.getDirectContent(); // Holds the PDF
-        // data
         
         PdfImportedPage page;
         int currentPageNumber = 0;
