@@ -188,11 +188,11 @@ public class PDFGenerator {
         addDate(odinRaport);
         addEmptyLine(odinRaport, 1);
         addLeaders(odinRaport, tab2);    
-        addEmptyLine(odinRaport, 2);
+        addEmptyLine(odinRaport, 1);
         addReceived(odinRaport, tab2);
-        addEmptyLine(odinRaport, 2);
+        addEmptyLine(odinRaport, 1);
         addSpecification(odinRaport, tab2);
-        addEmptyLine(odinRaport, 2);
+        addEmptyLine(odinRaport, 1);
         addMessage(odinRaport);
         addEmptyLine(odinRaport, 2);
         odinRaport.add(new Chunk("Skadeslidte: " , big));
