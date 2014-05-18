@@ -189,7 +189,7 @@ public class Timeplan extends javax.swing.JFrame {
     }
 
     /**
-     * Fires the PDF event
+     * Fires a PDF event
      *
      * @param event type FormatEventPDF
      */
@@ -197,7 +197,7 @@ public class Timeplan extends javax.swing.JFrame {
         if (PDFListener != null) {
             try {
                 PDFListener.PDFTimePlanPerformed(event);
-                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Timeplan blev gemt", "Færdig", JOptionPane.INFORMATION_MESSAGE);
             } catch (EventExercutionException eex) {
                 JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
