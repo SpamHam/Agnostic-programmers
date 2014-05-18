@@ -32,6 +32,7 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.pdf.draw.VerticalPositionMark;
 import java.util.ArrayList;
 
 
@@ -67,17 +68,6 @@ public class PDFGenerator {
     this.allTime = allTime;
     this.colNames = colNames;
   }
-  
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColName,ArrayList<BEForces> allForces,
-          ArrayList<String> forcesColName, String date, String received){
-    this.allMaterial = allMaterial;
-    this.materialColNames = materialColName;
-    this.allForces = allForces;
-    this.forcesColName = forcesColName;
-    this.date = date;
-    this.received = received;
-  }
-  
 
   public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<BEForces> allForces,
           ArrayList<String> forcesColName, String date, String received,String fireNr, String evaNr, String message, 
@@ -162,44 +152,40 @@ public class PDFGenerator {
   addEmptyLine(odinRaport, 1);
     createTable(odinRaport, allTime, colNames);
   addEmptyLine(odinRaport, 3);
-    odinRaport.add(new Paragraph("Dette dokument er lavet i systemet Borr",
+    odinRaport.add(new Paragraph("Dette dokument er lavet i systemet BORR",
         redFont));
-    //document.newPage(); // new page
-    //ODINBackPage(odinRaport, title);   
     document.add(odinRaport);
 
   }
 
     private void createOdinPage(Document document) 
         throws DocumentException {
+        // creates tabs
+        Chunk tab1 = new Chunk(new VerticalPositionMark(), 100, true);
+        Chunk tab2 = new Chunk(new VerticalPositionMark(), 350, true);
         Paragraph odinRaport = new Paragraph(); 
         Paragraph title = new Paragraph("ODIN Rapport", Header); 
          title.setAlignment(Element.ALIGN_CENTER);
         odinRaport.add(title);
         addEmptyLine(odinRaport, 2);
-       //odinRaport.add(new Paragraph("Dato: " + date,
-         //       small));
-       
-        odinRaport.add(new Chunk("Dato: ",smallBold));
-        odinRaport.add(new Phrase(date,
+        
+        odinRaport.add(new Chunk("Dato: ", smallBold));
+        odinRaport.add(new Phrase(date, small));
+        addEmptyLine(odinRaport, 1);
+        
+        odinRaport.add(new Chunk("Indsats Leder: ",smallBold));
+        odinRaport.add(new Phrase(teamLeader,
                 small));
-        odinRaport.add(new Phrase("                          ",
+        odinRaport.add(new Chunk(tab2));
+        odinRaport.add(new Chunk("Hold Leder: " , smallBold));
+        odinRaport.add(new Phrase( leader,
                 small));
-        odinRaport.add(new Chunk("Indsats Leder: " , smallBold));
-        odinRaport.add(new Phrase( teamLeader,
-                small));
- //       addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Hold Leder: " + teamLeader,
-//                small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Uge dag: " + weekday,
-//                small));
+        
         addEmptyLine(odinRaport, 2);
         odinRaport.add(new Chunk("Alarm Modtaget: " , smallBold));
         odinRaport.add(new Phrase( received,
                 small));
-        odinRaport.add(new Phrase("                          ",
-                small));
+        odinRaport.add(new Chunk(tab2));
         odinRaport.add(new Chunk("Uge dag: " , smallBold));
         odinRaport.add(new Phrase( weekday,
                 small));
@@ -207,8 +193,7 @@ public class PDFGenerator {
         odinRaport.add(new Chunk("Brand report Nr: " , smallBold));
         odinRaport.add(new Phrase( fireNr,
                 small));
-        odinRaport.add(new Phrase("                          ",
-                small));
+        odinRaport.add(new Chunk(tab2));
          odinRaport.add(new Chunk("EVA Nr: " , smallBold));
         odinRaport.add(new Phrase( evaNr,
                 small));
@@ -222,34 +207,19 @@ public class PDFGenerator {
         odinRaport.add(new Chunk("Navn: " , smallBold));
         odinRaport.add(new Phrase( name,
                 small));
-        odinRaport.add(new Phrase("                          ",
-                small));
+        odinRaport.add(new Chunk(tab1));
          odinRaport.add(new Chunk("Adresse: " , smallBold));
         odinRaport.add(new Phrase( address,
                 small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Brand Rapport Nr: " + fireNr,
-//                small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("EVA Nr: " + evaNr,
-//                small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Skadslidte",
-//                smallBold));
-//        odinRaport.add(new Paragraph("Navn: " + name,
-//                small));
-//        addEmptyLine(odinRaport, 1);
-//        odinRaport.add(new Paragraph("Adresse" + address,
-//                small));
-//        addEmptyLine(odinRaport, 2);
-//        odinRaport.add(new Paragraph("Materialer Brugt",
-//                smallBold));
         addEmptyLine(odinRaport, 1);
         odinRaport.add(new Chunk("Brugte materialer: " , big));
         createMaterialTable(odinRaport, allMaterial, materialColNames);
         addEmptyLine(odinRaport, 2);
         odinRaport.add(new Chunk("Indsatte Styrker: " , big));
         createForcesTable(odinRaport, allForces, forcesColName);
+        addEmptyLine(odinRaport, 3);
+        odinRaport.add(new Paragraph("Dette dokument er lavet i systemet BORR",
+        redFont));
         document.add(odinRaport);
     }
   
@@ -311,7 +281,6 @@ public class PDFGenerator {
     PdfPCell amount = new PdfPCell(new Phrase(""+row.getAmount(),small));
     amount.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(amount);
-    //table.addCell("" + row.getAmount());
     }
   }
   
@@ -335,7 +304,6 @@ public class PDFGenerator {
     PdfPCell force = new PdfPCell(new Phrase(row.getForces(),small));
     force.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(force);
-    //table.addCell("" + row.getAmount());
     }
   }
 /**
