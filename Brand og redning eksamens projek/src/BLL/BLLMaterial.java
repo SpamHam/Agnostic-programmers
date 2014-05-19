@@ -49,7 +49,7 @@ public class BLLMaterial {
      * @throws Exception 
      */
     public void Create(BE.BEMaterial b) throws Exception {
-        if (b.getM_Materiale().isEmpty()) {
+        if (b.getMaterial().isEmpty()) {
             Error.NotEnougthInfo("creating a material.");
         } else {
             try {
@@ -82,7 +82,7 @@ public class BLLMaterial {
      * @throws Exception 
      */
     public void Update(BE.BEMaterial b) throws Exception {
-        if (b.getM_Materiale().isEmpty()) {
+        if (b.getMaterial().isEmpty()) {
             Error.NotEnougthInfo("updating a material.");
         } else {
             try {

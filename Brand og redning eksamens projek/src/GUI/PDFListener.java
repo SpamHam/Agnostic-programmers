@@ -13,10 +13,12 @@ package GUI;
 public interface PDFListener {
    
     /**
-     * implementing classes will have to override the PDFTimePlanPerformed method 
+     * implementing classes will have to override the PDFTimePlanPerformed & PDFOdinPerformed method 
      * @param event type FormatEventPDF
      */
     public void PDFTimePlanPerformed(FormatEventPDF event);
     
     public void PDFOdinPerformed(FormatEventPDF event);
+    
+    public void PDFStationPlanPerformed(FormatEventPDF event);
 }

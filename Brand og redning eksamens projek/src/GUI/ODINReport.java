@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BE.BEForces;
 import BE.BEMaterial;
 import BLL.BLLPDF;
 import java.awt.event.ActionEvent;
@@ -16,6 +17,7 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -26,17 +28,18 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel materialModel;
+    ForcesTableModel forcesTableModel; 
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
     ArrayList<String> materialColNames = new ArrayList<>();
     ArrayList<String> forcesColNames = new ArrayList<>();
-    ArrayList<String> allforces = new ArrayList<>();
+    ArrayList<BEForces> allforces = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     private String currentTime;
-    boolean chkboxIndsatteStyrker = false;
-    boolean chkboxSkadeslidte = false;
+    boolean isForcesSelected = false;
+    boolean isWounded = false;
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
-     String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
 
     /**
      * Creates new form ODINReport
@@ -44,14 +47,25 @@ public class ODINReport extends javax.swing.JFrame {
     public ODINReport() {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
+        // sets the model for the material table
         materialModel = new ChooseMaterialsTableModel(allMaterials);
         sorter = new TableRowSorter<TableModel>(materialModel);
+        //sets the model for the forces table
+        forcesTableModel = new ForcesTableModel(allforces);
+        tblForces.setModel(forcesTableModel);
+        tblForces.getTableHeader().setReorderingAllowed(false);
+        
         setTitle("ODIN Report");
         this.setVisible(true);
-        ShowIndsatteStyrker();
-        ShowSkadeslidte();
+        ShowForces();
+        ShowWounded();
+        //sets the ActionListener for the button "save" and addForces
         ActionListener BTNPDFOdinListener = new BTNPDFOdinActionListener();
         btnSave.addActionListener(BTNPDFOdinListener);
+        ActionListener BTNAddForces = new BTNAddForcesActionListener();
+        btnAddForces.addActionListener(BTNAddForces);
+        ActionListener BTNAddMaterial = new BTNAddMaterialActionListener();
+        btnAddMaterial.addActionListener(BTNAddMaterial);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
@@ -72,8 +86,22 @@ public class ODINReport extends javax.swing.JFrame {
      @Override
         public void actionPerformed(ActionEvent e) {
                getOdinData();
-              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
-                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
+//              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
+//                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
+        firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,
+                        received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));
+        }
+    }
+     
+      /**
+     * anonymous inner class listening on the create pdf button
+     */
+     private class BTNAddForcesActionListener implements ActionListener {
+     @Override
+        public void actionPerformed(ActionEvent e) {
+           BEForces emptyLine = new BEForces("", "", ""); //adds a empty row to the table 
+           allforces.add(emptyLine);
+           forcesTableModel.setForcesList(allforces);
         }
     }
     /**
@@ -102,8 +130,8 @@ public class ODINReport extends javax.swing.JFrame {
             String tid = currentTime.substring(19);
         try {
             Date date = formatter.parse(dato);
-          txtAlarmModtaget.setText(tid);
-          jDateChooserDato.setDate(date);
+          txtRecived.setText(tid);
+          dcDate.setDate(date);
         } catch (ParseException ex) {
             Logger.getLogger(ODINReport.class.getName()).log(Level.SEVERE, null, ex);
             
@@ -124,37 +152,38 @@ public class ODINReport extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         lblHeader = new javax.swing.JLabel();
         lblSubHeader = new javax.swing.JLabel();
-        lblIndsatsLeder = new javax.swing.JLabel();
-        lblHoldLeder = new javax.swing.JLabel();
-        txtIndsatsLeder = new javax.swing.JTextField();
-        txtHoldLeder = new javax.swing.JTextField();
-        jDateChooserDato = new com.toedter.calendar.JDateChooser();
-        lblDato = new javax.swing.JLabel();
-        lblAlarmModtaget = new javax.swing.JLabel();
-        txtAlarmModtaget = new javax.swing.JTextField();
-        lblUgeDag = new javax.swing.JLabel();
-        txtUgeDag = new javax.swing.JTextField();
-        lblBrandReportNr = new javax.swing.JLabel();
-        txtBrandReportNr = new javax.swing.JTextField();
+        lblTeamLeader = new javax.swing.JLabel();
+        lblLeader = new javax.swing.JLabel();
+        txtTeamLeader = new javax.swing.JTextField();
+        txtLeader = new javax.swing.JTextField();
+        dcDate = new com.toedter.calendar.JDateChooser();
+        lblDate = new javax.swing.JLabel();
+        lblRecived = new javax.swing.JLabel();
+        txtRecived = new javax.swing.JTextField();
+        lblWeekday = new javax.swing.JLabel();
+        txtWeekday = new javax.swing.JTextField();
+        lblFiretNr = new javax.swing.JLabel();
+        txtFireNr = new javax.swing.JTextField();
         lblEvaReportNr = new javax.swing.JLabel();
-        txtEvaReportNr = new javax.swing.JTextField();
-        lblMelding = new javax.swing.JLabel();
-        txtMelding = new javax.swing.JTextField();
-        chkBoxSkadeslidte = new javax.swing.JCheckBox();
-        lblNavn = new javax.swing.JLabel();
-        lblAddresse = new javax.swing.JLabel();
-        txtNavn = new javax.swing.JTextField();
-        txtAddresse = new javax.swing.JTextField();
-        btnTilfoejMaterialer = new javax.swing.JButton();
-        lblMaterialerBrugt = new javax.swing.JLabel();
-        btnTilbage = new javax.swing.JButton();
-        chkBoxIndsatteStyrker = new javax.swing.JCheckBox();
+        txtEvaNr = new javax.swing.JTextField();
+        lblMessage = new javax.swing.JLabel();
+        txtMessage = new javax.swing.JTextField();
+        chkBoxWounded = new javax.swing.JCheckBox();
+        lblName = new javax.swing.JLabel();
+        lblAddress = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        txtAddress = new javax.swing.JTextField();
+        btnAddMaterial = new javax.swing.JButton();
+        lblMaterialUsed = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        chkBoxForces = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblMaterial = new javax.swing.JTable();
         jpanelIndsatteStyrker = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtableIndsatteStyrker = new javax.swing.JTable();
+        tblForces = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
+        btnAddForces = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -180,60 +209,55 @@ public class ODINReport extends javax.swing.JFrame {
         lblSubHeader.setForeground(new java.awt.Color(255, 0, 51));
         lblSubHeader.setText("Station 4.24");
 
-        lblIndsatsLeder.setText("Indsats Leder:");
+        lblTeamLeader.setText("Indsats Leder:");
 
-        lblHoldLeder.setText("Hold Leder:");
+        lblLeader.setText("Hold Leder:");
 
-        lblDato.setText("Dato:");
+        lblDate.setText("Dato:");
 
-        lblAlarmModtaget.setText("Alarm Modtaget:");
+        lblRecived.setText("Alarm Modtaget:");
 
-        txtAlarmModtaget.addActionListener(new java.awt.event.ActionListener() {
+        txtRecived.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAlarmModtagetActionPerformed(evt);
+                txtRecivedActionPerformed(evt);
             }
         });
 
-        lblUgeDag.setText("Uge Dag:");
+        lblWeekday.setText("Uge Dag:");
 
-        lblBrandReportNr.setText("Brand Report Nr:");
+        lblFiretNr.setText("Brand Report Nr:");
 
         lblEvaReportNr.setText("EVA Report Nr:");
 
-        lblMelding.setText("Melding:");
+        lblMessage.setText("Melding:");
 
-        chkBoxSkadeslidte.setText("Skadeslidte");
-        chkBoxSkadeslidte.addActionListener(new java.awt.event.ActionListener() {
+        chkBoxWounded.setText("Skadeslidte");
+        chkBoxWounded.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxSkadeslidteActionPerformed(evt);
+                chkBoxWoundedActionPerformed(evt);
             }
         });
 
-        lblNavn.setText("Navn:");
+        lblName.setText("Navn:");
 
-        lblAddresse.setText("Addresse:");
+        lblAddress.setText("Addresse:");
 
-        btnTilfoejMaterialer.setText("Tilføj Materialer");
-        btnTilfoejMaterialer.addActionListener(new java.awt.event.ActionListener() {
+        btnAddMaterial.setText("Tilføj Materialer");
+
+        lblMaterialUsed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblMaterialUsed.setText("Materialer Brugt:");
+
+        btnBack.setText("Tilbage");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilfoejMaterialerActionPerformed(evt);
+                btnBackActionPerformed(evt);
             }
         });
 
-        lblMaterialerBrugt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lblMaterialerBrugt.setText("Materialer Brugt:");
-
-        btnTilbage.setText("Tilbage");
-        btnTilbage.addActionListener(new java.awt.event.ActionListener() {
+        chkBoxForces.setText("Indsatte Styrker:");
+        chkBoxForces.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTilbageActionPerformed(evt);
-            }
-        });
-
-        chkBoxIndsatteStyrker.setText("Indsatte Styrker:");
-        chkBoxIndsatteStyrker.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxIndsatteStyrkerActionPerformed(evt);
+                chkBoxForcesActionPerformed(evt);
             }
         });
 
@@ -247,19 +271,15 @@ public class ODINReport extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(tblMaterial);
 
-        jtableIndsatteStyrker.setModel(new javax.swing.table.DefaultTableModel(
+        tblForces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1341", "", null, null},
-                {"2338", "", null, null},
-                {"2349", "", null, null},
-                {"2351", "", null, null},
-                {"ST Vagt", null, null, null}
+
             },
             new String [] {
-                "Vogn Nr:", "Kørsel 1 / 2", "Bemanding", "Afvigelse"
+
             }
         ));
-        jScrollPane1.setViewportView(jtableIndsatteStyrker);
+        jScrollPane1.setViewportView(tblForces);
 
         javax.swing.GroupLayout jpanelIndsatteStyrkerLayout = new javax.swing.GroupLayout(jpanelIndsatteStyrker);
         jpanelIndsatteStyrker.setLayout(jpanelIndsatteStyrkerLayout);
@@ -276,6 +296,8 @@ public class ODINReport extends javax.swing.JFrame {
 
         btnSave.setText("Gem");
 
+        btnAddForces.setText("Tilføj en Styrke");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -285,56 +307,57 @@ public class ODINReport extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnTilbage)
+                        .addComponent(btnAddForces)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chkBoxIndsatteStyrker)
-                            .addComponent(chkBoxSkadeslidte)
+                            .addComponent(chkBoxForces)
+                            .addComponent(chkBoxWounded)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblBrandReportNr)
+                                    .addComponent(lblFiretNr)
                                     .addComponent(lblEvaReportNr)
-                                    .addComponent(lblMelding)
-                                    .addComponent(lblNavn)
-                                    .addComponent(lblAddresse))
+                                    .addComponent(lblMessage)
+                                    .addComponent(lblName)
+                                    .addComponent(lblAddress))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMelding, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
-                                    .addComponent(txtEvaReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtBrandReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNavn)
-                                    .addComponent(txtAddresse)))
+                                    .addComponent(txtMessage, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+                                    .addComponent(txtEvaNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtFireNr, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtName)
+                                    .addComponent(txtAddress)))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtRecived, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(94, 94, 94)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblAlarmModtaget)
+                            .addComponent(lblRecived)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblHeader)
                                     .addComponent(lblSubHeader)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblDato)
+                                        .addComponent(lblDate)
                                         .addGap(60, 60, 60)
-                                        .addComponent(jDateChooserDato, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(dcDate, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIndsatsLeder)
-                                    .addComponent(lblHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblUgeDag)
-                                    .addComponent(lblMaterialerBrugt))
+                                    .addComponent(lblTeamLeader)
+                                    .addComponent(lblLeader, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblWeekday)
+                                    .addComponent(lblMaterialUsed))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtHoldLeder)
-                                    .addComponent(txtIndsatsLeder)
-                                    .addComponent(txtUgeDag, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnTilfoejMaterialer, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                                    .addComponent(txtLeader)
+                                    .addComponent(txtTeamLeader)
+                                    .addComponent(txtWeekday, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnAddMaterial, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -345,84 +368,86 @@ public class ODINReport extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblHeader)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblIndsatsLeder)
-                        .addComponent(txtIndsatsLeder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblTeamLeader)
+                        .addComponent(txtTeamLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSubHeader)
-                    .addComponent(lblHoldLeder)
-                    .addComponent(txtHoldLeder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblLeader)
+                    .addComponent(txtLeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jDateChooserDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblDato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(dcDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblUgeDag)
-                        .addComponent(txtUgeDag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblWeekday)
+                        .addComponent(txtWeekday, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAlarmModtaget)
-                    .addComponent(txtAlarmModtaget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblMaterialerBrugt)
-                    .addComponent(btnTilfoejMaterialer, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblRecived)
+                    .addComponent(txtRecived, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaterialUsed)
+                    .addComponent(btnAddMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBrandReportNr)
-                            .addComponent(txtBrandReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblFiretNr)
+                            .addComponent(txtFireNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblEvaReportNr)
-                            .addComponent(txtEvaReportNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEvaNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMelding)
-                            .addComponent(txtMelding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblMessage)
+                            .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(chkBoxSkadeslidte)
+                        .addComponent(chkBoxWounded)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNavn)
-                            .addComponent(txtNavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lblName)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblAddresse)
-                            .addComponent(txtAddresse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblAddress)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
-                .addComponent(chkBoxIndsatteStyrker)
+                .addComponent(chkBoxForces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTilbage)
-                    .addComponent(btnSave))
+                    .addComponent(btnBack)
+                    .addComponent(btnSave)
+                    .addComponent(btnAddForces))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtAlarmModtagetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAlarmModtagetActionPerformed
+    private void txtRecivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecivedActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtAlarmModtagetActionPerformed
+    }//GEN-LAST:event_txtRecivedActionPerformed
 /**
  * 
  */
     private void getOdinData(){
     getMaterialColNames();
-    evaNr = txtEvaReportNr.getText();
-    fireNr = txtBrandReportNr.getText();
-    received = txtAlarmModtaget.getText();
-    date = txtUgeDag.getText();
-    message = txtMelding.getText();
-    name = txtNavn.getText();
-    address = txtAddresse.getText();
-    leader = txtIndsatsLeder.getText();
-    teamLeader = txtHoldLeder.getText();
-    weekday = txtUgeDag.getText();
+    getForcesColNames();
+    evaNr = txtEvaNr.getText();
+    fireNr = txtFireNr.getText();
+    received = txtRecived.getText();
+    date = ((JTextField) dcDate.getDateEditor().getUiComponent()).getText();
+    message = txtMessage.getText();
+    name = txtName.getText();
+    address = txtAddress.getText();
+    teamLeader = txtTeamLeader.getText();
+    leader = txtLeader.getText();
+    weekday = txtWeekday.getText();
     }
    /**
     * 
@@ -433,111 +458,128 @@ public class ODINReport extends javax.swing.JFrame {
         materialColNames.add(materialModel.getColumnName(i));
        }
      }
-    
-    private void btnTilfoejMaterialerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilfoejMaterialerActionPerformed
-        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
-        materialsDialog.setLocationRelativeTo(this);
+  
+  private void getForcesColNames(){
+  for (int i=0; i<forcesTableModel.getColumnCount(); i++){
+      forcesColNames.add(forcesTableModel.getColumnName(i));
+    }
+  }
+  
+    /**
+     * anonymous inner class listening on the add material button
+     */
+     private class BTNAddMaterialActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(null, true);
+        materialsDialog.setLocationRelativeTo(null);
         materialsDialog.setVisible(true);
 
         // continue here when the dialog box is closed (disposed).
-        ArrayList<BEMaterial> rent = materialsDialog.getValgteMaterials();
-        if (rent != null) // a material has been created in the dialog box.
+        ArrayList<BEMaterial> mat = materialsDialog.getValgteMaterials();
+        //System.out.println(mat.get(0).getMaterial());
+        if (mat != null) // a material has been created in the dialog box.
         {
             if (!allMaterials.isEmpty()) {
-                for (int i = 0; i < rent.size(); i++) {
-                    allMaterials.add(rent.get(i));
+                for (int i = 0; i < mat.size(); i++) {
+                    allMaterials.add(mat.get(i));
                 }
             } else {
-                allMaterials = rent;
+                allMaterials = mat;
             }
             tblMaterial.setModel(materialModel);
             tblMaterial.setRowSorter(sorter);
             tblMaterial.getTableHeader().setReorderingAllowed(false);
-
+                
             materialModel.setMaterialsStatusList(allMaterials);
+        }   
         }
-    }//GEN-LAST:event_btnTilfoejMaterialerActionPerformed
-
-    private void btnTilbageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTilbageActionPerformed
+     
+     }  
+    
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
         Timeplan timePlanFrame = new Timeplan();
         timePlanFrame.setLocationRelativeTo(this);
         timePlanFrame.setVisible(true);
-    }//GEN-LAST:event_btnTilbageActionPerformed
+    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void chkBoxIndsatteStyrkerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxIndsatteStyrkerActionPerformed
-        ShowIndsatteStyrker();
-    }//GEN-LAST:event_chkBoxIndsatteStyrkerActionPerformed
+    private void chkBoxForcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxForcesActionPerformed
+        ShowForces();
+    }//GEN-LAST:event_chkBoxForcesActionPerformed
 
-    private void chkBoxSkadeslidteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxSkadeslidteActionPerformed
-        ShowSkadeslidte();
-    }//GEN-LAST:event_chkBoxSkadeslidteActionPerformed
+    private void chkBoxWoundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxWoundedActionPerformed
+        ShowWounded();
+    }//GEN-LAST:event_chkBoxWoundedActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAddForces;
+    private javax.swing.JButton btnAddMaterial;
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnSave;
-    private javax.swing.JButton btnTilbage;
-    private javax.swing.JButton btnTilfoejMaterialer;
-    private javax.swing.JCheckBox chkBoxIndsatteStyrker;
-    private javax.swing.JCheckBox chkBoxSkadeslidte;
-    private com.toedter.calendar.JDateChooser jDateChooserDato;
+    private javax.swing.JCheckBox chkBoxForces;
+    private javax.swing.JCheckBox chkBoxWounded;
+    private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable jTable1;
     private javax.swing.JPanel jpanelIndsatteStyrker;
-    private javax.swing.JTable jtableIndsatteStyrker;
-    private javax.swing.JLabel lblAddresse;
-    private javax.swing.JLabel lblAlarmModtaget;
-    private javax.swing.JLabel lblBrandReportNr;
-    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblAddress;
+    private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEvaReportNr;
+    private javax.swing.JLabel lblFiretNr;
     private javax.swing.JLabel lblHeader;
-    private javax.swing.JLabel lblHoldLeder;
-    private javax.swing.JLabel lblIndsatsLeder;
-    private javax.swing.JLabel lblMaterialerBrugt;
-    private javax.swing.JLabel lblMelding;
-    private javax.swing.JLabel lblNavn;
+    private javax.swing.JLabel lblLeader;
+    private javax.swing.JLabel lblMaterialUsed;
+    private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblRecived;
     private javax.swing.JLabel lblSubHeader;
-    private javax.swing.JLabel lblUgeDag;
+    private javax.swing.JLabel lblTeamLeader;
+    private javax.swing.JLabel lblWeekday;
+    private javax.swing.JTable tblForces;
     private javax.swing.JTable tblMaterial;
-    private javax.swing.JTextField txtAddresse;
-    private javax.swing.JTextField txtAlarmModtaget;
-    private javax.swing.JTextField txtBrandReportNr;
-    private javax.swing.JTextField txtEvaReportNr;
-    private javax.swing.JTextField txtHoldLeder;
-    private javax.swing.JTextField txtIndsatsLeder;
-    private javax.swing.JTextField txtMelding;
-    private javax.swing.JTextField txtNavn;
-    private javax.swing.JTextField txtUgeDag;
+    private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtEvaNr;
+    private javax.swing.JTextField txtFireNr;
+    private javax.swing.JTextField txtLeader;
+    private javax.swing.JTextField txtMessage;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRecived;
+    private javax.swing.JTextField txtTeamLeader;
+    private javax.swing.JTextField txtWeekday;
     // End of variables declaration//GEN-END:variables
 /*
-     A function to Hide/Show the table for Indsatte Styrker
+     A function to Hide/Show the table for Forces
      */
-    private void ShowIndsatteStyrker() {
-        if (chkBoxIndsatteStyrker.isSelected()) {
-            chkboxIndsatteStyrker = true;
+    private void ShowForces() {
+        if (chkBoxForces.isSelected()) {
+            isForcesSelected = true;
 
         } else {
-            chkboxIndsatteStyrker = false;
+            isForcesSelected = false;
 
         }
-        jpanelIndsatteStyrker.setVisible(chkboxIndsatteStyrker);
+        btnAddForces.setVisible(isForcesSelected);
+        jpanelIndsatteStyrker.setVisible(isForcesSelected);
 
     }
 
     /*
-     A function to Hide/Show the text areas and labels for Skadeslidte
+     A function to Hide/Show the text areas and labels for Wounded
      */
-    private void ShowSkadeslidte() {
-        if (chkBoxSkadeslidte.isSelected()) {
-            chkboxSkadeslidte = true;
+    private void ShowWounded() {
+        if (chkBoxWounded.isSelected()) {
+            isWounded = true;
         } else {
-            chkboxSkadeslidte = false;
+            isWounded = false;
         }
-        lblNavn.setVisible(chkboxSkadeslidte);
-        lblAddresse.setVisible(chkboxSkadeslidte);
-        txtNavn.setVisible(chkboxSkadeslidte);
-        txtAddresse.setVisible(chkboxSkadeslidte);
+        lblName.setVisible(isWounded);
+        lblAddress.setVisible(isWounded);
+        txtName.setVisible(isWounded);
+        txtAddress.setVisible(isWounded);
     }
 }

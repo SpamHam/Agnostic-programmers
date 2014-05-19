@@ -89,7 +89,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
              */
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblMaterial.getSelectedRow();
-                txtMaterial.setText(allMaterials.get(selectedRow).getM_Materiale());
+                txtMaterial.setText(allMaterials.get(selectedRow).getMaterial());
 
             }
         });
@@ -142,7 +142,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getM_ID(), txtMaterial.getText().trim()));
+                BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim()));
                 allMaterials = BLL.BLLMaterial.getInstance().getAll();
                 materialTableModel.setMaterialList(allMaterials);
                 materialTableModel.fireTableDataChanged();

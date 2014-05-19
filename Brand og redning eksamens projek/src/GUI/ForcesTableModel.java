@@ -6,30 +6,30 @@
 
 package GUI;
 
-import BE.BEMaterial;
+import BE.BEForces;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Claus
+ * @author peter bærbar
  */
-public class ChooseMaterialsTableModel extends AbstractTableModel {
+public class ForcesTableModel extends AbstractTableModel {
 
-private String[] colNames = {"Materiale", "Antal"};
-private Class[] classes = {String.class, Integer.class};
+private String[] colNames = {"Vogn Nr", "Kørsel 1/2", "Bemanding"};
+private Class[] classes = {String.class, String.class, String.class};
 
-private ArrayList<BEMaterial> allSelectedMaterials;
+private ArrayList<BEForces> allSelectedForces;
 
-    public ChooseMaterialsTableModel(ArrayList<BEMaterial> materialList) {
-      allSelectedMaterials = materialList;
+    public ForcesTableModel(ArrayList<BEForces> forceList) {
+      allSelectedForces = forceList;
         fireTableDataChanged();
     }    
     
 
         @Override
     public int getRowCount() {
-        return allSelectedMaterials.size();
+        return allSelectedForces.size();
     }
 
     @Override
@@ -57,29 +57,31 @@ private ArrayList<BEMaterial> allSelectedMaterials;
     @Override
     public boolean isCellEditable(int row, int col) {
          switch (col) {
-         case 0: return false;
+         case 0: return true;
          case 1: return true;
+         case 2: return true;
          default:
              return false;
          }
     }
+    
 
     /**
-     * Sets the Material table and updates it
-     * @param materialList 
+     * Sets the forces table and updates it
+     * @param forcesList 
      */
-    public void setMaterialsStatusList(ArrayList<BEMaterial> materialList) {
-        allSelectedMaterials = materialList;
+    public void setForcesList(ArrayList<BEForces> forcesList) {
+        allSelectedForces = forcesList;
         fireTableDataChanged();
     }    
     
     /**
-     * Return the material for the selected row
+     * Return the forces for the selected row
      * @param row
      * @return 
      */
-     public BEMaterial getMaterialsByRow(int row) {
-        return allSelectedMaterials.get(row);
+     public BEForces getForcesByRow(int row) {
+        return allSelectedForces.get(row);
     }
    
      /**
@@ -90,12 +92,14 @@ private ArrayList<BEMaterial> allSelectedMaterials;
       */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        BEMaterial e = allSelectedMaterials.get(rowIndex);
+        BEForces e = allSelectedForces.get(rowIndex);
             switch (columnIndex) {
                 case 0:
-                    return e.getMaterial();
+                    return e.getCarID();
                 case 1:
-                    return e.getAmount();
+                    return e.getTypeOfAlarm();
+                case 2:
+                    return e.getForces();
             }
 
             return null;
@@ -110,11 +114,21 @@ private ArrayList<BEMaterial> allSelectedMaterials;
       @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex)
     {
-        BEMaterial row = allSelectedMaterials.get(rowIndex);
+        BEForces row = allSelectedForces.get(rowIndex);
         switch (columnIndex){
-            case 1: 
-              row.setAmount((Integer) aValue);
-    } 
+            case 0: 
+              row.setCarID((String) aValue);
+                break;
+            case 1:
+               row.setTypeOfAlarm((String) aValue);
+                break;
+            case 2:
+                row.setForces((String) aValue);
+                break;
+    }
+        
    }
 
 }
+    
+

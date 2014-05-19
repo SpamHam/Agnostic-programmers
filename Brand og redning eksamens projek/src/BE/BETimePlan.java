@@ -13,91 +13,122 @@ package BE;
 public class BETimePlan {
 
     
-    private String Stilling, navn, Koeretoej, Tidsrum;
-    private int Koert, StationsVagt;
-
+    private String title, name, vehicle, time;
+    private int hours, stationHours;
+    
     /**
-     * Constructor used for packaging Rank, Name,
-     * Timeframe, Driven time, Shift at the station and Vehicle for a timesheet
-     * @param Stilling String
-     * @param navn String
-     * @param Tidsrum String
-     * @param Koert int
-     * @param StationsVagt int
-     * @param Koeretoej String
+     * Constructor used for packaging title, name,
+     * time, hours,stationHours and Vehicle
+     * @param title String
+     * @param name String
+     * @param time String
+     * @param hours int
+     * @param StationHours int
+     * @param vehicle String
      */
-    public BETimePlan(String Stilling, String navn, String Tidsrum, int Koert, int StationsVagt, String Koeretoej) {
-        this.Stilling = Stilling;
-        this.navn = navn;
-        this.Koert = Koert;
-        this.Tidsrum = Tidsrum;
-        this.StationsVagt = StationsVagt;
-        this.Koeretoej = Koeretoej;
+    public BETimePlan(String title, String name, String time, int hours, int StationHours, String vehicle) {
+        this.title = title;
+        this.name = name;
+        this.hours = hours;
+        this.time = time;
+        this.stationHours = StationHours;
+        this.vehicle = vehicle;
     }
     
     /**
      * Constructor used for packaging name and vehicle used for the timesheet
-     * @param navn String
-     * @param Koeretoej int
+     * @param name String
+     * @param vehicle int
      */
-    public BETimePlan(String navn, String Koeretoej){
-    this.navn = navn;
-    this.Koeretoej = Koeretoej;
-    }
-
-
-    public String getStilling() {
-        return Stilling;
-    }
-
-    public void setStilling(String Stilling) {
-        this.Stilling = Stilling;
-    }
-
-    public String getNavn() {
-        return navn;
-    }
-
-    public void setNavn(String navn) {
-        this.navn = navn;
-    }
-
-    public int getKoert() {
-        return Koert;
-    }
-
-    public void setKoert(int Koert) {
-        this.Koert = Koert;
-    }
-
-    public String getTidsrum() {
-        return Tidsrum;
-    }
-
-    public void setTidsrum(String Tidsrum) {
-        this.Tidsrum = Tidsrum;
-    }
-
-    public int getStationsVagt() {
-        return StationsVagt;
-    }
-
-    public void setStationsVagt(int StationsVagt) {
-        this.StationsVagt = StationsVagt;
+    public BETimePlan(String name, String vehicle){
+    this.name = name;
+    this.vehicle = vehicle;
     }
 
     /**
-     * @return the StringStatus
+     * 
+     * @return the string title 
      */
-    public String getKoeretoej() {
-        return Koeretoej;
+    public String getTitle() {
+        return title;
+    }
+/**
+ * 
+ * @param title the string title to set 
+ */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+/**
+ * 
+ * @return String name 
+ */
+    public String getName() {
+        return name;
+    }
+    /**
+     * 
+     * @param name the string name to set 
+     */
+
+    public void setName(String name) {
+        this.name = name;
+    }
+/**
+ * 
+ * @return the int hours 
+ */
+    public int getHours() {
+        return hours;
+    }
+/**
+ * 
+ * @param hours the int hours to set  
+ */
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+/**
+ * 
+ * @return the string time 
+ */
+    public String getTime() {
+        return time;
+    }
+/**
+ * 
+ * @param time the string time to set  
+ */
+    public void setTime(String time) {
+        this.time = time;
+    }
+/**
+ * 
+ * @return the string stationHours 
+ */
+    public int getStationHours() {
+        return stationHours;
+    }
+/**
+ * 
+ * @param stationHours the int stationHours to set
+ */
+    public void setStationHours(int stationHours) {
+        this.stationHours = stationHours;
     }
 
     /**
-     * @param Status the StringStatus to set
+     * @return the String vehicle
      */
-    public void setKoeretoej(String Koeretoej) {
-        this.Koeretoej = Koeretoej;
+    public String getVehicle() {
+        return vehicle;
+    }
+
+    /**
+     * @param vehicle the String vehicle to set
+     */
+    public void setVehicle(String vehicle) {
+        this.vehicle = vehicle;
     }
 
 }

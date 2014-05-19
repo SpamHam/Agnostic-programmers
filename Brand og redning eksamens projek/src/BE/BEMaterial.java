@@ -6,86 +6,85 @@ package BE;
 
 /**
  *
- * @author Kathrine
+ * @author Peter
  */
 public class BEMaterial {
 
-    private int m_emergencyID, m_Amount;
-    private String m_Material;
+    private int emergencyID, amount;
+    private String material;
 
     /**
-     * Constructor used for packaging Materiale and Antal for Materials
-     * @param Materiale String
-     * @param Antal int
+     * Constructor used for packaging Material and amount for Materials
+     * @param material String
+     * @param amount int
      */
-    public BEMaterial(String Materiale, int Antal) {
+    public BEMaterial(String material, int amount) {
 
-        m_Material = Materiale;
-        m_Amount = Antal;
+        this.material = material;
+        this.amount = amount;
 
     }
     
     /**
-     * Constructor used for packaging ID, Materiale and Antal for a Fireman
-     * @param ID int
-     * @param Materiale String
-     * @param Antal int
+     * Constructor used for packaging ID, Material and Antal for a Fireman
+     * @param emergencyID int
+     * @param material String
      */
-    public BEMaterial(int ID, String Materiale) {
+    public BEMaterial(int emergencyID, String material) {
 
-        m_emergencyID = ID;
-        m_Material = Materiale;
+        this.emergencyID = emergencyID;
+        this.material = material;
 
     }
     
     /**
-     * Constructor used for packaging Materiale name only
-     * @param Materiale String
+     * Constructor used for packaging Material name only
+     * @param material String
      */
-      public BEMaterial(String Materiale) {
-        m_Material = Materiale;
+      public BEMaterial(String material) {
+        this.material = material;
     }
 
     /**
-     * @return the m_UdrykningsID
+     * @return the emergencyID
      */
-    public int getM_ID() {
-        return m_emergencyID;
+    public int getEmergencyID() {
+        return emergencyID;
     }
 
     /**
-     * @param m_UdrykningsID the m_UdrykningsID to set
+     * @param emergencyID the int emergencyID to set
      */
-    public void setM_UdrykningsID(int m_UdrykningsID) {
-        this.m_emergencyID = m_UdrykningsID;
+    public void setEmergencyID(int emergencyID) {
+        this.emergencyID = emergencyID;
     }
 
     /**
-     * @return the m_Materiale
+     * @return the material
      */
-    public String getM_Materiale() {
-        return m_Material;
+    public String getMaterial() {
+        return material;
     }
 
     /**
-     * @param m_Materiale the m_Materiale to set
+     * @param material the material to set
      */
-    public void setM_Materiale(String m_Materiale) {
-        this.m_Material = m_Materiale;
+    public void setMaterial(String material) {
+        this.material = material;
     }
 
     /**
-     * @return the m_Antal
+     * @return the amount
      */
-    public int getM_Antal() {
-        return m_Amount;
+    public int getAmount() {
+        return amount;
     }
 
     /**
-     * @param m_Antal the m_Antal to set
+     * @param amount the amount to set
      */
-    public void setM_Antal(int m_Antal) {
-        this.m_Amount = m_Antal;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
 }
