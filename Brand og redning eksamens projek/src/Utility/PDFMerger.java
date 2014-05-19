@@ -31,7 +31,7 @@ public class PDFMerger {
             List<InputStream> pdfs = new ArrayList<InputStream>();
             pdfs.add(new FileInputStream("c:/PDF/temp/tempTimePlan.pdf"));
             pdfs.add(new FileInputStream("c:/PDF/temp/tempODIN.pdf"));
-            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr "+ fireNr + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+".pdf");
+            OutputStream output = new FileOutputStream("c:/PDF/Brand rapport: " + fireNr + "_" + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+".pdf");
             concatPDFs(pdfs, output, true);
     }
  
