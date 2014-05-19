@@ -7,7 +7,6 @@ package GUI;
 
 import BE.BETimePlan;
 import BLL.BLLPDF;
-import Utility.PDFGenerator;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -26,7 +25,7 @@ public class Timeplan extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     ArrayList<String> colNames;
-
+    String type;
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
 
@@ -146,9 +145,10 @@ public class Timeplan extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             if (cmbTypeIndsats.getSelectedItem().equals("Andet")) {
                 txtAndetTekst.setEnabled(true);
-
+                type = (String) cmbTypeIndsats.getSelectedItem();
             } else {
                 txtAndetTekst.setEnabled(false);
+                type = (String) cmbTypeIndsats.getSelectedItem();
             }
 
         }
@@ -199,7 +199,7 @@ public class Timeplan extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             getColNames();
-            firePDFEvent(new FormatEventPDF(allTime, colNames));
+            firePDFEvent(new FormatEventPDF(allTime, colNames, type));
         }
     }
 

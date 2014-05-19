@@ -40,6 +40,7 @@ import java.util.ArrayList;
 public class PDFGenerator {
    //private String FILE;
   private String FILE = "c:/PDF/temp/";
+  private String FILE2 = "c:/PDF/";
   final private static Font Header = new Font(Font.FontFamily.TIMES_ROMAN, 20,
       Font.BOLD);
  final private static Font redFont = new Font(Font.FontFamily.TIMES_ROMAN, 6,
@@ -56,17 +57,19 @@ public class PDFGenerator {
   private ArrayList<String> materialColNames;
   private ArrayList<BEForces> allForces;
   private ArrayList<String> forcesColName;
-  private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+  private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday, type;
   
   
   /**
    * Constructor for the Time Plan page
    * @param allTime
-   * @param colNames 
+   * @param colNames
+   * @param type
    */
-  public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames){
+  public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames, String type){
     this.allTime = allTime;
     this.colNames = colNames;
+    this.type = type;
   }
 /**
  * Constructor for the ODIN Page
@@ -138,9 +141,9 @@ public class PDFGenerator {
    * @throws Exception 
    */
   public void runStationTimePlanPDF() throws Exception{
-     FILE = FILE + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) +"-StationTimePlan.pdf";
+     FILE2 = FILE2 + DateConverter.getDate(DateConverter.DAY_MONTH_TIME) +"-StationTimePlan.pdf";
       Document document = new Document();
-      PdfWriter.getInstance(document, new FileOutputStream(FILE));
+      PdfWriter.getInstance(document, new FileOutputStream(FILE2));
       document.open();
       addMetaData(document);
       createTimePlanPage(document);
@@ -181,6 +184,11 @@ public class PDFGenerator {
     odinRaport.add(new Paragraph("Rapport genereret af: " + System.getProperty("user.name") + ", " 
       + DateConverter.getDate(DateConverter.WEEKDAY_DAY_MONTH_YEAR_TIME), smallBold));
     addEmptyLine(odinRaport, 2);
+    
+    odinRaport.add(new Chunk("Type af Indsats: " , smallBold));
+    odinRaport.add(new Phrase( type,small));
+    addEmptyLine(odinRaport, 2);
+    
     odinRaport.add(new Paragraph("Time Plan:",big));
     addEmptyLine(odinRaport, 1);
     createTimeTable(odinRaport, allTime, colNames);

@@ -22,31 +22,14 @@ public class FormatEventPDF {
     private ArrayList<String> timeColNames;
     private ArrayList<String> matrialeColNames;
     private ArrayList<String> forcesColNames;
-    private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday, type;
     
-    public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> timeColNames ){
+    public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> timeColNames, String type ){
     this.allTime = allTime;
     this.timeColNames = timeColNames;
+    this.type = type;
     }
-    
-//  public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames, ArrayList<String> allForces,
-//          ArrayList<String> forcesColNames, String date, String received, String fireNr, String evaNr, String message,
-//          String name, String address, String leader, String teamLeader, String weekday){
-//  this.allMaterial = allMaterial;
-//  this.matrialeColNames = materialColNames;
-//  this.allForces = allForces;
-//  this.forcesColNames = forcesColNames;
-//  this.date = date;
-//  this.received = received;
-//  this.fireNr = fireNr;
-//  this.evaNr = evaNr;
-//  this.message = message;
-//  this.name = name;
-//  this.address = address;
-//  this.leader = leader;
-//  this.teamLeader = teamLeader;
-//  this.weekday = weekday;
-//  }
+
   
   public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<BEForces> allForces,
          ArrayList<String> forcesColNames,String date, String received,String fireNr, String evaNr, String message,
@@ -133,5 +116,12 @@ public class FormatEventPDF {
      */
     public ArrayList<String> getTimeColNames() {
         return timeColNames;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
     }
 }

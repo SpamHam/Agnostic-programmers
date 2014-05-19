@@ -71,7 +71,6 @@ public class PDFMerger {
             }
         }
     }
-
     private void inputConcat(List<InputStream> streamOfPDFFiles, Document document, OutputStream outputStream, boolean paginate) throws DocumentException, IOException {
         List<InputStream> pdfs = streamOfPDFFiles;
         List<PdfReader> readers = new ArrayList<PdfReader>();
