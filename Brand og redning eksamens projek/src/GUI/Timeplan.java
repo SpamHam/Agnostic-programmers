@@ -217,12 +217,13 @@ public class Timeplan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+        if(!type.equalsIgnoreCase("øvelse")&& !type.equalsIgnoreCase("brandvagt") && !type.equalsIgnoreCase("stand-by")){
         dispose();
         ODINReport report = new ODINReport();
         report.setVisible(true);
         report.setLocationRelativeTo(this);
-    }
-
+    } else dispose();
+   }
     private void getColNames() {
         colNames = new ArrayList<>();
         for (int i = 0; i < TimeTableModel.getColumnCount(); i++) {
