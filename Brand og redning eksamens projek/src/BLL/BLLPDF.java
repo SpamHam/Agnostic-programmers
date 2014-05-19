@@ -47,6 +47,8 @@ public class BLLPDF implements PDFListener  {
             merger.MergePDF();
         } catch (FileNotFoundException ex) {
             throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
+        } catch (Exception ex) {
+            throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         }
         DeleteTempPDF dtp = new DeleteTempPDF();
         try {
