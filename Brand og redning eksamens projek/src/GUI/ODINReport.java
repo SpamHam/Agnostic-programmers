@@ -64,6 +64,8 @@ public class ODINReport extends javax.swing.JFrame {
         btnSave.addActionListener(BTNPDFOdinListener);
         ActionListener BTNAddForces = new BTNAddForcesActionListener();
         btnAddForces.addActionListener(BTNAddForces);
+        ActionListener BTNAddMaterial = new BTNAddMaterialActionListener();
+        btnAddMaterial.addActionListener(BTNAddMaterial);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
@@ -241,11 +243,6 @@ public class ODINReport extends javax.swing.JFrame {
         lblAddress.setText("Addresse:");
 
         btnAddMaterial.setText("Tilføj Materialer");
-        btnAddMaterial.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddMaterialActionPerformed(evt);
-            }
-        });
 
         lblMaterialUsed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblMaterialUsed.setText("Materialer Brugt:");
@@ -467,10 +464,16 @@ public class ODINReport extends javax.swing.JFrame {
       forcesColNames.add(forcesTableModel.getColumnName(i));
     }
   }
-    
-    private void btnAddMaterialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddMaterialActionPerformed
-        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(this, true);
-        materialsDialog.setLocationRelativeTo(this);
+  
+    /**
+     * anonymous inner class listening on the add material button
+     */
+     private class BTNAddMaterialActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(null, true);
+        materialsDialog.setLocationRelativeTo(null);
         materialsDialog.setVisible(true);
 
         // continue here when the dialog box is closed (disposed).
@@ -490,9 +493,11 @@ public class ODINReport extends javax.swing.JFrame {
             tblMaterial.getTableHeader().setReorderingAllowed(false);
                 
             materialModel.setMaterialsStatusList(allMaterials);
+        }   
         }
-    }//GEN-LAST:event_btnAddMaterialActionPerformed
-
+     
+     }  
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         dispose();
         Timeplan timePlanFrame = new Timeplan();
