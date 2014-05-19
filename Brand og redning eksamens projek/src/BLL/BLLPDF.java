@@ -14,8 +14,6 @@ import Utility.DeleteTempPDF;
 import Utility.PDFGenerator;
 import Utility.PDFMerger;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -35,8 +33,9 @@ public class BLLPDF implements PDFListener  {
 
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
-     pdfGen = new PDFGenerator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), event.getDate(), event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(), event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
-     // pdfGen = new PDFGenerator(event.getMaterial(),event.getMatrialeColNames(),event.getForces(),event.getForcesColNames(),event.getDate(),event.getReceived());
+     pdfGen = new PDFGenerator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), 
+             event.getDate(), event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(), 
+             event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
         try {
         pdfGen.runCreateOdinPDF();
     } catch (Exception ex) {
@@ -56,5 +55,10 @@ public class BLLPDF implements PDFListener  {
         } catch (FileNotFoundException ex) {
           throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         }
+    }
+
+    @Override
+    public void PDFStationPlanPerformed(FormatEventPDF event) {
+        
     }
 }
