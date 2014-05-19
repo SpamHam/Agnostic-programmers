@@ -13,7 +13,6 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfImportedPage;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.PdfWriter;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -31,7 +30,7 @@ public class PDFMerger {
             List<InputStream> pdfs = new ArrayList<InputStream>();
             pdfs.add(new FileInputStream("c:/PDF/temp/tempTimePlan.pdf"));
             pdfs.add(new FileInputStream("c:/PDF/temp/tempODIN.pdf"));
-            OutputStream output = new FileOutputStream("c:/PDF/Brand rapport: " + fireNr + "_" + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+".pdf");
+            OutputStream output = new FileOutputStream("c:/PDF/Brand rapport " + fireNr + "_" + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+".pdf");
             concatPDFs(pdfs, output, true);
     }
  
