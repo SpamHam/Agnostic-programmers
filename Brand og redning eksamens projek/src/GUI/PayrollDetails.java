@@ -6,8 +6,6 @@
 package GUI;
 
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.text.JTextComponent;
@@ -19,7 +17,7 @@ import javax.swing.text.JTextComponent;
 public class PayrollDetails extends javax.swing.JDialog {
 
     DefaultListModel salaryListModel = new DefaultListModel();
-    private String SalaryNumber;
+    private final String SalaryNumber;
     ArrayList<BE.BESalary> allSalarys = new ArrayList<>();
 
     /**
@@ -27,6 +25,8 @@ public class PayrollDetails extends javax.swing.JDialog {
      *
      * @param parent
      * @param modal
+     * @param SalaryNumber
+     * @throws java.lang.Exception
      */
     public PayrollDetails(java.awt.Frame parent, boolean modal, String SalaryNumber) throws Exception {
         super(parent, modal);
@@ -36,7 +36,6 @@ public class PayrollDetails extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         salaryListModelRenewal();
         lstSalaryRapport.setModel(salaryListModel);
-        txtTimer.setKeymap(JTextComponent.getKeymap("1234567890."));
         btnUpdate.setEnabled(false);
         txtArbejdsform.setEditable(false);
         txtBrandmandNavn.setEditable(false);

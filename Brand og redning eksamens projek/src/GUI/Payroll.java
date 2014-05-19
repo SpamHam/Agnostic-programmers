@@ -24,6 +24,7 @@ public class Payroll extends javax.swing.JFrame {
     PayrollTableModel Payrollmodel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BETableSalary> allSalary = new ArrayList<>();
+    private int SelectedRow;
 
     /**
      * Creates new form Payroll
@@ -47,11 +48,17 @@ public class Payroll extends javax.swing.JFrame {
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.setMaximizedBounds(env.getMaximumWindowBounds());
         this.setExtendedState(this.getExtendedState() | this.MAXIMIZED_BOTH);
-        
+        tblPayroll.addMouseListener(new java.awt.event.MouseAdapter() {
+
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                SelectedRow = tblPayroll.getSelectedRow();
+            }
+        });
     }
-    
+
     /**
-     * 
+     *
      */
     private class DetaljeListener implements ActionListener {
 
@@ -62,19 +69,19 @@ public class Payroll extends javax.swing.JFrame {
 
         private void btnDetaljerClicked() {
             try {
-                GUI.PayrollDetails PD = new GUI.PayrollDetails(null, true, allSalary.get(tblPayroll.getSelectedColumn()).getSalaryNumber());
+
+                String row = allSalary.get(SelectedRow).getSalaryNumber();
+                GUI.PayrollDetails PD = new GUI.PayrollDetails(null, true, row);
                 PD.setVisible(true);
             } catch (Exception ex) {
                 Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
         }
-        
-    }    
+    }
 
     /**
-     * 
-     * @param args 
+     *
+     * @param args
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

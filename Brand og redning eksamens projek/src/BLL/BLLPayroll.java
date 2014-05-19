@@ -170,6 +170,8 @@ public class BLLPayroll {
             } catch (SQLServerException ex) {
                 Error.StorageUnreachable(".");
             }
+        } else {
+            throw new Exception("du skal skrive et nummer i timer.");
         }
     }
 }
