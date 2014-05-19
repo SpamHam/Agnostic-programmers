@@ -166,10 +166,10 @@ public class ODINReport extends javax.swing.JFrame {
         txtFireNr = new javax.swing.JTextField();
         lblEvaReportNr = new javax.swing.JLabel();
         txtEvaNr = new javax.swing.JTextField();
-        lblMelding = new javax.swing.JLabel();
+        lblMessage = new javax.swing.JLabel();
         txtMessage = new javax.swing.JTextField();
         chkBoxWounded = new javax.swing.JCheckBox();
-        lblNavn = new javax.swing.JLabel();
+        lblName = new javax.swing.JLabel();
         lblAddress = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         txtAddress = new javax.swing.JTextField();
@@ -229,7 +229,7 @@ public class ODINReport extends javax.swing.JFrame {
 
         lblEvaReportNr.setText("EVA Report Nr:");
 
-        lblMelding.setText("Melding:");
+        lblMessage.setText("Melding:");
 
         chkBoxWounded.setText("Skadeslidte");
         chkBoxWounded.addActionListener(new java.awt.event.ActionListener() {
@@ -238,7 +238,7 @@ public class ODINReport extends javax.swing.JFrame {
             }
         });
 
-        lblNavn.setText("Navn:");
+        lblName.setText("Navn:");
 
         lblAddress.setText("Addresse:");
 
@@ -320,8 +320,8 @@ public class ODINReport extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblFiretNr)
                                     .addComponent(lblEvaReportNr)
-                                    .addComponent(lblMelding)
-                                    .addComponent(lblNavn)
+                                    .addComponent(lblMessage)
+                                    .addComponent(lblName)
                                     .addComponent(lblAddress))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -401,13 +401,13 @@ public class ODINReport extends javax.swing.JFrame {
                             .addComponent(txtEvaNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblMelding)
+                            .addComponent(lblMessage)
                             .addComponent(txtMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(chkBoxWounded)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNavn)
+                            .addComponent(lblName)
                             .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -534,8 +534,8 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblLeader;
     private javax.swing.JLabel lblMaterialUsed;
-    private javax.swing.JLabel lblMelding;
-    private javax.swing.JLabel lblNavn;
+    private javax.swing.JLabel lblMessage;
+    private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblRecived;
     private javax.swing.JLabel lblSubHeader;
     private javax.swing.JLabel lblTeamLeader;
@@ -577,7 +577,7 @@ public class ODINReport extends javax.swing.JFrame {
         } else {
             isWounded = false;
         }
-        lblNavn.setVisible(isWounded);
+        lblName.setVisible(isWounded);
         lblAddress.setVisible(isWounded);
         txtName.setVisible(isWounded);
         txtAddress.setVisible(isWounded);
