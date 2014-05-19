@@ -36,11 +36,12 @@ public class Timeplan extends javax.swing.JFrame {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
         TimeTableModel = new TimePlanTableModel(allTime);
-        jtableTeamTabel.setModel(TimeTableModel);// Sets the table model for the JTable
+        tblTeam.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
-        jtableTeamTabel.setRowSorter(sorter);
-        jtableTeamTabel.getTableHeader().setReorderingAllowed(false);
-        txtAndetTekst.setEnabled(false);
+        tblTeam.setRowSorter(sorter);
+        tblTeam.getTableHeader().setReorderingAllowed(false);
+        txtOtherText.setEnabled(false);
+        cmbType.getModel().setSelectedItem("Vælg en type");
         setTitle("Udryknings Skema");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -53,9 +54,9 @@ public class Timeplan extends javax.swing.JFrame {
         ActionListener BTNClose = new CloseListener();
         ActionListener CMBBOXType = new CMBBoxListener();
         btnNextPage.addActionListener(BTNPDFListener);
-        btnVaelgTeam.addActionListener(BTNChooseTeam);
-        btnLukVindue.addActionListener(BTNClose);
-        cmbTypeIndsats.addActionListener(CMBBOXType);
+        btnChooseATeam.addActionListener(BTNChooseTeam);
+        btnClose.addActionListener(BTNClose);
+        cmbType.addActionListener(CMBBOXType);
 
     }
 
@@ -68,19 +69,19 @@ public class Timeplan extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cmbTypeIndsats = new javax.swing.JComboBox();
+        cmbType = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtableTeamTabel = new javax.swing.JTable();
-        btnVaelgTeam = new javax.swing.JButton();
-        btnLukVindue = new javax.swing.JButton();
+        tblTeam = new javax.swing.JTable();
+        btnChooseATeam = new javax.swing.JButton();
+        btnClose = new javax.swing.JButton();
         btnNextPage = new javax.swing.JButton();
-        txtAndetTekst = new javax.swing.JTextField();
+        txtOtherText = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmbTypeIndsats.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Indsats", "Øvelse", "Brandvagt", "Stand-By", "Arbejde Falck", "Følgeskadeindsats", "Andet" }));
+        cmbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Indsats", "Øvelse", "Brandvagt", "Stand-By", "Arbejde Falck", "Følgeskadeindsats", "Andet" }));
 
-        jtableTeamTabel.setModel(new javax.swing.table.DefaultTableModel(
+        tblTeam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -88,16 +89,16 @@ public class Timeplan extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jtableTeamTabel);
+        jScrollPane1.setViewportView(tblTeam);
 
-        btnVaelgTeam.setText("Vælg Team");
+        btnChooseATeam.setText("Vælg Team");
 
-        btnLukVindue.setText("Luk Vindue");
+        btnClose.setText("Luk Vindue");
 
         btnNextPage.setText("Næste side");
 
-        txtAndetTekst.setMinimumSize(new java.awt.Dimension(290, 23));
-        txtAndetTekst.setPreferredSize(new java.awt.Dimension(290, 23));
+        txtOtherText.setMinimumSize(new java.awt.Dimension(290, 23));
+        txtOtherText.setPreferredSize(new java.awt.Dimension(290, 23));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,15 +109,15 @@ public class Timeplan extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnLukVindue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtAndetTekst, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtOtherText, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVaelgTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnChooseATeam, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -124,14 +125,14 @@ public class Timeplan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnVaelgTeam)
-                    .addComponent(cmbTypeIndsats, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAndetTekst, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnChooseATeam)
+                    .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtOtherText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLukVindue)
+                    .addComponent(btnClose)
                     .addComponent(btnNextPage))
                 .addContainerGap())
         );
@@ -139,22 +140,30 @@ public class Timeplan extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /**
+     * anonymous inner class listening on the TypeComboBox
+     */
     private class CMBBoxListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (cmbTypeIndsats.getSelectedItem().equals("Andet")) {
-                txtAndetTekst.setEnabled(true);
-                type = (String) cmbTypeIndsats.getSelectedItem();
+            if (cmbType.getSelectedItem().equals("Andet")) {
+                txtOtherText.setEnabled(true);
+                type = (String) cmbType.getSelectedItem();
+                type = type+ " - " + txtOtherText.getText().trim();
             } else {
-                txtAndetTekst.setEnabled(false);
-                type = (String) cmbTypeIndsats.getSelectedItem();
+                txtOtherText.setEnabled(false);
+                type = (String) cmbType.getSelectedItem();
             }
 
         }
 
     }
 
+    /**
+     * anonymous inner class listening on the Close button
+     */
     private class CloseListener implements ActionListener {
 
         @Override
@@ -164,6 +173,9 @@ public class Timeplan extends javax.swing.JFrame {
 
     }
 
+    /**
+     * anonymous inner class listening on the ChooseATeam button
+     */
     private class ChooseTeamListener implements ActionListener {
 
         @Override
@@ -185,7 +197,7 @@ public class Timeplan extends javax.swing.JFrame {
                 }
 
                 TimeTableModel.setTimePlanStatusList(allTime);
-                jtableTeamTabel.repaint();
+                tblTeam.repaint();
             }
         }
 
@@ -224,6 +236,10 @@ public class Timeplan extends javax.swing.JFrame {
         report.setLocationRelativeTo(this);
     } else dispose();
    }
+    
+    /**
+     * Returns the Column Names
+     */
     private void getColNames() {
         colNames = new ArrayList<>();
         for (int i = 0; i < TimeTableModel.getColumnCount(); i++) {
@@ -231,18 +247,22 @@ public class Timeplan extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Sets the PDFListener
+     * @param PDFListener 
+     */
     public void setPDFListener(PDFListener PDFListener) {
         this.PDFListener = PDFListener;
     }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLukVindue;
+    private javax.swing.JButton btnChooseATeam;
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnNextPage;
-    private javax.swing.JButton btnVaelgTeam;
-    private javax.swing.JComboBox cmbTypeIndsats;
+    private javax.swing.JComboBox cmbType;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jtableTeamTabel;
-    private javax.swing.JTextField txtAndetTekst;
+    private javax.swing.JTable tblTeam;
+    private javax.swing.JTextField txtOtherText;
     // End of variables declaration//GEN-END:variables
 }
