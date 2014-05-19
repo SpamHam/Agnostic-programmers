@@ -187,7 +187,7 @@ public class PDFGenerator {
       + DateConverter.getDate(DateConverter.WEEKDAY_DAY_MONTH_YEAR_TIME), smallBold));
     addEmptyLine(odinRaport, 2);
     
-    odinRaport.add(new Chunk("Type af Indsats: " , smallBold));
+    odinRaport.add(new Chunk("Type Indsats: " , smallBold));
     odinRaport.add(new Phrase( type,small));
     addEmptyLine(odinRaport, 2);
     
