@@ -14,8 +14,6 @@ import Utility.DeleteTempPDF;
 import Utility.PDFGenerator;
 import Utility.PDFMerger;
 import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -27,7 +25,7 @@ public class BLLPDF implements PDFListener  {
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
         pdfGen = new PDFGenerator(event.getTime(),event.getTimeColNames(), event.getType());
-    if(!event.getType().equalsIgnoreCase("øvelse")||! event.getType().equalsIgnoreCase("brandvagt")||! event.getType().equalsIgnoreCase("stand-by") ){
+    if(!event.getType().equalsIgnoreCase("øvelse")&& !event.getType().equalsIgnoreCase("brandvagt") && !event.getType().equalsIgnoreCase("stand-by")){
         try {
         pdfGen.runCreateTimePlanPDF();
     } catch (Exception ex) {
@@ -38,7 +36,7 @@ public class BLLPDF implements PDFListener  {
             } catch (Exception ex) {
              throw new EventExercutionException("Time plan PDF kunne ikke genereres");
             }
-}
+        }
    }
 
     @Override
