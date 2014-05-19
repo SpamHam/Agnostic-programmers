@@ -25,27 +25,13 @@ import java.util.Iterator;
 import java.util.List;
  
 public class PDFMerger {
- 
-//    public static void main(String[] args) {
-//        try {
-//            List<InputStream> pdfs = new ArrayList<InputStream>();
-//            pdfs.add(new FileInputStream("c:/PDF/1.pdf"));
-//            pdfs.add(new FileInputStream("c:/PDF/2.pdf"));
-//            OutputStream output = new FileOutputStream("c:/PDF/merge.pdf");
-//            PDFMerger.concatPDFs(pdfs, output, true);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//    }
     
-    public void MergePDF() throws FileNotFoundException, Exception{
-        
-            int f = new File("c:/PDF/").listFiles().length; //gets the current number of files and folders in the pdf directory;
-                                                            //minimum file in this folder = 1(temp folder)
+    public void MergePDF(String fireNr) throws FileNotFoundException, Exception{
+
             List<InputStream> pdfs = new ArrayList<InputStream>();
             pdfs.add(new FileInputStream("c:/PDF/temp/tempTimePlan.pdf"));
             pdfs.add(new FileInputStream("c:/PDF/temp/tempODIN.pdf"));
-            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr "+f+".pdf");
+            OutputStream output = new FileOutputStream("c:/PDF/ODIN Nr "+ fireNr + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+".pdf");
             concatPDFs(pdfs, output, true);
     }
  

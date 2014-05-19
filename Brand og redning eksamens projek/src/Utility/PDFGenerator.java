@@ -141,7 +141,7 @@ public class PDFGenerator {
    * @throws Exception 
    */
   public void runStationTimePlanPDF() throws Exception{
-     FILE2 = FILE2 + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+ "-" + type +".pdf";
+     FILE2 = FILE2 + DateConverter.getDate(DateConverter.DAY_MONTH_TIME)+ "-" + type + " time plan" + ".pdf";
       Document document = new Document();
       PdfWriter.getInstance(document, new FileOutputStream(FILE2));
       document.open();

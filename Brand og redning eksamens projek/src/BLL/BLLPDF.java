@@ -51,7 +51,7 @@ public class BLLPDF implements PDFListener  {
      }
         PDFMerger merger = new PDFMerger();
         try {
-            merger.MergePDF();
+            merger.MergePDF(event.getFireNr());
         } catch (FileNotFoundException ex) {
             throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         } catch (Exception ex) {
