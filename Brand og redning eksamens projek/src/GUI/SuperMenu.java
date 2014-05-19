@@ -17,6 +17,7 @@ public class SuperMenu extends javax.swing.JFrame {
      */
     public SuperMenu() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
