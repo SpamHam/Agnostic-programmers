@@ -86,8 +86,6 @@ public class ODINReport extends javax.swing.JFrame {
      @Override
         public void actionPerformed(ActionEvent e) {
                getOdinData();
-//              firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
-//                      received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));   
         firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,
                         received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));
         }

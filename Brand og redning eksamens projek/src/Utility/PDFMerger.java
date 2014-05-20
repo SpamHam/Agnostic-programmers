@@ -25,6 +25,12 @@ import java.util.List;
  
 public class PDFMerger {
     
+    /**
+     * Merges the two temp pdf's
+     * @param fireNr
+     * @throws FileNotFoundException
+     * @throws Exception 
+     */
     public void MergePDF(String fireNr) throws FileNotFoundException, Exception{
 
             List<InputStream> pdfs = new ArrayList<InputStream>();
