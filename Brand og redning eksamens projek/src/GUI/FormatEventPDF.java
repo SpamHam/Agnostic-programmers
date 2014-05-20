@@ -23,14 +23,36 @@ public class FormatEventPDF {
     private ArrayList<String> matrialeColNames;
     private ArrayList<String> forcesColNames;
     private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday, type;
-    
+  
+    /**
+     * constructor for packing events
+     * @param allTime
+     * @param timeColNames
+     * @param type 
+     */
     public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> timeColNames, String type ){
     this.allTime = allTime;
     this.timeColNames = timeColNames;
     this.type = type;
     }
 
-  
+   /**
+    * constructor for packing events
+    * @param allMaterial
+    * @param materialColNames
+    * @param allForces
+    * @param forcesColNames
+    * @param date
+    * @param received
+    * @param fireNr
+    * @param evaNr
+    * @param message
+    * @param name
+    * @param address
+    * @param leader
+    * @param teamLeader
+    * @param weekday 
+    */
   public FormatEventPDF(ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<BEForces> allForces,
          ArrayList<String> forcesColNames,String date, String received,String fireNr, String evaNr, String message,
         String name, String address, String leader, String teamLeader, String weekday){
@@ -50,7 +72,7 @@ public class FormatEventPDF {
       this.weekday = weekday;
 
   }
-    
+  
     public ArrayList<BETimePlan> getTime(){
     return allTime;
     }

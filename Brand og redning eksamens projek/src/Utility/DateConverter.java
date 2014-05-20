@@ -40,6 +40,7 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
    */
   private DateConverter(){
     }
+  
   /**
    * returns the formatted date
    * @param typeFormat
@@ -55,6 +56,7 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
   format = new SimpleDateFormat(type, symbols);
   return format.format(new Date());
   }
+  
 /**
  * switch statement
  * @param typeFormat
