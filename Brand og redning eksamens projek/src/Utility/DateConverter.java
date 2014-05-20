@@ -17,6 +17,7 @@ import java.text.DateFormatSymbols;
 public class DateConverter {
 private static DateFormatSymbols symbols;
 private static DateFormat format;
+//int's for switching between return dates
 public static final int WEEKDAY_DAY_MONTH_YEAR_TIME = 0;
 public static final int DAY_MONTH_TIME = 1;
 public static final int DATE_HOURS_MINUTES_SECONDS = 2;
@@ -25,7 +26,7 @@ public static final int MONTH_DAY = 4;
 public static final int MONTH = 5;
 public static final int DAY = 6;
 public static final int TIME = 7;
-
+//setting the months and weekdays names
 private static final  String[] MONTHS = {"januar", "februar", "marts", "april", "maj", "juni",
   "juli", "august", "september", "oktober", "november", "december"};
 private static final  String[] ShortMONTHS = {"jan", "feb", "mar", "apr", "maj", "jun",
@@ -33,10 +34,17 @@ private static final  String[] ShortMONTHS = {"jan", "feb", "mar", "apr", "maj",
 private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
     "torsdag", "fredag", "lørdag", "søndag"};
  private static final String[] shortWeekdays = {"", "man", "tir", "ons", "tor", "fre", "lør", "søn"};
-  
+ 
+  /**
+   * private constructor, so no instance of this class 
+   */
   private DateConverter(){
     }
-  
+  /**
+   * returns the formatted date
+   * @param typeFormat
+   * @return date string
+   */
   public static String getDate(int typeFormat){
   symbols = new DateFormatSymbols();
   symbols.setMonths(MONTHS);
@@ -47,7 +55,11 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
   format = new SimpleDateFormat(type, symbols);
   return format.format(new Date());
   }
-
+/**
+ * switch statement
+ * @param typeFormat
+ * @return formatted date as string
+ */
     private static String typeOfFormat(int typeFormat) {
             switch (typeFormat) {
          case 0: 
@@ -67,7 +79,7 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
          case 7:
              return "hh:mm:ss";
          default:
-            throw new IllegalArgumentException("Incorrect typeFormat code value");
+            throw new IllegalArgumentException("Incorrect typeFormat value");
             }
       }
 }
