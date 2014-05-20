@@ -42,12 +42,13 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         nyeTider = tider;
+        
         iniTimeStamps();
         
         //mergeTimeList();
         //System.out.println(startTider.size());
         //System.out.println("a");
-        //System.out.println(nyeTider.size());
+        System.out.println(nyeTider.size() + " nye tider");
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
         tableUdrykningsOversigt.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
@@ -62,27 +63,19 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     
             private void iniTimeStamps(){
                 try {
-            startTider = BLL.BLLEmergencyStart.getInstance().getAll();
-            for(String i : nyeTider){
-            startTider.add(i);
+            
+            startTider = BLL.BLLEmergencyStart.getInstance().test();
+             for(String i : nyeTider){
+              System.out.println(i + " nye tider");
+              startTider.add(i);
             }
-            for(String i : startTider){
-                System.out.println(i);
-            }
+          
         } catch (Exception ex) {
             Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    private void mergeTimeList(){
-        iniTimeStamps();
-        for(String i : nyeTider){
-            startTider.add(i);
-            
-            //System.out.println(i);
-        }
-        
-    }
+
 
    
     
@@ -241,6 +234,33 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         }
         return currentRemoveDay;
         }
+       
+       private boolean skudÅr(){
+           int year = 2012;
+           boolean skudår = false;
+           if(year % 4 == 0){
+               skudår = true;
+               
+               if(year % 100 == 0){
+                   
+                   skudår = false;
+                   if(year % 400 == 0){
+                       skudår = true;
+                   }
+               }
+               
+           }
+           
+        return skudår;
+          
+       }
+       private void test2(){
+        ArrayList<String> res = new ArrayList<>();
+           for(String i : nyeTider){
+               res.add(i);
+           }
+           System.out.println(nyeTider.size());
+       }
         
     
                
@@ -337,6 +357,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+    startTider.clear();
     EmergencyStart startMenu = new EmergencyStart();
     startMenu.setVisible(true);
     dispose();
@@ -352,7 +373,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAfslutActionPerformed
 
     private void btbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTestActionPerformed
-    test();
+    test2();
     }//GEN-LAST:event_btbTestActionPerformed
 
     /**

@@ -5,10 +5,14 @@
 package BLL;
 
 import DALC.DALCEmergencyStart;
+import GUI.EmergencyStartDialog;
+import Utility.DateConverter;
 import Utility.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -53,6 +57,182 @@ public class BLLEmergencyStart {
     public void remove(String time) throws SQLException{
        DALCeStart.Delete(time);
     }
+    
+    public ArrayList<String> test() throws SQLException{
+    ArrayList<String> startTider = new ArrayList<>();
+    ArrayList<String> res = new ArrayList<>();
+    startTider = DALCeStart.getInstance().read();
+        System.out.println(startTider.size() + "jacobtest");
+        for(String i : startTider){
+           
+            String year = i.substring(6, 10);
+            String month = i.substring(0, 2);
+            String day = i.substring(3, 5);
+            String time = i.substring(11, 19);
+            int currentDay = Integer.parseInt(day);
+            int removeDay = Integer.parseInt(DateConverter.getDate(DateConverter.DAY )) -2;
+            String deadLine = Integer.toString(removeDay);
+            
+            if(year.compareToIgnoreCase(DateConverter.getDate(DateConverter.YEAR)) >= 0 || DateConverter.getDate(DateConverter.MONTH_DAY).equalsIgnoreCase("12/31") ){
+                
+                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) <= 0){  //day.equalsIgnoreCase("28") || day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")){
+                 
+                       
+                   if((day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30")) && checkForEvenOrAudMonth(month) == false){  
+                     removeDay = evenMonth(day);
+                     
+                       if(currentDay <= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                           
+                           removeTime(i);
+                     
+                       }
+                       
+                   }else if((day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")) && checkForEvenOrAudMonth(month) == true){
+                       removeDay = AudMonth(day);
+                       System.out.println(i + " " + removeDay + " b");
+                       if(currentDay >= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                           
+                           removeTime(i);
+                          
+                       }
+                   }else if(currentDay <= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                       removeTime(i);      
+                       
+                   }else if((day.equalsIgnoreCase("27") && month.equalsIgnoreCase("02")) || (day.equalsIgnoreCase("27") && month.equalsIgnoreCase("02"))){
+                       removeDay = februarMonth(i);
+                       if(currentDay >= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                           removeTime(i);
+                       }
+                   }
+                        else{
+                       res.add(i);
+                       System.out.println(i + " de resterende tider");
+                   }
+                 
+                   
+                }else{
+                    res.add(i);
+                    System.out.println(i + " er større end nuværende måned");
+                }
+                
+            }else{
+                    res.add(i);
+                    System.out.println(i + " er større end nuværende år");
+                }
+
+        }
+        System.out.println(res.size());
+        return res;
+        
+    }
+    
+    private boolean checkForEvenOrAudMonth(String time){
+     
+        int currentMonth = Integer.parseInt(time);
+            if(currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8 || currentMonth == 10 || currentMonth == 12){ //|| month == 08){
+           
+            return true;
+            }
+              
+              return false;
+           
+        }
+    
+    private void removeTime(String time){
+        try {
+            BLL.BLLEmergencyStart.getInstance().remove(time);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmergencyStartDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+    }
+        private int evenMonth(String a){
+        int currentRemoveDay = Integer.parseInt(a);
+        switch(currentRemoveDay){
+            case 29:
+                currentRemoveDay = 1;
+                break;
+            case 30:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
+        }
+            return currentRemoveDay;
+           
+            
+        }
+        
+        private int AudMonth(String a){
+        int currentRemoveDay = Integer.parseInt(a);
+            switch(currentRemoveDay){
+            case 30:
+                currentRemoveDay = 1;
+                break;
+            case 31:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
+        }
+        return currentRemoveDay;
+        }
+        
+        
+       private int februarMonth(String a){
+       int currentRemoveDay = Integer.parseInt(a);
+       if(skudÅr() == false){
+            switch(currentRemoveDay){
+            case 26:
+                currentRemoveDay = 1;
+                break;
+            case 27:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
+        }
+        }else{
+            switch(currentRemoveDay){
+            case 27:
+                currentRemoveDay = 1;
+                break;
+            case 28:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;  
+       } 
+       }     
+        return currentRemoveDay;
+        }
+       
+              private boolean skudÅr(){
+           int year = Integer.parseInt(DateConverter.getDate(DateConverter.YEAR));
+           boolean skudår = false;
+           if(year % 4 == 0){
+               skudår = true;
+               
+               if(year % 100 == 0){
+                   
+                   skudår = false;
+                   if(year % 400 == 0){
+                       skudår = true;
+                   }
+               }
+               
+           }
+           
+        return skudår;
+          
+       }
     
     
     

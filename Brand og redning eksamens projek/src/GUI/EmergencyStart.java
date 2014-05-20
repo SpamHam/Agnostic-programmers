@@ -35,14 +35,7 @@ public class EmergencyStart extends javax.swing.JFrame {
         
     }
     
-    private void iniTimeStamps(){
-                try {
-            Udrykningstider = BLL.BLLEmergencyStart.getInstance().getAll();
-          
-        } catch (Exception ex) {
-            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+ 
     
     
   
