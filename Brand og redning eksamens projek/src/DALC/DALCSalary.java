@@ -56,7 +56,7 @@ public class DALCSalary {
         String sql = "insert into MonthlySalary values (?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
-        ps.setInt(2, e.getID());
+        ps.setInt(2, e.getFiremanID());
         ps.setString(3, e.getRole());
         ps.setString(4, e.getSalaryCode());
         ps.setDouble(5, e.getHours());
@@ -96,7 +96,7 @@ public class DALCSalary {
         while (result.next()) {
 
             int ODIN = result.getInt("ODINnr");
-            int ID = result.getInt("ID");
+            int ID = result.getInt("FiremanID");
             String Role = result.getString("Role");
             String SalaryCode = result.getString("SalaryCode");
             double Hours = result.getDouble("Hours");
@@ -117,14 +117,15 @@ public class DALCSalary {
      * @throws java.sql.SQLException
      */
     public void DeleteMonthly(BE.BESalary e) throws SQLException {
-        String sql = "delete from MonthlySalary, SalaryReport where ODINnr=?";
+        String sql = "delete from MonthlySalary, SalaryReport where ODINnr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
+        ps.setInt(2, e.getFiremanID());
         ps.executeUpdate();
     }
 
     public void Update(BE.BESalary e) throws SQLException {
-        String sql = "update MonthlySalary set Hours=? where ODINnr=?";
+        String sql = "update MonthlySalary set Hours=? where ODINnr=? and ";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setDouble(1, e.getHours());
         ps.setInt(2, e.getODIN());

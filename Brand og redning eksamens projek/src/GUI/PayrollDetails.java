@@ -37,10 +37,10 @@ public class PayrollDetails extends javax.swing.JDialog {
         salaryListModelRenewal();
         lstSalaryRapport.setModel(salaryListModel);
         btnUpdate.setEnabled(false);
-        txtArbejdsform.setEditable(false);
-        txtBrandmandNavn.setEditable(false);
-        txtOdinNr.setEditable(false);
-        txtRolle.setEditable(false);
+        txtArbejdsform.setEnabled(false);
+        txtBrandmandNavn.setEnabled(false);
+        txtOdinNr.setEnabled(false);
+        txtRolle.setEnabled(false);
         lstSalaryRapport.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -52,12 +52,12 @@ public class PayrollDetails extends javax.swing.JDialog {
     }
 
     /**
-     * 
+     *
      */
     private void filldata() {
         try {
             txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
-            BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getID());
+            BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
             txtBrandmandNavn.setText(f.getFirstName() + " " + f.getLastName());
             txtRolle.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
             txtArbejdsform.setText(BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getTypeOfWork()));
@@ -214,11 +214,16 @@ public class PayrollDetails extends javax.swing.JDialog {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            BE.BESalary s = allSalarys.get(lstSalaryRapport.getSelectedIndex());
-            s.setHours(Double.parseDouble(txtTimer.getText()));
-            BLL.BLLPayroll.getInstance().update(s);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            double timer = Double.parseDouble(txtTimer.getText());
+            try {
+                BE.BESalary s = allSalarys.get(lstSalaryRapport.getSelectedIndex());
+                s.setHours(timer);
+                BLL.BLLPayroll.getInstance().update(s);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Du må kun intaste nummre i timer.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
@@ -246,8 +251,8 @@ public class PayrollDetails extends javax.swing.JDialog {
         for (BE.BESalary s : BLL.BLLPayroll.getInstance().getAll()) {
             if (SalaryNumber.equalsIgnoreCase(s.getSalaryCode().trim())) {
                 allSalarys.add(s);
+                salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
             }
-            salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
         }
     }
 }

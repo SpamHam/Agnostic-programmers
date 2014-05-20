@@ -12,13 +12,13 @@ package BE;
 public class BESalary {
 
     private String Role, SalaryCode, Date ;
-    private int ID, ODIN, TypeOfWork;
+    private int FiremanID, ODIN, TypeOfWork;
     private double Hours;
     private boolean isHoliday;
     
     public BESalary(int ODIN, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday){
         this.ODIN = ODIN;
-        this.ID = ID;
+        this.FiremanID = ID;
         this.Role = Role;
         this.SalaryCode = SalaryCode;
         this.Hours = Hours;
@@ -29,7 +29,7 @@ public class BESalary {
     
         public BESalary(int ODIN, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork){
         this.ODIN = ODIN;
-        this.ID = ID;
+        this.FiremanID = ID;
         this.Role = Role;
         this.SalaryCode = SalaryCode;
         this.Hours = Hours;
@@ -39,17 +39,17 @@ public class BESalary {
     }
 
     /**
-     * @return the ID
+     * @return the FiremanID
      */
-    public int getID() {
-        return ID;
+    public int getFiremanID() {
+        return FiremanID;
     }
 
     /**
-     * @param ID the ID to set
+     * @param ID the FiremanID to set
      */
-    public void setID(int ID) {
-        this.ID = ID;
+    public void setFiremanID(int ID) {
+        this.FiremanID = ID;
     }
 
     /**
