@@ -50,6 +50,10 @@ public class BLLEmergencyStart {
         return  res;
     }
     
+    public void remove(String time) throws SQLException{
+       DALCeStart.Delete(time);
+    }
+    
     
     
 }

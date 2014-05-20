@@ -66,10 +66,10 @@ private DALCEmergencyStart() throws SQLServerException{
     }
  
  
-     public void Delete(int index) throws SQLException {
+     public void Delete(String time) throws SQLException {
         String sql = "delete from EmergencyStamp where eStart=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, timeStamps.get(index));
+        ps.setString(1, time);
         ps.executeUpdate();
     }
      

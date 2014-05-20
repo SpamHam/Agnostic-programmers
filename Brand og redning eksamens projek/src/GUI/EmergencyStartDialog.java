@@ -5,6 +5,7 @@
 package GUI;
 
 import Utility.DateConverter;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -42,10 +43,11 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         initComponents();
         nyeTider = tider;
         iniTimeStamps();
+        
         //mergeTimeList();
-        System.out.println(startTider.size());
-        System.out.println("a");
-        System.out.println(nyeTider.size());
+        //System.out.println(startTider.size());
+        //System.out.println("a");
+        //System.out.println(nyeTider.size());
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
         tableUdrykningsOversigt.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
@@ -105,69 +107,142 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }
     
     private void test(){
-        
+    
         for(String i : startTider){
-            System.out.println(DateConverter.getDate(DateConverter.MONTH )+ "jacob");
-            
+           
             String year = i.substring(6, 10);
             String month = i.substring(0, 2);
             String day = i.substring(3, 5);
             String time = i.substring(11, 19);
-            int CurrentDay = Integer.parseInt(DateConverter.getDate(DateConverter.DAY )) -2;
-            String deadLine = Integer.toString(CurrentDay);
+            int currentDay = Integer.parseInt(day);
+            int removeDay = Integer.parseInt(DateConverter.getDate(DateConverter.DAY )) -2;
+            String deadLine = Integer.toString(removeDay);
             
             if(year.compareToIgnoreCase(DateConverter.getDate(DateConverter.YEAR)) >= 0 || DateConverter.getDate(DateConverter.MONTH_DAY).equalsIgnoreCase("12/31") ){
                 //System.out.println(time + "hej");
-                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) == 0 || day.equalsIgnoreCase("28") || day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")){
+                if(month.compareToIgnoreCase(DateConverter.getDate(DateConverter.MONTH)) <= 0){  //day.equalsIgnoreCase("28") || day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")){
                   // System.out.println(i + " 2");
-                   if(checkForEvenOrAudMonth(month, CurrentDay)){
+                    //System.out.println(day);
                        
+                   if((day.equalsIgnoreCase("29") || day.equalsIgnoreCase("30")) && checkForEvenOrAudMonth(month) == false){  
+                     removeDay = evenMonth(day);
+                       //System.out.println(i + " " + removeDay + " a");
+                       if(currentDay <= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                           startTider.remove(i);
+                           removeTime(i);
+                          // System.out.println(i + " hejsa");
+                       }
                        
-                   if(day.compareToIgnoreCase(deadLine) >= 0 && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
-                       
-                       System.out.println(i + " er større end" + deadLine);
-                       
+                   }else if((day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")) && checkForEvenOrAudMonth(month) == true){
+                       removeDay = AudMonth(day);
+                       System.out.println(i + " " + removeDay + " b");
+                       if(currentDay >= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                           startTider.remove(i);
+                           removeTime(i);
+                          // System.out.println(i + " dav");
+                       }
+                   }else if(currentDay <= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
+                          startTider.remove(i);
+                          removeTime(i);      
+                       System.out.println(i+ " hej");
+                   }else{
+                       //res.add(i);
+                       //System.out.println(i + " de resterende tider");
                    }
-                       System.out.println(i + " er lige måneder");
-                   }
+                 
+                   
+                }else{
+                    //res.add(i);
+                    //System.out.println(i + " er større end nuværende måned");
                 }
                 
-            }
+            }else{
+                    //res.add(i);
+                    //System.out.println(i + " er større end nuværende år");
+                }
 
         }
+        
     }
+
     
     
     
-    private boolean checkForEvenOrAudMonth(String time, int currentDay){
+    private boolean checkForEvenOrAudMonth(String time){
      
         int currentMonth = Integer.parseInt(time);
             if(currentMonth == 1 || currentMonth == 3 || currentMonth == 5 || currentMonth == 7 || currentMonth == 8 || currentMonth == 10 || currentMonth == 12){ //|| month == 08){
-            currentDay = 29;
+           
             return true;
             }
-              currentDay = 28;
+              
               return false;
            
         }
     
-    private void removeTime(){
-        int a;
-        a = test3();
-        System.out.println(a);
+    private void removeTime(String time){
+        try {
+            BLL.BLLEmergencyStart.getInstance().remove(time);
+        } catch (SQLException ex) {
+            Logger.getLogger(EmergencyStartDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }
-        private boolean test2(){
+        private int evenMonth(String a){
+        int currentRemoveDay = Integer.parseInt(a);
+        switch(currentRemoveDay){
+            case 29:
+                currentRemoveDay = 1;
+                break;
+            case 30:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
+        }
+            return currentRemoveDay;
            
-            return true;
+            
         }
         
-        private int test3(){
-            if(test2()){
-                return 29;
-            }
-        return 28;
+        private int AudMonth(String a){
+        int currentRemoveDay = Integer.parseInt(a);
+            switch(currentRemoveDay){
+            case 30:
+                currentRemoveDay = 1;
+                break;
+            case 31:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
         }
+        return currentRemoveDay;
+        }
+        
+        
+       private int februarMonth(String a){
+       int currentRemoveDay = Integer.parseInt(a);    
+            switch(currentRemoveDay){
+            case 26:
+                currentRemoveDay = 1;
+                break;
+            case 27:
+                currentRemoveDay = 2;
+                break;
+            default:
+                currentRemoveDay = currentRemoveDay;
+                break;
+                
+        }
+        return currentRemoveDay;
+        }
+        
+    
                
         
     
@@ -277,7 +352,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     }//GEN-LAST:event_btnAfslutActionPerformed
 
     private void btbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTestActionPerformed
-        removeTime();
+    test();
     }//GEN-LAST:event_btbTestActionPerformed
 
     /**
