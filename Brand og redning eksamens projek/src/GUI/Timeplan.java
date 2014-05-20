@@ -151,7 +151,7 @@ public class Timeplan extends javax.swing.JFrame {
             if (cmbType.getSelectedItem().equals("Andet")) {
                 txtOtherText.setEnabled(true);
                 type = (String) cmbType.getSelectedItem();
-                type = type+ " - " + txtOtherText.getText().trim();
+                type = type + " - "; 
             } else {
                 txtOtherText.setEnabled(false);
                 type = (String) cmbType.getSelectedItem();
@@ -211,6 +211,7 @@ public class Timeplan extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             getColNames();
+            type = type + txtOtherText.getText().trim();
             firePDFEvent(new FormatEventPDF(allTime, colNames, type));
         }
     }
@@ -221,6 +222,10 @@ public class Timeplan extends javax.swing.JFrame {
      * @param event type FormatEventPDF
      */
     public void firePDFEvent(FormatEventPDF event) {
+        if(cmbType.getSelectedIndex() == -1){ 
+         JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
+         return;
+        }
         if (PDFListener != null) {
             try {
                 PDFListener.PDFTimePlanPerformed(event);
@@ -235,8 +240,7 @@ public class Timeplan extends javax.swing.JFrame {
         report.setVisible(true);
         report.setLocationRelativeTo(this);
     } else dispose();
-   }
-    
+  }
     /**
      * Returns the Column Names
      */

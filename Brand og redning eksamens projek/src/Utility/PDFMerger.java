@@ -27,7 +27,7 @@ public class PDFMerger {
     
     /**
      * Merges the two temp pdf's
-     * @param fireNr
+     * @param fireNr string
      * @throws FileNotFoundException
      * @throws Exception 
      */
@@ -77,7 +77,7 @@ public class PDFMerger {
         
         document.open();
         
-        PdfImportedPage page;
+        //PdfImportedPage page;
         int currentPageNumber = 0;
         int pageOfCurrentReaderPDF = 0;
         Iterator<PdfReader> iteratorPDFReader = readers.iterator();
