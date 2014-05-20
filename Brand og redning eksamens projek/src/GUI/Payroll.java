@@ -30,11 +30,7 @@ public class Payroll extends javax.swing.JFrame {
      * Creates new form Payroll
      */
     public Payroll() {
-        try {
-            allSalary = BLL.BLLPayroll.getInstance().getAllTableSalary();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        initAllSalary();
         initComponents();
         setTitle("Time oversigt");
         Payrollmodel = new PayrollTableModel(allSalary);
@@ -44,6 +40,8 @@ public class Payroll extends javax.swing.JFrame {
         tblPayroll.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
         ActionListener btnDet = new DetaljeListener();
         btnDetaljer.addActionListener(btnDet);
+        ActionListener btnpdf = new PrintPdfListener();
+        btnPrintToPDF.addActionListener(btnpdf);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
         this.setMaximizedBounds(env.getMaximumWindowBounds());
@@ -57,6 +55,14 @@ public class Payroll extends javax.swing.JFrame {
         });
     }
 
+    private void initAllSalary() {
+        try {
+            allSalary = BLL.BLLPayroll.getInstance().getAllTableSalary();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
     /**
      *
      */
@@ -64,15 +70,34 @@ public class Payroll extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            btnDetaljerClicked();
-        }
-
-        private void btnDetaljerClicked() {
             try {
 
                 String row = allSalary.get(SelectedRow).getSalaryNumber();
                 GUI.PayrollDetails PD = new GUI.PayrollDetails(null, true, row);
                 PD.setVisible(true);
+                initAllSalary();
+                Payrollmodel.setTimePlanStatusList(allSalary);
+                Payrollmodel.fireTableDataChanged();
+                
+            } catch (Exception ex) {
+                Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    /**
+     *
+     */
+    private class PrintPdfListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            try {
+                BLL.BLLPayroll.getInstance().removeall();
+                initAllSalary();
+                Payrollmodel.setTimePlanStatusList(allSalary);
+                Payrollmodel.fireTableDataChanged();
+                
             } catch (Exception ex) {
                 Logger.getLogger(Payroll.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -176,6 +201,11 @@ public class Payroll extends javax.swing.JFrame {
         lblPickADate.setText("Vælg en dato:");
 
         btnPrintToPDF.setText("Print til PDF");
+        btnPrintToPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPrintToPDFActionPerformed(evt);
+            }
+        });
 
         btnDetaljer.setText("Detaljer");
 
@@ -218,6 +248,10 @@ public class Payroll extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPrintToPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrintToPDFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnPrintToPDFActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDetaljer;

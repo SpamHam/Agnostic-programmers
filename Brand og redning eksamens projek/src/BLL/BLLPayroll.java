@@ -6,7 +6,10 @@
 package BLL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -127,6 +130,16 @@ public class BLLPayroll {
         return Index;
     }
 
+    public void removeall() throws Exception {
+        try {
+            for (BE.BESalary s : getAll()) {
+                DALC.DALCSalary.getInstance().DeleteMonthly(s);
+            }
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
+        }
+    }
+
     /**
      *
      * @return @throws Exception
@@ -159,17 +172,12 @@ public class BLLPayroll {
         return ts;
     }
 
-    public void remove() throws Exception {
-        //TODO after Salary are done.
-    }
-
     public void update(BE.BESalary e) throws Exception {
-        if (e.getHours() > 0) {
-            try {
-                DALC.DALCSalary.getInstance().Update(e);
-            } catch (SQLServerException ex) {
-                Error.StorageUnreachable(".");
-            }
+        try {
+            System.out.println("lol works ?");
+            DALC.DALCSalary.getInstance().Update(e);
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
         }
     }
 }

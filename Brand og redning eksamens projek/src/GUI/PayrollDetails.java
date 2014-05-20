@@ -35,9 +35,10 @@ public class PayrollDetails extends javax.swing.JDialog {
         setTitle("Detaljer for salaryReports");
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         salaryListModelRenewal();
+        lblLeadertrained.setVisible(false);
         lstSalaryRapport.setModel(salaryListModel);
         btnUpdate.setEnabled(false);
-        txtArbejdsform.setEnabled(false);
+        txtDato.setEnabled(false);
         txtBrandmandNavn.setEnabled(false);
         txtOdinNr.setEnabled(false);
         txtRolle.setEnabled(false);
@@ -60,8 +61,9 @@ public class PayrollDetails extends javax.swing.JDialog {
             BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
             txtBrandmandNavn.setText(f.getFirstName() + " " + f.getLastName());
             txtRolle.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
-            txtArbejdsform.setText(BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getTypeOfWork()));
+            txtDato.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getDate());
             txtTimer.setText(Double.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getHours()));
+            lblLeadertrained.setVisible(BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID()).isLeaderTrained());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -88,9 +90,9 @@ public class PayrollDetails extends javax.swing.JDialog {
         txtRolle = new javax.swing.JTextField();
         lblTimer = new javax.swing.JLabel();
         txtTimer = new javax.swing.JTextField();
-        lblArbejdsform = new javax.swing.JLabel();
-        txtArbejdsform = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        lblDato = new javax.swing.JLabel();
+        txtDato = new javax.swing.JTextField();
+        lblLeadertrained = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -114,9 +116,9 @@ public class PayrollDetails extends javax.swing.JDialog {
 
         lblTimer.setText("Timer");
 
-        lblArbejdsform.setText("Arbejdsform");
+        lblDato.setText("Dato");
 
-        jLabel1.setText("Personen er Holdleder uddannet");
+        lblLeadertrained.setText("Personen er Holdleder uddannet");
 
         javax.swing.GroupLayout jPanelInformationLayout = new javax.swing.GroupLayout(jPanelInformation);
         jPanelInformation.setLayout(jPanelInformationLayout);
@@ -125,19 +127,18 @@ public class PayrollDetails extends javax.swing.JDialog {
             .addGroup(jPanelInformationLayout.createSequentialGroup()
                 .addGap(0, 0, 0)
                 .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblBrandmandNavn)
-                        .addComponent(lblOdinNr)
-                        .addComponent(lblRolle)
-                        .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtOdinNr, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtBrandmandNavn, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblArbejdsform, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTimer, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTimer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                            .addComponent(txtArbejdsform, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtRolle, javax.swing.GroupLayout.Alignment.LEADING)))))
+                    .addComponent(lblLeadertrained)
+                    .addComponent(lblBrandmandNavn)
+                    .addComponent(lblOdinNr)
+                    .addComponent(lblRolle)
+                    .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(txtOdinNr, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtBrandmandNavn, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblDato, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTimer, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtTimer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(txtDato, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtRolle, javax.swing.GroupLayout.Alignment.LEADING))))
         );
         jPanelInformationLayout.setVerticalGroup(
             jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,11 +156,11 @@ public class PayrollDetails extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtRolle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
-                .addComponent(jLabel1)
+                .addComponent(lblLeadertrained)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblArbejdsform)
+                .addComponent(lblDato)
                 .addGap(6, 6, 6)
-                .addComponent(txtArbejdsform, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTimer)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -230,17 +231,17 @@ public class PayrollDetails extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnback;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelInformation;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblArbejdsform;
     private javax.swing.JLabel lblBrandmandNavn;
+    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblLeadertrained;
     private javax.swing.JLabel lblOdinNr;
     private javax.swing.JLabel lblRolle;
     private javax.swing.JLabel lblTimer;
     private javax.swing.JList lstSalaryRapport;
-    private javax.swing.JTextField txtArbejdsform;
     private javax.swing.JTextField txtBrandmandNavn;
+    private javax.swing.JTextField txtDato;
     private javax.swing.JTextField txtOdinNr;
     private javax.swing.JTextField txtRolle;
     private javax.swing.JTextField txtTimer;

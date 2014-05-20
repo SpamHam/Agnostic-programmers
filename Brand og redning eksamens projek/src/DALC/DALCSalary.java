@@ -125,9 +125,11 @@ public class DALCSalary {
     }
 
     public void Update(BE.BESalary e) throws SQLException {
-        String sql = "update MonthlySalary set Hours=? where ODINnr=? and ";
+        String sql = "update MonthlySalary set MonthlySalary.Hours=? where ODINnr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setDouble(1, e.getHours());
         ps.setInt(2, e.getODIN());
+        ps.setInt(3, e.getFiremanID());
+        ps.executeUpdate();
     }
 }

@@ -99,20 +99,18 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblBrandmandNavn" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblOdinNr" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblRolle" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="txtOdinNr" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtBrandmandNavn" alignment="0" max="32767" attributes="0"/>
-                              <Component id="lblArbejdsform" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="lblTimer" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtTimer" alignment="0" pref="188" max="32767" attributes="0"/>
-                              <Component id="txtArbejdsform" alignment="0" max="32767" attributes="0"/>
-                              <Component id="txtRolle" alignment="0" max="32767" attributes="0"/>
-                          </Group>
+                      <Component id="lblLeadertrained" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblBrandmandNavn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblOdinNr" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRolle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="txtOdinNr" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtBrandmandNavn" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDato" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblTimer" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtTimer" alignment="0" pref="188" max="32767" attributes="0"/>
+                          <Component id="txtDato" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtRolle" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -134,11 +132,11 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtRolle" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblLeadertrained" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblArbejdsform" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDato" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="txtArbejdsform" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDato" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="lblTimer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
@@ -177,14 +175,14 @@
         </Component>
         <Component class="javax.swing.JTextField" name="txtTimer">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblArbejdsform">
+        <Component class="javax.swing.JLabel" name="lblDato">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Arbejdsform"/>
+            <Property name="text" type="java.lang.String" value="Dato"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtArbejdsform">
+        <Component class="javax.swing.JTextField" name="txtDato">
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblLeadertrained">
           <Properties>
             <Property name="text" type="java.lang.String" value="Personen er Holdleder uddannet"/>
           </Properties>
