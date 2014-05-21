@@ -14,6 +14,7 @@ package Utility.PDF;
 import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
+import BLL.BLLFireman;
 import Utility.DateConverter;
 import java.io.FileOutputStream;
 
@@ -308,7 +309,8 @@ public class PDFCreator {
     PdfPCell pos = new PdfPCell(new Phrase(row.getTitle(),small));
     pos.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(pos);
-    BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(row.getFiremanID());
+        BLLFireman g = new BLLFireman();
+    BE.BEFireman f = g.FiremanFromID(row.getFiremanID());
     PdfPCell name = new PdfPCell(new Phrase(f.getFirstName() + " " + f.getLastName(),small));
     name.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(name);

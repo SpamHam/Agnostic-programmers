@@ -28,30 +28,11 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
     private DALC.DALCFireman DALCFireman;
     private CRUDFireman fireman;
     private final Utility.Error.ErrorHandler Error;
+   
     /**
-     * Singleton to ensure that the class isn't instantiated more than once
-     * @return m_instance
-     * @throws SQLServerException
+     * Instantiates errorHandler
+     *  
      */
-    public static BLLFireman getInstance() throws Exception {
-        if (m_instance == null) {
-            m_instance = new BLLFireman();
-        }
-        return m_instance;
-    }
-
-    /**
-     * Instantiates the DALC Layer using the Singleton Pattern
-     * @throws Exception 
-     */
-//    public BLLFireman() throws Exception {
-//        Error = Utility.Error.ErrorHandler.getInstance();
-//        try {
-//            DALCFireman = DALC.DALCFireman.getInstance();
-//        } catch (SQLServerException ex) {
-//            Error.StorageUnreachable(".");
-//        }
-//    }
     
     public BLLFireman(){ Error = Utility.Error.ErrorHandler.getInstance();}
     

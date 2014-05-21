@@ -8,6 +8,7 @@ package GUI;
 import BE.BEFireman;
 import BE.BETimePlan;
 import BE.BEVehicle;
+import BLL.BLLFireman;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -63,7 +64,8 @@ public class ChooseTeam extends javax.swing.JDialog {
      */
     public void InitializeFiremen() {
         try {
-            Firemen = BLL.BLLFireman.getInstance().getAll();
+            BLLFireman f = new BLLFireman();
+            Firemen = f.getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

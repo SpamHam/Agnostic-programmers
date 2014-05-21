@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BLL.BLLFireman;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -57,13 +58,14 @@ public class PayrollDetails extends javax.swing.JDialog {
      */
     private void filldata() {
         try {
+            BLLFireman g = new BLLFireman();
             txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
-            BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
+            BE.BEFireman f = g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
             txtBrandmandNavn.setText(f.getFirstName() + " " + f.getLastName());
             txtRolle.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
             txtDato.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getDate());
             txtTimer.setText(Double.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getHours()));
-            lblLeadertrained.setVisible(BLL.BLLFireman.getInstance().FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID()).isLeaderTrained());
+            lblLeadertrained.setVisible(g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID()).isLeaderTrained());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

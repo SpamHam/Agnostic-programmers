@@ -5,6 +5,7 @@
 package GUI;
 
 import BE.BETimePlan;
+import BLL.BLLFireman;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -98,7 +99,8 @@ public class TimePlanTableModel extends AbstractTableModel {
                 return e.getTitle();
             case 1:
                 try {
-                    BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(e.getFiremanID());
+                    BLLFireman g = new BLLFireman();
+                    BE.BEFireman f = g.FiremanFromID(e.getFiremanID());
                     return f.getFirstName() + " " + f.getLastName();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

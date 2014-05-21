@@ -162,7 +162,8 @@ public class BLLPayroll {
      * @throws Exception
      */
     private BE.BETableSalary SalaryTotableSalary(BE.BESalary s) throws Exception {
-        BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(s.getFiremanID());
+        BLLFireman g = new BLLFireman();
+        BE.BEFireman f = g.FiremanFromID(s.getFiremanID());
         double[] Index = new double[12];
         int IndexLocation = 0;
         IndexLocation += 2 * s.getTypeOfWork(); //BrandBrandmand = 0 BrandHoldleder = 1 StandbyStationBrandmand = 2 StandbyStationHoldleder = 3 ArbejdeStationAndet = 4 ØvelserBrandmand = 6 ØvelserHoldleder = 6 VagtBrandmandHeligdage = 8 VagtBrandmandHverdage = 9 VagtHoldledereHeligdage = 10 VagtHoldlederHverdage = 11;        
