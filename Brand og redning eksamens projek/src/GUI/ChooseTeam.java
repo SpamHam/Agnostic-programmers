@@ -123,7 +123,7 @@ public class ChooseTeam extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-                int FiremanID = Firemen.get(Integer.parseInt(((String)jlistChosenFiremen.getModel().getElementAt(i)).substring(0,0)) - 1).getID();
+                int FiremanID = Firemen.get(Integer.parseInt(((String)jlistChosenFiremen.getModel().getElementAt(i)).substring(0,1)) - 1).getID();
                 String vehicle = chosenVehicle(jlistChooseACar);
                 BETimePlan temp = new BETimePlan(FiremanID, vehicle);
                 ValgteFiremen.add(i, temp);
