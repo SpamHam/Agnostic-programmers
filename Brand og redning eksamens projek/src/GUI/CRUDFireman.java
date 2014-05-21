@@ -39,6 +39,10 @@ public class CRUDFireman extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+    
+    public void setFiremanList(ArrayList<BEFireman> Firemans){
+    allFiremans = Firemans;
+    }
 
     /**
      * Creates new form CRUDFireman
@@ -105,39 +109,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         });
     }
 
-    /**
-     * Retrieves the information from textfields and packs them into a Business
-     * Entity. Then updates the SQL and table afterwards
-     */
-    private void updateFireman() {
-        try {
-            BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
-                    txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(),
-                    txtPaymentNr.getText(), ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
-            BLL.BLLFireman.getInstance().Update(updateFireman);
-            allFiremans.set(selectedRow, updateFireman);
-            allFiremans = BLL.BLLFireman.getInstance().getAll();
-            FiremanTableModel.setCRUDFiremanList(allFiremans);
-            FiremanTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    /**
-     * Deletes a firemen in table & SQL from the selected row in the table
-     */
-    private void DeleteFireman() {
-        try {
-            m_fireman.getInstance().remove(allFiremans.get(selectedRow));
-            allFiremans = BLL.BLLFireman.getInstance().getAll();
-            FiremanTableModel.setCRUDFiremanList(allFiremans);
-            FiremanTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
     private class AddListener implements ActionListener {
 
         @Override
@@ -170,17 +141,12 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-     BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
-      txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(),
-      txtPaymentNr.getText(), ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
-        //            BLL.BLLFireman.getInstance().Update(updateFireman);
-                fireUpdateFiremanEvent(updateFireman);
-            allFiremans.set(selectedRow, updateFireman);
-            //allFiremans = BLL.BLLFireman.getInstance().getAll();
-            FiremanTableModel.setCRUDFiremanList(allFiremans);
-           // FiremanTableModel.fireTableDataChanged(); 
-
-        //   updateFireman();
+        BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
+        txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
+        ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
+           fireUpdateFiremanEvent(updateFireman);
+           allFiremans.set(selectedRow, updateFireman);
+           FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
 
     }

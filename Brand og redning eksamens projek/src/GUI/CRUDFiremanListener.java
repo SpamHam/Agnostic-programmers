@@ -7,6 +7,7 @@
 package GUI;
 
 import BE.BEFireman;
+import java.util.ArrayList;
 
 
 
@@ -23,5 +24,4 @@ public interface CRUDFiremanListener {
     public void FiremanCreatePerformed(BEFireman event);
     public void FiremanRemovePerformed(BEFireman event);
     public void FiremanUpdatePerformed(BEFireman event);
-    public void FiremanReadPerformed(BEFireman event);
 }

@@ -6,6 +6,7 @@
 package BLL;
 
 import BE.BEFireman;
+import GUI.CRUDFireman;
 import GUI.CRUDFiremanListener;
 import GUI.PDFListener;
 import Utility.Error.EventExercutionException;
@@ -25,8 +26,8 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
 
     private static BLLFireman m_instance;
     private DALC.DALCFireman DALCFireman;
+    private CRUDFireman fireman;
     private final Utility.Error.ErrorHandler Error;
-
     /**
      * Singleton to ensure that the class isn't instantiated more than once
      * @return m_instance
@@ -208,10 +209,5 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
         } catch (Exception ex) {
             throw new EventExercutionException("Kunne ikke redigere brandmand");
         }
-    }
-
-    @Override
-    public void FiremanReadPerformed(BEFireman event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
