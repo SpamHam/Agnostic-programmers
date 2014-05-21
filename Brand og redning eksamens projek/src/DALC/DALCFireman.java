@@ -5,7 +5,7 @@
  */
 package DALC;
 
-import Utility.ErrorHandler;
+import Utility.Error.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,7 +44,7 @@ public class DALCFireman {
      */
     private DALCFireman() throws SQLServerException {
         m_connection = DALC.DBConnection.getInstance().getConnection();
-        Error = Utility.ErrorHandler.getInstance();
+        Error = Utility.Error.ErrorHandler.getInstance();
     }
 
     /**

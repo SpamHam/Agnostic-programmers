@@ -16,7 +16,7 @@ public class BLLMaterial {
 
     private static BLLMaterial m_instance;
     private DALC.DALCMaterial DALCMaterial;
-    private final Utility.ErrorHandler Error;
+    private final Utility.Error.ErrorHandler Error;
 
     /**
      * Singleton to ensure that the class isn't instantiated more than once
@@ -35,7 +35,7 @@ public class BLLMaterial {
      * @throws Exception 
      */
     private BLLMaterial() throws Exception {
-        Error = Utility.ErrorHandler.getInstance();
+        Error = Utility.Error.ErrorHandler.getInstance();
         try {
             DALCMaterial = DALC.DALCMaterial.getInstance();
         } catch (SQLServerException ex) {

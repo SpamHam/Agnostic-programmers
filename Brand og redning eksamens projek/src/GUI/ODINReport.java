@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Utility.Error.EventExercutionException;
 import BE.BEForces;
 import BE.BEMaterial;
 import BLL.BLLPDF;

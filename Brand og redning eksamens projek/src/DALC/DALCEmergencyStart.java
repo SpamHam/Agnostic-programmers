@@ -6,7 +6,7 @@ package DALC;
 
 
 
-import Utility.ErrorHandler;
+import Utility.Error.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

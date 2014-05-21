@@ -17,7 +17,7 @@ public class BLLFireman {
 
     private static BLLFireman m_instance;
     private DALC.DALCFireman DALCFireman;
-    private final Utility.ErrorHandler Error;
+    private final Utility.Error.ErrorHandler Error;
 
     /**
      * Singleton to ensure that the class isn't instantiated more than once
@@ -36,7 +36,7 @@ public class BLLFireman {
      * @throws Exception 
      */
     private BLLFireman() throws Exception {
-        Error = Utility.ErrorHandler.getInstance();
+        Error = Utility.Error.ErrorHandler.getInstance();
         try {
             DALCFireman = DALC.DALCFireman.getInstance();
         } catch (SQLServerException ex) {

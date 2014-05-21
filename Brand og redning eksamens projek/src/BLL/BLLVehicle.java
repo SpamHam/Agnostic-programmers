@@ -16,7 +16,7 @@ public class BLLVehicle {
 
     private static BLLVehicle m_instance;
     private DALC.DALCVehicle DALCVehicle;
-    private final Utility.ErrorHandler Error;
+    private final Utility.Error.ErrorHandler Error;
 
     /**
      * Singleton to ensure that the class isn't instantiated more than once
@@ -36,7 +36,7 @@ public class BLLVehicle {
      * @throws Exception 
      */
     private BLLVehicle() throws Exception {
-        Error = Utility.ErrorHandler.getInstance();
+        Error = Utility.Error.ErrorHandler.getInstance();
         try {
             DALCVehicle = DALC.DALCVehicle.getInstance();
         } catch (SQLServerException ex) {

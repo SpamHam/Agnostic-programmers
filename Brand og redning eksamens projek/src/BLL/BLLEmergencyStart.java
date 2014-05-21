@@ -7,7 +7,7 @@ package BLL;
 import DALC.DALCEmergencyStart;
 import GUI.EmergencyStartDialog;
 import Utility.DateConverter;
-import Utility.ErrorHandler;
+import Utility.Error.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class BLLEmergencyStart {
     
     private static BLLEmergencyStart m_instance;
     private DALC.DALCEmergencyStart DALCeStart;
-    private final Utility.ErrorHandler Error;
+    private final Utility.Error.ErrorHandler Error;
     ArrayList<String> startTider = new ArrayList<>();
     ArrayList<String> res = new ArrayList<>();
     

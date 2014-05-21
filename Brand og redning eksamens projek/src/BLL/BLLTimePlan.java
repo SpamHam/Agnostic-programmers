@@ -15,7 +15,7 @@ public class BLLTimePlan {
 
     private static BLLTimePlan m_instance;
     private DALC.DALCSalary DALCSalary;
-    private final Utility.ErrorHandler Error;
+    private final Utility.Error.ErrorHandler Error;
     String[] TypeOfWork = new String[]{"Brand", "Standby", "Andet", "Øvelse", "Vagt"};
 
     /**
@@ -36,7 +36,7 @@ public class BLLTimePlan {
      * @throws Exception
      */
     private BLLTimePlan() throws Exception {
-        Error = Utility.ErrorHandler.getInstance();
+        Error = Utility.Error.ErrorHandler.getInstance();
         try {
             DALCSalary = DALC.DALCSalary.getInstance();
         } catch (SQLServerException ex) {
