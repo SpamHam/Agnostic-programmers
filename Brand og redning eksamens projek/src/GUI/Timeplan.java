@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Utility.PDF.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BETimePlan;
 import BLL.BLLPDF;

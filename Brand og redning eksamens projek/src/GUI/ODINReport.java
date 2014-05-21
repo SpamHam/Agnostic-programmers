@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Utility.PDF.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BEForces;
 import BE.BEMaterial;
@@ -15,8 +16,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
@@ -132,7 +131,7 @@ public class ODINReport extends javax.swing.JFrame {
           txtRecived.setText(tid);
           dcDate.setDate(date);
         } catch (ParseException ex) {
-            Logger.getLogger(ODINReport.class.getName()).log(Level.SEVERE, null, ex);
+           
             
         }                   
   }

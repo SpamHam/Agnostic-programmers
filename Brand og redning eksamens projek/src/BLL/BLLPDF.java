@@ -9,7 +9,7 @@ package BLL;
 
 import Utility.PDF.PDFMerger;
 import Utility.Error.EventExercutionException;
-import GUI.FormatEventPDF;
+import Utility.PDF.FormatEventPDF;
 import GUI.PDFListener;
 import Utility.PDF.DeleteTempPDF;
 import Utility.PDF.PDFCreator;

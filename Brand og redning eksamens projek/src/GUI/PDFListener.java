@@ -6,6 +6,8 @@
 
 package GUI;
 
+import Utility.PDF.FormatEventPDF;
+
 /**
  *
  * @author peter bærbar
