@@ -52,14 +52,16 @@ public class BLLPayroll {
      * @param b
      * @throws Exception
      */
-    public void CreateSalary(BE.BESalary b) throws Exception {
-        if (b.getODIN() == 0 || b.getDate().isEmpty()) {
-            Error.NotEnougthInfo("creating a SalaryReport.");
-        } else {
-            try {
-                DALCSalary.getInstance().CreateSalary(b);
-            } catch (SQLServerException ex) {
-                Error.StorageUnreachable(".");
+    public void CreateSalary(ArrayList<BE.BESalary> salary) throws Exception {
+        for (BE.BESalary b : salary) {
+            if (b.getODIN() == 0 || b.getDate().isEmpty()) {
+                Error.NotEnougthInfo("creating a SalaryReport.");
+            } else {
+                try {
+                    DALCSalary.getInstance().CreateSalary(b);
+                } catch (SQLServerException ex) {
+                    Error.StorageUnreachable(".");
+                }
             }
         }
     }

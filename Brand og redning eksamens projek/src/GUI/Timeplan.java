@@ -224,6 +224,7 @@ public class Timeplan extends javax.swing.JFrame {
      * @param event type FormatEventPDF
      */
     public void firePDFEvent(FormatEventPDF event) {
+        ArrayList<BE.BESalary> salary = new ArrayList<>();
         if (cmbType.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
             return;
@@ -231,7 +232,6 @@ public class Timeplan extends javax.swing.JFrame {
         if (PDFListener != null) {
             try {
                 PDFListener.PDFTimePlanPerformed(event);
-                ArrayList<BE.BESalary> salary = new ArrayList<>();
                 for (BE.BETimePlan c : allTime) {
                     BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(c.getFiremanID());
                     String holdleder = "Brandmand";
@@ -255,6 +255,7 @@ public class Timeplan extends javax.swing.JFrame {
             report.setLocationRelativeTo(this);
         } else {
             dispose();
+            BLL.BLLPayroll.getInstance().CreateSalary(salary);
         }
     }
 
