@@ -7,12 +7,12 @@
 package BLL;
 
 
+import Utility.PDFGenerator.PDFMerger;
 import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
-import Utility.DeleteTempPDF;
-import Utility.PDFGenerator;
-import Utility.PDFMerger;
+import Utility.PDFGenerator.DeleteTempPDF;
+import Utility.PDFGenerator.PDFCreator;
 import java.io.FileNotFoundException;
 
 /**
@@ -20,11 +20,11 @@ import java.io.FileNotFoundException;
  * @author peter bærbar
  */
 public class BLLPDF implements PDFListener  {
-    PDFGenerator pdfGen;
+    PDFCreator pdfGen;
     
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-        pdfGen = new PDFGenerator(event.getTime(),event.getTimeColNames(), event.getType());
+        pdfGen = new PDFCreator(event.getTime(),event.getTimeColNames(), event.getType());
     if(!event.getType().equalsIgnoreCase("øvelse")&& !event.getType().equalsIgnoreCase("brandvagt") && !event.getType().equalsIgnoreCase("stand-by")){
         try {
         pdfGen.runCreateTimePlanPDF();
@@ -41,7 +41,7 @@ public class BLLPDF implements PDFListener  {
 
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
-     pdfGen = new PDFGenerator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), 
+     pdfGen = new PDFCreator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), 
              event.getDate(), event.getReceived(), event.getFireNr(), event.getEvaNr(), event.getMessage(), event.getName(), 
              event.getAddress(), event.getLeader(), event.getTeamLeader(), event.getWeekday());
         try {

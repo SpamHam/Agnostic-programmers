@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Utility;
+package Utility.PDFGenerator;
 
 /**
  *
@@ -14,6 +14,7 @@ package Utility;
 import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
+import Utility.DateConverter;
 import java.io.FileOutputStream;
 
 
@@ -37,7 +38,7 @@ import java.util.ArrayList;
 
 
 
-public class PDFGenerator {
+public class PDFCreator {
    //private String FILE;
   private String FILE = "c:/PDF/temp/";
   private String FILE2 = "c:/PDF/";
@@ -66,7 +67,7 @@ public class PDFGenerator {
    * @param colNames
    * @param type
    */
-  public PDFGenerator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames, String type){
+  public PDFCreator(ArrayList <BETimePlan> allTime, ArrayList<String> colNames, String type){
     this.allTime = allTime;
     this.colNames = colNames;
     this.type = type;
@@ -88,7 +89,7 @@ public class PDFGenerator {
  * @param teamLeader
  * @param weekday 
  */
-  public PDFGenerator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<BEForces> allForces,
+  public PDFCreator(ArrayList<BEMaterial> allMaterial, ArrayList<String>materialColName, ArrayList<BEForces> allForces,
           ArrayList<String> forcesColName, String date, String received,String fireNr, String evaNr, String message, 
           String name, String address, String leader, String teamLeader, String weekday){
         this.allMaterial = allMaterial;

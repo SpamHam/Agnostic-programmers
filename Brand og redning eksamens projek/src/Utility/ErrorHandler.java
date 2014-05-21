@@ -8,7 +8,7 @@ package Utility;
 import java.sql.SQLException;
 
 /**
- *
+ * 
  * @author Son Of Satan
  */
 public class ErrorHandler {

@@ -36,7 +36,7 @@ private static final  String[] Weekdays = {"", "mandag", "tirsdag", "onsdag",
  private static final String[] shortWeekdays = {"", "man", "tir", "ons", "tor", "fre", "lør", "søn"};
  
   /**
-   * private constructor, so no instance of this class 
+   * private constructor, so no instance of this class can be created 
    */
   private DateConverter(){
     }
