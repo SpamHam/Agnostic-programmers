@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Utility;
+package Utility.PDF;
 
 /**
  *
@@ -14,6 +14,7 @@ package Utility;
 import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
+import Utility.DateConverter;
 import Utility.DateConverter;
 import java.io.FileOutputStream;
 

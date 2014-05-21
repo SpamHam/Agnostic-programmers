@@ -7,12 +7,12 @@
 package BLL;
 
 
-import Utility.PDFMerger;
+import Utility.PDF.PDFMerger;
 import GUI.EventExercutionException;
 import GUI.FormatEventPDF;
 import GUI.PDFListener;
-import Utility.DeleteTempPDF;
-import Utility.PDFCreator;
+import Utility.PDF.DeleteTempPDF;
+import Utility.PDF.PDFCreator;
 import java.io.FileNotFoundException;
 
 /**
