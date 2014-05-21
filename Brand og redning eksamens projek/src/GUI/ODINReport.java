@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import Utility.PDF.FormatEventPDF;
+import Utility.Event.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BEForces;
 import BE.BEMaterial;

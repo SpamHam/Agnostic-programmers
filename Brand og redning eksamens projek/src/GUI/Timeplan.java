@@ -5,7 +5,7 @@
  */
 package GUI;
 
-import Utility.PDF.FormatEventPDF;
+import Utility.Event.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BETimePlan;
 import BLL.BLLPDF;
@@ -13,8 +13,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.TableModel;

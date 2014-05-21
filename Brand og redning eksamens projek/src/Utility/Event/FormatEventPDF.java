@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package Utility.PDF;
+package Utility.Event;
 
 import BE.BEForces;
 import BE.BEMaterial;

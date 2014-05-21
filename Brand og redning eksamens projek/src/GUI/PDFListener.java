@@ -6,7 +6,7 @@
 
 package GUI;
 
-import Utility.PDF.FormatEventPDF;
+import Utility.Event.FormatEventPDF;
 
 /**
  *
