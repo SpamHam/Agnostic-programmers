@@ -6,14 +6,22 @@
 package BLL;
 
 import BE.BEFireman;
+import GUI.CRUDFiremanListener;
+import GUI.PDFListener;
+import Utility.Error.EventExercutionException;
+import Utility.Event.FormatEventPDF;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author peter bærbar
  */
-public class BLLFireman {
+public class BLLFireman implements CRUDFiremanListener, PDFListener{
 
     private static BLLFireman m_instance;
     private DALC.DALCFireman DALCFireman;
@@ -35,14 +43,17 @@ public class BLLFireman {
      * Instantiates the DALC Layer using the Singleton Pattern
      * @throws Exception 
      */
-    private BLLFireman() throws Exception {
-        Error = Utility.Error.ErrorHandler.getInstance();
-        try {
-            DALCFireman = DALC.DALCFireman.getInstance();
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
-        }
-    }
+//    public BLLFireman() throws Exception {
+//        Error = Utility.Error.ErrorHandler.getInstance();
+//        try {
+//            DALCFireman = DALC.DALCFireman.getInstance();
+//        } catch (SQLServerException ex) {
+//            Error.StorageUnreachable(".");
+//        }
+//    }
+    
+    public BLLFireman(){ Error = Utility.Error.ErrorHandler.getInstance();}
+    
 /**
  * Function that calls the create function from the DALC Layer. If any field is empty the function will return an error
  * @param b
@@ -103,7 +114,7 @@ public class BLLFireman {
                 throw new Exception("Denne brandman har stadig ubetalte timer, få dem printet til pdf først inden du kan slette ham.");
             }
         }
-        DALCFireman.Delete(e);
+        DALCFireman.getInstance().Delete(e);
     }
 
     /**
@@ -120,5 +131,87 @@ public class BLLFireman {
         }
         Error.StringEqualError("" + ID);
         return null;
+    }
+
+ 
+
+    @Override
+    public void PDFTimePlanPerformed(FormatEventPDF event)  {
+                ArrayList<BE.BESalary> salary = new ArrayList<>();
+                System.out.println("Rigtig registreret 1");
+                  for (BE.BETimePlan c : event.getTime()) {
+                    BE.BEFireman f;
+                    try {
+                        f = FiremanFromID(c.getFiremanID());
+                        System.out.println(c.getFiremanID());
+                    } catch (Exception ex) {
+                        throw new EventExercutionException(ex.getMessage()); 
+                    }
+                    String holdleder = "Brandmand";
+                    if (f.isLeaderTrained()) {
+                        holdleder = "Holdleder";
+                    }
+                      System.out.println(f.getID());
+                      System.out.println(f.getPaymentNr());
+                      System.out.println(c.getHours());
+                      System.out.println(event.getType());
+                      System.out.println(event.getSelectedType());
+                    BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(),
+                            new Date().toString(), event.getSelectedType(), false);
+                    salary.add(s);
+                }
+     if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt") || 
+             event.getType().equalsIgnoreCase("stand-by")){
+              System.out.println("Rigtig registreret");
+                    try {
+                        BLL.BLLPayroll.getInstance().CreateSalary(salary);
+                    } catch (Exception ex) {
+                        throw new EventExercutionException(ex.getMessage()); 
+                    }
+     }
+    }
+
+    @Override
+    public void PDFOdinPerformed(FormatEventPDF event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void FiremanCreatePerformed(BEFireman event) {
+       if (event.getFirstName().isEmpty() || event.getLastName().isEmpty() || event.getAddress().isEmpty() 
+               || event.getPhoneNr().isEmpty() || event.getPaymentNr().isEmpty() || event.getHiredDate().isEmpty()) {
+             throw new EventExercutionException("Ikke nok info til at oprette en brandmand");
+        } else {
+           try {
+               DALCFireman.getInstance().Create(event);
+           } catch (SQLException ex) {
+               throw new EventExercutionException("Kunne ikke få forbindelse til server");
+           }
+        
+            }
+        }
+    
+
+    @Override
+    public void FiremanRemovePerformed(BEFireman event) {
+        try {
+            remove(event);
+        } catch (Exception ex) {
+            throw new EventExercutionException("Kunne ikke slette brandmand");
+        }
+    }
+
+    @Override
+    public void FiremanUpdatePerformed(BEFireman event) {
+        try {
+            Update(event);
+        } catch (Exception ex) {
+            throw new EventExercutionException("Kunne ikke redigere brandmand");
+        }
+    }
+
+    @Override
+    public void FiremanReadPerformed(BEFireman event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -7,6 +7,7 @@ package GUI;
 
 import BE.BEFireman;
 import BLL.BLLFireman;
+import Utility.Error.EventExercutionException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -20,11 +21,11 @@ import javax.swing.table.TableRowSorter;
  * @author Son Of Satan
  */
 public class CRUDFireman extends javax.swing.JFrame {
-
+    private CRUDFiremanListener firemanListener; // holds a reference to a class that implements PDFListener
     CRUDFiremanTableModel FiremanTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEFireman> allFiremans = new ArrayList<>();
-    private BLLFireman m_fireman;
+    private BLLFireman m_fireman = new BLLFireman();
     //
     private int selectedRow;
 
@@ -45,6 +46,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     public CRUDFireman() {
         initComponents();
         initFiremans();
+        setFiremanListener(m_fireman);
         FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
         tblFiremen.setModel(FiremanTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(FiremanTableModel);
@@ -145,10 +147,10 @@ public class CRUDFireman extends javax.swing.JFrame {
             firemanDialog.setLocationRelativeTo(null);
 
             BEFireman fireman = firemanDialog.getNewFireman();
-            if (fireman != null) // a team has been created in the dialog box.
+            if (fireman != null) // a fireman has been created in the dialog box.
             {
                 try {
-                    BLLFireman.getInstance().Create(fireman);
+                    fireCreateFiremanEvent(fireman);
                     allFiremans.add(fireman);
                     FiremanTableModel.setCRUDFiremanList(allFiremans);
                     tblFiremen.repaint();
@@ -168,7 +170,17 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            updateFireman();
+     BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
+      txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(),
+      txtPaymentNr.getText(), ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
+        //            BLL.BLLFireman.getInstance().Update(updateFireman);
+                fireUpdateFiremanEvent(updateFireman);
+            allFiremans.set(selectedRow, updateFireman);
+            //allFiremans = BLL.BLLFireman.getInstance().getAll();
+            FiremanTableModel.setCRUDFiremanList(allFiremans);
+           // FiremanTableModel.fireTableDataChanged(); 
+
+        //   updateFireman();
         }
 
     }
@@ -180,7 +192,10 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DeleteFireman();
+            BEFireman i = allFiremans.get(selectedRow);
+            fireRemoveFiremanEvent(i);
+            allFiremans.remove(selectedRow);
+            FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
 
     }
@@ -196,6 +211,60 @@ public class CRUDFireman extends javax.swing.JFrame {
         }
 
     }
+    
+       /**
+     * sets the PDf listener to a class that implements the PDFListener interface
+     * @param firemanListener 
+     */
+      public void setFiremanListener(CRUDFiremanListener firemanListener){
+        this.firemanListener = firemanListener;
+    }
+      
+    /**
+     * 
+     * @param event 
+     */
+     public void fireCreateFiremanEvent(BEFireman event){
+        if (firemanListener != null){
+            try{
+              firemanListener.FiremanCreatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
+     
+         /**
+     * 
+     * @param event 
+     */
+     public void fireRemoveFiremanEvent(BEFireman event){
+        
+        if (firemanListener != null){
+            
+            try{
+              firemanListener.FiremanRemovePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
+     
+         /**
+     * 
+     * @param event 
+     */
+     public void fireUpdateFiremanEvent(BEFireman event){
+        
+        if (firemanListener != null){
+            
+            try{
+              firemanListener.FiremanUpdatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -23,17 +23,20 @@ public class FormatEventPDF {
     private ArrayList<String> matrialeColNames;
     private ArrayList<String> forcesColNames;
     private String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday, type;
+    private int selectedType;
   
     /**
      * constructor for packing events
      * @param allTime
      * @param timeColNames
      * @param type 
+     * @param selectedType 
      */
-    public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> timeColNames, String type ){
+    public FormatEventPDF(ArrayList<BETimePlan> allTime, ArrayList<String> timeColNames, String type, int selectedType){
     this.allTime = allTime;
     this.timeColNames = timeColNames;
     this.type = type;
+    this.selectedType = selectedType;
     }
 
    /**
@@ -145,5 +148,12 @@ public class FormatEventPDF {
      */
     public String getType() {
         return type;
+    }
+
+    /**
+     * @return the selectedType
+     */
+    public int getSelectedType() {
+        return selectedType;
     }
 }

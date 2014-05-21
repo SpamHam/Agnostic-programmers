@@ -8,6 +8,7 @@ package GUI;
 import Utility.Event.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BETimePlan;
+import BLL.BLLFireman;
 import BLL.BLLPDF;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,8 +30,11 @@ public class Timeplan extends javax.swing.JFrame {
     ArrayList<BETimePlan> allTime = new ArrayList<>();
     ArrayList<String> colNames;
     String type;
+    int selectedType;
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
+    ArrayList<PDFListener> APDFListeners = new ArrayList<>();
     BLLPDF BLLPDF = new BLLPDF();
+    BLLFireman BLLFireman = new BLLFireman();
 
     /**
      * Creates new form Timeplan
@@ -38,6 +42,7 @@ public class Timeplan extends javax.swing.JFrame {
     public Timeplan() {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
+        setPDFListener(BLLFireman);
         TimeTableModel = new TimePlanTableModel(allTime);
         tblTeam.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
@@ -214,11 +219,25 @@ public class Timeplan extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             getColNames();
             type = type + txtOtherText.getText().trim();
-            try {
-                firePDFEvent(new FormatEventPDF(allTime, colNames, type));
+            selectedType = cmbType.getSelectedIndex();
+          if (cmbType.getSelectedIndex() == -1) {
+            JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
+            try { 
+                firePDFEvent(new FormatEventPDF(allTime, colNames, type, selectedType));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+          if (!type.equalsIgnoreCase("øvelse") && !type.equalsIgnoreCase("brandvagt") && !type.equalsIgnoreCase("stand-by")) {
+            dispose();
+            ODINReport report = new ODINReport();
+            report.setVisible(true);
+            report.setLocationRelativeTo(null);
+        } else {
+            dispose();
+          
+        }  
         }
     }
 
@@ -227,42 +246,64 @@ public class Timeplan extends javax.swing.JFrame {
      *
      * @param event type FormatEventPDF
      */
-    public void firePDFEvent(FormatEventPDF event) throws Exception {
-        ArrayList<BE.BESalary> salary = new ArrayList<>();
-        if (cmbType.getSelectedIndex() == -1) {
-            JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
-            return;
-        }
-        if (PDFListener != null) {
-            try {
-                PDFListener.PDFTimePlanPerformed(event);
-                for (BE.BETimePlan c : allTime) {
-                    BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(c.getFiremanID());
-                    String holdleder = "Brandmand";
-                    if (f.isLeaderTrained()) {
-                        holdleder = "Holdleder";
-                    }
-                    BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), cmbType.getSelectedIndex(), false);
-                    salary.add(s);
-                }
-                JOptionPane.showMessageDialog(null, "Timeplan blev gemt", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-            } catch (EventExercutionException ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    public void firePDFEvent(FormatEventPDF event) throws Exception {
+//        ArrayList<BE.BESalary> salary = new ArrayList<>();
+//        if (cmbType.getSelectedIndex() == -1) {
+//            JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
+//            return;
+//        }
+//        if (PDFListener != null) {
+//            try {
+//                PDFListener.PDFTimePlanPerformed(event);
+//                for (BE.BETimePlan c : allTime) {
+//                    BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(c.getFiremanID());
+//                    String holdleder = "Brandmand";
+//                    if (f.isLeaderTrained()) {
+//                        holdleder = "Holdleder";
+//                    }
+//                    BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), cmbType.getSelectedIndex(), false);
+//                    salary.add(s);
+//                }
+//                JOptionPane.showMessageDialog(null, "Timeplan blev gemt", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (EventExercutionException ex) {
+//                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//        if (!type.equalsIgnoreCase("øvelse") && !type.equalsIgnoreCase("brandvagt") && !type.equalsIgnoreCase("stand-by")) {
+//            dispose();
+//            ODINReport report = new ODINReport();
+//            report.setVisible(true);
+//            report.setLocationRelativeTo(this);
+//        } else {
+//            dispose();
+//            BLL.BLLPayroll.getInstance().CreateSalary(salary);
+//        }
+//    }
+//   public void firePDFEvent(FormatEventPDF event) throws Exception {
+//        if (PDFListener != null) {
+//            try {
+//               PDFListener.PDFTimePlanPerformed(event);
+//                JOptionPane.showMessageDialog(null, "Timeplan blev gemt", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (EventExercutionException ex) {
+//                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            } catch (Exception ex) {
+//                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    }
+   
+    
+    
+       public void firePDFEvent(FormatEventPDF event) throws Exception {
+        if (APDFListeners != null) {
+            for(PDFListener listener : APDFListeners){
+            listener.PDFTimePlanPerformed(event);
             }
-        }
-        if (!type.equalsIgnoreCase("øvelse") && !type.equalsIgnoreCase("brandvagt") && !type.equalsIgnoreCase("stand-by")) {
-            dispose();
-            ODINReport report = new ODINReport();
-            report.setVisible(true);
-            report.setLocationRelativeTo(this);
-        } else {
-            dispose();
-            BLL.BLLPayroll.getInstance().CreateSalary(salary);
-        }
     }
-
+       }
+    
     /**
      * Returns the Column Names
      */
@@ -279,7 +320,8 @@ public class Timeplan extends javax.swing.JFrame {
      * @param PDFListener
      */
     public void setPDFListener(PDFListener PDFListener) {
-        this.PDFListener = PDFListener;
+       // this.PDFListener = PDFListener;
+        APDFListeners.add(PDFListener);
     }
 
 

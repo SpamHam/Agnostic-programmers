@@ -97,7 +97,7 @@ public class ODINReport extends javax.swing.JFrame {
      private class BTNAddForcesActionListener implements ActionListener {
      @Override
         public void actionPerformed(ActionEvent e) {
-           BEForces emptyLine = new BEForces("", "", ""); //adds a empty row to the table 
+           BEForces emptyLine = new BEForces("", "", ""); //makes a empty row for the table 
            allforces.add(emptyLine);
            forcesTableModel.setForcesList(allforces);
         }
