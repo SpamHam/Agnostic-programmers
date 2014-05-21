@@ -64,9 +64,4 @@ public class BLLPDF implements PDFListener  {
           throw new EventExercutionException("ODIN Rapport PDF kunne ikke genereres");
         }
     }
-
-    @Override
-    public void PDFStationPlanPerformed(FormatEventPDF event) {
-        
-    }
 }

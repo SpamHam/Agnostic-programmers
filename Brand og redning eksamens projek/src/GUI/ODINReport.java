@@ -71,7 +71,7 @@ public class ODINReport extends javax.swing.JFrame {
     }
 
     /**
-     * 
+     * sets the PDf listener to a class that implements the PDFListener interface
      * @param PDFListener 
      */
       public void setPDFListener(PDFListener PDFListener){
@@ -91,7 +91,7 @@ public class ODINReport extends javax.swing.JFrame {
         }
     }
      
-      /**
+    /**
      * anonymous inner class listening on the create pdf button
      */
      private class BTNAddForcesActionListener implements ActionListener {
