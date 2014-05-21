@@ -123,9 +123,9 @@ public class ChooseTeam extends javax.swing.JDialog {
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-                String fireman = (String) jlistChosenFiremen.getModel().getElementAt(i);
+                int FiremanID = Firemen.get(Integer.parseInt(((String)jlistChosenFiremen.getModel().getElementAt(i)).substring(0,0)) - 1).getID();
                 String vehicle = chosenVehicle(jlistChooseACar);
-                BETimePlan temp = new BETimePlan(fireman, vehicle);
+                BETimePlan temp = new BETimePlan(FiremanID, vehicle);
                 ValgteFiremen.add(i, temp);
             }
             dispose();
@@ -181,8 +181,10 @@ public class ChooseTeam extends javax.swing.JDialog {
      * Populates the allFiremenList
      */
     private void PopulateVehicleList() {
+        int count = 1;
         for (BEFireman m : Firemen) {
-            alleFiremenListModel.addElement(m.getFirstName() + " " + m.getLastName());
+            alleFiremenListModel.addElement(count +":"+ m.getFirstName() + " " + m.getLastName());
+            count++;
         }
     }
 

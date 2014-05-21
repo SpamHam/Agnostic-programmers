@@ -15,7 +15,6 @@ import BE.BEForces;
 import BE.BEMaterial;
 import BE.BETimePlan;
 import Utility.DateConverter;
-import Utility.DateConverter;
 import java.io.FileOutputStream;
 
 
@@ -172,7 +171,7 @@ public class PDFCreator {
    * @throws DocumentException 
    */
   private void createTimePlanPage(Document document)
-      throws DocumentException {
+      throws DocumentException, Exception {
     Paragraph odinRaport = new Paragraph();
     // We add one empty line
     addEmptyLine(odinRaport, 1);
@@ -296,7 +295,7 @@ public class PDFCreator {
    */
 
   private void createTimeTable(Paragraph para, ArrayList<BETimePlan> rowData, ArrayList<String> colNames)
-      throws BadElementException {
+      throws BadElementException, Exception {
     PdfPTable table = new PdfPTable(colNames.size());
 
     for (String col : colNames){
@@ -309,7 +308,8 @@ public class PDFCreator {
     PdfPCell pos = new PdfPCell(new Phrase(row.getTitle(),small));
     pos.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(pos);
-    PdfPCell name = new PdfPCell(new Phrase(row.getName(),small));
+    BE.BEFireman f = BLL.BLLFireman.getInstance().FiremanFromID(row.getFiremanID());
+    PdfPCell name = new PdfPCell(new Phrase(f.getFirstName() + " " + f.getLastName(),small));
     name.setHorizontalAlignment(Element.ALIGN_CENTER);
     table.addCell(name);
     PdfPCell time = new PdfPCell(new Phrase(row.getTime(),small));

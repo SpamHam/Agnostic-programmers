@@ -13,22 +13,22 @@ package BE;
 public class BETimePlan {
 
     
-    private String title, name, vehicle, time;
-    private int hours, stationHours;
+    private String title, vehicle, time;
+    private int FiremanID, hours, stationHours;
     
     /**
      * Constructor used for packaging title, name,
      * time, hours,stationHours and Vehicle
      * @param title String
-     * @param name String
+     * @param FiremanID int
      * @param time String
      * @param hours int
      * @param StationHours int
      * @param vehicle String
      */
-    public BETimePlan(String title, String name, String time, int hours, int StationHours, String vehicle) {
+    public BETimePlan(String title, int FiremanID, String time, int hours, int StationHours, String vehicle) {
         this.title = title;
-        this.name = name;
+        this.FiremanID = FiremanID;
         this.hours = hours;
         this.time = time;
         this.stationHours = StationHours;
@@ -37,11 +37,11 @@ public class BETimePlan {
     
     /**
      * Constructor used for packaging name and vehicle used for the timesheet
-     * @param name String
+     * @param FiremanID int
      * @param vehicle int
      */
-    public BETimePlan(String name, String vehicle){
-    this.name = name;
+    public BETimePlan(int FiremanID, String vehicle){
+    this.FiremanID = FiremanID;
     this.vehicle = vehicle;
     }
 
@@ -61,18 +61,18 @@ public class BETimePlan {
     }
 /**
  * 
- * @return String name 
+ * @return int FiremanID 
  */
-    public String getName() {
-        return name;
+    public int getFiremanID() {
+        return FiremanID;
     }
     /**
      * 
-     * @param name the string name to set 
+     * @param FiremanID the int FiremanID to set 
      */
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFiremanID(int FiremanID) {
+        this.FiremanID = FiremanID;
     }
 /**
  * 
