@@ -23,6 +23,8 @@ public class BLLEmergencyStart {
     private static BLLEmergencyStart m_instance;
     private DALC.DALCEmergencyStart DALCeStart;
     private final Utility.ErrorHandler Error;
+    ArrayList<String> startTider = new ArrayList<>();
+    ArrayList<String> res = new ArrayList<>();
     
     
     
@@ -59,10 +61,11 @@ public class BLLEmergencyStart {
     }
     
     public ArrayList<String> test() throws SQLException{
-    ArrayList<String> startTider = new ArrayList<>();
-    ArrayList<String> res = new ArrayList<>();
+
+    
+    startTider.clear();
     startTider = DALCeStart.getInstance().read();
-        System.out.println(startTider.size() + "jacobtest");
+        //System.out.println(startTider.size() + "jacobtest");
         for(String i : startTider){
            
             String year = i.substring(6, 10);
@@ -89,7 +92,7 @@ public class BLLEmergencyStart {
                        
                    }else if((day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")) && checkForEvenOrAudMonth(month) == true){
                        removeDay = AudMonth(day);
-                       System.out.println(i + " " + removeDay + " b");
+                       //System.out.println(i + " " + removeDay + " b");
                        if(currentDay >= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
                            
                            removeTime(i);
@@ -106,22 +109,22 @@ public class BLLEmergencyStart {
                    }
                         else{
                        res.add(i);
-                       System.out.println(i + " de resterende tider");
+                       //System.out.println(i + " de resterende tider");
                    }
                  
                    
                 }else{
                     res.add(i);
-                    System.out.println(i + " er større end nuværende måned");
+                    //System.out.println(i + " er større end nuværende måned");
                 }
                 
             }else{
                     res.add(i);
-                    System.out.println(i + " er større end nuværende år");
+                    //System.out.println(i + " er større end nuværende år");
                 }
 
         }
-        System.out.println(res.size());
+        System.out.println(res.size() + " jacobtest");
         return res;
         
     }

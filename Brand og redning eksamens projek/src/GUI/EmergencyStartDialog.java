@@ -90,7 +90,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
  
 		Date date = formatter.parse(dateInString);
                 //date.getTime();
-		System.out.println(date.compareTo(date) < 0);
+		//System.out.println(date.compareTo(date) < 0);
 		//System.out.println(formatter.format(date));
  
 	} catch (ParseException e) {
@@ -128,7 +128,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                        
                    }else if((day.equalsIgnoreCase("30") || day.equalsIgnoreCase("31")) && checkForEvenOrAudMonth(month) == true){
                        removeDay = AudMonth(day);
-                       System.out.println(i + " " + removeDay + " b");
+                       //System.out.println(i + " " + removeDay + " b");
                        if(currentDay >= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
                            startTider.remove(i);
                            removeTime(i);
@@ -137,7 +137,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                    }else if(currentDay <= removeDay && time.compareToIgnoreCase(DateConverter.getDate(DateConverter.TIME)) <= 0){
                           startTider.remove(i);
                           removeTime(i);      
-                       System.out.println(i+ " hej");
+                       //System.out.println(i+ " hej");
                    }else{
                        //res.add(i);
                        //System.out.println(i + " de resterende tider");
@@ -259,7 +259,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
            for(String i : nyeTider){
                res.add(i);
            }
-           System.out.println(nyeTider.size());
+           //System.out.println(nyeTider.size());
        }
         
     
