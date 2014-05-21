@@ -13,6 +13,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 import javax.swing.table.TableModel;
@@ -214,7 +216,11 @@ public class Timeplan extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             getColNames();
             type = type + txtOtherText.getText().trim();
-            firePDFEvent(new FormatEventPDF(allTime, colNames, type));
+            try {
+                firePDFEvent(new FormatEventPDF(allTime, colNames, type));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -223,7 +229,7 @@ public class Timeplan extends javax.swing.JFrame {
      *
      * @param event type FormatEventPDF
      */
-    public void firePDFEvent(FormatEventPDF event) {
+    public void firePDFEvent(FormatEventPDF event) throws Exception {
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         if (cmbType.getSelectedIndex() == -1) {
             JOptionPane.showMessageDialog(null, "Vælg en type af Indsats", "Manglende information", JOptionPane.INFORMATION_MESSAGE);
