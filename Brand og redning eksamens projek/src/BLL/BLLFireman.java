@@ -94,15 +94,21 @@ public class BLLFireman {
     }
 /**
  * A function that calls the delete function from the DALC Layer using Singleton
+     * @param e
  * @throws Exception 
  */
     public void remove(BE.BEFireman e) throws Exception {
+        for(BE.BESalary b: BLL.BLLPayroll.getInstance().getAll()){
+            if(b.getFiremanID()==e.getID()){
+                throw new Exception("Denne brandman har stadig ubetalte timer, få dem printet til pdf først inden du kan slette ham.");
+            }
+        }
         DALCFireman.Delete(e);
     }
 
     /**
      * Possiby not used for anything. Not sure!?
-     * @param cpr
+     * @param ID
      * @return
      * @throws Exception 
      */
