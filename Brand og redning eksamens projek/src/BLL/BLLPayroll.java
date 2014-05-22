@@ -52,8 +52,8 @@ public class BLLPayroll {
     public void CreateSalaryReport(ArrayList<BE.BESalary> salary) throws Exception {
         if (!salary.isEmpty()) {
             for (BE.BESalary b : salary) {
-                if (b.getDate().isEmpty() || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
-                    Error.NotEnougthInfo("creating a OdinReport.");
+                if ( b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+                    Error.NotEnougthInfo("creating a SalaryReport.");
                 } else {
                     try {
                         DALCSalary.getInstance().SalaryReport(b);
@@ -72,7 +72,7 @@ public class BLLPayroll {
      */
     public void CreateOdinReport(BE.BESalary b) throws Exception {
         if (b.getDate().isEmpty() || b.getODIN() != 0) {
-            Error.NotEnougthInfo("creating a SalaryReport.");
+            Error.NotEnougthInfo("creating a OdinReport.");
         } else {
             try {
                 DALCSalary.getInstance().OdinReport(b);

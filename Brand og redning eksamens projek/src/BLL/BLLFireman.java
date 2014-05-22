@@ -131,7 +131,6 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
             BE.BEFireman f;
             try {
                 f = FiremanFromID(c.getFiremanID());
-                System.out.println(c.getFiremanID());
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }
