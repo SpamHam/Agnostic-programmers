@@ -117,10 +117,12 @@ public class DALCSalary {
      * @throws java.sql.SQLException
      */
     public void DeleteMonthly(BE.BESalary e) throws SQLException {
-        String sql = "delete from MonthlySalary, SalaryReport where ODINnr=? and FiremanID=?";
+        String sql = "delete from MonthlySalary where ODINnr=? and FiremanID=? delete from Salaryreport where ODINNr=? and Date=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.setInt(2, e.getFiremanID());
+        ps.setInt(3, e.getODIN());
+        ps.setString(4, e.getDate());
         ps.executeUpdate();
     }
 
