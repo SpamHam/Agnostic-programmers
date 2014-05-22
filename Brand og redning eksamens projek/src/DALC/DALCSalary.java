@@ -52,7 +52,7 @@ public class DALCSalary {
      * @param e
      * @throws SQLException
      */
-    public void CreateMonthly(BE.BESalary e) throws SQLException {
+    public void SalaryReport(BE.BESalary e) throws SQLException {
         String sql = "insert into SalaryReport values (?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
@@ -69,7 +69,7 @@ public class DALCSalary {
      * @param e
      * @throws SQLException
      */
-    public void CreateSalary(BE.BESalary e) throws SQLException {
+    public void OdinReport(BE.BESalary e) throws SQLException {
         String sql = "insert into OdinReport values (?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
@@ -116,7 +116,7 @@ public class DALCSalary {
      * @param e
      * @throws java.sql.SQLException
      */
-    public void DeleteMonthly(BE.BESalary e) throws SQLException {
+    public void Delete(BE.BESalary e) throws SQLException {
         String sql = "delete from SalaryReport where ODINnr=? and FiremanID=? delete from OdinReport where ODINNr=? and Date=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
