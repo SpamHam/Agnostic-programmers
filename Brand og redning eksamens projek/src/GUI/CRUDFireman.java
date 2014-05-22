@@ -123,6 +123,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                 try {
                     fireCreateFiremanEvent(fireman);
                     allFiremans.add(fireman);
+                    initFiremans();
                     FiremanTableModel.setCRUDFiremanList(allFiremans);
                     tblFiremen.repaint();
                 } catch (Exception ex) {

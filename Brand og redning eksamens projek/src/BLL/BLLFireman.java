@@ -15,6 +15,8 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -96,11 +98,11 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
      * @throws Exception
      */
     public void remove(BE.BEFireman e) throws Exception {
-        for (BE.BESalary b : BLL.BLLPayroll.getInstance().getAll()) {
-            if (b.getFiremanID() == e.getID()) {
-                throw new Exception("Denne brandman har stadig ubetalte timer, få dem printet til pdf først inden du kan slette ham.");
-            }
-        }
+//        for (BE.BESalary b : BLL.BLLPayroll.getInstance().getAll()) {
+//            if (b.getFiremanID() == e.getID()) {
+//                throw new Exception("Denne brandman har stadig ubetalte timer, få dem printet til pdf først inden du kan slette ham.");
+//            }
+//        }
         DALCFireman.getInstance().Delete(e);
     }
 
@@ -185,6 +187,9 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
             throw new EventExercutionException("<html>Kunne ikke slette brandmand.<br>Hvis manden stadig har ubetalte timer skal de printes til pdf først.<br>Tjek om du har forbindelse til nettet eller databasen.");
         }
     }
+        
+
+ 
 
     @Override
     public void FiremanUpdatePerformed(BEFireman event) {

@@ -36,7 +36,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
      * Creates a Business Entity from the information entered in the textfields
      */
     private void Add() {
-        int ID = 0;
+       // int ID = 0;
         String forNavn = txtFirstName.getText().trim();
         String efterNavn = txtLastName.getText().trim();
         String adresse = txtAddress.getText().trim();
@@ -49,7 +49,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
             leaderUddannet = true;
         }
 
-        fireman = new BEFireman(ID, forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet, hiredDate);
+        fireman = new BEFireman(forNavn, efterNavn, adresse, tlfNr, callNr, paymentNr, leaderUddannet, hiredDate);
     }
 
     /**
