@@ -15,32 +15,31 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author peter bærbar
  */
-public class BLLFireman implements CRUDFiremanListener, PDFListener{
+public class BLLFireman implements CRUDFiremanListener, PDFListener {
 
-    private static BLLFireman m_instance;
     private DALC.DALCFireman DALCFireman;
-    private CRUDFireman fireman;
     private final Utility.Error.ErrorHandler Error;
-   
+
     /**
      * Instantiates errorHandler
-     *  
+     *
      */
-    
-    public BLLFireman(){ Error = Utility.Error.ErrorHandler.getInstance();}
-    
-/**
- * Function that calls the create function from the DALC Layer. If any field is empty the function will return an error
- * @param b
- * @throws Exception 
- */
+    public BLLFireman() {
+        Error = Utility.Error.ErrorHandler.getInstance();
+    }
+
+    /**
+     * Function that calls the create function from the DALC Layer. If any field
+     * is empty the function will return an error
+     *
+     * @param b
+     * @throws Exception
+     */
     public void Create(BE.BEFireman b) throws Exception {
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
             Error.NotEnougthInfo("creating a fireman.");
@@ -54,9 +53,11 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
     }
 
     /**
-     * A function that retrieves all fireman info from the database and inserts it into an ArrayList
+     * A function that retrieves all fireman info from the database and inserts
+     * it into an ArrayList
+     *
      * @return res
-     * @throws Exception 
+     * @throws Exception
      */
     public ArrayList<BE.BEFireman> getAll() throws Exception {
         ArrayList<BE.BEFireman> res = new ArrayList<>();
@@ -69,10 +70,11 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
     }
 
     /**
-     * A function that calls the update function from the DALC Layer using Singleton
-     * If any field is left blank it will return an error
+     * A function that calls the update function from the DALC Layer using
+     * Singleton If any field is left blank it will return an error
+     *
      * @param b
-     * @throws Exception 
+     * @throws Exception
      */
     public void Update(BE.BEFireman b) throws Exception {
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
@@ -85,14 +87,17 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
             }
         }
     }
-/**
- * A function that calls the delete function from the DALC Layer using Singleton
+
+    /**
+     * A function that calls the delete function from the DALC Layer using
+     * Singleton
+     *
      * @param e
- * @throws Exception 
- */
+     * @throws Exception
+     */
     public void remove(BE.BEFireman e) throws Exception {
-        for(BE.BESalary b: BLL.BLLPayroll.getInstance().getAll()){
-            if(b.getFiremanID()==e.getID()){
+        for (BE.BESalary b : BLL.BLLPayroll.getInstance().getAll()) {
+            if (b.getFiremanID() == e.getID()) {
                 throw new Exception("Denne brandman har stadig ubetalte timer, få dem printet til pdf først inden du kan slette ham.");
             }
         }
@@ -101,9 +106,10 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
 
     /**
      * Possiby not used for anything. Not sure!?
+     *
      * @param ID
      * @return
-     * @throws Exception 
+     * @throws Exception
      */
     public BEFireman FiremanFromID(int ID) throws Exception {
         for (BE.BEFireman f : getAll()) {
@@ -115,42 +121,40 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
         return null;
     }
 
- 
-
     @Override
-    public void PDFTimePlanPerformed(FormatEventPDF event)  {
-                ArrayList<BE.BESalary> salary = new ArrayList<>();
-                System.out.println("Rigtig registreret 1");
-                  for (BE.BETimePlan c : event.getTime()) {
-                    BE.BEFireman f;
-                    try {
-                        f = FiremanFromID(c.getFiremanID());
-                        System.out.println(c.getFiremanID());
-                    } catch (Exception ex) {
-                        throw new EventExercutionException(ex.getMessage()); 
-                    }
-                    String holdleder = "Brandmand";
-                    if (f.isLeaderTrained()) {
-                        holdleder = "Holdleder";
-                    }
-                      System.out.println(f.getID());
-                      System.out.println(f.getPaymentNr());
-                      System.out.println(c.getHours());
-                      System.out.println(event.getType());
-                      System.out.println(event.getSelectedType());
-                    BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(),
-                            new Date().toString(), event.getSelectedType(), false);
-                    salary.add(s);
-                }
-     if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt") || 
-             event.getType().equalsIgnoreCase("stand-by")){
-              System.out.println("Rigtig registreret");
-                    try {
-                        BLL.BLLPayroll.getInstance().CreateSalary(salary);
-                    } catch (Exception ex) {
-                        throw new EventExercutionException(ex.getMessage()); 
-                    }
-     }
+    public void PDFTimePlanPerformed(FormatEventPDF event) {
+        ArrayList<BE.BESalary> salary = new ArrayList<>();
+        System.out.println("Rigtig registreret 1");
+        for (BE.BETimePlan c : event.getTime()) {
+            BE.BEFireman f;
+            try {
+                f = FiremanFromID(c.getFiremanID());
+                System.out.println(c.getFiremanID());
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+            String holdleder = "Brandmand";
+            if (f.isLeaderTrained()) {
+                holdleder = "Holdleder";
+            }
+            System.out.println(f.getID());
+            System.out.println(f.getPaymentNr());
+            System.out.println(c.getHours());
+            System.out.println(event.getType());
+            System.out.println(event.getSelectedType());
+            BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(),
+                    new Date().toString(), event.getSelectedType(), false);
+            salary.add(s);
+        }
+        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
+                || event.getType().equalsIgnoreCase("stand-by")) {
+            System.out.println("Rigtig registreret");
+            try {
+                BLL.BLLPayroll.getInstance().CreateSalary(salary);
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+        }
     }
 
     @Override
@@ -160,26 +164,25 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener{
 
     @Override
     public void FiremanCreatePerformed(BEFireman event) {
-       if (event.getFirstName().isEmpty() || event.getLastName().isEmpty() || event.getAddress().isEmpty() 
-               || event.getPhoneNr().isEmpty() || event.getPaymentNr().isEmpty() || event.getHiredDate().isEmpty()) {
-             throw new EventExercutionException("Ikke nok info til at oprette en brandmand");
+        if (event.getFirstName().isEmpty() || event.getLastName().isEmpty() || event.getAddress().isEmpty()
+                || event.getPhoneNr().isEmpty() || event.getPaymentNr().isEmpty() || event.getHiredDate().isEmpty()) {
+            throw new EventExercutionException("Ikke nok info til at oprette en brandmand");
         } else {
-           try {
-               DALCFireman.getInstance().Create(event);
-           } catch (SQLException ex) {
-               throw new EventExercutionException("Kunne ikke få forbindelse til server");
-           }
-        
+            try {
+                DALCFireman.getInstance().Create(event);
+            } catch (SQLException ex) {
+                throw new EventExercutionException("Kunne ikke få forbindelse til server");
             }
+
         }
-    
+    }
 
     @Override
     public void FiremanRemovePerformed(BEFireman event) {
         try {
             remove(event);
         } catch (Exception ex) {
-            throw new EventExercutionException("Kunne ikke slette brandmand");
+            throw new EventExercutionException("<html>Kunne ikke slette brandmand.<br>Hvis manden stadig har ubetalte timer skal de printes til pdf først.<br>Tjek om du har forbindelse til nettet eller databasen.");
         }
     }
 
