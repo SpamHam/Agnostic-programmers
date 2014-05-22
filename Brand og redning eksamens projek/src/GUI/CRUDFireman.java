@@ -206,13 +206,13 @@ public class CRUDFireman extends javax.swing.JFrame {
      */
      public void fireRemoveFiremanEvent(BEFireman event){
         
-        //if (firemanListener != null){    
+        if (firemanListener != null){    
             try{
               firemanListener.FiremanRemovePerformed(event);
              } catch(EventExercutionException eex){
              JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
              }
-         // }
+          }
      }
      
          /**
