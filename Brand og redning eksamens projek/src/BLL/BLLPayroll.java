@@ -6,10 +6,7 @@
 package BLL;
 
 import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -49,16 +46,16 @@ public class BLLPayroll {
 
     /**
      *
-     * @param b
+     * @param salary
      * @throws Exception
      */
-    public void CreateSalary(ArrayList<BE.BESalary> salary) throws Exception {
+    public void CreateOdinReport(ArrayList<BE.BESalary> salary) throws Exception {
         for (BE.BESalary b : salary) {
             if (b.getODIN() == 0 || b.getDate().isEmpty()) {
-                Error.NotEnougthInfo("creating a SalaryReport.");
+                Error.NotEnougthInfo("creating a OdinReport.");
             } else {
                 try {
-                    DALCSalary.getInstance().CreateSalary(b);
+                    DALCSalary.getInstance().SalaryReport(b);
                 } catch (SQLServerException ex) {
                     Error.StorageUnreachable(".");
                 }
@@ -71,12 +68,12 @@ public class BLLPayroll {
      * @param b
      * @throws Exception
      */
-    public void CreateMonthly(BE.BESalary b) throws Exception {
-        if (b.getODIN() == 0 || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+    public void CreateSalaryReport(BE.BESalary b) throws Exception {
+        if ( b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
             Error.NotEnougthInfo("creating a SalaryReport.");
         } else {
             try {
-                DALCSalary.getInstance().CreateSalary(b);
+                DALCSalary.getInstance().OdinReport(b);
             } catch (SQLServerException ex) {
                 Error.StorageUnreachable(".");
             }
@@ -135,7 +132,7 @@ public class BLLPayroll {
     public void removeall() throws Exception {
         try {
             for (BE.BESalary s : getAll()) {
-                DALC.DALCSalary.getInstance().DeleteMonthly(s);
+                DALC.DALCSalary.getInstance().Delete(s);
             }
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
