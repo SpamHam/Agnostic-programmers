@@ -152,7 +152,7 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
                 || event.getType().equalsIgnoreCase("stand-by")) {
             System.out.println("Rigtig registreret");
             try {
-                BLL.BLLPayroll.getInstance().CreateSalary(salary);
+                BLL.BLLPayroll.getInstance().CreateOdinReport(salary);
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }
