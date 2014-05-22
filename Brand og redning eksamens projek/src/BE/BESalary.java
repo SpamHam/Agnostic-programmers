@@ -11,12 +11,13 @@ package BE;
  */
 public class BESalary {
 
-    private String Role, SalaryCode, Date ;
-    private int FiremanID, ODIN, TypeOfWork;
+    private String Role, SalaryCode, Date;
+    private int FiremanID, ODIN, WORK, TypeOfWork;
     private double Hours;
     private boolean isHoliday;
-    
-    public BESalary(int ODIN, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday){
+
+    public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday) {
+        this.WORK = WORK;
         this.ODIN = ODIN;
         this.FiremanID = ID;
         this.Role = Role;
@@ -26,8 +27,9 @@ public class BESalary {
         this.TypeOfWork = TypeOfWork;
         this.isHoliday = isHoliday;
     }
-    
-        public BESalary(int ODIN, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork){
+
+    public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork) {
+        this.WORK = WORK;
         this.ODIN = ODIN;
         this.FiremanID = ID;
         this.Role = Role;
@@ -35,7 +37,7 @@ public class BESalary {
         this.Hours = Hours;
         this.Date = Date;
         this.TypeOfWork = TypeOfWork;
-        
+
     }
 
     /**
@@ -148,5 +150,19 @@ public class BESalary {
      */
     public void setODIN(int ODIN) {
         this.ODIN = ODIN;
+    }
+
+    /**
+     * @return the WORK
+     */
+    public int getWORK() {
+        return WORK;
+    }
+
+    /**
+     * @param WORK the WORK to set
+     */
+    public void setWORK(int WORK) {
+        this.WORK = WORK;
     }
 }

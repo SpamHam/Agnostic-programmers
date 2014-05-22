@@ -144,15 +144,15 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
             System.out.println(c.getHours());
             System.out.println(event.getType());
             System.out.println(event.getSelectedType());
-            BE.BESalary s = new BE.BESalary(0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(),
-                    new Date().toString(), event.getSelectedType(), false);
+            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
             salary.add(s);
         }
         if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
                 || event.getType().equalsIgnoreCase("stand-by")) {
             System.out.println("Rigtig registreret");
             try {
-                BLL.BLLPayroll.getInstance().CreateOdinReport(salary);
+                BLL.BLLPayroll.getInstance().CreateWorkReport(salary.get(0));
+                BLL.BLLPayroll.getInstance().CreateSalaryReport(salary);
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }

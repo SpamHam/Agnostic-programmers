@@ -6,16 +6,13 @@
 package GUI;
 
 import Utility.Event.FormatEventPDF;
-import Utility.Error.EventExercutionException;
 import BE.BETimePlan;
 import BLL.BLLFireman;
 import BLL.BLLPDF;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
-
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 

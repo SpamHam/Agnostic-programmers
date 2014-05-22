@@ -49,15 +49,17 @@ public class BLLPayroll {
      * @param salary
      * @throws Exception
      */
-    public void CreateOdinReport(ArrayList<BE.BESalary> salary) throws Exception {
-        for (BE.BESalary b : salary) {
-            if (b.getODIN() == 0 || b.getDate().isEmpty()) {
-                Error.NotEnougthInfo("creating a OdinReport.");
-            } else {
-                try {
-                    DALCSalary.getInstance().SalaryReport(b);
-                } catch (SQLServerException ex) {
-                    Error.StorageUnreachable(".");
+    public void CreateSalaryReport(ArrayList<BE.BESalary> salary) throws Exception {
+        if (!salary.isEmpty()) {
+            for (BE.BESalary b : salary) {
+                if (b.getDate().isEmpty() || b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+                    Error.NotEnougthInfo("creating a OdinReport.");
+                } else {
+                    try {
+                        DALCSalary.getInstance().SalaryReport(b);
+                    } catch (SQLServerException ex) {
+                        Error.StorageUnreachable(".");
+                    }
                 }
             }
         }
@@ -68,8 +70,8 @@ public class BLLPayroll {
      * @param b
      * @throws Exception
      */
-    public void CreateSalaryReport(BE.BESalary b) throws Exception {
-        if ( b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+    public void CreateOdinReport(BE.BESalary b) throws Exception {
+        if (b.getDate().isEmpty() || b.getODIN() != 0) {
             Error.NotEnougthInfo("creating a SalaryReport.");
         } else {
             try {
@@ -77,6 +79,19 @@ public class BLLPayroll {
             } catch (SQLServerException ex) {
                 Error.StorageUnreachable(".");
             }
+        }
+    }
+
+    /**
+     * 
+     * @param b
+     * @throws Exception 
+     */
+    public void CreateWorkReport(BE.BESalary b) throws Exception {
+        try {
+            DALCSalary.getInstance().WorkReport(b);
+        } catch (SQLServerException ex) {
+            Error.StorageUnreachable(".");
         }
     }
 
@@ -174,8 +189,11 @@ public class BLLPayroll {
 
     public void update(BE.BESalary e) throws Exception {
         try {
-            System.out.println("lol works ?");
-            DALC.DALCSalary.getInstance().Update(e);
+            if(e.getODIN() != 0){
+            DALC.DALCSalary.getInstance().UpdateOdin(e);
+            } else {
+                DALC.DALCSalary.getInstance().UpdateWork(e);
+            }
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
         }

@@ -79,6 +79,24 @@ public class DALCSalary {
         ps.executeUpdate();
 
     }
+    
+    
+    /**
+     * Creates a row in the SalaryReport table.
+     *
+     * @param e
+     * @throws SQLException
+     */
+    public void  WorkReport(BE.BESalary e) throws SQLException {
+        String sql = "insert into WorkReport values (?,?,?,?)";
+        PreparedStatement ps = m_connection.prepareStatement(sql);
+        ps.setInt(1, e.getWORK());
+        ps.setString(2, e.getDate());
+        ps.setInt(3, e.getTypeOfWork());
+        ps.setBoolean(4, e.isIsHoliday());
+        ps.executeUpdate();
+
+    }
 
     /**
      * Reads all rows from MonthlySalary table.
@@ -89,12 +107,13 @@ public class DALCSalary {
     public ArrayList<BE.BESalary> read() throws SQLException {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr")) {
+        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
             Error.Datatable("OdinReport or Salaryreport");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {
 
+            int WORK = result.getInt("WORKnr");
             int ODIN = result.getInt("ODINnr");
             int ID = result.getInt("FiremanID");
             String Role = result.getString("Role");
@@ -104,7 +123,7 @@ public class DALCSalary {
             int TypeOfWork = result.getInt("TypeOfWork");
             boolean isHoliday = result.getBoolean("isHoliday");
 
-            BE.BESalary c = new BE.BESalary(ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+            BE.BESalary c = new BE.BESalary(WORK ,ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
             res.add(c);
         }
         return res;
@@ -117,20 +136,25 @@ public class DALCSalary {
      * @throws java.sql.SQLException
      */
     public void Delete(BE.BESalary e) throws SQLException {
-        String sql = "delete from SalaryReport where ODINnr=? and FiremanID=? delete from OdinReport where ODINNr=? and Date=?";
+        String sql = "delete * from SalaryReport, OdinReport, WorkReport";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setInt(1, e.getODIN());
-        ps.setInt(2, e.getFiremanID());
-        ps.setInt(3, e.getODIN());
-        ps.setString(4, e.getDate());
         ps.executeUpdate();
     }
 
-    public void Update(BE.BESalary e) throws SQLException {
-        String sql = "update SalaryReport set OdinReport.Hours=? where ODINnr=? and FiremanID=?";
+    public void UpdateOdin(BE.BESalary e) throws SQLException {
+        String sql = "update SalaryReport set Hours=? where ODINnr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setDouble(1, e.getHours());
         ps.setInt(2, e.getODIN());
+        ps.setInt(3, e.getFiremanID());
+        ps.executeUpdate();
+    }
+    
+    public void UpdateWork(BE.BESalary e) throws SQLException {
+        String sql = "update SalaryReport set Hours=? where WORKnr=? and FiremanID=?";
+        PreparedStatement ps = m_connection.prepareStatement(sql);
+        ps.setDouble(1, e.getHours());
+        ps.setInt(2, e.getWORK());
         ps.setInt(3, e.getFiremanID());
         ps.executeUpdate();
     }
