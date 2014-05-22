@@ -79,15 +79,15 @@ public class DALCSalary {
         ps.executeUpdate();
 
     }
-    
-    
+
     /**
      * Creates a row in the SalaryReport table.
      *
      * @param e
      * @throws SQLException
      */
-    public void  WorkReport(BE.BESalary e) throws SQLException {
+    public void WorkReport(BE.BESalary e) throws SQLException {
+        System.out.println("Am i Here ");
         String sql = "insert into WorkReport values (?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getWORK());
@@ -107,7 +107,8 @@ public class DALCSalary {
     public ArrayList<BE.BESalary> read() throws SQLException {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
+        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr \n"
+                + "select * from SalaryReport inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
             Error.Datatable("OdinReport or Salaryreport");
         }
         ResultSet result = stm.getResultSet();
@@ -123,7 +124,7 @@ public class DALCSalary {
             int TypeOfWork = result.getInt("TypeOfWork");
             boolean isHoliday = result.getBoolean("isHoliday");
 
-            BE.BESalary c = new BE.BESalary(WORK ,ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+            BE.BESalary c = new BE.BESalary(WORK, ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
             res.add(c);
         }
         return res;
@@ -149,7 +150,7 @@ public class DALCSalary {
         ps.setInt(3, e.getFiremanID());
         ps.executeUpdate();
     }
-    
+
     public void UpdateWork(BE.BESalary e) throws SQLException {
         String sql = "update SalaryReport set Hours=? where WORKnr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
