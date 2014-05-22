@@ -53,7 +53,7 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void CreateMonthly(BE.BESalary e) throws SQLException {
-        String sql = "insert into MonthlySalary values (?,?,?,?,?)";
+        String sql = "insert into SalaryReport values (?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.setInt(2, e.getFiremanID());
@@ -70,7 +70,7 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void CreateSalary(BE.BESalary e) throws SQLException {
-        String sql = "insert into SalaryReport values (?,?,?,?)";
+        String sql = "insert into OdinReport values (?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.setString(2, e.getDate());
@@ -89,8 +89,8 @@ public class DALCSalary {
     public ArrayList<BE.BESalary> read() throws SQLException {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from MonthlySalary inner join SalaryReport on SalaryReport.OdinNr = MonthlySalary.ODINnr")) {
-            Error.Datatable("monthlysalary or salaryreport");
+        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr")) {
+            Error.Datatable("OdinReport or Salaryreport");
         }
         ResultSet result = stm.getResultSet();
         while (result.next()) {
@@ -117,7 +117,7 @@ public class DALCSalary {
      * @throws java.sql.SQLException
      */
     public void DeleteMonthly(BE.BESalary e) throws SQLException {
-        String sql = "delete from MonthlySalary where ODINnr=? and FiremanID=? delete from Salaryreport where ODINNr=? and Date=?";
+        String sql = "delete from SalaryReport where ODINnr=? and FiremanID=? delete from OdinReport where ODINNr=? and Date=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
         ps.setInt(2, e.getFiremanID());
@@ -127,7 +127,7 @@ public class DALCSalary {
     }
 
     public void Update(BE.BESalary e) throws SQLException {
-        String sql = "update MonthlySalary set MonthlySalary.Hours=? where ODINnr=? and FiremanID=?";
+        String sql = "update SalaryReport set OdinReport.Hours=? where ODINnr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setDouble(1, e.getHours());
         ps.setInt(2, e.getODIN());
