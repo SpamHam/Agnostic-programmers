@@ -96,7 +96,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     }
 
           /**
-     * sets the PDf listener to a class that implements the PDFListener interface
+     * sets the material listener to a class that implements the materialListener interface
      * @param materialListener 
      */
       public void setFiremanListener(MaterialListener materialListener){
@@ -114,7 +114,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
             tilføjMaterial.setVisible(true);
             // continue here when the dialog box is closed (disposed).
             BE.BEMaterial Material = tilføjMaterial.getMaterial();
-            if (Material != null) // a car has been created in the dialog box.
+            if (Material != null) // a material has been created in the dialog box.
             {
                 try {
                     fireCreateMaterialEvent(Material);
@@ -132,7 +132,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     
           
     /**
-     * 
+     * fires the create event
      * @param event 
      */
      public void fireCreateMaterialEvent(BEMaterial event){
@@ -146,7 +146,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
      }
      
          /**
-     * 
+     * fires the update event
      * @param event 
      */
      public void fireUpdateMaterialEvent(BEMaterial event){
@@ -160,7 +160,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
      }
      
               /**
-     * 
+     * fires the remove event
      * @param event 
      */
      public void fireRemoveMaterialEvent(BEMaterial event){
@@ -212,7 +212,9 @@ public class CRUDMaterial extends javax.swing.JFrame {
         }
 
     }
-
+/**
+ * anonymous inner class listening on the back button
+ */
     private class BackListener implements ActionListener {
 
         @Override

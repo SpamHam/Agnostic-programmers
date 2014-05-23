@@ -20,7 +20,6 @@ import java.util.logging.Logger;
  */
 public class BLLMaterial implements MaterialListener {
 
-    private static BLLMaterial m_instance;
     private DALC.DALCMaterial DALCMaterial;
     private final Utility.Error.ErrorHandler Error;
 
