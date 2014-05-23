@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BEMaterial;
+import BLL.BLLMaterial;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -23,13 +24,14 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     ArrayList<BEMaterial> valgteMaterials = new ArrayList<>();
     DefaultListModel alleListModel = new DefaultListModel();
     DefaultListModel valgteListModel = new DefaultListModel();
+    BLLMaterial m_material = new BLLMaterial();
 
     /**
      * Populates the Materials ArrayList
      */
     public void InitializeMaterials() {
         try {
-            Materials = BLL.BLLMaterial.getInstance().getAll();
+            Materials = m_material.getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

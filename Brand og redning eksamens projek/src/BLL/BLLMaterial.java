@@ -5,60 +5,28 @@
  */
 package BLL;
 
+import BE.BEMaterial;
+import GUI.MaterialListener;
+import Utility.Error.EventExercutionException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author peter bærbar
  */
-public class BLLMaterial {
+public class BLLMaterial implements MaterialListener {
 
     private static BLLMaterial m_instance;
     private DALC.DALCMaterial DALCMaterial;
     private final Utility.Error.ErrorHandler Error;
 
-    /**
-     * Singleton to ensure that the class isn't instantiated more than once
-     * @return m_instance
-     * @throws SQLServerException
-     */
-    public static BLLMaterial getInstance() throws Exception {
-        if (m_instance == null) {
-            m_instance = new BLLMaterial();
-        }
-        return m_instance;
-    }
+    
+    public BLLMaterial(){ Error = Utility.Error.ErrorHandler.getInstance();}
 
-    /**
-     * Instantiates the DALC Layer using the Singleton Pattern
-     * @throws Exception 
-     */
-    private BLLMaterial() throws Exception {
-        Error = Utility.Error.ErrorHandler.getInstance();
-        try {
-            DALCMaterial = DALC.DALCMaterial.getInstance();
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
-        }
-    }
-
-    /**
-     * Function that calls the Create function from the DALC Layer. If any field is empty the function will return an error
-     * @param b
-     * @throws Exception 
-     */
-    public void Create(BE.BEMaterial b) throws Exception {
-        if (b.getMaterial().isEmpty()) {
-            Error.NotEnougthInfo("creating a material.");
-        } else {
-            try {
-                DALCMaterial.getInstance().Create(b);
-            } catch (SQLServerException e) {
-            Error.StorageUnreachable(".");
-            }
-        }
-    }
 
     /**
      * A function that retrieves all material info from the database and inserts it into an ArrayList
@@ -75,30 +43,51 @@ public class BLLMaterial {
         return res;
     }
 
-    /**
-     * A function that calls the update function from the DALC Layer using Singleton
-     * If any field is left blank it will return an error
-     * @param b
-     * @throws Exception 
-     */
-    public void Update(BE.BEMaterial b) throws Exception {
-        if (b.getMaterial().isEmpty()) {
-            Error.NotEnougthInfo("updating a material.");
+ 
+/**
+ * Function that calls the Create function from DALC. If any field is empty the function will return an error
+ * @param event 
+ */
+    @Override
+    public void MaterialCreatePerformed(BEMaterial event) {
+              if (event.getMaterial().isEmpty()) {
+           throw new EventExercutionException("Ikke nok info til at oprette materialet");
         } else {
             try {
-                DALCMaterial.getInstance().update(b);
-            } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
+                DALCMaterial.getInstance().Create(event);
+            } catch (SQLException e) {
+            throw new EventExercutionException("kunne ikke få forbindelse til server");
             }
         }
     }
-
-    /**
-     * A function that calls the delete function from the DALC Layer using Singleton
-     * @throws Exception 
-     */
-    public void remove(BE.BEMaterial e) throws Exception {
-        DALCMaterial.Delete(e);
+/**
+ * A function that calls the delete function from DALC
+ * @param event 
+ */
+    @Override
+    public void MaterialRemovePerformed(BEMaterial event) {
+        try {
+            DALCMaterial.getInstance().Delete(event);
+        } catch (SQLException ex) {
+           throw new EventExercutionException("kunne ikke få forbindelse til server");
+        }
+    }
+/**
+      * A function that calls the update function from DALC 
+     * If any field is left blank it will return an error 
+ * @param event 
+ */
+    @Override
+    public void MaterialUpdatePerformed(BEMaterial event) {
+               if (event.getMaterial().isEmpty()) {
+         throw new EventExercutionException("Ikke nok info til at oprette materialet");
+        } else {
+            try {
+                DALCMaterial.getInstance().update(event);
+            } catch (SQLException ex) {
+            throw new EventExercutionException("Kunne ikke få forbindelse til server");
+            }
+        }
     }
 
 }

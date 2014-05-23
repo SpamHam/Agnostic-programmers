@@ -53,6 +53,7 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void SalaryReport(BE.BESalary e) throws SQLException {
+        System.out.println("Dalc salary");
         String sql = "insert into SalaryReport values (?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());

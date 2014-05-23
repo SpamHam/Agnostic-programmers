@@ -44,6 +44,7 @@ public class BEMaterial {
       public BEMaterial(String material) {
         this.material = material;
     }
+ 
 
     /**
      * @return the emergencyID

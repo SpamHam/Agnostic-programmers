@@ -1,11 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
+import BE.BEMaterial;
 import BLL.BLLMaterial;
+import Utility.Error.EventExercutionException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -16,14 +14,15 @@ import javax.swing.table.TableRowSorter;
 
 /**
  *
- * @author Son Of Satan
+ * @author Peter
  */
 public class CRUDMaterial extends javax.swing.JFrame {
 
+    private MaterialListener materialListener; // holds a reference to a class that implements MaterialListener
     CRUDMaterialTableModel materialTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEMaterial> allMaterials = new ArrayList<>();
-    private BLLMaterial m_material;
+    private BLLMaterial m_material = new BLLMaterial();
     //
     private int selectedRow;
 
@@ -32,7 +31,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
      */
     private void initMaterial() {
         try {
-            allMaterials = BLL.BLLMaterial.getInstance().getAll();
+            allMaterials = m_material.getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -45,6 +44,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         initComponents();
         initMaterial();
         ActionListener BTNAdd = new AddListener();
+        setFiremanListener(m_material);
 
         /**
          * All ActionListeners are listed here
@@ -95,15 +95,12 @@ public class CRUDMaterial extends javax.swing.JFrame {
         });
     }
 
-    private void DeleteMaterial() {
-        try {
-            m_material.getInstance().remove(allMaterials.get(selectedRow));
-            allMaterials = BLL.BLLMaterial.getInstance().getAll();
-            materialTableModel.setMaterialList(allMaterials);
-            materialTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+          /**
+     * sets the PDf listener to a class that implements the PDFListener interface
+     * @param materialListener 
+     */
+      public void setFiremanListener(MaterialListener materialListener){
+        this.materialListener = materialListener;
     }
 
     /**
@@ -119,10 +116,9 @@ public class CRUDMaterial extends javax.swing.JFrame {
             BE.BEMaterial Material = tilføjMaterial.getMaterial();
             if (Material != null) // a car has been created in the dialog box.
             {
-                //allCars.add(car);
                 try {
-                    BLL.BLLMaterial.getInstance().Create(Material);
-                    allMaterials = BLL.BLLMaterial.getInstance().getAll();
+                    fireCreateMaterialEvent(Material);
+                    allMaterials = m_material.getAll();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
@@ -133,6 +129,49 @@ public class CRUDMaterial extends javax.swing.JFrame {
         }
 
     }
+    
+          
+    /**
+     * 
+     * @param event 
+     */
+     public void fireCreateMaterialEvent(BEMaterial event){
+        if (materialListener != null){
+            try{
+              materialListener.MaterialCreatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
+     
+         /**
+     * 
+     * @param event 
+     */
+     public void fireUpdateMaterialEvent(BEMaterial event){
+        if (materialListener != null){
+            try{
+              materialListener.MaterialUpdatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
+     
+              /**
+     * 
+     * @param event 
+     */
+     public void fireRemoveMaterialEvent(BEMaterial event){
+        if (materialListener != null){
+            try{
+              materialListener.MaterialRemovePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
 
     /**
      * anonymous inner class listening on the Update button
@@ -142,8 +181,10 @@ public class CRUDMaterial extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim()));
-                allMaterials = BLL.BLLMaterial.getInstance().getAll();
+               // BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim()));
+                BEMaterial event = new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim());
+                fireUpdateMaterialEvent(event);
+                allMaterials = m_material.getAll();
                 materialTableModel.setMaterialList(allMaterials);
                 materialTableModel.fireTableDataChanged();
             } catch (Exception ex) {
@@ -161,7 +202,13 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DeleteMaterial();
+            BEMaterial event = new BE.BEMaterial(allMaterials.get(selectedRow).getMaterial());
+            fireRemoveMaterialEvent(event);
+            allMaterials.remove(selectedRow);
+                initMaterial();
+                materialTableModel.setMaterialList(allMaterials);
+                materialTableModel.fireTableDataChanged();
+            
         }
 
     }

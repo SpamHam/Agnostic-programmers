@@ -6,22 +6,20 @@
 
 package GUI;
 
-import BE.BEFireman;
-import java.util.ArrayList;
-
-
+import BE.BEMaterial;
 
 /**
  *
  * @author peter bærbar
  */
-public interface CRUDFiremanListener {
+public interface MaterialListener {
     
-        /**
+            /**
      * implementing classes will have to override these methods 
      * @param event type FormatEventPDF
      */
-    public void FiremanCreatePerformed(BEFireman event);
-    public void FiremanRemovePerformed(BEFireman event);
-    public void FiremanUpdatePerformed(BEFireman event);
+    public void MaterialCreatePerformed(BEMaterial event);
+    public void MaterialRemovePerformed(BEMaterial event);
+    public void MaterialUpdatePerformed(BEMaterial event);
+    
 }
