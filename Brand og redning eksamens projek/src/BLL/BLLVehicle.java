@@ -44,7 +44,7 @@ public class BLLVehicle implements VehicleListener{
 
     @Override
     public void VehicleCreatePerformed(BEVehicle event) {
-            if (event.getM_registrationNr().isEmpty() || event.getM_mærke().isEmpty() || event.getM_model().isEmpty()) {
+            if (event.getM_registrationNr().isEmpty() || event.getM_brand().isEmpty() || event.getM_model().isEmpty()) {
             throw new EventExercutionException("Ikke nok info til at oprette Køretøj");
         } else {
             try {
@@ -67,7 +67,7 @@ public class BLLVehicle implements VehicleListener{
 
     @Override
     public void VehicleUpdatePerformed(BEVehicle event) {
-        if (event.getM_registrationNr().isEmpty() || event.getM_mærke().isEmpty() || event.getM_model().isEmpty()) {
+        if (event.getM_registrationNr().isEmpty() || event.getM_brand().isEmpty() || event.getM_model().isEmpty()) {
             throw new EventExercutionException("Ikke nok info til at oprette Køretøj");
         } else {
             try {

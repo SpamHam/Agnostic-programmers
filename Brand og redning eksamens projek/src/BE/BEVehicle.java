@@ -10,7 +10,7 @@ package BE;
  */
 public class BEVehicle {
 
-    private String m_registrationNr, m_mærke, m_model, m_description;
+    private String m_registrationNr, m_brand, m_model, m_description;
 
     /**
      * Constructor used for creating / updating a vehicle
@@ -21,7 +21,7 @@ public class BEVehicle {
      */
     public BEVehicle(String registrationNr, String mærke, String model, String description) {
         m_registrationNr = registrationNr;
-        m_mærke = mærke;
+        m_brand = mærke;
         m_model = model;
         m_description = description;
 
@@ -42,17 +42,17 @@ public class BEVehicle {
     }
 
     /**
-     * @return the m_mærke
+     * @return the m_brand
      */
-    public String getM_mærke() {
-        return m_mærke;
+    public String getM_brand() {
+        return m_brand;
     }
 
     /**
-     * @param m_mærke the m_mærke to set
+     * @param m_brand the m_brand to set
      */
-    public void setM_mærke(String m_mærke) {
-        this.m_mærke = m_mærke;
+    public void setM_brand(String m_brand) {
+        this.m_brand = m_brand;
     }
 
     /**

@@ -45,7 +45,7 @@ public class CRUDVehicleTableModel extends AbstractTableModel{
                 case 0:
                     return e.getM_registrationNr();
                 case 1:
-                    return e.getM_mærke();
+                    return e.getM_brand();
                 case 2:
                     return e.getM_model();
 

@@ -15,9 +15,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.w3c.dom.events.EventException;
 
 /**
  *
@@ -29,17 +26,6 @@ public class DALCVehicle implements IDALCVehicle {
     private static DALCVehicle m_instance;
     Connection M_connection;
 
-    /**
-     * Singleton to ensure that the class isn't instantiated more than once
-     * @return
-     * @throws SQLServerException 
-     */
-//    public static DALCVehicle getInstance() throws SQLServerException {
-//        if (m_instance == null) {
-//            m_instance = new DALCVehicle();
-//        }
-//        return m_instance;
-//    }
 
     /**
      * calls for a new instance of the connection
@@ -59,7 +45,7 @@ public class DALCVehicle implements IDALCVehicle {
         String sql = "insert into Vehicle values (?,?,?,?)";
         PreparedStatement ps = M_connection.prepareStatement(sql);
         ps.setString(1, e.getM_registrationNr());
-        ps.setString(2, e.getM_mærke());
+        ps.setString(2, e.getM_brand());
         ps.setString(3, e.getM_model());
         ps.setString(4, e.getM_description());
         ps.executeUpdate();
@@ -98,7 +84,7 @@ public class DALCVehicle implements IDALCVehicle {
     public void update(BE.BEVehicle u) throws SQLException {
         String sql = "update Vehicle set Brand=?, Model=?, Description=? where RegistrationNr=?";
         PreparedStatement ps = M_connection.prepareStatement(sql);
-        ps.setString(1, u.getM_mærke());
+        ps.setString(1, u.getM_brand());
         ps.setString(2, u.getM_model());
         ps.setString(3, u.getM_description());
         ps.setString(4, u.getM_registrationNr());

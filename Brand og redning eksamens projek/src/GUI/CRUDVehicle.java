@@ -105,7 +105,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblVehicle.getSelectedRow();
                 lblRegistrationNr.setText(allVehicle.get(selectedRow).getM_registrationNr());
-                txtBrand.setText(allVehicle.get(selectedRow).getM_mærke());
+                txtBrand.setText(allVehicle.get(selectedRow).getM_brand());
                 txtModel.setText(allVehicle.get(selectedRow).getM_model());
                 txtDescription.setText(allVehicle.get(selectedRow).getM_description());
             }
