@@ -101,23 +101,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
     
     
           /**
-     * sets the material listener to a class that implements the materialListener interface
+     * sets the vehicle listener to a class that implements the vehicleListener interface
      * @param vehicleListener 
      */
       public void setVehicleListener(VehicleListener vehicleListener){
         this.vehicleListener = vehicleListener;
     }
-
-//    private void DeleteVehicle() {
-//        try {
-//            BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
-//            allVehicle = BLL.BLLVehicle.getInstance().getAll();
-//            vehicleTableModel.setVehicleList(allVehicle);
-//            vehicleTableModel.fireTableDataChanged();
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//    }
 
     private void openAdministrationMenu() {
         AdminstrationMenu admin = new AdminstrationMenu();
@@ -136,7 +125,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
             // continue here when the dialog box is closed (disposed).
             BEVehicle vehicle = addVehicle.getVehicle();
-            if (vehicle != null) // a team has been created in the dialog box.
+            if (vehicle != null) // a vehicle has been created in the dialog box.
             {
                 allVehicle.add(vehicle);
                 vehicleTableModel.setVehicleList(allVehicle);
@@ -214,7 +203,6 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-          // BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
            BEVehicle event = allVehicle.get(selectedRow);
             fireRemoveVehicleEvent(event);
             initVehicle();
