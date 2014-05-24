@@ -155,5 +155,10 @@ public class BLLVehicle implements VehicleListener{
             }
         }
     }
+
+    @Override
+    public ArrayList<BEVehicle> VehicleReadPerformed() {
+       return m_dal.VehicleReadPerformed();
+    }
     }
 

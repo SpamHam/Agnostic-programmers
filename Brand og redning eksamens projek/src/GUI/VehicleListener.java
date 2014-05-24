@@ -7,6 +7,7 @@
 package GUI;
 
 import BE.BEVehicle;
+import java.util.ArrayList;
 
 
 /**
@@ -22,6 +23,6 @@ public interface VehicleListener {
     public void VehicleCreatePerformed(BEVehicle event);
     public void VehicleRemovePerformed(BEVehicle event);
     public void VehicleUpdatePerformed(BEVehicle event);
-    
+    public ArrayList<BEVehicle> VehicleReadPerformed();
     
 }

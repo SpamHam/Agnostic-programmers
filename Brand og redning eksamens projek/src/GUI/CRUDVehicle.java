@@ -44,7 +44,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
               JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
           }
         try {
-            allVehicle = BLLvehicle.getAll();
+            allVehicle = BLLvehicle.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
