@@ -117,8 +117,8 @@
                           </Group>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblRegistrationNr" max="32767" attributes="0"/>
-                              <Component id="txtModel" pref="95" max="32767" attributes="0"/>
-                              <Component id="txtBrand" max="32767" attributes="0"/>
+                              <Component id="txtBrand" pref="95" max="32767" attributes="0"/>
+                              <Component id="txtModel" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -136,12 +136,12 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtModel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblBrand" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtBrand" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtModel" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="lblModel" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -174,14 +174,14 @@
             <Property name="text" type="java.lang.String" value="Beskrivelse:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtBrand">
+        <Component class="javax.swing.JTextField" name="txtModel">
         </Component>
         <Component class="javax.swing.JLabel" name="lblModel">
           <Properties>
             <Property name="text" type="java.lang.String" value="Model:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtModel">
+        <Component class="javax.swing.JTextField" name="txtBrand">
         </Component>
         <Component class="javax.swing.JLabel" name="lblBrand">
           <Properties>

@@ -5,7 +5,9 @@
  */
 package DALC;
 
+import BE.BEVehicle;
 import Utility.Error.ErrorHandler;
+import Utility.Error.EventExercutionException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,12 +15,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.w3c.dom.events.EventException;
 
 /**
  *
  * @author Claus
  */
-public class DALCVehicle {
+public class DALCVehicle implements IDALCVehicle {
 
     private final ErrorHandler Error;
     private static DALCVehicle m_instance;
@@ -29,18 +34,18 @@ public class DALCVehicle {
      * @return
      * @throws SQLServerException 
      */
-    public static DALCVehicle getInstance() throws SQLServerException {
-        if (m_instance == null) {
-            m_instance = new DALCVehicle();
-        }
-        return m_instance;
-    }
+//    public static DALCVehicle getInstance() throws SQLServerException {
+//        if (m_instance == null) {
+//            m_instance = new DALCVehicle();
+//        }
+//        return m_instance;
+//    }
 
     /**
      * calls for a new instance of the connection
      * @throws SQLServerException 
      */
-    private DALCVehicle() throws SQLServerException {
+    public DALCVehicle() throws SQLServerException {
         M_connection = DALC.DBConnection.getInstance().getConnection();
         Error = Utility.Error.ErrorHandler.getInstance();
     }
@@ -110,5 +115,41 @@ public class DALCVehicle {
         PreparedStatement ps = M_connection.prepareStatement(sql);
         ps.setString(1, e.getM_registrationNr());
         ps.executeUpdate();
+    }
+
+    @Override
+    public void VehicleCreatePerformed(BEVehicle event) {
+        try {
+            Create(event);
+        } catch (SQLException ex) {
+           throw new EventExercutionException("Kunne ikke få forbindelse til databasen");
+        }
+    }
+
+    @Override
+    public void VehicleRemovePerformed(BEVehicle event) {
+        try {
+            Delete(event);
+        } catch (SQLException ex) {
+            throw new EventExercutionException("Kunne ikke få forbindelse til databasen");
+        }
+    }
+
+    @Override
+    public void VehicleUpdatePerformed(BEVehicle event) {
+        try {
+            update(event);
+        } catch (SQLException ex) {
+             throw new EventExercutionException("Kunne ikke få forbindelse til databasen");
+        }
+    }
+
+    @Override
+    public ArrayList<BEVehicle> VehicleReadPerformed() {
+        try {
+           return read();
+        } catch (SQLException ex) {
+            throw new EventExercutionException("Kunne ikke få forbindelse til databasen");
+        }
     }
 }
