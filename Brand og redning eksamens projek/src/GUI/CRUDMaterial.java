@@ -118,7 +118,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
             {
                 try {
                     fireCreateMaterialEvent(Material);
-                    allMaterials = m_material.getAll();
+                    initMaterial();
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
