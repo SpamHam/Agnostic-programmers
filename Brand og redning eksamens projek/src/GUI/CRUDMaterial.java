@@ -31,7 +31,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
      */
     private void initMaterial() {
         try {
-            allMaterials = m_material.getAll();
+            allMaterials = m_material.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -180,7 +180,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
                // BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim()));
                 BEMaterial event = new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim());
                 fireUpdateMaterialEvent(event);
-                allMaterials = m_material.getAll();
+                allMaterials = m_material.VehicleReadPerformed();
                 materialTableModel.setMaterialList(allMaterials);
                 materialTableModel.fireTableDataChanged();
             } catch (Exception ex) {

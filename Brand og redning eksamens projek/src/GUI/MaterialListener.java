@@ -7,6 +7,7 @@
 package GUI;
 
 import BE.BEMaterial;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,5 +22,6 @@ public interface MaterialListener {
     public void MaterialCreatePerformed(BEMaterial event);
     public void MaterialRemovePerformed(BEMaterial event);
     public void MaterialUpdatePerformed(BEMaterial event);
+    public ArrayList<BEMaterial> VehicleReadPerformed();
     
 }

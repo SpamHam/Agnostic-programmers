@@ -31,7 +31,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
      */
     public void InitializeMaterials() {
         try {
-            Materials = m_material.getAll();
+            Materials = m_material.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }

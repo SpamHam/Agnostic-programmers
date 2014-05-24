@@ -32,15 +32,15 @@ public class BLLMaterial implements MaterialListener {
      * @return res
      * @throws Exception 
      */
-    public ArrayList<BE.BEMaterial> getAll() throws Exception {
-        ArrayList<BE.BEMaterial> res = new ArrayList<>();
-        try {
-            res = DALCMaterial.getInstance().read();
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
-        }
-        return res;
-    }
+//    public ArrayList<BE.BEMaterial> getAll() throws Exception {
+//        ArrayList<BE.BEMaterial> res = new ArrayList<>();
+//        try {
+//            res = DALCMaterial.getInstance().read();
+//        } catch (SQLServerException ex) {
+//            Error.StorageUnreachable(".");
+//        }
+//        return res;
+//    }
 
  
 /**
@@ -86,6 +86,15 @@ public class BLLMaterial implements MaterialListener {
             } catch (SQLException ex) {
             throw new EventExercutionException("Kunne ikke få forbindelse til server");
             }
+        }
+    }
+
+    @Override
+    public ArrayList<BEMaterial> VehicleReadPerformed() {
+        try {
+         return DALCMaterial.getInstance().read();
+        } catch (SQLException ex) {
+           throw new EventExercutionException("Kunne ikke få forbindelse til server");
         }
     }
 
