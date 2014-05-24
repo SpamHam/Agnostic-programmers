@@ -38,16 +38,19 @@ public class CRUDVehicle extends javax.swing.JFrame {
      * Populates the allVehicle ArrayList
      */
     private void initVehicle() {
-          try {
-              BLLvehicle.setDAlC(new DALCVehicle());
-          } catch (SQLServerException ex) {
-              JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-          }
         try {
             allVehicle = BLLvehicle.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+    }
+    
+    private void initDALC(){
+              try {
+              BLLvehicle.setDAlC(new DALCVehicle());
+          } catch (SQLServerException ex) {
+              JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+          }
     }
 
     /**
@@ -55,6 +58,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
      */
     public CRUDVehicle() {
         initComponents();
+        initDALC();
         initVehicle();
         setVehicleListener(BLLvehicle);
         vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
@@ -101,8 +105,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblVehicle.getSelectedRow();
                 lblRegistrationNr.setText(allVehicle.get(selectedRow).getM_registrationNr());
-                txtBrand.setText(allVehicle.get(selectedRow).getM_model());
-                txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
+                txtBrand.setText(allVehicle.get(selectedRow).getM_mærke());
+                txtModel.setText(allVehicle.get(selectedRow).getM_model());
                 txtDescription.setText(allVehicle.get(selectedRow).getM_description());
             }
         });
@@ -166,9 +170,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            selectedRow = tblVehicle.getSelectedRow();
-            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
-            );
+        BEVehicle updateVehicle = new BEVehicle(lblRegistrationNr.getText(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
+            ); 
             fireUpdateVehicleEvent(updateVehicle);
             allVehicle.set(selectedRow, updateVehicle);
             vehicleTableModel.setVehicleList(allVehicle);
@@ -267,10 +270,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         tblVehicle.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Registration Nr.", "Brand", "Model"
