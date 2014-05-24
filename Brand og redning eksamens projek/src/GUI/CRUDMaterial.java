@@ -44,7 +44,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
         initComponents();
         initMaterial();
         ActionListener BTNAdd = new AddListener();
-        setFiremanListener(m_material);
+        setMaterialListener(m_material);
 
         /**
          * All ActionListeners are listed here
@@ -99,7 +99,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
      * sets the material listener to a class that implements the materialListener interface
      * @param materialListener 
      */
-      public void setFiremanListener(MaterialListener materialListener){
+      public void setMaterialListener(MaterialListener materialListener){
         this.materialListener = materialListener;
     }
 
@@ -116,12 +116,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
             BE.BEMaterial Material = tilføjMaterial.getMaterial();
             if (Material != null) // a material has been created in the dialog box.
             {
-                try {
                     fireCreateMaterialEvent(Material);
                     initMaterial();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
                 materialTableModel.setMaterialList(allMaterials);
                 materialTableModel.fireTableDataChanged();
 

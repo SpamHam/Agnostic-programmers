@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
+import Utility.Error.EventExercutionException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,10 +22,11 @@ import javax.swing.JOptionPane;
  */
 public class CRUDVehicle extends javax.swing.JFrame {
 
+      private VehicleListener vehicleListener; // holds a reference to a class that implements VehicleListener
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    private BLLVehicle BLLvehicle;
+    private BLLVehicle BLLvehicle = new BLLVehicle();
     //
     private int selectedRow;
 
@@ -33,7 +35,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
      */
     private void initVehicle() {
         try {
-            allVehicle = BLLvehicle.getInstance().getAll();
+            allVehicle = BLLvehicle.getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -45,6 +47,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
     public CRUDVehicle() {
         initComponents();
         initVehicle();
+        setVehicleListener(BLLvehicle);
         vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
         tblVehicle.setModel(vehicleTableModel);
         tblVehicle.setRowSorter(sorter);
@@ -89,23 +92,32 @@ public class CRUDVehicle extends javax.swing.JFrame {
             private void onRowSelected(MouseEvent evt) {
                 selectedRow = tblVehicle.getSelectedRow();
                 lblRegistrationNr.setText(allVehicle.get(selectedRow).getM_registrationNr());
-                txtBrand.setText(allVehicle.get(selectedRow).getM_model());
-                txtModel.setText(allVehicle.get(selectedRow).getM_mærke());
+                txtModel.setText(allVehicle.get(selectedRow).getM_model());
+                txtBrand.setText(allVehicle.get(selectedRow).getM_mærke());
                 txtDescription.setText(allVehicle.get(selectedRow).getM_description());
             }
         });
     }
-
-    private void DeleteVehicle() {
-        try {
-            BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
-            allVehicle = BLL.BLLVehicle.getInstance().getAll();
-            vehicleTableModel.setVehicleList(allVehicle);
-            vehicleTableModel.fireTableDataChanged();
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    
+    
+          /**
+     * sets the material listener to a class that implements the materialListener interface
+     * @param vehicleListener 
+     */
+      public void setVehicleListener(VehicleListener vehicleListener){
+        this.vehicleListener = vehicleListener;
     }
+
+//    private void DeleteVehicle() {
+//        try {
+//            BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
+//            allVehicle = BLL.BLLVehicle.getInstance().getAll();
+//            vehicleTableModel.setVehicleList(allVehicle);
+//            vehicleTableModel.fireTableDataChanged();
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//        }
+//    }
 
     private void openAdministrationMenu() {
         AdminstrationMenu admin = new AdminstrationMenu();
@@ -119,25 +131,35 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            AddVehicleDialog tilføjBrandbil = new AddVehicleDialog(null, true);
-            tilføjBrandbil.setVisible(true);
+            AddVehicleDialog addVehicle = new AddVehicleDialog(null, true);
+            addVehicle.setVisible(true);
 
             // continue here when the dialog box is closed (disposed).
-            BEVehicle vehicle = tilføjBrandbil.getVehicle();
+            BEVehicle vehicle = addVehicle.getVehicle();
             if (vehicle != null) // a team has been created in the dialog box.
             {
                 allVehicle.add(vehicle);
                 vehicleTableModel.setVehicleList(allVehicle);
                 tblVehicle.repaint();
-                try {
-                    BLLvehicle.getInstance().Create(vehicle);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                fireCreateVehicleEvent(vehicle);
             }
         }
 
     }
+    
+        /**
+     * fires the create event
+     * @param event 
+     */
+     public void fireCreateVehicleEvent(BEVehicle event){
+        if (vehicleListener != null){
+            try{
+              vehicleListener.VehicleCreatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
 
     /**
      * anonymous inner class listening on the Update button
@@ -147,20 +169,43 @@ public class CRUDVehicle extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             selectedRow = tblVehicle.getSelectedRow();
-            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
+            BEVehicle updateVehicle = new BEVehicle(allVehicle.get(selectedRow).getM_registrationNr(), txtModel.getText(), txtBrand.getText(), txtDescription.getText()
             );
+            fireUpdateVehicleEvent(updateVehicle);
             allVehicle.set(selectedRow, updateVehicle);
             vehicleTableModel.setVehicleList(allVehicle);
             vehicleTableModel.fireTableDataChanged();
             tblVehicle.repaint();
-            try {
-                BLLvehicle.getInstance().Update(updateVehicle);
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
         }
 
     }
+    
+             /**
+     * fires the update event
+     * @param event 
+     */
+     public void fireUpdateVehicleEvent(BEVehicle event){
+        if (vehicleListener != null){
+            try{
+              vehicleListener.VehicleUpdatePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
+                   /**
+     * fires the remove event
+     * @param event 
+     */
+     public void fireRemoveVehicleEvent(BEVehicle event){
+        if (vehicleListener != null){
+            try{
+              vehicleListener.VehicleRemovePerformed(event);
+             } catch(EventExercutionException eex){
+             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+             }
+          }
+     }
 
     /**
      * anonymous inner class listening on the Remove button
@@ -169,7 +214,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            DeleteVehicle();
+          // BLLvehicle.getInstance().remove(allVehicle.get(selectedRow));
+           BEVehicle event = allVehicle.get(selectedRow);
+            fireRemoveVehicleEvent(event);
+            initVehicle();
+            vehicleTableModel.setVehicleList(allVehicle);
+            vehicleTableModel.fireTableDataChanged();
+            
         }
 
     }
@@ -202,9 +253,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         lblDescription = new javax.swing.JLabel();
-        txtModel = new javax.swing.JTextField();
-        lblModel = new javax.swing.JLabel();
         txtBrand = new javax.swing.JTextField();
+        lblModel = new javax.swing.JLabel();
+        txtModel = new javax.swing.JTextField();
         lblBrand = new javax.swing.JLabel();
         lblRegistrationNr = new javax.swing.JLabel();
         lblRegNr = new javax.swing.JLabel();
@@ -283,8 +334,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
                                 .addGap(39, 39, 39)))
                         .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblRegistrationNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(txtModel))))
+                            .addComponent(txtModel, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                            .addComponent(txtBrand))))
                 .addContainerGap())
         );
         UpdateFieldsPanelLayout.setVerticalGroup(
@@ -296,11 +347,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
                     .addComponent(lblRegNr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBrand))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblModel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDescription)

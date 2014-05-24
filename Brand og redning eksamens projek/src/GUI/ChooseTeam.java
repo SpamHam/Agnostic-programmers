@@ -9,6 +9,7 @@ import BE.BEFireman;
 import BE.BETimePlan;
 import BE.BEVehicle;
 import BLL.BLLFireman;
+import BLL.BLLVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -76,7 +77,8 @@ public class ChooseTeam extends javax.swing.JDialog {
      */
     public void InitializeVehicles() {
         try {
-            Vehicles = BLL.BLLVehicle.getInstance().getAll();
+            BLLVehicle v = new BLLVehicle();
+            Vehicles = v.getAll();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
