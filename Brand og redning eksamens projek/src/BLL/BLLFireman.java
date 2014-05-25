@@ -125,37 +125,37 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
 
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-        ArrayList<BE.BESalary> salary = new ArrayList<>();
-        System.out.println("Rigtig registreret 1");
-        for (BE.BETimePlan c : event.getTime()) {
-            BE.BEFireman f;
-            try {
-                f = FiremanFromID(c.getFiremanID());
-            } catch (Exception ex) {
-                throw new EventExercutionException(ex.getMessage());
-            }
-            String holdleder = "Brandmand";
-            if (f.isLeaderTrained()) {
-                holdleder = "Holdleder";
-            }
-            System.out.println(f.getID());
-            System.out.println(f.getPaymentNr());
-            System.out.println(c.getHours());
-            System.out.println(event.getType());
-            System.out.println(event.getSelectedType());
-            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
-            salary.add(s);
-        }
-        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
-                || event.getType().equalsIgnoreCase("stand-by")) {
-            System.out.println("Rigtig registreret");
-            try {
-                BLL.BLLPayroll.getInstance().CreateWorkReport(salary.get(0));
-                BLL.BLLPayroll.getInstance().CreateSalaryReport(salary);
-            } catch (Exception ex) {
-                throw new EventExercutionException(ex.getMessage());
-            }
-        }
+//        ArrayList<BE.BESalary> salary = new ArrayList<>();
+//        System.out.println("Rigtig registreret 1");
+//        for (BE.BETimePlan c : event.getTime()) {
+//            BE.BEFireman f;
+//            try {
+//                f = FiremanFromID(c.getFiremanID());
+//            } catch (Exception ex) {
+//                throw new EventExercutionException(ex.getMessage());
+//            }
+//            String holdleder = "Brandmand";
+//            if (f.isLeaderTrained()) {
+//                holdleder = "Holdleder";
+//            }
+//            System.out.println(f.getID());
+//            System.out.println(f.getPaymentNr());
+//            System.out.println(c.getHours());
+//            System.out.println(event.getType());
+//            System.out.println(event.getSelectedType());
+//            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
+//            salary.add(s);
+//        }
+//        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
+//                || event.getType().equalsIgnoreCase("stand-by")) {
+//            System.out.println("Rigtig registreret");
+//            try {
+//                BLL.BLLPayroll.getInstance().CreateWorkReport(salary.get(0));
+//                BLL.BLLPayroll.getInstance().CreateSalaryReport(salary);
+//            } catch (Exception ex) {
+//                throw new EventExercutionException(ex.getMessage());
+//            }
+//        }
     }
 
     @Override

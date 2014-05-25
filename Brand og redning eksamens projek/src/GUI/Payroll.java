@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import BLL.BLLPayroll;
 import java.awt.GraphicsEnvironment;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ public class Payroll extends javax.swing.JFrame {
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BETableSalary> allSalary = new ArrayList<>();
     private int SelectedRow;
+    BLLPayroll pay = new BLLPayroll();
 
     /**
      * Creates new form Payroll
@@ -57,7 +59,7 @@ public class Payroll extends javax.swing.JFrame {
 
     private void initAllSalary() {
         try {
-            allSalary = BLL.BLLPayroll.getInstance().getAllTableSalary();
+            allSalary = pay.getAllTableSalary();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -93,7 +95,7 @@ public class Payroll extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-                BLL.BLLPayroll.getInstance().removeall();
+                pay.removeall();
                 initAllSalary();
                 Payrollmodel.setTimePlanStatusList(allSalary);
                 Payrollmodel.fireTableDataChanged();

@@ -5,14 +5,18 @@
  */
 package BLL;
 
+import GUI.PDFListener;
+import Utility.Error.EventExercutionException;
+import Utility.Event.FormatEventPDF;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
  * @author Morten H.
  */
-public class BLLPayroll {
+public class BLLPayroll implements PDFListener {
 
     private static BLLPayroll m_instance;
     private DALC.DALCSalary DALCSalary;
@@ -24,25 +28,27 @@ public class BLLPayroll {
      * @return
      * @throws SQLServerException
      */
-    public static BLLPayroll getInstance() throws Exception {
-        if (m_instance == null) {
-            m_instance = new BLLPayroll();
-        }
-        return m_instance;
-    }
+//    public static BLLPayroll getInstance() throws Exception {
+//        if (m_instance == null) {
+//            m_instance = new BLLPayroll();
+//        }
+//        return m_instance;
+//    }
 
     /**
      *
      * @throws Exception
      */
-    private BLLPayroll() throws Exception {
-        Error = Utility.Error.ErrorHandler.getInstance();
-        try {
-            DALCSalary = DALC.DALCSalary.getInstance();
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
-        }
-    }
+//    public BLLPayroll() throws Exception {
+//        Error = Utility.Error.ErrorHandler.getInstance();
+//        try {
+//            DALCSalary = DALC.DALCSalary.getInstance();
+//        } catch (SQLServerException ex) {
+//            Error.StorageUnreachable(".");
+//        }
+//    }
+    
+    public BLLPayroll(){Error = Utility.Error.ErrorHandler.getInstance();}
 
     /**
      *
@@ -197,5 +203,46 @@ public class BLLPayroll {
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
         }
+    }
+
+    @Override
+    public void PDFTimePlanPerformed(FormatEventPDF event) {
+         ArrayList<BE.BESalary> salary = new ArrayList<>();
+         BLLFireman bllFire = new BLLFireman();
+         System.out.println("Rigtig registreret 1");
+        for (BE.BETimePlan c : event.getTime()) {
+            BE.BEFireman f;
+            try {
+                f = bllFire.FiremanFromID(c.getFiremanID());
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+            String holdleder = "Brandmand";
+            if (f.isLeaderTrained()) {
+                holdleder = "Holdleder";
+            }
+            System.out.println(f.getID());
+            System.out.println(f.getPaymentNr());
+            System.out.println(c.getHours());
+            System.out.println(event.getType());
+            System.out.println(event.getSelectedType());
+            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
+            salary.add(s);
+        }
+        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
+                || event.getType().equalsIgnoreCase("stand-by")) {
+            System.out.println("Rigtig registreret");
+            try {
+                CreateWorkReport(salary.get(0));
+                CreateSalaryReport(salary);
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+        }
+    }
+
+    @Override
+    public void PDFOdinPerformed(FormatEventPDF event) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

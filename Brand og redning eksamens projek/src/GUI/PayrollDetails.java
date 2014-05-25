@@ -6,6 +6,7 @@
 package GUI;
 
 import BLL.BLLFireman;
+import BLL.BLLPayroll;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
@@ -221,7 +222,8 @@ public class PayrollDetails extends javax.swing.JDialog {
             try {
                 BE.BESalary s = allSalarys.get(lstSalaryRapport.getSelectedIndex());
                 s.setHours(timer);
-                BLL.BLLPayroll.getInstance().update(s);
+                BLLPayroll pay = new BLLPayroll();
+                pay.update(s);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -251,7 +253,8 @@ public class PayrollDetails extends javax.swing.JDialog {
 
     private void salaryListModelRenewal() throws Exception {
         allSalarys.clear();
-        for (BE.BESalary s : BLL.BLLPayroll.getInstance().getAll()) {
+        BLLPayroll p = new BLLPayroll();
+        for (BE.BESalary s : p.getAll()) {
             if (SalaryNumber.equalsIgnoreCase(s.getSalaryCode().trim())) {
                 allSalarys.add(s);
                 salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));

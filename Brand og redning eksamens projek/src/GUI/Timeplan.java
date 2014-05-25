@@ -9,6 +9,7 @@ import Utility.Event.FormatEventPDF;
 import BE.BETimePlan;
 import BLL.BLLFireman;
 import BLL.BLLPDF;
+import BLL.BLLPayroll;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -31,7 +32,8 @@ public class Timeplan extends javax.swing.JFrame {
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
     ArrayList<PDFListener> APDFListeners = new ArrayList<>();
     BLLPDF BLLPDF = new BLLPDF();
-    BLLFireman BLLFireman = new BLLFireman();
+    //BLLFireman BLLFireman = new BLLFireman();
+    BLLPayroll BLLPayroll = new BLLPayroll();
 
     /**
      * Creates new form Timeplan
@@ -39,7 +41,7 @@ public class Timeplan extends javax.swing.JFrame {
     public Timeplan() {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
-        setPDFListener(BLLFireman);
+        setPDFListener(BLLPayroll);
         TimeTableModel = new TimePlanTableModel(allTime);
         tblTeam.setModel(TimeTableModel);// Sets the table model for the JTable
         sorter = new TableRowSorter<TableModel>(TimeTableModel);
