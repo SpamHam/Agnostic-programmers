@@ -8,11 +8,8 @@ package BLL;
 import BE.BEMaterial;
 import GUI.MaterialListener;
 import Utility.Error.EventExercutionException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -21,26 +18,10 @@ import java.util.logging.Logger;
 public class BLLMaterial implements MaterialListener {
 
     private DALC.DALCMaterial DALCMaterial;
-    private final Utility.Error.ErrorHandler Error;
+
 
     
-    public BLLMaterial(){ Error = Utility.Error.ErrorHandler.getInstance();}
-
-
-    /**
-     * A function that retrieves all material info from the database and inserts it into an ArrayList
-     * @return res
-     * @throws Exception 
-     */
-//    public ArrayList<BE.BEMaterial> getAll() throws Exception {
-//        ArrayList<BE.BEMaterial> res = new ArrayList<>();
-//        try {
-//            res = DALCMaterial.getInstance().read();
-//        } catch (SQLServerException ex) {
-//            Error.StorageUnreachable(".");
-//        }
-//        return res;
-//    }
+    public BLLMaterial(){ }
 
  
 /**

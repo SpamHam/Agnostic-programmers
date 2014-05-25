@@ -11,7 +11,6 @@ import BE.BEVehicle;
 import BLL.BLLFireman;
 import BLL.BLLVehicle;
 import DALC.DALCVehicle;
-import DALC.IDALCVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
