@@ -10,6 +10,8 @@ import BE.BETimePlan;
 import BE.BEVehicle;
 import BLL.BLLFireman;
 import BLL.BLLVehicle;
+import DALC.DALCVehicle;
+import DALC.IDALCVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -29,7 +31,6 @@ public class ChooseTeam extends javax.swing.JDialog {
     DefaultListModel alleFiremenListModel = new DefaultListModel();
     DefaultListModel valgteFiremenListModel = new DefaultListModel();
     DefaultListModel alleVehiclesListModel = new DefaultListModel();
-
     /**
      * Creates new form ChooseTeam
      */
@@ -53,12 +54,14 @@ public class ChooseTeam extends javax.swing.JDialog {
         jlistAllFiremen.setModel(alleFiremenListModel);
         jlistChosenFiremen.setModel(valgteFiremenListModel);
         jlistChooseACar.setModel(alleVehiclesListModel);
-        PopulateFiremanList();
         PopulateVehicleList();
+        PopulateFiremanList();
         
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
+    
+    
 
     /**
      * Populates the Fireman ArrayList
@@ -77,8 +80,8 @@ public class ChooseTeam extends javax.swing.JDialog {
      */
     public void InitializeVehicles() {
         try {
-            BLLVehicle v = new BLLVehicle();
-            Vehicles = v.getAll();
+            BLLVehicle v = new BLLVehicle(new DALCVehicle());
+            Vehicles = v.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -175,7 +178,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     /**
      * Populates the allVehiclesList
      */
-    private void PopulateFiremanList() {
+    private void PopulateVehicleList() {
         for (BEVehicle m : Vehicles) {
             alleVehiclesListModel.addElement(m.getM_registrationNr());
         }
@@ -184,7 +187,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     /**
      * Populates the allFiremenList
      */
-    private void PopulateVehicleList() {
+    private void PopulateFiremanList() {
         int count = 1;
         for (BEFireman m : Firemen) {
             alleFiremenListModel.addElement(count +":"+ m.getFirstName() + " " + m.getLastName());

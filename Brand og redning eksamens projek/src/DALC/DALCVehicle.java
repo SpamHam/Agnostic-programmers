@@ -68,8 +68,7 @@ public class DALCVehicle implements IDALCVehicle {
             String RegistrationNr = result.getString("RegistrationNr");
             String Brand = result.getString("Brand");
             String Model = result.getString("Model");
-            String Description = result.getString("Description");
-
+            String Description = result.getString("Description");      
             BE.BEVehicle c = new BE.BEVehicle(RegistrationNr, Brand, Model, Description);
             res.add(c);
         }

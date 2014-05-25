@@ -11,6 +11,7 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import BLL.BLLVehicle;
 import DALC.DALCVehicle;
+import DALC.DALCVehicleTest;
 import Utility.Error.EventExercutionException;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.awt.event.ActionEvent;
@@ -27,10 +28,11 @@ import javax.swing.JOptionPane;
 public class CRUDVehicle extends javax.swing.JFrame {
 
       private VehicleListener vehicleListener; // holds a reference to a class that implements VehicleListener
+   
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
-    private BLLVehicle BLLvehicle = new BLLVehicle();
+    private BLLVehicle BLLvehicle;
     //
     private int selectedRow;
 
@@ -38,29 +40,37 @@ public class CRUDVehicle extends javax.swing.JFrame {
      * Populates the allVehicle ArrayList
      */
     private void initVehicle() {
+         
         try {
             allVehicle = BLLvehicle.VehicleReadPerformed();
+          
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     
     private void initDALC(){
-              try {
-              BLLvehicle.setDAlC(new DALCVehicle());
+            
+        try {
+              BLLvehicle = new BLLVehicle(new DALCVehicle());
           } catch (SQLServerException ex) {
               JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
           }
     }
+    private void initDALCTest(){    BLLvehicle = new BLLVehicle(new DALCVehicleTest());}
 
     /**
      * Creates new form CRUDVehicle
      */
     public CRUDVehicle() {
         initComponents();
-        initDALC();
-        initVehicle();
+       //initDALC(); //Only one of these (initDALC/initDALCTest) should be uncommented
+        initDALCTest(); //Only one of these (initDALC/initDALCTest) should be uncommented
         setVehicleListener(BLLvehicle);
+        initVehicle();
+        
+ 
+
         vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
         tblVehicle.setModel(vehicleTableModel);
         tblVehicle.setRowSorter(sorter);
@@ -207,6 +217,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
              }
           }
      }
+    
 
     /**
      * anonymous inner class listening on the Remove button

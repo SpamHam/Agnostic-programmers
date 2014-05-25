@@ -20,16 +20,10 @@ import static org.junit.Assert.*;
  * @author peter bærbar
  */
 public class DALCVehicleTest implements IDALCVehicle {
-    static ArrayList<BEVehicle> allVehicles = new ArrayList<>();
-    public DALCVehicleTest() {  
-    }
+    ArrayList<BEVehicle> allV = new ArrayList<>();
     
     @BeforeClass
     public static void setUpClass() {
-       BEVehicle e = new BEVehicle("c7887", "toyota", "2", "Nice car");
-       BEVehicle f = new BEVehicle("h4566", "nissan", "1", "another car");
-       allVehicles.add(e);
-       allVehicles.add(f);
     }
     
     @AfterClass
@@ -42,6 +36,13 @@ public class DALCVehicleTest implements IDALCVehicle {
     
     @After
     public void tearDown() {
+    }
+    
+    public DALCVehicleTest(){
+       BEVehicle e = new BEVehicle("c7887", "toyota", "2", "Nice car");
+       BEVehicle f = new BEVehicle("h4566", "nissan", "1", "another car");
+       allV.add(e);
+       allV.add(f);
     }
 
     /**
@@ -154,11 +155,9 @@ public class DALCVehicleTest implements IDALCVehicle {
     @Override
     public void VehicleCreatePerformed(BEVehicle event) {
         System.out.println("VehicleCreatePerformed");
-        //BEVehicle v = null;
-        //DALCVehicle instance = new DALCVehicle();
-        int expResult = allVehicles.size() + 1;      
-        allVehicles.add(event);
-        int result = allVehicles.size();
+        int expResult = allV.size() + 1;      
+        allV.add(event);
+        int result = allV.size();
         System.out.println("registerings: " + event.getM_registrationNr());
         System.out.println("Brand: " + event.getM_brand());
         System.out.println("Model: " + event.getM_model());
@@ -174,9 +173,9 @@ public class DALCVehicleTest implements IDALCVehicle {
         System.out.println("Brand: " + event.getM_brand());
         System.out.println("Model: " + event.getM_model());
         System.out.println("Description: " + event.getM_description());
-         int expResult = allVehicles.size() - 1;
-         allVehicles.remove(event);
-         int result = allVehicles.size();
+         int expResult = allV.size() - 1;
+         allV.remove(event);
+         int result = allV.size();
          assertEquals(expResult, result);
     }
     
@@ -184,19 +183,19 @@ public class DALCVehicleTest implements IDALCVehicle {
     @Override
     public void VehicleUpdatePerformed(BEVehicle event) {
         System.out.println("VehicleUpdatePerformed");
-        int expResult = allVehicles.size();
-        allVehicles.set(allVehicles.indexOf(event), event);
-        int result = allVehicles.size();
-        System.out.println("registerings: " + allVehicles.get(allVehicles.indexOf(event)).getM_registrationNr());
-        System.out.println("Brand: " + allVehicles.get(allVehicles.indexOf(event)).getM_brand());
-        System.out.println("Model: " + allVehicles.get(allVehicles.indexOf(event)).getM_model());
-        System.out.println("Description: " + allVehicles.get(allVehicles.indexOf(event)).getM_description());
+        int expResult = allV.size();
+        allV.set(allV.indexOf(event), event);
+        int result = allV.size();
+        System.out.println("registerings: " + allV.get(allV.indexOf(event)).getM_registrationNr());
+        System.out.println("Brand: " + allV.get(allV.indexOf(event)).getM_brand());
+        System.out.println("Model: " + allV.get(allV.indexOf(event)).getM_model());
+        System.out.println("Description: " + allV.get(allV.indexOf(event)).getM_description());
         assertEquals(expResult, result);
     }
 
     @Override
     public ArrayList<BEVehicle> VehicleReadPerformed() {
-        return allVehicles;
+        return allV;
     }
     
 }
