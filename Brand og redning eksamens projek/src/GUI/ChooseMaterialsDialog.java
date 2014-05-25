@@ -24,13 +24,13 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     ArrayList<BEMaterial> valgteMaterials = new ArrayList<>();
     DefaultListModel alleListModel = new DefaultListModel();
     DefaultListModel valgteListModel = new DefaultListModel();
-    BLLMaterial m_material = new BLLMaterial();
 
     /**
      * Populates the Materials ArrayList
      */
     public void InitializeMaterials() {
         try {
+             BLLMaterial m_material = new BLLMaterial();
             Materials = m_material.VehicleReadPerformed();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
