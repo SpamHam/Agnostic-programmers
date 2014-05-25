@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Claus
+ * @author Peter
  */
 public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
