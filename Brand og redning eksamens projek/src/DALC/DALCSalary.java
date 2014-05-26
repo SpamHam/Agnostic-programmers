@@ -87,15 +87,17 @@ public class DALCSalary {
      * @throws SQLException
      */
     public int WorkReport(BE.BESalary e) throws SQLException {
-        String sql = "insert into WorkReport values (?,?,?) select * from WorkReport where WorkReport.Date = ? and WorkReport.TypeOfWork = ? ";
+        String sql = "insert into WorkReport values (?,?,?) "
+                + "select * SCOPE_IDENTITY()"; //from WorkReport where WorkReport.Date = ? and WorkReport.TypeOfWork = ? ";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getDate());
         ps.setInt(2, e.getTypeOfWork());
         ps.setBoolean(3, e.getIsHoliday());
-        ps.setString(4, e.getDate());
-        ps.setInt(5, e.getTypeOfWork());
+        //ps.setString(4, e.getDate());
+        //ps.setInt(5, e.getTypeOfWork());
         ps.executeUpdate();
-        return ps.getResultSet().getInt("Worknr");
+        System.out.println("lol");
+        return ps.getResultSet().getInt("No column name");
     }
 
     /**
