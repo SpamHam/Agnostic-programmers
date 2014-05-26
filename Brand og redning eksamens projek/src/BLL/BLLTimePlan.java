@@ -14,7 +14,6 @@ import com.microsoft.sqlserver.jdbc.SQLServerException;
 public class BLLTimePlan {
 
     private static BLLTimePlan m_instance;
-    private DALC.DALCSalary DALCSalary;
     private final Utility.Error.ErrorHandler Error;
     String[] TypeOfWork = new String[]{"Brand", "Standby", "Andet", "Øvelse", "Vagt"};
 
@@ -32,18 +31,13 @@ public class BLLTimePlan {
     }
 
     /**
-     * Instantiates the ErrorHandler and the DALCSalary
+     * Instantiates the ErrorHandler
      * @throws Exception
      */
     private BLLTimePlan() throws Exception {
         Error = Utility.Error.ErrorHandler.getInstance();
-        try {
-            DALCSalary = DALC.DALCSalary.getInstance();
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
-        }
     }
-
+        
     /**
      * Returns the Type of Work
      * @param role

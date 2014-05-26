@@ -11,7 +11,6 @@ import Utility.Error.EventExercutionException;
 import Utility.Event.FormatEventPDF;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  *
@@ -31,18 +30,14 @@ public class BLLPayroll implements PDFListener {
      * @param salary
      * @throws Exception
      */
-    public void CreateSalaryReport(ArrayList<BE.BESalary> salary) throws Exception {
-        if (!salary.isEmpty()) {
-            for (BE.BESalary b : salary) {
-                if (b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
-                    Error.NotEnougthInfo("creating a SalaryReport.");
-                } else {
-                    try {
-                        DALCSalary.getInstance().SalaryReport(b);
-                    } catch (SQLServerException ex) {
-                        Error.StorageUnreachable(".");
-                    }
-                }
+    public void CreateSalaryReport(BE.BESalary salary) throws Exception {
+        if (salary.getRole().isEmpty() || salary.getSalaryCode().isEmpty() || salary.getHours() == 0) {
+            Error.NotEnougthInfo("creating a SalaryReport.");
+        } else {
+            try {
+                DALCSalary.getInstance().SalaryReport(salary);
+            } catch (SQLServerException ex) {
+                Error.StorageUnreachable(".");
             }
         }
     }
@@ -52,12 +47,15 @@ public class BLLPayroll implements PDFListener {
      * @param b
      * @throws Exception
      */
-    public void CreateOdinReport(BE.BESalary b) throws Exception {
-        if (b.getDate().isEmpty() || b.getODIN() != 0) {
+    public void CreateOdinReport(ArrayList<BE.BESalary> b) throws Exception {
+        if (b.get(0).getDate().isEmpty() || b.get(0).getODIN() == 0) {
             Error.NotEnougthInfo("creating a OdinReport.");
         } else {
             try {
-                DALCSalary.getInstance().OdinReport(b);
+                DALCSalary.getInstance().OdinReport(b.get(0));
+                for (int idx = 0; idx <= b.size(); idx++) {
+                    CreateSalaryReport(b.get(idx));
+                }
             } catch (SQLServerException ex) {
                 Error.StorageUnreachable(".");
             }
@@ -73,8 +71,9 @@ public class BLLPayroll implements PDFListener {
         try {
             int ID = DALCSalary.getInstance().WorkReport(b.get(0));
             System.out.println(ID);
-            for(BE.BESalary c: b){
-                
+            for (BE.BESalary c : b) {
+                c.setWORK(ID);
+                CreateSalaryReport(c);
             }
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
@@ -187,7 +186,7 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-        
+
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
         for (BE.BETimePlan c : event.getTime()) {
@@ -201,12 +200,11 @@ public class BLLPayroll implements PDFListener {
             if (f.isLeaderTrained()) {
                 holdleder = "Holdleder";
             }
-            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS) , event.getSelectedType(), false);
+            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
             salary.add(s);
         }
         if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
                 || event.getType().equalsIgnoreCase("stand-by")) {
-            System.out.println("Rigtig registreret");
             try {
                 CreateWorkReport(salary);
             } catch (Exception ex) {
@@ -217,6 +215,30 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+        ArrayList<BE.BESalary> salary = new ArrayList<>();
+        BLLFireman bllFire = new BLLFireman();
+        for (BE.BETimePlan c : event.getTime()) {
+            BE.BEFireman f;
+            try {
+                f = bllFire.FiremanFromID(c.getFiremanID());
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+            String holdleder = "Brandmand";
+            if (f.isLeaderTrained()) {
+                holdleder = "Holdleder";
+            }
+            BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
+            salary.add(s);
+        }
+        if (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck")
+                || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet")) {
+            try {
+                CreateOdinReport(salary);
+            } catch (Exception ex) {
+                throw new EventExercutionException(ex.getMessage());
+            }
+        }
     }
 }

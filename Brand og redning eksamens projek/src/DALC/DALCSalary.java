@@ -93,8 +93,7 @@ public class DALCSalary {
         ps.setInt(2, e.getTypeOfWork());
         ps.setBoolean(3, e.getIsHoliday());
         ps.executeUpdate();
-        System.out.println("lol");
-        return ps.getResultSetConcurrency();
+        return ps.getResultSet().getInt(1);
     }
 
     /**
