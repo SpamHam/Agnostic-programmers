@@ -15,6 +15,12 @@ public class BEForces {
     private String typeOfAlarm;
     private String forces;
  
+ /**
+  * Constructor used for adding a force to a table
+  * @param carID String
+  * @param typeOfAlarm String
+  * @param forces String
+  */   
  public BEForces(String carID, String typeOfAlarm, String forces){
  this.carID = carID;
  this.typeOfAlarm = typeOfAlarm;

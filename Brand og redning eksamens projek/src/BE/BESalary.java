@@ -16,6 +16,18 @@ public class BESalary {
     private double Hours;
     private boolean isHoliday;
 
+    /**
+     * Constructor used for creating a monthly salary report
+     * @param ODIN int
+     * @param WORK int
+     * @param ID int
+     * @param Role String
+     * @param SalaryCode String
+     * @param Hours double
+     * @param Date String
+     * @param TypeOfWork int
+     * @param isHoliday boolean
+     */
     public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday) {
         this.WORK = WORK;
         this.ODIN = ODIN;
@@ -28,6 +40,9 @@ public class BESalary {
         this.isHoliday = isHoliday;
     }
 
+    /**
+     * Not sure if this constructor is used, please find out and possibly delete if not!
+     */
     public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork) {
         this.WORK = WORK;
         this.ODIN = ODIN;

@@ -38,7 +38,7 @@ public final class BEFireman {
     }
 
     /**
-     * Constructor used for creating / updating a fireman
+     * Constructor used for updating a fireman
      * @param ID int
      * @param HiredDate String
      * @param FirstName String
@@ -62,6 +62,17 @@ public final class BEFireman {
         this.setHiredDate(HiredDate);
     }
 
+    /**
+     * Constructor used for creating a fireman
+     * @param FirstName String
+     * @param LastName String
+     * @param Address String
+     * @param PhoneNr String
+     * @param CallNr String
+     * @param PaymentNr String
+     * @param LeaderTrained boolean
+     * @param HiredDate String
+     */
       public BEFireman( String FirstName, String LastName, String Address,
                      String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
         this.setFirstName(FirstName);
