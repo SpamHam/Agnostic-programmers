@@ -4,8 +4,6 @@
  */
 package DALC;
 
-
-
 import Utility.Error.ErrorHandler;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.sql.Connection;
@@ -20,32 +18,45 @@ import java.util.ArrayList;
  * @author Kathrine
  */
 public class DALCEmergencyStart {
-    
+
     private static DALCEmergencyStart m_instance;
     private final ErrorHandler Error;
     Connection m_connection;
     ArrayList<String> timeStamps = new ArrayList<>();
 
-public static DALCEmergencyStart getInstance() throws SQLServerException{
-    
-            if (m_instance == null) {
+    /**
+     * Singleton to ensure that the class isn't instantiated more than once
+     *
+     * @return
+     * @throws SQLServerException
+     */
+    public static DALCEmergencyStart getInstance() throws SQLServerException {
+
+        if (m_instance == null) {
             m_instance = new DALCEmergencyStart();
         }
         return m_instance;
-    
-}
 
-private DALCEmergencyStart() throws SQLServerException{
-    Error = ErrorHandler.getInstance();
-    m_connection = DBConnection.getInstance().getConnection();
-    
-    
-    
-}
+    }
 
+    /**
+     * Calls for an instance of the ErrorHandler class & DBConnection.
+     *
+     * @throws SQLServerException
+     */
+    private DALCEmergencyStart() throws SQLServerException {
+        Error = ErrorHandler.getInstance();
+        m_connection = DBConnection.getInstance().getConnection();
 
+    }
 
- public ArrayList<String> read() throws SQLException {
+    /**
+     * Reads all rows from the EmergencyStamp table.
+     *
+     * @return res
+     * @throws SQLException
+     */
+    public ArrayList<String> read() throws SQLException {
         ArrayList<String> res = timeStamps;
         Statement stm = m_connection.createStatement();
         if (!stm.execute("select * from EmergencyStamp")) {
@@ -55,25 +66,34 @@ private DALCEmergencyStart() throws SQLServerException{
         while (result.next()) {
 
             String timeStamp = result.getString("eStart");
-             
-            
+
             res.add(timeStamp);
-            
+
         }
-        
+
         return res;
-          
+
     }
- 
- 
-     public void Delete(String time) throws SQLException {
+
+    /**
+     * Removes an specific row from EmergencyStamp table.
+     *
+     * @param time
+     * @throws SQLException
+     */
+    public void Delete(String time) throws SQLException {
         String sql = "delete from EmergencyStamp where eStart=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, time);
         ps.executeUpdate();
     }
-     
-     public void Create(String time) throws SQLException {
+
+    /**
+     * Creates an row in EmergencyStamp table.
+     * @param time
+     * @throws SQLException
+     */
+    public void Create(String time) throws SQLException {
         String sql = "insert into EmergencyStamp values (?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, time);
@@ -81,7 +101,4 @@ private DALCEmergencyStart() throws SQLServerException{
         ps.executeUpdate();
     }
 
-
 }
-
-

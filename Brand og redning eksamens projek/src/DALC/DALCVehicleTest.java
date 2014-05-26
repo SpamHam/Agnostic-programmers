@@ -26,7 +26,10 @@ public class DALCVehicleTest implements IDALCVehicle {
        arraySize = allV.size();
     }
 
-
+/**
+ * A function that Simulates the creation of a vehicle and prints the information to the system.
+ * @param event 
+ */
     @Override
     public void VehicleCreatePerformed(BEVehicle event) {
         System.out.println("VehicleCreatePerformed");
@@ -42,6 +45,10 @@ public class DALCVehicleTest implements IDALCVehicle {
         System.out.println("result: " + result);
     }
 
+    /**
+     * A function that Simulates the removal of a vehicle and prints the information to the system.
+     * @param event 
+     */
     @Override
     public void VehicleRemovePerformed(BEVehicle event) {
         System.out.println("VehicleRemovePerformed");
@@ -57,6 +64,10 @@ public class DALCVehicleTest implements IDALCVehicle {
         System.out.println("result: " + result);
     }
     
+    /**
+     * A function that Simulates an update of a vehicle and prints the information to the system.
+     * @param event 
+     */
     @Override
     public void VehicleUpdatePerformed(BEVehicle event) {
         System.out.println("VehicleUpdatePerformed");
@@ -72,6 +83,10 @@ public class DALCVehicleTest implements IDALCVehicle {
         System.out.println("result: " + result);
     }
 
+    /**
+     * A function that simulates that returns an ArrayList
+     * @return allV
+     */
     @Override
     public ArrayList<BEVehicle> VehicleReadPerformed() {
         return allV;

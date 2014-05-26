@@ -102,6 +102,10 @@ public class DALCVehicle implements IDALCVehicle {
         ps.executeUpdate();
     }
 
+    /**
+     * A function that calls the Create function when an event is recieved.
+     * @param event 
+     */
     @Override
     public void VehicleCreatePerformed(BEVehicle event) {
         try {
@@ -111,6 +115,10 @@ public class DALCVehicle implements IDALCVehicle {
         }
     }
 
+    /**
+     * A function that calls the Remove function when an event is recieved.
+     * @param event 
+     */
     @Override
     public void VehicleRemovePerformed(BEVehicle event) {
         try {
@@ -120,6 +128,10 @@ public class DALCVehicle implements IDALCVehicle {
         }
     }
 
+    /**
+     * A function that calls the Update function when an event is recieved.
+     * @param event 
+     */
     @Override
     public void VehicleUpdatePerformed(BEVehicle event) {
         try {
@@ -129,6 +141,10 @@ public class DALCVehicle implements IDALCVehicle {
         }
     }
 
+    /**
+     * A function that calls the Read function when an event is recieved.
+     * @return 
+     */
     @Override
     public ArrayList<BEVehicle> VehicleReadPerformed() {
         try {
