@@ -148,9 +148,9 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPnlChosenMaterials = new javax.swing.JScrollPane();
         jlistChosenMaterials = new javax.swing.JList();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlAllMaterials = new javax.swing.JScrollPane();
         jlistAllMaterials = new javax.swing.JList();
         lblChosenMaterials = new javax.swing.JLabel();
         lblAllMaterials = new javax.swing.JLabel();
@@ -161,9 +161,9 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane2.setViewportView(jlistChosenMaterials);
+        scrollPnlChosenMaterials.setViewportView(jlistChosenMaterials);
 
-        jScrollPane1.setViewportView(jlistAllMaterials);
+        scrollPnlAllMaterials.setViewportView(jlistAllMaterials);
 
         lblChosenMaterials.setText("Valgte Materialer:");
 
@@ -185,7 +185,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPnlAllMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnAddToChosenMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,7 +196,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblChosenMaterials)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPnlChosenMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -222,8 +222,8 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
                             .addComponent(lblAllMaterials))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollPnlAllMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPnlChosenMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(23, 23, 23)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCancel)
@@ -239,11 +239,11 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     private javax.swing.JButton btnAddToChosenMaterials;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRemoveFromChosenMaterials;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JList jlistAllMaterials;
     private javax.swing.JList jlistChosenMaterials;
     private javax.swing.JLabel lblAllMaterials;
     private javax.swing.JLabel lblChosenMaterials;
+    private javax.swing.JScrollPane scrollPnlAllMaterials;
+    private javax.swing.JScrollPane scrollPnlChosenMaterials;
     // End of variables declaration//GEN-END:variables
 }

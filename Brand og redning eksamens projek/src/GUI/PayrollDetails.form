@@ -25,13 +25,13 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="181" max="-2" attributes="0"/>
+              <Component id="scrollPnlSalaryReport" min="-2" pref="181" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="btnUpdate" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnback" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="btnback" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jPanelInformation" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -52,7 +52,7 @@
                           <Component id="btnUpdate" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
+                  <Component id="scrollPnlSalaryReport" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
           </Group>
@@ -62,13 +62,13 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnback">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Back"/>
+        <Property name="text" type="java.lang.String" value="Luk Vindue"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnbackActionPerformed"/>
       </Events>
     </Component>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="scrollPnlSalaryReport">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -100,17 +100,17 @@
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="lblLeadertrained" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblBrandmandNavn" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblFiremanName" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="lblOdinNr" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblRolle" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblRole" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                           <Component id="txtOdinNr" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtBrandmandNavn" alignment="0" max="32767" attributes="0"/>
-                          <Component id="lblDato" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblTimer" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtTimer" alignment="0" pref="188" max="32767" attributes="0"/>
-                          <Component id="txtDato" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtRolle" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtFiremanName" alignment="0" max="32767" attributes="0"/>
+                          <Component id="lblDate" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblHours" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtHours" alignment="0" pref="188" max="32767" attributes="0"/>
+                          <Component id="txtDate" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtRole" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -124,35 +124,35 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="txtOdinNr" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblBrandmandNavn" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblFiremanName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtBrandmandNavn" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtFiremanName" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblRolle" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblRole" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtRolle" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtRole" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="lblLeadertrained" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Component id="lblDato" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                  <Component id="txtDato" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtDate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblTimer" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblHours" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtTimer" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtHours" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblRolle">
+        <Component class="javax.swing.JLabel" name="lblRole">
           <Properties>
             <Property name="text" type="java.lang.String" value="Rolle"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtBrandmandNavn">
+        <Component class="javax.swing.JTextField" name="txtFiremanName">
         </Component>
         <Component class="javax.swing.JTextField" name="txtOdinNr">
         </Component>
@@ -161,26 +161,26 @@
             <Property name="text" type="java.lang.String" value="Odin Nr:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblBrandmandNavn">
+        <Component class="javax.swing.JLabel" name="lblFiremanName">
           <Properties>
             <Property name="text" type="java.lang.String" value="Brandmand Navn"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtRolle">
+        <Component class="javax.swing.JTextField" name="txtRole">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblTimer">
+        <Component class="javax.swing.JLabel" name="lblHours">
           <Properties>
             <Property name="text" type="java.lang.String" value="Timer"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtTimer">
+        <Component class="javax.swing.JTextField" name="txtHours">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblDato">
+        <Component class="javax.swing.JLabel" name="lblDate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Dato"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDato">
+        <Component class="javax.swing.JTextField" name="txtDate">
         </Component>
         <Component class="javax.swing.JLabel" name="lblLeadertrained">
           <Properties>
@@ -191,7 +191,7 @@
     </Container>
     <Component class="javax.swing.JButton" name="btnUpdate">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Update"/>
+        <Property name="text" type="java.lang.String" value="Opdater"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnUpdateActionPerformed"/>

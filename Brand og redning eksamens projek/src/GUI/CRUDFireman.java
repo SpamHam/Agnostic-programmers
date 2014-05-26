@@ -241,7 +241,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlTblFiremen = new javax.swing.JScrollPane();
         tblFiremen = new javax.swing.JTable();
         UpdateFieldsPanel = new javax.swing.JPanel();
         lblFirstName = new javax.swing.JLabel();
@@ -293,7 +293,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblFiremen);
+        scrollPnlTblFiremen.setViewportView(tblFiremen);
 
         UpdateFieldsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opdater Information"));
 
@@ -426,7 +426,7 @@ public class CRUDFireman extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlTblFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -447,7 +447,7 @@ public class CRUDFireman extends javax.swing.JFrame {
                             .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(148, 148, 148)
                             .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollPnlTblFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -461,7 +461,6 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel jpanelButtons;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblCallNr;
@@ -470,6 +469,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblPaymentNr;
     private javax.swing.JLabel lblTelephoneNr;
+    private javax.swing.JScrollPane scrollPnlTblFiremen;
     private javax.swing.JTable tblFiremen;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCallNr;

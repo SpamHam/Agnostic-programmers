@@ -70,7 +70,7 @@ public class FiremanMenu extends javax.swing.JFrame {
 
         lblFiremanMenu = new javax.swing.JLabel();
         btnEmergencySchedule = new javax.swing.JButton();
-        jPanelUdrykningsSkema = new javax.swing.JPanel();
+        jPanelCallOverview = new javax.swing.JPanel();
         lblEmergencyScheduleMenu1 = new javax.swing.JLabel();
         lblEmergencyScheduleMenu2 = new javax.swing.JLabel();
         lblEmergencyScheduleMenu3 = new javax.swing.JLabel();
@@ -87,7 +87,7 @@ public class FiremanMenu extends javax.swing.JFrame {
 
         btnEmergencySchedule.setText("Udryknings Skema");
 
-        jPanelUdrykningsSkema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanelCallOverview.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblEmergencyScheduleMenu1.setText("- Liste over udrykninger");
 
@@ -95,21 +95,21 @@ public class FiremanMenu extends javax.swing.JFrame {
 
         lblEmergencyScheduleMenu3.setText("- Lav ODIN report for en udrykning med tidsstempel");
 
-        javax.swing.GroupLayout jPanelUdrykningsSkemaLayout = new javax.swing.GroupLayout(jPanelUdrykningsSkema);
-        jPanelUdrykningsSkema.setLayout(jPanelUdrykningsSkemaLayout);
-        jPanelUdrykningsSkemaLayout.setHorizontalGroup(
-            jPanelUdrykningsSkemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUdrykningsSkemaLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanelCallOverviewLayout = new javax.swing.GroupLayout(jPanelCallOverview);
+        jPanelCallOverview.setLayout(jPanelCallOverviewLayout);
+        jPanelCallOverviewLayout.setHorizontalGroup(
+            jPanelCallOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCallOverviewLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelUdrykningsSkemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelCallOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblEmergencyScheduleMenu1)
                     .addComponent(lblEmergencyScheduleMenu2)
                     .addComponent(lblEmergencyScheduleMenu3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanelUdrykningsSkemaLayout.setVerticalGroup(
-            jPanelUdrykningsSkemaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelUdrykningsSkemaLayout.createSequentialGroup()
+        jPanelCallOverviewLayout.setVerticalGroup(
+            jPanelCallOverviewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCallOverviewLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblEmergencyScheduleMenu1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -169,7 +169,7 @@ public class FiremanMenu extends javax.swing.JFrame {
                             .addComponent(btnEmergencySchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanelUdrykningsSkema, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanelCallOverview, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelTimeSchedule, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -181,7 +181,7 @@ public class FiremanMenu extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEmergencySchedule)
-                    .addComponent(jPanelUdrykningsSkema, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanelCallOverview, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTimeSchedule)
@@ -230,8 +230,8 @@ public class FiremanMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEmergencySchedule;
     private javax.swing.JButton btnTimeSchedule;
+    private javax.swing.JPanel jPanelCallOverview;
     private javax.swing.JPanel jPanelTimeSchedule;
-    private javax.swing.JPanel jPanelUdrykningsSkema;
     private javax.swing.JLabel lblEmergencyScheduleMenu1;
     private javax.swing.JLabel lblEmergencyScheduleMenu2;
     private javax.swing.JLabel lblEmergencyScheduleMenu3;

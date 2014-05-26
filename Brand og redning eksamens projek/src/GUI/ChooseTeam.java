@@ -203,12 +203,12 @@ public class ChooseTeam extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlAllFiremen = new javax.swing.JScrollPane();
         jlistAllFiremen = new javax.swing.JList();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        scrollPnlChosenFiremen = new javax.swing.JScrollPane();
         jlistChosenFiremen = new javax.swing.JList();
         btnRemoveFromTeam = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        scrollPnlChooseACar = new javax.swing.JScrollPane();
         jlistChooseACar = new javax.swing.JList();
         lblAllFiremen = new javax.swing.JLabel();
         lblChosenTeamMembers = new javax.swing.JLabel();
@@ -219,13 +219,13 @@ public class ChooseTeam extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jScrollPane1.setViewportView(jlistAllFiremen);
+        scrollPnlAllFiremen.setViewportView(jlistAllFiremen);
 
-        jScrollPane2.setViewportView(jlistChosenFiremen);
+        scrollPnlChosenFiremen.setViewportView(jlistChosenFiremen);
 
         btnRemoveFromTeam.setText("Fjern fra Team");
 
-        jScrollPane3.setViewportView(jlistChooseACar);
+        scrollPnlChooseACar.setViewportView(jlistChooseACar);
 
         lblAllFiremen.setText("Alle brændmand:");
 
@@ -247,7 +247,7 @@ public class ChooseTeam extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPnlAllFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnRemoveFromTeam, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -255,11 +255,11 @@ public class ChooseTeam extends javax.swing.JDialog {
                     .addComponent(lblAllFiremen))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPnlChosenFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblChosenTeamMembers))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(scrollPnlChooseACar, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblChooseACar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -281,9 +281,9 @@ public class ChooseTeam extends javax.swing.JDialog {
                             .addComponent(lblChooseACar))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scrollPnlChosenFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPnlAllFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scrollPnlChooseACar, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(112, 112, 112)
                         .addComponent(btnAddToTeam)
@@ -305,14 +305,14 @@ public class ChooseTeam extends javax.swing.JDialog {
     private javax.swing.JButton btnAddToTeam;
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnRemoveFromTeam;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JList jlistAllFiremen;
     private javax.swing.JList jlistChooseACar;
     private javax.swing.JList jlistChosenFiremen;
     private javax.swing.JLabel lblAllFiremen;
     private javax.swing.JLabel lblChooseACar;
     private javax.swing.JLabel lblChosenTeamMembers;
+    private javax.swing.JScrollPane scrollPnlAllFiremen;
+    private javax.swing.JScrollPane scrollPnlChooseACar;
+    private javax.swing.JScrollPane scrollPnlChosenFiremen;
     // End of variables declaration//GEN-END:variables
 }

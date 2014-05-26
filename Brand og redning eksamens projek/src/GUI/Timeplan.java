@@ -77,7 +77,7 @@ public class Timeplan extends javax.swing.JFrame {
     private void initComponents() {
 
         cmbType = new javax.swing.JComboBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlTblTeam = new javax.swing.JScrollPane();
         tblTeam = new javax.swing.JTable();
         btnChooseATeam = new javax.swing.JButton();
         btnClose = new javax.swing.JButton();
@@ -96,7 +96,7 @@ public class Timeplan extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblTeam);
+        scrollPnlTblTeam.setViewportView(tblTeam);
 
         btnChooseATeam.setText("Vælg Team");
 
@@ -114,7 +114,7 @@ public class Timeplan extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(scrollPnlTblTeam)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -136,7 +136,7 @@ public class Timeplan extends javax.swing.JFrame {
                     .addComponent(cmbType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOtherText, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlTblTeam, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClose)
@@ -329,7 +329,7 @@ public class Timeplan extends javax.swing.JFrame {
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnNextPage;
     private javax.swing.JComboBox cmbType;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane scrollPnlTblTeam;
     private javax.swing.JTable tblTeam;
     private javax.swing.JTextField txtOtherText;
     // End of variables declaration//GEN-END:variables

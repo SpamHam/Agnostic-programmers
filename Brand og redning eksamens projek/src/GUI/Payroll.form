@@ -26,17 +26,17 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jScrollPane1" alignment="0" pref="767" max="32767" attributes="0"/>
+                  <Component id="scrollPnlTblPayroll" alignment="0" pref="767" max="32767" attributes="0"/>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblPickADate" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jDateChooserPickADate" min="-2" pref="143" max="-2" attributes="0"/>
+                              <Component id="dcPickADate" min="-2" pref="143" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnDetaljer" min="-2" pref="125" max="-2" attributes="0"/>
+                              <Component id="btnDetails" min="-2" pref="125" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="btnPrintToPDF" min="-2" pref="125" max="-2" attributes="0"/>
                           </Group>
@@ -52,15 +52,15 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jDateChooserPickADate" max="32767" attributes="0"/>
+                  <Component id="dcPickADate" max="32767" attributes="0"/>
                   <Component id="lblPickADate" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="453" max="32767" attributes="0"/>
+              <Component id="scrollPnlTblPayroll" pref="453" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnPrintToPDF" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnDetaljer" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnDetails" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
           </Group>
@@ -68,7 +68,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+    <Container class="javax.swing.JScrollPane" name="scrollPnlTblPayroll">
       <AuxValues>
         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
       </AuxValues>
@@ -170,7 +170,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="com.toedter.calendar.JDateChooser" name="jDateChooserPickADate">
+    <Component class="com.toedter.calendar.JDateChooser" name="dcPickADate">
     </Component>
     <Component class="javax.swing.JLabel" name="lblPickADate">
       <Properties>
@@ -185,7 +185,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnPrintToPDFActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnDetaljer">
+    <Component class="javax.swing.JButton" name="btnDetails">
       <Properties>
         <Property name="text" type="java.lang.String" value="Detaljer"/>
       </Properties>

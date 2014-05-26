@@ -146,8 +146,6 @@ public class ODINReport extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         lblHeader = new javax.swing.JLabel();
         lblSubHeader = new javax.swing.JLabel();
         lblTeamLeader = new javax.swing.JLabel();
@@ -175,26 +173,13 @@ public class ODINReport extends javax.swing.JFrame {
         lblMaterialUsed = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         chkBoxForces = new javax.swing.JCheckBox();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        scrollPnlTblMaterial = new javax.swing.JScrollPane();
         tblMaterial = new javax.swing.JTable();
-        jpanelIndsatteStyrker = new javax.swing.JPanel();
+        jpanelDeployedForces = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblForces = new javax.swing.JTable();
         btnSave = new javax.swing.JButton();
         btnAddForces = new javax.swing.JButton();
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -267,7 +252,7 @@ public class ODINReport extends javax.swing.JFrame {
                 "Materiale", "Antal"
             }
         ));
-        jScrollPane3.setViewportView(tblMaterial);
+        scrollPnlTblMaterial.setViewportView(tblMaterial);
 
         tblForces.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -279,15 +264,15 @@ public class ODINReport extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblForces);
 
-        javax.swing.GroupLayout jpanelIndsatteStyrkerLayout = new javax.swing.GroupLayout(jpanelIndsatteStyrker);
-        jpanelIndsatteStyrker.setLayout(jpanelIndsatteStyrkerLayout);
-        jpanelIndsatteStyrkerLayout.setHorizontalGroup(
-            jpanelIndsatteStyrkerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jpanelDeployedForcesLayout = new javax.swing.GroupLayout(jpanelDeployedForces);
+        jpanelDeployedForces.setLayout(jpanelDeployedForcesLayout);
+        jpanelDeployedForcesLayout.setHorizontalGroup(
+            jpanelDeployedForcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
         );
-        jpanelIndsatteStyrkerLayout.setVerticalGroup(
-            jpanelIndsatteStyrkerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpanelIndsatteStyrkerLayout.createSequentialGroup()
+        jpanelDeployedForcesLayout.setVerticalGroup(
+            jpanelDeployedForcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelDeployedForcesLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -303,7 +288,7 @@ public class ODINReport extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpanelDeployedForces, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAddForces)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -332,7 +317,7 @@ public class ODINReport extends javax.swing.JFrame {
                                 .addComponent(txtRecived, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(94, 94, 94)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(scrollPnlTblMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblRecived)
@@ -411,11 +396,11 @@ public class ODINReport extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblAddress)
                             .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPnlTblMaterial, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addComponent(chkBoxForces)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jpanelIndsatteStyrker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpanelDeployedForces, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack)
@@ -521,10 +506,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkBoxWounded;
     private com.toedter.calendar.JDateChooser dcDate;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JPanel jpanelIndsatteStyrker;
+    private javax.swing.JPanel jpanelDeployedForces;
     private javax.swing.JLabel lblAddress;
     private javax.swing.JLabel lblDate;
     private javax.swing.JLabel lblEvaReportNr;
@@ -538,6 +520,7 @@ public class ODINReport extends javax.swing.JFrame {
     private javax.swing.JLabel lblSubHeader;
     private javax.swing.JLabel lblTeamLeader;
     private javax.swing.JLabel lblWeekday;
+    private javax.swing.JScrollPane scrollPnlTblMaterial;
     private javax.swing.JTable tblForces;
     private javax.swing.JTable tblMaterial;
     private javax.swing.JTextField txtAddress;
@@ -562,7 +545,7 @@ public class ODINReport extends javax.swing.JFrame {
 
         }
         btnAddForces.setVisible(isForcesSelected);
-        jpanelIndsatteStyrker.setVisible(isForcesSelected);
+        jpanelDeployedForces.setVisible(isForcesSelected);
 
     }
 

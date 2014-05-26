@@ -91,7 +91,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUpdate.setEnabled(false);
-        UpdateFieldsPanel.setVisible(false);
+        jpanelUpdateFields.setVisible(false);
         tblVehicle.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
 
@@ -103,7 +103,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 onRowSelected(evt
                 );
                 btnUpdate.setEnabled(true);
-                UpdateFieldsPanel.setVisible(true);
+                jpanelUpdateFields.setVisible(true);
             }
 
             /**
@@ -258,10 +258,10 @@ public class CRUDVehicle extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlTblVehicle = new javax.swing.JScrollPane();
         tblVehicle = new javax.swing.JTable();
-        UpdateFieldsPanel = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
+        jpanelUpdateFields = new javax.swing.JPanel();
+        scrollPnlDescription = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         lblDescription = new javax.swing.JLabel();
         txtModel = new javax.swing.JTextField();
@@ -270,7 +270,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         lblBrand = new javax.swing.JLabel();
         lblRegistrationNr = new javax.swing.JLabel();
         lblRegNr = new javax.swing.JLabel();
-        jPanelFunktioner = new javax.swing.JPanel();
+        jPanelFunctions = new javax.swing.JPanel();
         btnRemove = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
@@ -302,13 +302,13 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tblVehicle);
+        scrollPnlTblVehicle.setViewportView(tblVehicle);
 
-        UpdateFieldsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opdater information"));
+        jpanelUpdateFields.setBorder(javax.swing.BorderFactory.createTitledBorder("Opdater information"));
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
-        jScrollPane2.setViewportView(txtDescription);
+        scrollPnlDescription.setViewportView(txtDescription);
 
         lblDescription.setText("Beskrivelse:");
 
@@ -318,57 +318,57 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         lblRegNr.setText("Reg. Nr:");
 
-        javax.swing.GroupLayout UpdateFieldsPanelLayout = new javax.swing.GroupLayout(UpdateFieldsPanel);
-        UpdateFieldsPanel.setLayout(UpdateFieldsPanelLayout);
-        UpdateFieldsPanelLayout.setHorizontalGroup(
-            UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout jpanelUpdateFieldsLayout = new javax.swing.GroupLayout(jpanelUpdateFields);
+        jpanelUpdateFields.setLayout(jpanelUpdateFieldsLayout);
+        jpanelUpdateFieldsLayout.setHorizontalGroup(
+            jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
+                        .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDescription)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(scrollPnlDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 9, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
-                                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelUpdateFieldsLayout.createSequentialGroup()
+                        .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
+                                .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblModel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(lblBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(UpdateFieldsPanelLayout.createSequentialGroup()
+                            .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
                                 .addComponent(lblRegNr)
                                 .addGap(39, 39, 39)))
-                        .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblRegistrationNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
                             .addComponent(txtModel))))
                 .addContainerGap())
         );
-        UpdateFieldsPanelLayout.setVerticalGroup(
-            UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, UpdateFieldsPanelLayout.createSequentialGroup()
+        jpanelUpdateFieldsLayout.setVerticalGroup(
+            jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelUpdateFieldsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblRegistrationNr, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblRegNr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBrand))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(UpdateFieldsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblModel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlDescription, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        jPanelFunktioner.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
+        jPanelFunctions.setBorder(javax.swing.BorderFactory.createTitledBorder("Funktioner"));
 
         btnRemove.setText("Fjern");
 
@@ -376,23 +376,23 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         btnUpdate.setText("Opdatere");
 
-        javax.swing.GroupLayout jPanelFunktionerLayout = new javax.swing.GroupLayout(jPanelFunktioner);
-        jPanelFunktioner.setLayout(jPanelFunktionerLayout);
-        jPanelFunktionerLayout.setHorizontalGroup(
-            jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelFunctionsLayout = new javax.swing.GroupLayout(jPanelFunctions);
+        jPanelFunctions.setLayout(jPanelFunctionsLayout);
+        jPanelFunctionsLayout.setHorizontalGroup(
+            jPanelFunctionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelFunctionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
         );
-        jPanelFunktionerLayout.setVerticalGroup(
-            jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunktionerLayout.createSequentialGroup()
+        jPanelFunctionsLayout.setVerticalGroup(
+            jPanelFunctionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunctionsLayout.createSequentialGroup()
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
                 .addComponent(btnRemove))
-            .addGroup(jPanelFunktionerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunktionerLayout.createSequentialGroup()
+            .addGroup(jPanelFunctionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFunctionsLayout.createSequentialGroup()
                     .addContainerGap(29, Short.MAX_VALUE)
                     .addComponent(btnUpdate)
                     .addContainerGap(29, Short.MAX_VALUE)))
@@ -406,12 +406,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlTblVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 17, Short.MAX_VALUE)
-                .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jpanelUpdateFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelFunktioner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanelFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -421,11 +421,11 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanelFunktioner, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanelFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scrollPnlTblVehicle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jpanelUpdateFields, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -434,19 +434,19 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel UpdateFieldsPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
-    private javax.swing.JPanel jPanelFunktioner;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JPanel jPanelFunctions;
+    private javax.swing.JPanel jpanelUpdateFields;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblRegNr;
     private javax.swing.JLabel lblRegistrationNr;
+    private javax.swing.JScrollPane scrollPnlDescription;
+    private javax.swing.JScrollPane scrollPnlTblVehicle;
     private javax.swing.JTable tblVehicle;
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextArea txtDescription;

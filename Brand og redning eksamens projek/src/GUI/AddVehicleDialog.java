@@ -50,7 +50,7 @@ public class AddVehicleDialog extends javax.swing.JDialog {
         txtRegNr = new javax.swing.JTextField();
         txtBrand = new javax.swing.JTextField();
         txtModel = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlDescription = new javax.swing.JScrollPane();
         txtDescription = new javax.swing.JTextArea();
         lblDescription = new javax.swing.JLabel();
         btnAdd = new javax.swing.JButton();
@@ -69,7 +69,7 @@ public class AddVehicleDialog extends javax.swing.JDialog {
 
         txtDescription.setColumns(20);
         txtDescription.setRows(5);
-        jScrollPane1.setViewportView(txtDescription);
+        scrollPnlDescription.setViewportView(txtDescription);
 
         lblDescription.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblDescription.setText("Beskrivelse:");
@@ -94,7 +94,7 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtModel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                 .addComponent(txtBrand, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(scrollPnlDescription, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lblRegNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -125,7 +125,7 @@ public class AddVehicleDialog extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDescription)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scrollPnlDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAdd)
@@ -183,11 +183,11 @@ public class AddVehicleDialog extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnCancel;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblBrand;
     private javax.swing.JLabel lblDescription;
     private javax.swing.JLabel lblModel;
     private javax.swing.JLabel lblRegNr;
+    private javax.swing.JScrollPane scrollPnlDescription;
     private javax.swing.JTextField txtBrand;
     private javax.swing.JTextArea txtDescription;
     private javax.swing.JTextField txtModel;

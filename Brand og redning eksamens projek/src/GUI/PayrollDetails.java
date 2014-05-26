@@ -40,10 +40,10 @@ public class PayrollDetails extends javax.swing.JDialog {
         lblLeadertrained.setVisible(false);
         lstSalaryRapport.setModel(salaryListModel);
         btnUpdate.setEnabled(false);
-        txtDato.setEnabled(false);
-        txtBrandmandNavn.setEnabled(false);
+        txtDate.setEnabled(false);
+        txtFiremanName.setEnabled(false);
         txtOdinNr.setEnabled(false);
-        txtRolle.setEnabled(false);
+        txtRole.setEnabled(false);
         lstSalaryRapport.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -62,10 +62,10 @@ public class PayrollDetails extends javax.swing.JDialog {
             BLLFireman g = new BLLFireman();
             txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
             BE.BEFireman f = g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
-            txtBrandmandNavn.setText(f.getFirstName() + " " + f.getLastName());
-            txtRolle.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
-            txtDato.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getDate());
-            txtTimer.setText(Double.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getHours()));
+            txtFiremanName.setText(f.getFirstName() + " " + f.getLastName());
+            txtRole.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
+            txtDate.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getDate());
+            txtHours.setText(Double.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getHours()));
             lblLeadertrained.setVisible(g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID()).isLeaderTrained());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -82,44 +82,44 @@ public class PayrollDetails extends javax.swing.JDialog {
     private void initComponents() {
 
         btnback = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlSalaryReport = new javax.swing.JScrollPane();
         lstSalaryRapport = new javax.swing.JList();
         jPanelInformation = new javax.swing.JPanel();
-        lblRolle = new javax.swing.JLabel();
-        txtBrandmandNavn = new javax.swing.JTextField();
+        lblRole = new javax.swing.JLabel();
+        txtFiremanName = new javax.swing.JTextField();
         txtOdinNr = new javax.swing.JTextField();
         lblOdinNr = new javax.swing.JLabel();
-        lblBrandmandNavn = new javax.swing.JLabel();
-        txtRolle = new javax.swing.JTextField();
-        lblTimer = new javax.swing.JLabel();
-        txtTimer = new javax.swing.JTextField();
-        lblDato = new javax.swing.JLabel();
-        txtDato = new javax.swing.JTextField();
+        lblFiremanName = new javax.swing.JLabel();
+        txtRole = new javax.swing.JTextField();
+        lblHours = new javax.swing.JLabel();
+        txtHours = new javax.swing.JTextField();
+        lblDate = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
         lblLeadertrained = new javax.swing.JLabel();
         btnUpdate = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        btnback.setText("Back");
+        btnback.setText("Luk Vindue");
         btnback.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnbackActionPerformed(evt);
             }
         });
 
-        jScrollPane1.setViewportView(lstSalaryRapport);
+        scrollPnlSalaryReport.setViewportView(lstSalaryRapport);
 
         jPanelInformation.setBorder(javax.swing.BorderFactory.createTitledBorder("Information"));
 
-        lblRolle.setText("Rolle");
+        lblRole.setText("Rolle");
 
         lblOdinNr.setText("Odin Nr:");
 
-        lblBrandmandNavn.setText("Brandmand Navn");
+        lblFiremanName.setText("Brandmand Navn");
 
-        lblTimer.setText("Timer");
+        lblHours.setText("Timer");
 
-        lblDato.setText("Dato");
+        lblDate.setText("Dato");
 
         lblLeadertrained.setText("Personen er Holdleder uddannet");
 
@@ -131,17 +131,17 @@ public class PayrollDetails extends javax.swing.JDialog {
                 .addGap(0, 0, 0)
                 .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblLeadertrained)
-                    .addComponent(lblBrandmandNavn)
+                    .addComponent(lblFiremanName)
                     .addComponent(lblOdinNr)
-                    .addComponent(lblRolle)
+                    .addComponent(lblRole)
                     .addGroup(jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtOdinNr, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtBrandmandNavn, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblDato, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblTimer, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtTimer, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
-                        .addComponent(txtDato, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(txtRolle, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addComponent(txtFiremanName, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblDate, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblHours, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtHours, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                        .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(txtRole, javax.swing.GroupLayout.Alignment.LEADING))))
         );
         jPanelInformationLayout.setVerticalGroup(
             jPanelInformationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,27 +151,27 @@ public class PayrollDetails extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtOdinNr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBrandmandNavn)
+                .addComponent(lblFiremanName)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtBrandmandNavn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtFiremanName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblRolle)
+                .addComponent(lblRole)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtRolle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6)
                 .addComponent(lblLeadertrained)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblDato)
+                .addComponent(lblDate)
                 .addGap(6, 6, 6)
-                .addComponent(txtDato, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblTimer)
+                .addComponent(lblHours)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTimer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtHours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
 
-        btnUpdate.setText("Update");
+        btnUpdate.setText("Opdater");
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
@@ -184,13 +184,13 @@ public class PayrollDetails extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlSalaryReport, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnUpdate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnback, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnback))
                     .addComponent(jPanelInformation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
@@ -205,7 +205,7 @@ public class PayrollDetails extends javax.swing.JDialog {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnback)
                             .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane1))
+                    .addComponent(scrollPnlSalaryReport))
                 .addGap(10, 10, 10))
         );
 
@@ -218,7 +218,7 @@ public class PayrollDetails extends javax.swing.JDialog {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         try {
-            double timer = Double.parseDouble(txtTimer.getText());
+            double timer = Double.parseDouble(txtHours.getText());
             try {
                 BE.BESalary s = allSalarys.get(lstSalaryRapport.getSelectedIndex());
                 s.setHours(timer);
@@ -236,19 +236,19 @@ public class PayrollDetails extends javax.swing.JDialog {
     private javax.swing.JButton btnUpdate;
     private javax.swing.JButton btnback;
     private javax.swing.JPanel jPanelInformation;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblBrandmandNavn;
-    private javax.swing.JLabel lblDato;
+    private javax.swing.JLabel lblDate;
+    private javax.swing.JLabel lblFiremanName;
+    private javax.swing.JLabel lblHours;
     private javax.swing.JLabel lblLeadertrained;
     private javax.swing.JLabel lblOdinNr;
-    private javax.swing.JLabel lblRolle;
-    private javax.swing.JLabel lblTimer;
+    private javax.swing.JLabel lblRole;
     private javax.swing.JList lstSalaryRapport;
-    private javax.swing.JTextField txtBrandmandNavn;
-    private javax.swing.JTextField txtDato;
+    private javax.swing.JScrollPane scrollPnlSalaryReport;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtFiremanName;
+    private javax.swing.JTextField txtHours;
     private javax.swing.JTextField txtOdinNr;
-    private javax.swing.JTextField txtRolle;
-    private javax.swing.JTextField txtTimer;
+    private javax.swing.JTextField txtRole;
     // End of variables declaration//GEN-END:variables
 
     private void salaryListModelRenewal() throws Exception {

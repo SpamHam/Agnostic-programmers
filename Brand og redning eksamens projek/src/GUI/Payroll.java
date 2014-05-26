@@ -41,7 +41,7 @@ public class Payroll extends javax.swing.JFrame {
         tblPayroll.setRowSorter(sorter);
         tblPayroll.getTableHeader().setReorderingAllowed(rootPaneCheckingEnabled);
         ActionListener btnDet = new DetaljeListener();
-        btnDetaljer.addActionListener(btnDet);
+        btnDetails.addActionListener(btnDet);
         ActionListener btnpdf = new PrintPdfListener();
         btnPrintToPDF.addActionListener(btnpdf);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -156,12 +156,12 @@ public class Payroll extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlTblPayroll = new javax.swing.JScrollPane();
         tblPayroll = new javax.swing.JTable();
-        jDateChooserPickADate = new com.toedter.calendar.JDateChooser();
+        dcPickADate = new com.toedter.calendar.JDateChooser();
         lblPickADate = new javax.swing.JLabel();
         btnPrintToPDF = new javax.swing.JButton();
-        btnDetaljer = new javax.swing.JButton();
+        btnDetails = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -198,7 +198,7 @@ public class Payroll extends javax.swing.JFrame {
                 "Navn", "Løn Nr.", "Brand Brandmand", "Brand Holdleder", "Standby station Brandmand", "Standby station Holdleder", "Arb. på station/ Andet", "Øvelse Brandmand", "Øvelse Holdleder", "Vagt Brandmand Helligdag", "Vagt Brandmand Hverdag", "Vagt Helligdag Holdleder", "Vagt Hverdag Holdleder"
             }
         ));
-        jScrollPane1.setViewportView(tblPayroll);
+        scrollPnlTblPayroll.setViewportView(tblPayroll);
 
         lblPickADate.setText("Vælg en dato:");
 
@@ -209,7 +209,7 @@ public class Payroll extends javax.swing.JFrame {
             }
         });
 
-        btnDetaljer.setText("Detaljer");
+        btnDetails.setText("Detaljer");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -218,16 +218,16 @@ public class Payroll extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
+                    .addComponent(scrollPnlTblPayroll, javax.swing.GroupLayout.DEFAULT_SIZE, 767, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(lblPickADate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jDateChooserPickADate, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(dcPickADate, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnDetaljer, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnDetails, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnPrintToPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
@@ -237,14 +237,14 @@ public class Payroll extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jDateChooserPickADate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dcPickADate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblPickADate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
+                .addComponent(scrollPnlTblPayroll, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPrintToPDF)
-                    .addComponent(btnDetaljer))
+                    .addComponent(btnDetails))
                 .addGap(8, 8, 8))
         );
 
@@ -256,11 +256,11 @@ public class Payroll extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPrintToPDFActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnDetaljer;
+    private javax.swing.JButton btnDetails;
     private javax.swing.JButton btnPrintToPDF;
-    private com.toedter.calendar.JDateChooser jDateChooserPickADate;
-    private javax.swing.JScrollPane jScrollPane1;
+    private com.toedter.calendar.JDateChooser dcPickADate;
     private javax.swing.JLabel lblPickADate;
+    private javax.swing.JScrollPane scrollPnlTblPayroll;
     private javax.swing.JTable tblPayroll;
     // End of variables declaration//GEN-END:variables
 }

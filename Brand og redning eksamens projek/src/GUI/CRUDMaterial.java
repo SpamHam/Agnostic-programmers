@@ -230,7 +230,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollPnlTblMaterials = new javax.swing.JScrollPane();
         tblMaterial = new javax.swing.JTable();
         UpdateFieldsPanel = new javax.swing.JPanel();
         txtMaterial = new javax.swing.JTextField();
@@ -251,7 +251,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tblMaterial);
+        scrollPnlTblMaterials.setViewportView(tblMaterial);
 
         UpdateFieldsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Opdater Information"));
 
@@ -316,7 +316,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlTblMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -336,7 +336,7 @@ public class CRUDMaterial extends javax.swing.JFrame {
                             .addComponent(jPanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnBack))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(scrollPnlTblMaterials, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -350,8 +350,8 @@ public class CRUDMaterial extends javax.swing.JFrame {
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jPanelButtons;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblMateriale;
+    private javax.swing.JScrollPane scrollPnlTblMaterials;
     private javax.swing.JTable tblMaterial;
     private javax.swing.JTextField txtMaterial;
     // End of variables declaration//GEN-END:variables

@@ -47,7 +47,7 @@ public class EmergencyStart extends javax.swing.JFrame {
     }
     
     private void AddTime(){
-        txtSidsteUdrykning.setText(currentTime());
+        txtLastCall.setText(currentTime());
         //Udrykningstider.add(currentTime());
         try {
             BLL.BLLEmergencyStart.getInstance().Create(Udrykningstider, currentTime());
@@ -69,9 +69,9 @@ public class EmergencyStart extends javax.swing.JFrame {
     private void initComponents() {
 
         btnStart = new javax.swing.JButton();
-        lblSidsteUdrykning = new javax.swing.JLabel();
-        txtSidsteUdrykning = new javax.swing.JTextField();
-        btnUdrykningsTider = new javax.swing.JButton();
+        lblLastCall = new javax.swing.JLabel();
+        txtLastCall = new javax.swing.JTextField();
+        btnFinishACall = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,17 +83,17 @@ public class EmergencyStart extends javax.swing.JFrame {
             }
         });
 
-        lblSidsteUdrykning.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        lblSidsteUdrykning.setText("Sidste udrykning:");
-        lblSidsteUdrykning.setToolTipText("");
+        lblLastCall.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblLastCall.setText("Sidste udrykning:");
+        lblLastCall.setToolTipText("");
 
-        txtSidsteUdrykning.setBackground(javax.swing.UIManager.getDefaults().getColor("menu"));
-        txtSidsteUdrykning.setBorder(null);
+        txtLastCall.setBackground(javax.swing.UIManager.getDefaults().getColor("menu"));
+        txtLastCall.setBorder(null);
 
-        btnUdrykningsTider.setText("Afslut en udrykning");
-        btnUdrykningsTider.addActionListener(new java.awt.event.ActionListener() {
+        btnFinishACall.setText("Afslut en udrykning");
+        btnFinishACall.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnUdrykningsTiderActionPerformed(evt);
+                btnFinishACallActionPerformed(evt);
             }
         });
 
@@ -108,13 +108,13 @@ public class EmergencyStart extends javax.swing.JFrame {
                         .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(lblSidsteUdrykning)
+                        .addComponent(lblLastCall)
                         .addGap(18, 18, 18)
-                        .addComponent(txtSidsteUdrykning, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtLastCall, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnUdrykningsTider, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFinishACall, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
@@ -124,10 +124,10 @@ public class EmergencyStart extends javax.swing.JFrame {
                 .addComponent(btnStart, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lblSidsteUdrykning, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtSidsteUdrykning))
+                    .addComponent(lblLastCall, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtLastCall))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnUdrykningsTider))
+                .addComponent(btnFinishACall))
         );
 
         pack();
@@ -140,14 +140,14 @@ public class EmergencyStart extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnStartActionPerformed
 
-    private void btnUdrykningsTiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUdrykningsTiderActionPerformed
+    private void btnFinishACallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishACallActionPerformed
         
         EmergencyStartDialog start = new EmergencyStartDialog(this, true, Udrykningstider);
         start.setVisible(true);
         Udrykningstider.clear();
         dispose();
         
-    }//GEN-LAST:event_btnUdrykningsTiderActionPerformed
+    }//GEN-LAST:event_btnFinishACallActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,9 +184,9 @@ public class EmergencyStart extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnFinishACall;
     private javax.swing.JButton btnStart;
-    private javax.swing.JButton btnUdrykningsTider;
-    private javax.swing.JLabel lblSidsteUdrykning;
-    private javax.swing.JTextField txtSidsteUdrykning;
+    private javax.swing.JLabel lblLastCall;
+    private javax.swing.JTextField txtLastCall;
     // End of variables declaration//GEN-END:variables
 }

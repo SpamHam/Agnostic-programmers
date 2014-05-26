@@ -50,12 +50,12 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         //System.out.println("a");
         System.out.println(nyeTider.size() + " nye tider");
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
-        tableUdrykningsOversigt.setModel(StartTableModel);
+        tblCallOverview.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
-        tableUdrykningsOversigt.setRowSorter(sorter);
+        tblCallOverview.setRowSorter(sorter);
         setTitle("Liste over udrykningstider");
       
-        tableUdrykningsOversigt.getTableHeader().setReorderingAllowed(false);
+        tblCallOverview.getTableHeader().setReorderingAllowed(false);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         
         
@@ -279,15 +279,15 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableUdrykningsOversigt = new javax.swing.JTable();
-        btnAfslut = new javax.swing.JButton();
+        scrollPnlCallOverview = new javax.swing.JScrollPane();
+        tblCallOverview = new javax.swing.JTable();
+        btnMakeAnODINReport = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
-        btbTest = new javax.swing.JButton();
+        btnTest = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tableUdrykningsOversigt.setModel(new javax.swing.table.DefaultTableModel(
+        tblCallOverview.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -298,12 +298,12 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
             }
         ));
-        jScrollPane1.setViewportView(tableUdrykningsOversigt);
+        scrollPnlCallOverview.setViewportView(tblCallOverview);
 
-        btnAfslut.setText("Lav ODINRapport");
-        btnAfslut.addActionListener(new java.awt.event.ActionListener() {
+        btnMakeAnODINReport.setText("Lav ODINRapport");
+        btnMakeAnODINReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAfslutActionPerformed(evt);
+                btnMakeAnODINReportActionPerformed(evt);
             }
         });
 
@@ -315,10 +315,10 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             }
         });
 
-        btbTest.setText("Test");
-        btbTest.addActionListener(new java.awt.event.ActionListener() {
+        btnTest.setText("Test");
+        btnTest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btbTestActionPerformed(evt);
+                btnTestActionPerformed(evt);
             }
         });
 
@@ -330,12 +330,12 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(scrollPnlCallOverview, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btbTest, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTest, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnAfslut)
+                        .addComponent(btnMakeAnODINReport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBack)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -344,12 +344,12 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scrollPnlCallOverview, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAfslut)
+                    .addComponent(btnMakeAnODINReport)
                     .addComponent(btnBack)
-                    .addComponent(btbTest))
+                    .addComponent(btnTest))
                 .addGap(20, 20, 20))
         );
 
@@ -363,28 +363,28 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private void btnAfslutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAfslutActionPerformed
+    private void btnMakeAnODINReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMakeAnODINReportActionPerformed
      //ODINReport report = new ODINReport(tableUdrykningsOversigt.getSelectedRow(), startTider);
      ODINReport report = new ODINReport();
-     report.setTime(startTider.get(tableUdrykningsOversigt.getSelectedRow()).toString());
+     report.setTime(startTider.get(tblCallOverview.getSelectedRow()).toString());
      report.setVisible(true);
      
      dispose();
-    }//GEN-LAST:event_btnAfslutActionPerformed
+    }//GEN-LAST:event_btnMakeAnODINReportActionPerformed
 
-    private void btbTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btbTestActionPerformed
+    private void btnTestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTestActionPerformed
     test2();
-    }//GEN-LAST:event_btbTestActionPerformed
+    }//GEN-LAST:event_btnTestActionPerformed
 
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btbTest;
-    private javax.swing.JButton btnAfslut;
     private javax.swing.JButton btnBack;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tableUdrykningsOversigt;
+    private javax.swing.JButton btnMakeAnODINReport;
+    private javax.swing.JButton btnTest;
+    private javax.swing.JScrollPane scrollPnlCallOverview;
+    private javax.swing.JTable tblCallOverview;
     // End of variables declaration//GEN-END:variables
 }
