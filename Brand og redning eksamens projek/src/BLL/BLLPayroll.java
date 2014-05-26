@@ -18,37 +18,12 @@ import java.util.Date;
  */
 public class BLLPayroll implements PDFListener {
 
-    private static BLLPayroll m_instance;
     private DALC.DALCSalary DALCSalary;
     private final Utility.Error.ErrorHandler Error;
 
-    /**
-     * Singleton
-     *
-     * @return
-     * @throws SQLServerException
-     */
-//    public static BLLPayroll getInstance() throws Exception {
-//        if (m_instance == null) {
-//            m_instance = new BLLPayroll();
-//        }
-//        return m_instance;
-//    }
-
-    /**
-     *
-     * @throws Exception
-     */
-//    public BLLPayroll() throws Exception {
-//        Error = Utility.Error.ErrorHandler.getInstance();
-//        try {
-//            DALCSalary = DALC.DALCSalary.getInstance();
-//        } catch (SQLServerException ex) {
-//            Error.StorageUnreachable(".");
-//        }
-//    }
-    
-    public BLLPayroll(){Error = Utility.Error.ErrorHandler.getInstance();}
+    public BLLPayroll() {
+        Error = Utility.Error.ErrorHandler.getInstance();
+    }
 
     /**
      *
@@ -58,7 +33,7 @@ public class BLLPayroll implements PDFListener {
     public void CreateSalaryReport(ArrayList<BE.BESalary> salary) throws Exception {
         if (!salary.isEmpty()) {
             for (BE.BESalary b : salary) {
-                if ( b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
+                if (b.getRole().isEmpty() || b.getSalaryCode().isEmpty() || b.getHours() == 0) {
                     Error.NotEnougthInfo("creating a SalaryReport.");
                 } else {
                     try {
@@ -89,9 +64,9 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
-     * 
+     *
      * @param b
-     * @throws Exception 
+     * @throws Exception
      */
     public void CreateWorkReport(BE.BESalary b) throws Exception {
         try {
@@ -195,8 +170,8 @@ public class BLLPayroll implements PDFListener {
 
     public void update(BE.BESalary e) throws Exception {
         try {
-            if(e.getODIN() != 0){
-            DALC.DALCSalary.getInstance().UpdateOdin(e);
+            if (e.getODIN() != 0) {
+                DALC.DALCSalary.getInstance().UpdateOdin(e);
             } else {
                 DALC.DALCSalary.getInstance().UpdateWork(e);
             }
@@ -207,9 +182,8 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-         ArrayList<BE.BESalary> salary = new ArrayList<>();
-         BLLFireman bllFire = new BLLFireman();
-         System.out.println("Rigtig registreret 1");
+        ArrayList<BE.BESalary> salary = new ArrayList<>();
+        BLLFireman bllFire = new BLLFireman();
         for (BE.BETimePlan c : event.getTime()) {
             BE.BEFireman f;
             try {
@@ -221,12 +195,7 @@ public class BLLPayroll implements PDFListener {
             if (f.isLeaderTrained()) {
                 holdleder = "Holdleder";
             }
-            System.out.println(f.getID());
-            System.out.println(f.getPaymentNr());
-            System.out.println(c.getHours());
-            System.out.println(event.getType());
-            System.out.println(event.getSelectedType());
-            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
+            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
             salary.add(s);
         }
         if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")

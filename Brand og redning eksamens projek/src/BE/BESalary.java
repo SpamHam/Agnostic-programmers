@@ -142,7 +142,7 @@ public class BESalary {
     /**
      * @return the isHoliday
      */
-    public boolean isIsHoliday() {
+    public boolean getIsHoliday() {
         return isHoliday;
     }
 
