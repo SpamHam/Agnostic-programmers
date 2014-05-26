@@ -10,12 +10,15 @@ import Utility.Error.EventExercutionException;
 import BE.BEForces;
 import BE.BEMaterial;
 import BLL.BLLPDF;
+import BLL.BLLPayroll;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.table.TableModel;
@@ -38,7 +41,9 @@ public class ODINReport extends javax.swing.JFrame {
     boolean isForcesSelected = false;
     boolean isWounded = false;
     private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
+    ArrayList<PDFListener> APDFListeners = new ArrayList<>();
     BLLPDF BLLPDF = new BLLPDF();
+    BLLPayroll BLLPay = new BLLPayroll();
     String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
 
     /**
@@ -47,6 +52,7 @@ public class ODINReport extends javax.swing.JFrame {
     public ODINReport() {
         initComponents();
         setPDFListener(BLLPDF); // sets the BLLPDF as observer
+        setPDFListener(BLLPay);
         // sets the model for the material table
         materialModel = new ChooseMaterialsTableModel(allMaterials);
         sorter = new TableRowSorter<TableModel>(materialModel);
@@ -83,8 +89,18 @@ public class ODINReport extends javax.swing.JFrame {
      *
      * @param PDFListener
      */
+//    public void setPDFListener(PDFListener PDFListener) {
+//        this.PDFListener = PDFListener;
+//    }
+    
+        /**
+     * Sets the PDFListener
+     *
+     * @param PDFListener
+     */
     public void setPDFListener(PDFListener PDFListener) {
-        this.PDFListener = PDFListener;
+        // this.PDFListener = PDFListener;
+        APDFListeners.add(PDFListener);
     }
 
     /**
@@ -95,8 +111,12 @@ public class ODINReport extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             getOdinData();
-            firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
-                    received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday));
+            try {
+                firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
+                        received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -130,13 +150,21 @@ public class ODINReport extends javax.swing.JFrame {
      *
      * @param event
      */
-    public void firePDFEvent(FormatEventPDF event) {
-        if (PDFListener != null) {
-            try {
-                PDFListener.PDFOdinPerformed(event);
-                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-            } catch (EventExercutionException eex) {
-                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//    public void firePDFEvent(FormatEventPDF event) {
+//        if (PDFListener != null) {
+//            try {
+//                PDFListener.PDFOdinPerformed(event);
+//                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+//            } catch (EventExercutionException eex) {
+//                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//    }
+    
+        public void firePDFEvent(FormatEventPDF event) throws Exception {
+        if (APDFListeners != null) {
+            for (PDFListener listener : APDFListeners) {
+                listener.PDFOdinPerformed(event);
             }
         }
     }
