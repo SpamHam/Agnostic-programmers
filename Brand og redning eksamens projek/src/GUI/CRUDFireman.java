@@ -21,6 +21,7 @@ import javax.swing.table.TableRowSorter;
  * @author Son Of Satan
  */
 public class CRUDFireman extends javax.swing.JFrame {
+
     private CRUDFiremanListener firemanListener; // holds a reference to a class that implements PDFListener
     CRUDFiremanTableModel FiremanTableModel;
     TableRowSorter<TableModel> sorter;
@@ -39,9 +40,14 @@ public class CRUDFireman extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    public void setFiremanList(ArrayList<BEFireman> Firemans){
-    allFiremans = Firemans;
+
+    /**
+     * Sets the allFiremans ArrayList to the content of Firemans ArrayList
+     *
+     * @param Firemans
+     */
+    public void setFiremanList(ArrayList<BEFireman> Firemans) {
+        allFiremans = Firemans;
     }
 
     /**
@@ -109,6 +115,9 @@ public class CRUDFireman extends javax.swing.JFrame {
         });
     }
 
+    /**
+     * Anonymous inner class listening on the Add Button
+     */
     private class AddListener implements ActionListener {
 
         @Override
@@ -142,12 +151,12 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
-        txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
-        ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
-           fireUpdateFiremanEvent(updateFireman);
-           allFiremans.set(selectedRow, updateFireman);
-           FiremanTableModel.setCRUDFiremanList(allFiremans);
+            BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
+                    txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
+                    ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate());
+            fireUpdateFiremanEvent(updateFireman);
+            allFiremans.set(selectedRow, updateFireman);
+            FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
 
     }
@@ -167,70 +176,85 @@ public class CRUDFireman extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Anonymous inner class listening on the Back Button
+     */
     private class BackListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             dispose();
             openAdministrationMenu();
-            
 
         }
 
     }
-    
-       /**
-     * sets the PDf listener to a class that implements the PDFListener interface
-     * @param firemanListener 
+
+    /**
+     * sets the PDf listener to a class that implements the PDFListener
+     * interface
+     *
+     * @param firemanListener
      */
-      public void setFiremanListener(CRUDFiremanListener firemanListener){
+    public void setFiremanListener(CRUDFiremanListener firemanListener) {
         this.firemanListener = firemanListener;
     }
-      
+
     /**
-     * 
-     * @param event 
+     * Opens the Administration Menu
      */
-     public void fireCreateFiremanEvent(BEFireman event){
-        if (firemanListener != null){
-            try{
-              firemanListener.FiremanCreatePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
-     
-         /**
-     * 
-     * @param event 
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
+
+    /**
+     * Fires an event the listener when a fireman is created
+     *
+     * @param event
      */
-     public void fireRemoveFiremanEvent(BEFireman event){
-        
-        if (firemanListener != null){    
-            try{
-              firemanListener.FiremanRemovePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
-     
-         /**
-     * 
-     * @param event 
+    public void fireCreateFiremanEvent(BEFireman event) {
+        if (firemanListener != null) {
+            try {
+                firemanListener.FiremanCreatePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    /**
+     * Fires an event to the listener when a fireman is removed
+     *
+     * @param event
      */
-     public void fireUpdateFiremanEvent(BEFireman event){
-        
-        if (firemanListener != null){
-            
-            try{
-              firemanListener.FiremanUpdatePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
+    public void fireRemoveFiremanEvent(BEFireman event) {
+
+        if (firemanListener != null) {
+            try {
+                firemanListener.FiremanRemovePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    /**
+     * Fires an event to the listener when a fireman is updated
+     *
+     * @param event
+     */
+    public void fireUpdateFiremanEvent(BEFireman event) {
+
+        if (firemanListener != null) {
+
+            try {
+                firemanListener.FiremanUpdatePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -479,10 +503,5 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JTextField txtPaymentNr;
     private javax.swing.JTextField txtTelephoneNr;
     // End of variables declaration//GEN-END:variables
-
-    private void openAdministrationMenu() {
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
-    }
 
 }

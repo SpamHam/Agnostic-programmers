@@ -25,11 +25,14 @@ public class AddMaterialDialog extends javax.swing.JDialog {
     public AddMaterialDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setTitle("Tilføj materiale");
+        
+        //All ActionListeners are listed here
         ActionListener BTNAddListener = new AddListener();
         btnAdd.addActionListener(BTNAddListener);
         ActionListener BTNCancelListener = new CancelListener();
         btnAdd.addActionListener(BTNCancelListener);
-        setTitle("Tilføj materiale");
+        
     }
 
     /**

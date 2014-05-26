@@ -27,11 +27,19 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
 
+    /**
+     * Returns the number of rows
+     * @return m_allMaterial.size
+     */
     @Override
     public int getRowCount() {
     return m_allMaterial.size();
     }
 
+    /**
+     * Returns the number of Columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
     return colNames.length;
@@ -53,18 +61,33 @@ public class CRUDMaterialTableModel extends AbstractTableModel{
 
             return null; }
     
-       
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames[col]
+     */
           @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets wether a cell is editable or not
+     * @param col
+     * @return classes
+     */
     @Override
     public Class<?> getColumnClass(int col) {
         return classes[col];
     }
 
+    /**
+     * Sets wether a cell is editable or not
+     * @param row
+     * @param col
+     * @return false
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;

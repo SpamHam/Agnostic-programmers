@@ -30,6 +30,9 @@ public class FiremanMenu extends javax.swing.JFrame {
         btnTimeSchedule.addActionListener(BTNTimeSchedule);
     }
 
+    /**
+     * anonymous inner class listening on the EmergencySchedule button
+     */
     private class EmergencyScheduleListener implements ActionListener {
 
         @Override
@@ -38,6 +41,9 @@ public class FiremanMenu extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * anonymous inner class listening on the TimeSchedule button
+     */
     private class TimeScheduleListener implements ActionListener {
 
         @Override
@@ -47,12 +53,18 @@ public class FiremanMenu extends javax.swing.JFrame {
 
     }
 
-    private void openEmergencySchedule(){
+    /**
+     * Opens the EmergencyStart Dialog
+     */
+    private void openEmergencySchedule() {
         EmergencyStartDialog EmergencySchedule = new EmergencyStartDialog(this, true, null);
         setLocationRelativeTo(this);
         EmergencySchedule.setVisible(true);
     }
-    
+
+    /**
+     * Opens the Timeplan Dialog
+     */
     private void openTimeSchedule() {
         Timeplan timePlan = new Timeplan();
         setLocationRelativeTo(this);

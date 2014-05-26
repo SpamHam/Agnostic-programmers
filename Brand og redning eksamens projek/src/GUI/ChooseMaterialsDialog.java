@@ -100,7 +100,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     }
     
     /**
-     * anonymos class that listens on the AddToChoosenMaterials & RemoveFromChosenMaterials
+     * anonymous class that listens on the AddToChoosenMaterials & RemoveFromChosenMaterials
      */
     private class BTNMoveActionListener implements ActionListener {
 
@@ -115,7 +115,7 @@ public class ChooseMaterialsDialog extends javax.swing.JDialog {
     }
 
     /**
-     * anonymos class that listens on the AddMaterials
+     * anonymous class that listens on the AddMaterials
      */
     private class BTNTilfoejActionListener implements ActionListener {
 

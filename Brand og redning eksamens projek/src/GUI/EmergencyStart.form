@@ -69,9 +69,6 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Start"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnStartActionPerformed"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblLastCall">
       <Properties>
@@ -96,9 +93,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Afslut en udrykning"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFinishACallActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>

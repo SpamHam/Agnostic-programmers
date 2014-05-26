@@ -220,6 +220,14 @@ public class CRUDMaterial extends javax.swing.JFrame {
         }
 
     }
+    
+        /**
+     * Opens the Administration Menu frame
+     */
+    private void openAdministrationMenu() {
+        AdminstrationMenu admin = new AdminstrationMenu();
+        admin.setVisible(true);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -356,11 +364,5 @@ public class CRUDMaterial extends javax.swing.JFrame {
     private javax.swing.JTextField txtMaterial;
     // End of variables declaration//GEN-END:variables
 
-    /**
-     * Opens the Administration Menu frame
-     */
-    private void openAdministrationMenu() {
-        AdminstrationMenu admin = new AdminstrationMenu();
-        admin.setVisible(true);
-    }
+
 }

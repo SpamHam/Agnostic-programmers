@@ -27,8 +27,8 @@ import javax.swing.JOptionPane;
  */
 public class CRUDVehicle extends javax.swing.JFrame {
 
-      private VehicleListener vehicleListener; // holds a reference to a class that implements VehicleListener
-   
+    private VehicleListener vehicleListener; // holds a reference to a class that implements VehicleListener
+
     CRUDVehicleTableModel vehicleTableModel;
     TableRowSorter<TableModel> sorter;
     ArrayList<BE.BEVehicle> allVehicle = new ArrayList<>();
@@ -40,42 +40,49 @@ public class CRUDVehicle extends javax.swing.JFrame {
      * Populates the allVehicle ArrayList
      */
     private void initVehicle() {
-         
+
         try {
             allVehicle = BLLvehicle.VehicleReadPerformed();
-          
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    private void initDALC(){
-            
+
+    /**
+     * Initializes DALCVehicle
+     */
+    private void initDALC() {
+
         try {
-              BLLvehicle = new BLLVehicle(new DALCVehicle());
-          } catch (SQLServerException ex) {
-              JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-          }
+            BLLvehicle = new BLLVehicle(new DALCVehicle());
+        } catch (SQLServerException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
-    private void initDALCTest(){    BLLvehicle = new BLLVehicle(new DALCVehicleTest());}
+
+    /**
+     * Initializes DALCTest
+     */
+    private void initDALCTest() {
+        BLLvehicle = new BLLVehicle(new DALCVehicleTest());
+    }
 
     /**
      * Creates new form CRUDVehicle
      */
     public CRUDVehicle() {
         initComponents();
-       //initDALC(); //Only one of these (initDALC/initDALCTest) should be uncommented
+        //initDALC(); //Only one of these (initDALC/initDALCTest) should be uncommented
         initDALCTest(); //Only one of these (initDALC/initDALCTest) should be uncommented
         setVehicleListener(BLLvehicle);
         initVehicle();
-        
- 
 
         vehicleTableModel = new CRUDVehicleTableModel(allVehicle);
         tblVehicle.setModel(vehicleTableModel);
         tblVehicle.setRowSorter(sorter);
         tblVehicle.getTableHeader().setReorderingAllowed(false);
-        
+
         /**
          * All ActionListeners are listed here
          */
@@ -87,7 +94,7 @@ public class CRUDVehicle extends javax.swing.JFrame {
         btnRemove.addActionListener(BTNRemove);
         ActionListener BTNBack = new BackListener();
         btnBack.addActionListener(BTNBack);
-        
+
         setTitle("Brandbils oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         btnUpdate.setEnabled(false);
@@ -121,13 +128,14 @@ public class CRUDVehicle extends javax.swing.JFrame {
             }
         });
     }
-    
-    
-          /**
-     * sets the vehicle listener to a class that implements the vehicleListener interface
-     * @param vehicleListener 
+
+    /**
+     * sets the vehicle listener to a class that implements the vehicleListener
+     * interface
+     *
+     * @param vehicleListener
      */
-      public void setVehicleListener(VehicleListener vehicleListener){
+    public void setVehicleListener(VehicleListener vehicleListener) {
         this.vehicleListener = vehicleListener;
     }
 
@@ -158,20 +166,21 @@ public class CRUDVehicle extends javax.swing.JFrame {
         }
 
     }
-    
-        /**
+
+    /**
      * fires the create event
-     * @param event 
+     *
+     * @param event
      */
-     public void fireCreateVehicleEvent(BEVehicle event){
-        if (vehicleListener != null){
-            try{
-              vehicleListener.VehicleCreatePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
+    public void fireCreateVehicleEvent(BEVehicle event) {
+        if (vehicleListener != null) {
+            try {
+                vehicleListener.VehicleCreatePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     /**
      * anonymous inner class listening on the Update button
@@ -180,8 +189,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        BEVehicle updateVehicle = new BEVehicle(lblRegistrationNr.getText(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
-            ); 
+            BEVehicle updateVehicle = new BEVehicle(lblRegistrationNr.getText(), txtBrand.getText(), txtModel.getText(), txtDescription.getText()
+            );
             fireUpdateVehicleEvent(updateVehicle);
             allVehicle.set(selectedRow, updateVehicle);
             vehicleTableModel.setVehicleList(allVehicle);
@@ -190,34 +199,36 @@ public class CRUDVehicle extends javax.swing.JFrame {
         }
 
     }
-    
-             /**
+
+    /**
      * fires the update event
-     * @param event 
+     *
+     * @param event
      */
-     public void fireUpdateVehicleEvent(BEVehicle event){
-        if (vehicleListener != null){
-            try{
-              vehicleListener.VehicleUpdatePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
-                   /**
+    public void fireUpdateVehicleEvent(BEVehicle event) {
+        if (vehicleListener != null) {
+            try {
+                vehicleListener.VehicleUpdatePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    /**
      * fires the remove event
-     * @param event 
+     *
+     * @param event
      */
-     public void fireRemoveVehicleEvent(BEVehicle event){
-        if (vehicleListener != null){
-            try{
-              vehicleListener.VehicleRemovePerformed(event);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
-    
+    public void fireRemoveVehicleEvent(BEVehicle event) {
+        if (vehicleListener != null) {
+            try {
+                vehicleListener.VehicleRemovePerformed(event);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
 
     /**
      * anonymous inner class listening on the Remove button
@@ -226,12 +237,12 @@ public class CRUDVehicle extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-           BEVehicle event = allVehicle.get(selectedRow);
+            BEVehicle event = allVehicle.get(selectedRow);
             fireRemoveVehicleEvent(event);
             initVehicle();
             vehicleTableModel.setVehicleList(allVehicle);
             vehicleTableModel.fireTableDataChanged();
-            
+
         }
 
     }

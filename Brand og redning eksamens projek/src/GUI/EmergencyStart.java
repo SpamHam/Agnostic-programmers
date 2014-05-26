@@ -6,6 +6,8 @@ package GUI;
 
 import Utility.DateConverter;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,35 +20,28 @@ import java.util.logging.Logger;
  * @author Kathrine
  */
 public class EmergencyStart extends javax.swing.JFrame {
-    
+
     ArrayList<String> Udrykningstider = new ArrayList<>();
-    
-   
- 
 
     /**
      * Creates new form EmergencyStart
      */
     public EmergencyStart() {
         initComponents();
-        
-        System.out.println(Udrykningstider.size());
         setTitle("Emergency Start");
         
+        //All ActionListeners are listed here
+        ActionListener BTNStart = new BTNStartListener();
+        btnStart.addActionListener(BTNStart);
+        ActionListener BTNFinishACall = new BTNFinishCallListener();
+        btnFinishACall.addActionListener(BTNFinishACall);
     }
-    
- 
-    
-    
-  
-    public String currentTime(){
-       
-         
-         return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
-        
+
+    public String currentTime() {
+        return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
     }
-    
-    private void AddTime(){
+
+    private void AddTime() {
         txtLastCall.setText(currentTime());
         //Udrykningstider.add(currentTime());
         try {
@@ -54,11 +49,32 @@ public class EmergencyStart extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println(Udrykningstider.size());
+
+    }
+
+    /**
+     * anonymous class listening on the Start Button
+     */
+    private class BTNStartListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        AddTime();  
+        }
         
     }
- 
+    
+    private class BTNFinishCallListener implements ActionListener {
 
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        EmergencyStartDialog start = new EmergencyStartDialog(null, true, Udrykningstider);
+        start.setVisible(true);
+        Udrykningstider.clear();
+        dispose();    
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -77,11 +93,6 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         btnStart.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         btnStart.setText("Start");
-        btnStart.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnStartActionPerformed(evt);
-            }
-        });
 
         lblLastCall.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         lblLastCall.setText("Sidste udrykning:");
@@ -91,11 +102,6 @@ public class EmergencyStart extends javax.swing.JFrame {
         txtLastCall.setBorder(null);
 
         btnFinishACall.setText("Afslut en udrykning");
-        btnFinishACall.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnFinishACallActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -132,22 +138,6 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-       AddTime();
-     
-      
-
-    }//GEN-LAST:event_btnStartActionPerformed
-
-    private void btnFinishACallActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinishACallActionPerformed
-        
-        EmergencyStartDialog start = new EmergencyStartDialog(this, true, Udrykningstider);
-        start.setVisible(true);
-        Udrykningstider.clear();
-        dispose();
-        
-    }//GEN-LAST:event_btnFinishACallActionPerformed
 
     /**
      * @param args the command line arguments

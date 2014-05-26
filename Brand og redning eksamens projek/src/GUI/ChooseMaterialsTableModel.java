@@ -21,28 +21,49 @@ private Class[] classes = {String.class, Integer.class};
 
 private ArrayList<BEMaterial> allSelectedMaterials;
 
+/**
+ * Sets the content of the table model to the given list of materialList.
+ * @param materialList 
+ */
     public ChooseMaterialsTableModel(ArrayList<BEMaterial> materialList) {
       allSelectedMaterials = materialList;
         fireTableDataChanged();
     }    
     
-
+/**
+ * Returns the number of rows
+ * @return allSelectedMaterials.size
+ */
         @Override
     public int getRowCount() {
         return allSelectedMaterials.size();
     }
 
+    /**
+     * Returns the number of columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the name of the columns
+     * @param col
+     * @return colNames[col]
+     */
     @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets which type of data is required for a column
+     * @param col
+     * @return classes
+     */
     @Override
     public Class<?> getColumnClass(int col) {
         return classes[col];

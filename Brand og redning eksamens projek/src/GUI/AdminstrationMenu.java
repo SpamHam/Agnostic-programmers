@@ -319,6 +319,9 @@ public class AdminstrationMenu extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Anonymous inner class listening on the MaterialsMenu Button
+     */
     private class MaterialsListener implements ActionListener {
 
         @Override

@@ -21,28 +21,49 @@ private Class[] classes = {String.class, String.class, String.class};
 
 private ArrayList<BEForces> allSelectedForces;
 
+/**
+ * Sets the table model based on forceList
+ * @param forceList 
+ */
     public ForcesTableModel(ArrayList<BEForces> forceList) {
       allSelectedForces = forceList;
         fireTableDataChanged();
     }    
     
-
+/**
+ * Returns the number of rows
+ * @return allSelectedForces.size()
+ */
         @Override
     public int getRowCount() {
         return allSelectedForces.size();
     }
 
+    /**
+     * Returns the numbers of columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames[col]
+     */
     @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets which type of data is required for a column
+     * @param col
+     * @return classes[col] 
+     */
     @Override
     public Class<?> getColumnClass(int col) {
         return classes[col];
@@ -52,7 +73,7 @@ private ArrayList<BEForces> allSelectedForces;
      * Sets wether the cell is edible or not
      * @param row
      * @param col
-     * @return 
+     * @return true/false
      */
     @Override
     public boolean isCellEditable(int row, int col) {

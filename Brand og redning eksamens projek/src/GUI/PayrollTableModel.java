@@ -22,16 +22,30 @@ public class PayrollTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    /**
+     * Returns the number of rows
+     * @return allSalary
+     */
     @Override
     public int getRowCount() {
         return allSalary.size();
     }
 
+    /**
+     * Returns the numbers of columns
+     * @return colNames
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the value of a specific row in a column
+     * @param rowIndex
+     * @param columnIndex
+     * @return e.getIndex
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         BE.BETableSalary e = allSalary.get(rowIndex);
@@ -66,17 +80,33 @@ public class PayrollTableModel extends AbstractTableModel {
         return false;
     }
 
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames
+     */
     @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets which type of data is required for a column
+     * @param col
+     * @return classes
+     */
     @Override
     public Class<?> getColumnClass(int col) {
         return classes[col];
     }
 
+    /**
+     * Returns wether a column is editable or not.
+     * @param row
+     * @param col
+     * @return true/false
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         switch (col) {
@@ -90,7 +120,7 @@ public class PayrollTableModel extends AbstractTableModel {
     }
 
     /**
-     * Sets the content of the table model to the given list of cars.
+     * Sets the content of the table model to the given list of salary.
      *
      * @param salaryList
      */
@@ -109,6 +139,12 @@ public class PayrollTableModel extends AbstractTableModel {
         return allSalary.get(row);
     }
 
+    /**
+     * Sets the value of a specific row in a column
+     * @param aValue
+     * @param rowIndex
+     * @param columnIndex 
+     */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         BE.BETableSalary row = allSalary.get(rowIndex);

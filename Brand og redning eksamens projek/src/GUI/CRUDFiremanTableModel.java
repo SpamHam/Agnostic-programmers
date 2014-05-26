@@ -28,22 +28,41 @@ public class CRUDFiremanTableModel extends AbstractTableModel {
 
     }
 
+    /**
+     * Returns the number of rows
+     * @return firemanList.size
+     */
     @Override
     public int getRowCount() {
         return firemanList.size();
     }
 
+    /**
+     * Returns the number of columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames[col]
+     */
     @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets wether a cell is editable or not
+     * @param row
+     * @param col
+     * @return false
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;

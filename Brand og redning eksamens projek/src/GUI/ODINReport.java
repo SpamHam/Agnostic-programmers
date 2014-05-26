@@ -28,7 +28,7 @@ import javax.swing.table.TableRowSorter;
 public class ODINReport extends javax.swing.JFrame {
 
     ChooseMaterialsTableModel materialModel;
-    ForcesTableModel forcesTableModel; 
+    ForcesTableModel forcesTableModel;
     ArrayList<BEMaterial> allMaterials = new ArrayList<>();
     ArrayList<String> materialColNames = new ArrayList<>();
     ArrayList<String> forcesColNames = new ArrayList<>();
@@ -54,88 +54,111 @@ public class ODINReport extends javax.swing.JFrame {
         forcesTableModel = new ForcesTableModel(allforces);
         tblForces.setModel(forcesTableModel);
         tblForces.getTableHeader().setReorderingAllowed(false);
-        
+
         setTitle("ODIN Report");
         this.setVisible(true);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         ShowForces();
         ShowWounded();
-        //sets the ActionListener for the button "save" and addForces
+
+        //All ActionListeners are listed here
         ActionListener BTNPDFOdinListener = new BTNPDFOdinActionListener();
         btnSave.addActionListener(BTNPDFOdinListener);
         ActionListener BTNAddForces = new BTNAddForcesActionListener();
         btnAddForces.addActionListener(BTNAddForces);
         ActionListener BTNAddMaterial = new BTNAddMaterialActionListener();
         btnAddMaterial.addActionListener(BTNAddMaterial);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        ActionListener BTNBack = new BTNBackListener();
+        btnBack.addActionListener(BTNBack);
+        ActionListener chkBOXWounded = new chkBoxWoundedListener();
+        chkBoxWounded.addActionListener(chkBOXWounded);
+        ActionListener chkBOXForces = new chkBoxForcesListener();
+        chkBoxForces.addActionListener(chkBOXForces);
 
     }
 
     /**
-     * sets the PDf listener to a class that implements the PDFListener interface
-     * @param PDFListener 
+     * sets the PDf listener to a class that implements the PDFListener
+     * interface
+     *
+     * @param PDFListener
      */
-      public void setPDFListener(PDFListener PDFListener){
+    public void setPDFListener(PDFListener PDFListener) {
         this.PDFListener = PDFListener;
     }
-    
-    
+
     /**
-     * anonymous inner class listening on the create pdf button
+     * anonymous inner class listening on the create PDF button
      */
-     private class BTNPDFOdinActionListener implements ActionListener {
-     @Override
+    private class BTNPDFOdinActionListener implements ActionListener {
+
+        @Override
         public void actionPerformed(ActionEvent e) {
-               getOdinData();
-        firePDFEvent(new FormatEventPDF(allMaterials,materialColNames,allforces, forcesColNames,date,
-                        received,fireNr,evaNr,message,name,address,leader,teamLeader,weekday));
+            getOdinData();
+            firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
+                    received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday));
         }
     }
-     
+
     /**
-     * anonymous inner class listening on the create pdf button
+     * anonymous inner class listening on the create PDF button
      */
-     private class BTNAddForcesActionListener implements ActionListener {
-     @Override
+    private class BTNAddForcesActionListener implements ActionListener {
+
+        @Override
         public void actionPerformed(ActionEvent e) {
-           BEForces emptyLine = new BEForces("", "", ""); //makes a empty row for the table 
-           allforces.add(emptyLine);
-           forcesTableModel.setForcesList(allforces);
+            BEForces emptyLine = new BEForces("", "", ""); //makes a empty row for the table 
+            allforces.add(emptyLine);
+            forcesTableModel.setForcesList(allforces);
         }
     }
-    /**
-     * 
-     * @param event 
-     */
-     public void firePDFEvent(FormatEventPDF event){
-        if (PDFListener != null){
-            try{
-              PDFListener.PDFOdinPerformed(event);
-             JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-             } catch(EventExercutionException eex){
-             JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-             }
-          }
-     }
+
+    private class BTNBackListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+        dispose();
+        Timeplan timePlanFrame = new Timeplan();
+        timePlanFrame.setLocationRelativeTo(null);
+        timePlanFrame.setVisible(true);
+        }
         
-       /**
-        * 
-        * @param t 
-        */ 
-        public void setTime(String t){
-            currentTime = t;
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String dato = currentTime.substring(8, 18);
-            String tid = currentTime.substring(19);
+    }
+    
+    /**
+     * Fires the event to the BLL
+     *
+     * @param event
+     */
+    public void firePDFEvent(FormatEventPDF event) {
+        if (PDFListener != null) {
+            try {
+                PDFListener.PDFOdinPerformed(event);
+                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
+            } catch (EventExercutionException eex) {
+                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    /**
+     * Sets the time and date in the txtRecieved field & the dcDate field
+     *
+     * @param t
+     */
+    public void setTime(String t) {
+        currentTime = t;
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String dato = currentTime.substring(8, 18);
+        String tid = currentTime.substring(19);
         try {
             Date date = formatter.parse(dato);
-          txtRecived.setText(tid);
-          dcDate.setDate(date);
+            txtRecived.setText(tid);
+            dcDate.setDate(date);
         } catch (ParseException ex) {
-           
-            
-        }                   
-  }
-   
+
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -200,12 +223,6 @@ public class ODINReport extends javax.swing.JFrame {
 
         lblRecived.setText("Alarm Modtaget:");
 
-        txtRecived.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRecivedActionPerformed(evt);
-            }
-        });
-
         lblWeekday.setText("Uge Dag:");
 
         lblFiretNr.setText("Brand Report Nr:");
@@ -215,11 +232,6 @@ public class ODINReport extends javax.swing.JFrame {
         lblMessage.setText("Melding:");
 
         chkBoxWounded.setText("Skadeslidte");
-        chkBoxWounded.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxWoundedActionPerformed(evt);
-            }
-        });
 
         lblName.setText("Navn:");
 
@@ -231,18 +243,8 @@ public class ODINReport extends javax.swing.JFrame {
         lblMaterialUsed.setText("Materialer Brugt:");
 
         btnBack.setText("Tilbage");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
 
         chkBoxForces.setText("Indsatte Styrker:");
-        chkBoxForces.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkBoxForcesActionPerformed(evt);
-            }
-        });
 
         tblMaterial.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -411,90 +413,105 @@ public class ODINReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtRecivedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRecivedActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRecivedActionPerformed
-/**
- * 
- */
-    private void getOdinData(){
-    getMaterialColNames();
-    getForcesColNames();
-    evaNr = txtEvaNr.getText();
-    fireNr = txtFireNr.getText();
-    received = txtRecived.getText();
-    date = ((JTextField) dcDate.getDateEditor().getUiComponent()).getText();
-    message = txtMessage.getText();
-    name = txtName.getText();
-    address = txtAddress.getText();
-    teamLeader = txtTeamLeader.getText();
-    leader = txtLeader.getText();
-    weekday = txtWeekday.getText();
-    }
-   /**
-    * 
-    */ 
-  private void getMaterialColNames(){
-     materialColNames = new ArrayList<>();
-     for(int i=0; i<materialModel.getColumnCount(); i++){
-        materialColNames.add(materialModel.getColumnName(i));
-       }
-     }
-  
-  private void getForcesColNames(){
-  for (int i=0; i<forcesTableModel.getColumnCount(); i++){
-      forcesColNames.add(forcesTableModel.getColumnName(i));
-    }
-  }
-  
     /**
-     * anonymous inner class listening on the add material button
+     *
      */
-     private class BTNAddMaterialActionListener implements ActionListener {
+
+    /**
+     * Is used for creating a PDF. Stores all the data from the different
+     * fields.
+     */
+    private void getOdinData() {
+        getMaterialColNames();
+        getForcesColNames();
+        evaNr = txtEvaNr.getText();
+        fireNr = txtFireNr.getText();
+        received = txtRecived.getText();
+        date = ((JTextField) dcDate.getDateEditor().getUiComponent()).getText();
+        message = txtMessage.getText();
+        name = txtName.getText();
+        address = txtAddress.getText();
+        teamLeader = txtTeamLeader.getText();
+        leader = txtLeader.getText();
+        weekday = txtWeekday.getText();
+    }
+
+    /**
+     * Retrieves the name of the column for materials. Is needed to create a
+     * PDF.
+     */
+    private void getMaterialColNames() {
+        materialColNames = new ArrayList<>();
+        for (int i = 0; i < materialModel.getColumnCount(); i++) {
+            materialColNames.add(materialModel.getColumnName(i));
+        }
+    }
+
+    /**
+     * Retrieves the name of the columns for forces. Is needed to create a PDF.
+     */
+    private void getForcesColNames() {
+        for (int i = 0; i < forcesTableModel.getColumnCount(); i++) {
+            forcesColNames.add(forcesTableModel.getColumnName(i));
+        }
+    }
+
+    /**
+     * anonymous inner class listening on the chkboxWounded
+     */
+    private class chkBoxWoundedListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(null, true);
-        materialsDialog.setLocationRelativeTo(null);
-        materialsDialog.setVisible(true);
-
-        // continue here when the dialog box is closed (disposed).
-        ArrayList<BEMaterial> mat = materialsDialog.getValgteMaterials();
-        //System.out.println(mat.get(0).getMaterial());
-        if (mat != null) // a material has been created in the dialog box.
-        {
-            if (!allMaterials.isEmpty()) {
-                for (int i = 0; i < mat.size(); i++) {
-                    allMaterials.add(mat.get(i));
-                }
-            } else {
-                allMaterials = mat;
-            }
-            tblMaterial.setModel(materialModel);
-            tblMaterial.setRowSorter(sorter);
-            tblMaterial.getTableHeader().setReorderingAllowed(false);
-                
-            materialModel.setMaterialsStatusList(allMaterials);
-        }   
+            ShowWounded();
         }
-     
-     }  
-    
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        dispose();
-        Timeplan timePlanFrame = new Timeplan();
-        timePlanFrame.setLocationRelativeTo(this);
-        timePlanFrame.setVisible(true);
-    }//GEN-LAST:event_btnBackActionPerformed
 
-    private void chkBoxForcesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxForcesActionPerformed
-        ShowForces();
-    }//GEN-LAST:event_chkBoxForcesActionPerformed
+    }
 
-    private void chkBoxWoundedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBoxWoundedActionPerformed
-        ShowWounded();
-    }//GEN-LAST:event_chkBoxWoundedActionPerformed
+    /**
+     * anonymous inner class listening on the chkboxForces
+     */
+    private class chkBoxForcesListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ShowForces();
+        }
+
+    }
+
+    /**
+     * anonymous inner class listening on the add material button
+     */
+    private class BTNAddMaterialActionListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            ChooseMaterialsDialog materialsDialog = new ChooseMaterialsDialog(null, true);
+            materialsDialog.setLocationRelativeTo(null);
+            materialsDialog.setVisible(true);
+
+            // continue here when the dialog box is closed (disposed).
+            ArrayList<BEMaterial> mat = materialsDialog.getValgteMaterials();
+            //System.out.println(mat.get(0).getMaterial());
+            if (mat != null) // a material has been created in the dialog box.
+            {
+                if (!allMaterials.isEmpty()) {
+                    for (int i = 0; i < mat.size(); i++) {
+                        allMaterials.add(mat.get(i));
+                    }
+                } else {
+                    allMaterials = mat;
+                }
+                tblMaterial.setModel(materialModel);
+                tblMaterial.setRowSorter(sorter);
+                tblMaterial.getTableHeader().setReorderingAllowed(false);
+
+                materialModel.setMaterialsStatusList(allMaterials);
+            }
+        }
+
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

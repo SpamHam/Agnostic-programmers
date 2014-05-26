@@ -22,32 +22,62 @@ public class ODINReportTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
 
+    /**
+     * Returns the number of rows
+     * @return ODINreport.size()
+     */
     @Override
     public int getRowCount() {
         return ODINreport.size();
     }
 
+    /**
+     * Returns the numbers of columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the value of a specific row in a column
+     * @param rowIndex
+     * @param columnIndex
+     * @return 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames
+     */
         @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets which type of data is required for a column
+     * @param col
+     * @return classes
+     */
     @Override
     public Class<?> getColumnClass(int col) {
         return classes[col];
     }
 
+    /**
+     * Returns wether a column is editable or not.
+     * @param row
+     * @param col
+     * @return false
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         return false;
@@ -57,17 +87,7 @@ public class ODINReportTableModel extends AbstractTableModel{
      *
      * @param ODINList
      */
-    public void setCarList(ArrayList<?> ODINList) {
+    public void setODINList(ArrayList<?> ODINList) {
        ODINreport = ODINList;
     }
-
-    /**
-     * Return the employee instance from the table model with the given row
-     * index.
-     *
-     * @param row the index for the employee in the employees list.
-     * @return the employee at the given row index.
-     */
-    //public ? getSongByRow(int row) {
-     //   return rentalAgreements.get(row);
-    }
+}

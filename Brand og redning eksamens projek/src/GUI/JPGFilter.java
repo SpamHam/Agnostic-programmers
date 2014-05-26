@@ -11,6 +11,8 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author Kathrine
  */
+
+//LIDT JAVA DOC HER VILLE IKKE SKADE :D
 public class JPGFilter extends FileFilter implements java.io.FileFilter {
 
     @Override
@@ -22,6 +24,7 @@ public class JPGFilter extends FileFilter implements java.io.FileFilter {
    return false;
   } }
 
+    // SØRG FOR AT SÆTTE JAVA DOC HER PLEASE :D
     @Override
     public String getDescription() {
    return "JPG files";}

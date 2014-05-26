@@ -29,27 +29,51 @@ public class TimePlanTableModel extends AbstractTableModel {
         fireTableDataChanged();
     }
 
+    /**
+     * Returns the number of rows
+     * @return timePlan.size()
+     */
     @Override
     public int getRowCount() {
         return timePlan.size();
     }
 
+    /**
+     * Returns the numbers of columns
+     * @return colNames.length
+     */
     @Override
     public int getColumnCount() {
         return colNames.length;
     }
 
+    /**
+     * Returns the names of the columns
+     * @param col
+     * @return colNames
+     */
     @Override
     public String getColumnName(int col) {
 
         return colNames[col];
     }
 
+    /**
+     * Sets which type of data is required for a column
+     * @param col
+     * @return classes
+     */
     @Override
     public Class<BETimePlan> getColumnClass(int col) {
         return classes[col];
     }
 
+    /**
+     * Returns wether a column is editable or not.
+     * @param row
+     * @param col
+     * @return true/false
+     */
     @Override
     public boolean isCellEditable(int row, int col) {
         switch (col) {
@@ -71,9 +95,8 @@ public class TimePlanTableModel extends AbstractTableModel {
     }
 
     /**
-     * Sets the content of the table model to the given list of cars.
-     *
-     * @param carList the list of employees to show in the JTable.
+     * Sets the content of the table model to the given list of times.
+     * @param timeList 
      */
     public void setTimePlanStatusList(ArrayList<BETimePlan> timeList) {
         timePlan = timeList;
@@ -91,6 +114,12 @@ public class TimePlanTableModel extends AbstractTableModel {
         return timePlan.get(row);
     }
 
+    /**
+     * Returns the value of a specific row in a column
+     * @param rowIndex
+     * @param columnIndex
+     * @return e.<Time / Hours / StationHours / Vehicle / Null> 
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         BETimePlan e = timePlan.get(rowIndex);
@@ -118,6 +147,12 @@ public class TimePlanTableModel extends AbstractTableModel {
         return null;
     }
 
+    /**
+     * Sets the value of a specific row in a column
+     * @param aValue
+     * @param rowIndex
+     * @param columnIndex 
+     */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         BETimePlan row = timePlan.get(rowIndex);
