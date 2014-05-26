@@ -90,8 +90,11 @@ public class DALCSalary {
         String sql = "insert into WorkReport values (?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getDate());
+        System.out.println("1");
         ps.setInt(2, e.getTypeOfWork());
+        System.out.println("2");
         ps.setBoolean(3, e.isIsHoliday());
+        System.out.println("3");
         ps.executeUpdate();
         System.out.println("Am i Here ");
     }
