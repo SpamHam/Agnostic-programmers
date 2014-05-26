@@ -107,10 +107,10 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
     }
 
     /**
-     * Possiby not used for anything. Not sure!?
+     * Returns a fireman from a specific ID
      *
      * @param ID
-     * @return
+     * @return f
      * @throws Exception
      */
     public BEFireman FiremanFromID(int ID) throws Exception {
@@ -163,6 +163,10 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    /**
+     * Calls the Create function from DALCFireman and check wether any of the textfields are left empty
+     * @param event 
+     */
     @Override
     public void FiremanCreatePerformed(BEFireman event) {
         if (event.getFirstName().isEmpty() || event.getLastName().isEmpty() || event.getAddress().isEmpty()
@@ -178,6 +182,10 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
         }
     }
 
+    /**
+     * Calls the Remove function from DALCFireman
+     * @param event 
+     */
     @Override
     public void FiremanRemovePerformed(BEFireman event) {
         try {
@@ -189,7 +197,10 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
         
 
  
-
+/**
+ * Calls the Update function from DALCFireman
+ * @param event 
+ */
     @Override
     public void FiremanUpdatePerformed(BEFireman event) {
         try {

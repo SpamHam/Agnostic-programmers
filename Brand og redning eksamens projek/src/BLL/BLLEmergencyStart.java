@@ -27,7 +27,11 @@ public class BLLEmergencyStart {
     ArrayList<String> res = new ArrayList<>();
     
     
-    
+    /**
+     * Instantiates BLLEmergencyStart
+     * @return
+     * @throws SQLServerException 
+     */
     public static BLLEmergencyStart getInstance() throws SQLServerException{
        if (m_instance == null) {
             m_instance = new BLLEmergencyStart();
@@ -35,11 +39,21 @@ public class BLLEmergencyStart {
         return m_instance;  
     }
     
+    /**
+     * Instantiates the ErrorHandler and DALCEmergencyStart
+     * @throws SQLServerException 
+     */
     private BLLEmergencyStart() throws SQLServerException{
         Error = ErrorHandler.getInstance();
         DALCeStart = DALCEmergencyStart.getInstance();
     }
     
+    /**
+     * Calls the function Create from DALCEmergencyStart
+     * @param timeStamp
+     * @param time
+     * @throws Exception 
+     */
     public void Create(ArrayList<String> timeStamp, String time) throws Exception{
 //        if(timeStamp.isEmpty()){
 //            Error.NotEnougthInfo("creating timestamp");
@@ -49,19 +63,29 @@ public class BLLEmergencyStart {
         
     }
     
-    
+    /**
+     * Calls the read function from DALCEmergencyStart and populates the ArrayList res
+     * @return res
+     * @throws Exception 
+     */
     public ArrayList<String> getAll() throws Exception{
         ArrayList<String> res = new ArrayList<>();
         res = DALCeStart.getInstance().read();
         return  res;
     }
     
+    /**
+     * Calls the Delete function from DALCEmergencyStart
+     * @param time
+     * @throws SQLException 
+     */
     public void remove(String time) throws SQLException{
        DALCeStart.Delete(time);
     }
     
+    // Jacob hvad skal denne funktion gøre?? Refactor name og skriv lige javadoc til tak :D
     public ArrayList<String> test() throws SQLException{
-
+   
     
     startTider.clear();
     startTider = DALCeStart.getInstance().read();
@@ -129,6 +153,11 @@ public class BLLEmergencyStart {
         
     }
     
+    /**
+     * A function that checks wether a month is equal / unequal
+     * @param time
+     * @return 
+     */
     private boolean checkForEvenOrAudMonth(String time){
      
         int currentMonth = Integer.parseInt(time);
@@ -141,13 +170,22 @@ public class BLLEmergencyStart {
            
         }
     
+    /**
+     * Calls the remove function from BLLEmergencyStart
+     * @param time 
+     */
     private void removeTime(String time){
         try {
             BLL.BLLEmergencyStart.getInstance().remove(time);
         } catch (SQLException ex) {
             Logger.getLogger(EmergencyStartDialog.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+     
+   /**
+    * Returns the final date of even months
+    * @param a
+    * @return currentRemoveDay
+    */     
     }
         private int evenMonth(String a){
         int currentRemoveDay = Integer.parseInt(a);
@@ -168,6 +206,11 @@ public class BLLEmergencyStart {
             
         }
         
+        /**
+         * Returns the final date on an odd Month
+         * @param a
+         * @return currentRemoveDay
+         */
         private int AudMonth(String a){
         int currentRemoveDay = Integer.parseInt(a);
             switch(currentRemoveDay){
@@ -185,7 +228,11 @@ public class BLLEmergencyStart {
         return currentRemoveDay;
         }
         
-        
+        /**
+         * Returns the final date of February on leap year
+         * @param a
+         * @return currentRemoveDay
+         */
        private int februarMonth(String a){
        int currentRemoveDay = Integer.parseInt(a);
        if(skudÅr() == false){
@@ -217,6 +264,10 @@ public class BLLEmergencyStart {
         return currentRemoveDay;
         }
        
+       /**
+        * Checks if it is leap year or not
+        * @return 
+        */
               private boolean skudÅr(){
            int year = Integer.parseInt(DateConverter.getDate(DateConverter.YEAR));
            boolean skudår = false;
