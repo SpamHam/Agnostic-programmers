@@ -6,6 +6,7 @@
 package BLL;
 
 import GUI.PDFListener;
+import Utility.DateConverter;
 import Utility.Error.EventExercutionException;
 import Utility.Event.FormatEventPDF;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
@@ -182,6 +183,7 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
+        
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
         for (BE.BETimePlan c : event.getTime()) {
@@ -195,7 +197,7 @@ public class BLLPayroll implements PDFListener {
             if (f.isLeaderTrained()) {
                 holdleder = "Holdleder";
             }
-            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
+            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
             salary.add(s);
         }
         if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
