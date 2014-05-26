@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author peter bærbar
  */
-public class BLLFireman implements CRUDFiremanListener, PDFListener {
+public class BLLFireman implements CRUDFiremanListener {
 
     private DALC.DALCFireman DALCFireman;
     private final Utility.Error.ErrorHandler Error;
@@ -123,49 +123,11 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
         return null;
     }
 
-    @Override
-    public void PDFTimePlanPerformed(FormatEventPDF event) {
-//        ArrayList<BE.BESalary> salary = new ArrayList<>();
-//        System.out.println("Rigtig registreret 1");
-//        for (BE.BETimePlan c : event.getTime()) {
-//            BE.BEFireman f;
-//            try {
-//                f = FiremanFromID(c.getFiremanID());
-//            } catch (Exception ex) {
-//                throw new EventExercutionException(ex.getMessage());
-//            }
-//            String holdleder = "Brandmand";
-//            if (f.isLeaderTrained()) {
-//                holdleder = "Holdleder";
-//            }
-//            System.out.println(f.getID());
-//            System.out.println(f.getPaymentNr());
-//            System.out.println(c.getHours());
-//            System.out.println(event.getType());
-//            System.out.println(event.getSelectedType());
-//            BE.BESalary s = new BE.BESalary(0,0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), new Date().toString(), event.getSelectedType(), false);
-//            salary.add(s);
-//        }
-//        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
-//                || event.getType().equalsIgnoreCase("stand-by")) {
-//            System.out.println("Rigtig registreret");
-//            try {
-//                BLL.BLLPayroll.getInstance().CreateWorkReport(salary.get(0));
-//                BLL.BLLPayroll.getInstance().CreateSalaryReport(salary);
-//            } catch (Exception ex) {
-//                throw new EventExercutionException(ex.getMessage());
-//            }
-//        }
-    }
-
-    @Override
-    public void PDFOdinPerformed(FormatEventPDF event) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
-     * Calls the Create function from DALCFireman and check wether any of the textfields are left empty
-     * @param event 
+     * Calls the Create function from DALCFireman and check wether any of the
+     * textfields are left empty
+     *
+     * @param event
      */
     @Override
     public void FiremanCreatePerformed(BEFireman event) {
@@ -184,7 +146,8 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
 
     /**
      * Calls the Remove function from DALCFireman
-     * @param event 
+     *
+     * @param event
      */
     @Override
     public void FiremanRemovePerformed(BEFireman event) {
@@ -194,13 +157,12 @@ public class BLLFireman implements CRUDFiremanListener, PDFListener {
             throw new EventExercutionException("<html>Kunne ikke slette brandmand.<br>Hvis manden stadig har ubetalte timer skal de printes til pdf først.<br>Tjek om du har forbindelse til nettet eller databasen.");
         }
     }
-        
 
- 
-/**
- * Calls the Update function from DALCFireman
- * @param event 
- */
+    /**
+     * Calls the Update function from DALCFireman
+     *
+     * @param event
+     */
     @Override
     public void FiremanUpdatePerformed(BEFireman event) {
         try {

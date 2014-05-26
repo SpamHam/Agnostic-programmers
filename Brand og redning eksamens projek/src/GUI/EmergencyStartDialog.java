@@ -59,7 +59,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
     private void iniTimeStamps() {
         try {
 
-            startTider = BLL.BLLEmergencyStart.getInstance().test();
+            startTider = BLL.BLLEmergencyStart.getInstance().RemoveOldDates();
             for (String i : nyeTider) {
                 System.out.println(i + " nye tider");
                 startTider.add(i);
