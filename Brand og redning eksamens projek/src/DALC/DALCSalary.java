@@ -88,7 +88,7 @@ public class DALCSalary {
      */
     public int WorkReport(BE.BESalary e) throws SQLException {
         String sql = "insert into WorkReport values (?,?,?) "
-                + "select * SCOPE_IDENTITY()"; //from WorkReport where WorkReport.Date = ? and WorkReport.TypeOfWork = ? ";
+                + "select SCOPE_IDENTITY()"; //from WorkReport where WorkReport.Date = ? and WorkReport.TypeOfWork = ? ";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getDate());
         ps.setInt(2, e.getTypeOfWork());
