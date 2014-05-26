@@ -21,7 +21,7 @@ public class BLLTimePlan {
     /**
      * Singleton
      *
-     * @return
+     * @return m_instance;
      * @throws SQLServerException
      */
     public static BLLTimePlan getInstance() throws Exception {
@@ -32,7 +32,7 @@ public class BLLTimePlan {
     }
 
     /**
-     *
+     * Instantiates the ErrorHandler and the DALCSalary
      * @throws Exception
      */
     private BLLTimePlan() throws Exception {
@@ -45,16 +45,16 @@ public class BLLTimePlan {
     }
 
     /**
-     *
+     * Returns the Type of Work
      * @param role
-     * @return
+     * @return TypeOfWork
      */
     public String getTypeOfWorkFromInt(int role) {
         return TypeOfWork[role - 1];
     }
 
     /**
-     *
+     * Returns the Type of Work from the TypeOfWork String
      * @param TypeOfWork
      * @return
      */

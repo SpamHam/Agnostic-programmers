@@ -16,6 +16,12 @@ public class BETableSalary {
     private String Navn, SalaryNumber;
     private double[] Index;
 
+    /**
+     * Constructor used for converting BESalary to fit in the right table column
+     * @param Navn String
+     * @param SalaryNumber String
+     * @param Index double Array
+     */
     public BETableSalary(String Navn, String SalaryNumber, double[] Index) {
         this.Navn = Navn;
         this.SalaryNumber = SalaryNumber;

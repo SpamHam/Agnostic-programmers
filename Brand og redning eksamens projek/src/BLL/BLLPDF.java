@@ -22,6 +22,10 @@ import java.io.FileNotFoundException;
 public class BLLPDF implements PDFListener  {
     PDFCreator pdfGen;
     
+    /**
+     * Creates a PDF from Timeplan. Checks if the type of call needs a ODIN Report or not
+     * @param event 
+     */
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
         pdfGen = new PDFCreator(event.getTime(),event.getTimeColNames(), event.getType());
@@ -39,6 +43,10 @@ public class BLLPDF implements PDFListener  {
         }
    }
 
+    /**
+     * Creates a PDF from the information typed in the ODIN Report
+     * @param event 
+     */
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
      pdfGen = new PDFCreator(event.getMaterial(), event.getMatrialeColNames(), event.getForces(), event.getForcesColNames(), 

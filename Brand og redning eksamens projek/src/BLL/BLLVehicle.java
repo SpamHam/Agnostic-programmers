@@ -31,7 +31,11 @@ public class BLLVehicle implements VehicleListener{
     }
     
 
-
+/**
+ * A function that calls the create function from the DALCVehicle. If any text field except Description is empty
+ * the user will be prompted with an error message
+ * @param event 
+ */
     @Override
     public void VehicleCreatePerformed(BEVehicle event) {
             if (event.getM_registrationNr().isEmpty() || event.getM_brand().isEmpty() || event.getM_model().isEmpty()) {
@@ -45,6 +49,10 @@ public class BLLVehicle implements VehicleListener{
         }
     }
 
+    /**
+     * A function that calls the Remove function from DALCVehicle.
+     * @param event 
+     */
     @Override
     public void VehicleRemovePerformed(BEVehicle event) {
             try {
@@ -55,6 +63,10 @@ public class BLLVehicle implements VehicleListener{
             }
         }
 
+    /**
+     * A function that calls the Update function from DALCVehicle.
+     * @param event 
+     */
     @Override
     public void VehicleUpdatePerformed(BEVehicle event) {
         if (event.getM_registrationNr().isEmpty() || event.getM_brand().isEmpty() || event.getM_model().isEmpty()) {
@@ -68,6 +80,10 @@ public class BLLVehicle implements VehicleListener{
         }
     }
 
+    /**
+     * A function that calls the Read function from DALCVehicle.
+     * @return 
+     */
     @Override
     public ArrayList<BEVehicle> VehicleReadPerformed() {
         try {
