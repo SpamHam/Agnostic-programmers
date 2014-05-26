@@ -69,9 +69,13 @@ public class BLLPayroll implements PDFListener {
      * @param b
      * @throws Exception
      */
-    public void CreateWorkReport(BE.BESalary b) throws Exception {
+    public void CreateWorkReport(ArrayList<BE.BESalary> b) throws Exception {
         try {
-            DALCSalary.getInstance().WorkReport(b);
+            int ID = DALCSalary.getInstance().WorkReport(b.get(0));
+            System.out.println(ID);
+            for(BE.BESalary c: b){
+                
+            }
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
         }
@@ -197,15 +201,14 @@ public class BLLPayroll implements PDFListener {
             if (f.isLeaderTrained()) {
                 holdleder = "Holdleder";
             }
-            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
+            BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS) , event.getSelectedType(), false);
             salary.add(s);
         }
         if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
                 || event.getType().equalsIgnoreCase("stand-by")) {
             System.out.println("Rigtig registreret");
             try {
-                CreateWorkReport(salary.get(0));
-                CreateSalaryReport(salary);
+                CreateWorkReport(salary);
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }
