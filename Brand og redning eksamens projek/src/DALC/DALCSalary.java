@@ -76,7 +76,7 @@ public class DALCSalary {
         ps.setInt(1, e.getODIN());
         ps.setString(2, e.getDate());
         ps.setInt(3, e.getTypeOfWork());
-        ps.setBoolean(4, e.isIsHoliday());
+        ps.setBoolean(4, e.getIsHoliday());
         ps.executeUpdate();
     }
 
@@ -93,7 +93,7 @@ public class DALCSalary {
         System.out.println("1");
         ps.setInt(2, e.getTypeOfWork());
         System.out.println("2");
-        ps.setBoolean(3, e.isIsHoliday());
+        ps.setBoolean(3, e.getIsHoliday());
         System.out.println("3");
         ps.executeUpdate();
         System.out.println("Am i Here ");
