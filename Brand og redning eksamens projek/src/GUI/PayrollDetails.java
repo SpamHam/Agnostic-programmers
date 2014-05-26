@@ -10,7 +10,6 @@ import BLL.BLLPayroll;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-import javax.swing.text.JTextComponent;
 
 /**
  *
@@ -60,7 +59,11 @@ public class PayrollDetails extends javax.swing.JDialog {
     private void filldata() {
         try {
             BLLFireman g = new BLLFireman();
-            txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
+            if (allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN() != 0) {
+                txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
+            } else {
+                txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getWORK()));
+            }
             BE.BEFireman f = g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
             txtFiremanName.setText(f.getFirstName() + " " + f.getLastName());
             txtRole.setText(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getRole());
@@ -257,7 +260,11 @@ public class PayrollDetails extends javax.swing.JDialog {
         for (BE.BESalary s : p.getAll()) {
             if (SalaryNumber.equalsIgnoreCase(s.getSalaryCode().trim())) {
                 allSalarys.add(s);
-                salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
+                if (s.getODIN() != 0) {
+                    salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
+                } else {
+                    salaryListModel.addElement(s.getWORK() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
+                }
             }
         }
     }

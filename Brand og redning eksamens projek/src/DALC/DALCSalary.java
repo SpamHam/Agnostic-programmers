@@ -78,7 +78,6 @@ public class DALCSalary {
         ps.setInt(3, e.getTypeOfWork());
         ps.setBoolean(4, e.isIsHoliday());
         ps.executeUpdate();
-
     }
 
     /**
@@ -88,15 +87,13 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void WorkReport(BE.BESalary e) throws SQLException {
-        System.out.println("Am i Here ");
-        String sql = "insert into WorkReport values (?,?,?,?)";
+        String sql = "insert into WorkReport values (?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setInt(1, e.getWORK());
-        ps.setString(2, e.getDate());
-        ps.setInt(3, e.getTypeOfWork());
-        ps.setBoolean(4, e.isIsHoliday());
+        ps.setString(1, e.getDate());
+        ps.setInt(2, e.getTypeOfWork());
+        ps.setBoolean(3, e.isIsHoliday());
         ps.executeUpdate();
-
+        System.out.println("Am i Here ");
     }
 
     /**
@@ -125,7 +122,7 @@ public class DALCSalary {
             int TypeOfWork = result.getInt("TypeOfWork");
             boolean isHoliday = result.getBoolean("isHoliday");
 
-            BE.BESalary c = new BE.BESalary(WORK, ODIN, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+            BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
             res.add(c);
         }
         return res;
