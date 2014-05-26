@@ -87,11 +87,13 @@ public class DALCSalary {
      * @throws SQLException
      */
     public int WorkReport(BE.BESalary e) throws SQLException {
-        String sql = "insert into WorkReport values (?,?,?) select * from WorkReport where Date = ? and TypeOfWork = ? ";
+        String sql = "insert into WorkReport values (?,?,?) select * from WorkReport where WorkReport.Date = ? and WorkReport.TypeOfWork = ? ";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getDate());
         ps.setInt(2, e.getTypeOfWork());
         ps.setBoolean(3, e.getIsHoliday());
+        ps.setString(4, e.getDate());
+        ps.setInt(5, e.getTypeOfWork());
         ps.executeUpdate();
         return ps.getResultSet().getInt("Worknr");
     }
@@ -127,7 +129,7 @@ public class DALCSalary {
         }
         return res;
     }
-    
+
     /**
      * Removes an specific row from MonthlySalary table.
      *
