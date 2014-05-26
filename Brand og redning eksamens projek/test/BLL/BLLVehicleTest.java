@@ -8,7 +8,6 @@ package BLL;
 
 import BE.BEVehicle;
 import DALC.DALCVehicleTest;
-import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -21,10 +20,8 @@ import static org.junit.Assert.*;
  * @author peter bærbar
  */
 public class BLLVehicleTest {
-   // BLLVehicle m_bllVehicle;
     
-    public BLLVehicleTest() {
-   //  m_bllVehicle = new BLLVehicle(new DALCVehicleTest());   
+    public BLLVehicleTest() { 
     }
     
     @BeforeClass
