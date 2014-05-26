@@ -54,7 +54,7 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void Create(BE.BEFireman e) throws SQLException {
-        String sql = "insert into Fireman values (?,?,?,?,?,?,?,?)";
+        String sql = "insert into Fireman values (?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, e.getFirstName());
         ps.setString(2, e.getLastName());
@@ -64,6 +64,7 @@ public class DALCFireman {
         ps.setString(6, e.getPaymentNr());
         ps.setBoolean(7, e.isLeaderTrained());
         ps.setString(8, e.getHiredDate());
+        ps.setString(9, e.getProfileImage());
         ps.executeUpdate();
     }
 

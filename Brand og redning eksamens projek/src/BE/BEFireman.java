@@ -11,7 +11,7 @@ package BE;
  */
 public final class BEFireman {
 
-    private String FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, HiredDate;
+    private String FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, HiredDate, ProfileImage;
     private int ID;
     private boolean LeaderTrained;
 
@@ -83,6 +83,20 @@ public final class BEFireman {
         this.setPaymentNr(PaymentNr);
         this.setLeaderTrained(LeaderTrained);
         this.setHiredDate(HiredDate);
+    }
+      
+            public BEFireman(String ProfileImage, String FirstName, String LastName, String Address,
+                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
+        this.setFirstName(FirstName);
+        this.setLastName(LastName);
+        this.setAddress(Address);
+        this.setPhoneNr(PhoneNr);
+        this.setCallNr(CallNr);
+        this.setPaymentNr(PaymentNr);
+        this.setLeaderTrained(LeaderTrained);
+        this.setHiredDate(HiredDate);
+        this.setProfileImage(ProfileImage);
+        
     }
     
     /**
@@ -209,6 +223,20 @@ public final class BEFireman {
      */
     public void setHiredDate(String HiredDate) {
         this.HiredDate = HiredDate;
+    }
+
+    /**
+     * @return the ProfileImage
+     */
+    public String getProfileImage() {
+        return ProfileImage;
+    }
+
+    /**
+     * @param ProfileImage the ProfileImage to set
+     */
+    public void setProfileImage(String ProfileImage) {
+        this.ProfileImage = ProfileImage;
     }
 
 }
