@@ -76,6 +76,7 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void OdinReport(BE.BESalary e) throws SQLException {
+        System.out.println(e.getODIN() + " " + e.getDate() + " " + e.getTypeOfWork() + " " + e.getIsHoliday());
         String sql = "insert into OdinReport values (?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setInt(1, e.getODIN());
@@ -116,25 +117,45 @@ public class DALCSalary {
     public ArrayList<BE.BESalary> read() throws SQLException {
         ArrayList<BE.BESalary> res = new ArrayList<>();
         Statement stm = m_connection.createStatement();
-        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr \n"
-                + "select * from SalaryReport inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
+        if (!stm.execute("select * from SalaryReport inner join OdinReport on OdinReport.OdinNr = SalaryReport.ODINnr")) {
             Error.Datatable("OdinReport or Salaryreport");
+        } else {
+            ResultSet result = stm.getResultSet();
+            while (result.next()) {
+
+                int WORK = result.getInt("WORKnr");
+                int ODIN = result.getInt("ODINnr");
+                int ID = result.getInt("FiremanID");
+                String Role = result.getString("Role");
+                String SalaryCode = result.getString("SalaryCode");
+                double Hours = result.getDouble("Hours");
+                String Date = result.getString("Date");
+                int TypeOfWork = result.getInt("TypeOfWork");
+                boolean isHoliday = result.getBoolean("isHoliday");
+
+                BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+                res.add(c);
+            }
         }
-        ResultSet result = stm.getResultSet();
-        while (result.next()) {
+        if (!stm.execute("select * from SalaryReport inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
+            Error.Datatable("OdinReport or Salaryreport");
+        } else {
+            ResultSet result = stm.getResultSet();
+            while (result.next()) {
 
-            int WORK = result.getInt("WORKnr");
-            int ODIN = result.getInt("ODINnr");
-            int ID = result.getInt("FiremanID");
-            String Role = result.getString("Role");
-            String SalaryCode = result.getString("SalaryCode");
-            double Hours = result.getDouble("Hours");
-            String Date = result.getString("Date");
-            int TypeOfWork = result.getInt("TypeOfWork");
-            boolean isHoliday = result.getBoolean("isHoliday");
+                int WORK = result.getInt("WORKnr");
+                int ODIN = result.getInt("ODINnr");
+                int ID = result.getInt("FiremanID");
+                String Role = result.getString("Role");
+                String SalaryCode = result.getString("SalaryCode");
+                double Hours = result.getDouble("Hours");
+                String Date = result.getString("Date");
+                int TypeOfWork = result.getInt("TypeOfWork");
+                boolean isHoliday = result.getBoolean("isHoliday");
 
-            BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
-            res.add(c);
+                BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+                res.add(c);
+            }
         }
         return res;
     }

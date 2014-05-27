@@ -5,8 +5,6 @@
  */
 package BLL;
 
-import BE.BEFireman;
-import BE.BESalary;
 import GUI.PDFListener;
 import Utility.DateConverter;
 import Utility.Error.EventExercutionException;
@@ -50,10 +48,12 @@ public class BLLPayroll implements PDFListener {
      * @throws Exception
      */
     public void CreateOdinReport(ArrayList<BE.BESalary> b) throws Exception {
+        System.out.println("test 3");
         if (b.get(0).getDate().isEmpty() || b.get(0).getODIN() == 0) {
             Error.NotEnougthInfo("creating a OdinReport.");
         } else {
             try {
+                System.out.println("test 2");
                 DALCSalary.getInstance().OdinReport(b.get(0));
                 for (int idx = 0; idx <= b.size(); idx++) {
                     CreateSalaryReport(b.get(idx));
@@ -191,18 +191,21 @@ public class BLLPayroll implements PDFListener {
         BLLFireman bllFire = new BLLFireman();
         for (BE.BETimePlan c : event.getTime()) {
             try {
-                BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
-                String holdleder = isLeader(f);
-                BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
-                salary.add(s);
-                OdinOrWork(event, salary);
+                if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
+                        || event.getType().equalsIgnoreCase("stand-by")) {
+                    BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
+                    String holdleder = isLeader(f);
+                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
+                    salary.add(s);
+                    CreateWorkReport(salary);
+                }
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }
         }
     }
 
-    private String isLeader(BEFireman f) {
+    private String isLeader(BE.BEFireman f) {
         if (f.isLeaderTrained()) {
             return "Holdleder";
         }
@@ -211,29 +214,27 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
+        System.out.println("before");
+        System.out.println(event.getTime().isEmpty());
+        System.out.println("after");
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
+        BE.BETimePlan T = event.getTime().get(0);
+        System.out.println(T.getFiremanID() + " " + T.getFirstName() + " " + T.getLastName() + " " + T.getTime() + " " + T.getTitle() + " " + T.getVehicle());
         for (BE.BETimePlan c : event.getTime()) {
+            System.out.println("test efter");
             try {
-                BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
-                String holdleder = isLeader(f);
-                BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
-                salary.add(s);
-                OdinOrWork(event, salary);
+                if (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck") || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet")) {
+                    BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
+                    String holdleder = isLeader(f);
+                    System.out.println("creating?");
+                    BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), event.getDate(), event.getSelectedType(), false);
+                    salary.add(s);
+                    CreateOdinReport(salary);
+                }
             } catch (Exception ex) {
                 throw new EventExercutionException(ex.getMessage());
             }
-        }
-    }
-
-    private void OdinOrWork(FormatEventPDF event, ArrayList<BESalary> salary) throws Exception {
-        if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
-                || event.getType().equalsIgnoreCase("stand-by")) {
-            CreateWorkReport(salary);
-        }
-        if (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck")
-                || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet")) {
-            CreateOdinReport(salary);
         }
     }
 }
