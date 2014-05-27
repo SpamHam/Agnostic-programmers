@@ -337,10 +337,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
-                        .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDescription)
-                            .addComponent(scrollPnlDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 9, Short.MAX_VALUE))
+                        .addComponent(lblDescription)
+                        .addGap(0, 118, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanelUpdateFieldsLayout.createSequentialGroup()
                         .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jpanelUpdateFieldsLayout.createSequentialGroup()
@@ -354,7 +352,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
                         .addGroup(jpanelUpdateFieldsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblRegistrationNr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtBrand, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                            .addComponent(txtModel))))
+                            .addComponent(txtModel)))
+                    .addComponent(scrollPnlDescription))
                 .addContainerGap())
         );
         jpanelUpdateFieldsLayout.setVerticalGroup(
