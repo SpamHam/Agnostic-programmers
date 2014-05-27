@@ -48,14 +48,12 @@ public class BLLPayroll implements PDFListener {
      * @throws Exception
      */
     public void CreateOdinReport(ArrayList<BE.BESalary> b) throws Exception {
-        System.out.println("test 3");
         if (b.get(0).getDate().isEmpty() || b.get(0).getODIN() == 0) {
             Error.NotEnougthInfo("creating a OdinReport.");
         } else {
             try {
-                System.out.println("test 2");
                 DALCSalary.getInstance().OdinReport(b.get(0));
-                for (int idx = 0; idx <= b.size(); idx++) {
+                for (int idx = 0; idx < b.size(); idx++) {
                     CreateSalaryReport(b.get(idx));
                 }
             } catch (SQLServerException ex) {
@@ -187,21 +185,33 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
-        ArrayList<BE.BESalary> salary = new ArrayList<>();
+        ArrayList<BE.BESalary> Salary = new ArrayList<>();
+        ArrayList<BE.BESalary> StationSalary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
-        for (BE.BETimePlan c : event.getTime()) {
-            try {
-                if (event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
-                        || event.getType().equalsIgnoreCase("stand-by")) {
+        String time = Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
+        try {
+            for (BE.BETimePlan c : event.getTime()) {
+                if (!c.getTime().isEmpty()) {
+                    time = c.getTime();
+                }
+                if ((event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
+                        || event.getType().equalsIgnoreCase("stand-by")) && c.getHours() != 0) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS), event.getSelectedType(), false);
-                    salary.add(s);
-                    CreateWorkReport(salary);
+                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), time, event.getSelectedType(), false);
+                    Salary.add(s);
                 }
-            } catch (Exception ex) {
-                throw new EventExercutionException(ex.getMessage());
+                if (c.getStationHours() != 0) {
+                    BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
+                    String holdleder = isLeader(f);
+                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), time, BLL.BLLTimePlan.getInstance().getTypeOfWorkFromString("Andet"), false);
+                    StationSalary.add(s);
+                }
             }
+            CreateWorkReport(StationSalary);
+            CreateWorkReport(Salary);
+        } catch (Exception ex) {
+            throw new EventExercutionException(ex.getMessage());
         }
     }
 
@@ -214,20 +224,14 @@ public class BLLPayroll implements PDFListener {
 
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
-        System.out.println("before");
-        System.out.println(event.getTime().isEmpty());
-        System.out.println("after");
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
         BE.BETimePlan T = event.getTime().get(0);
-        System.out.println(T.getFiremanID() + " " + T.getFirstName() + " " + T.getLastName() + " " + T.getTime() + " " + T.getTitle() + " " + T.getVehicle());
         for (BE.BETimePlan c : event.getTime()) {
-            System.out.println("test efter");
             try {
                 if (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck") || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet")) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    System.out.println("creating?");
                     BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), event.getDate(), event.getSelectedType(), false);
                     salary.add(s);
                     CreateOdinReport(salary);
