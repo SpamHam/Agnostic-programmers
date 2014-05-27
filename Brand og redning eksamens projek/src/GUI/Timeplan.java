@@ -86,7 +86,7 @@ public class Timeplan extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        cmbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Indsats", "Stand-By", "Andet", "Arbejde Falck", "Følgeskadeindsats", "Øvelse", "Brandvagt", " ", " " }));
+        cmbType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Indsats", "Stand-By", "Andet", "Arbejde Falck", "Følgeskadeindsats", "Øvelse", "Brandvagt" }));
 
         tblTeam.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
