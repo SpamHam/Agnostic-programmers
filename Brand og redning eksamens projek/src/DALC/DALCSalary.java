@@ -53,14 +53,19 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void SalaryReport(BE.BESalary e) throws SQLException {
-        System.out.println("Dalc salary");
-        String sql = "insert into SalaryReport values (?,?,?,?,?)";
+        String sql = "insert into SalaryReport values (?,?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setInt(1, e.getODIN());
-        ps.setInt(2, e.getFiremanID());
-        ps.setString(3, e.getRole());
-        ps.setString(4, e.getSalaryCode());
-        ps.setDouble(5, e.getHours());
+        if (e.getWORK() != 0) {
+            ps.setInt(1, e.getWORK());
+            ps.setString(2, null);
+        } else {
+            ps.setString(1, null);
+            ps.setInt(2, e.getODIN());
+        }
+        ps.setInt(3, e.getFiremanID());
+        ps.setString(4, e.getRole());
+        ps.setString(5, e.getSalaryCode());
+        ps.setDouble(6, e.getHours());
         ps.executeUpdate();
     }
 
@@ -84,6 +89,7 @@ public class DALCSalary {
      * Creates a row in the SalaryReport table.
      *
      * @param e
+     * @return
      * @throws SQLException
      */
     public int WorkReport(BE.BESalary e) throws SQLException {
@@ -93,7 +99,12 @@ public class DALCSalary {
         ps.setInt(2, e.getTypeOfWork());
         ps.setBoolean(3, e.getIsHoliday());
         ps.executeUpdate();
-        return ps.getResultSet().getInt(1);
+        int ID = 0;
+        ResultSet rs = ps.getGeneratedKeys();
+        if (rs.next()) {
+            ID = rs.getInt(1);
+        }
+        return ID;
     }
 
     /**
