@@ -120,6 +120,7 @@ public class ODINReport extends javax.swing.JFrame {
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
+            dispose();
         }
     }
 
