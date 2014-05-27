@@ -208,8 +208,12 @@ public class BLLPayroll implements PDFListener {
                     StationSalary.add(s);
                 }
             }
-            CreateWorkReport(StationSalary);
-            CreateWorkReport(Salary);
+            if (!StationSalary.isEmpty()) {
+                CreateWorkReport(StationSalary);
+            }
+            if (!Salary.isEmpty()) {
+                CreateWorkReport(Salary);
+            }
         } catch (Exception ex) {
             throw new EventExercutionException(ex.getMessage());
         }
