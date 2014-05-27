@@ -69,6 +69,7 @@ public class BLLPayroll implements PDFListener {
      */
     public void CreateWorkReport(ArrayList<BE.BESalary> b) throws Exception {
         try {
+            System.out.println("1");
             int ID = DALCSalary.getInstance().WorkReport(b.get(0));
             for (BE.BESalary c : b) {
                 c.setWORK(ID);
@@ -187,12 +188,12 @@ public class BLLPayroll implements PDFListener {
     public void PDFTimePlanPerformed(FormatEventPDF event) {
         ArrayList<BE.BESalary> Salary = new ArrayList<>();
         ArrayList<BE.BESalary> StationSalary = new ArrayList<>();
-        BLLFireman bllFire = new BLLFireman();
         String time = Utility.DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
         try {
+            BLLFireman bllFire = new BLLFireman();
             for (BE.BETimePlan c : event.getTime()) {
-                if (!c.getTime().isEmpty()) {
-                    time = c.getTime();
+                if (c.getTime() != null) {
+                    time =  Utility.DateConverter.getDate(DateConverter.MONTH_DAY) +"/" + Utility.DateConverter.getDate(DateConverter.YEAR) + " " + c.getTime();
                 }
                 if ((event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
                         || event.getType().equalsIgnoreCase("stand-by")) && c.getHours() != 0) {
@@ -204,7 +205,7 @@ public class BLLPayroll implements PDFListener {
                 if (c.getStationHours() != 0) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), time, BLL.BLLTimePlan.getInstance().getTypeOfWorkFromString("Andet"), false);
+                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getStationHours(), time, BLL.BLLTimePlan.getInstance().getTypeOfWorkFromString("Andet"), false);
                     StationSalary.add(s);
                 }
             }
