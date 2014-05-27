@@ -452,10 +452,8 @@ public class ODINReport extends javax.swing.JFrame {
      * fields.
      */
     private void getOdinData() {
-        Timeplan TimeUI = new Timeplan();
         getMaterialColNames();
         getForcesColNames();
-        allTime = TimeUI.getTimePlans();
         evaNr = txtEvaNr.getText();
         fireNr = txtFireNr.getText();
         received = txtRecived.getText();
@@ -466,6 +464,10 @@ public class ODINReport extends javax.swing.JFrame {
         teamLeader = txtTeamLeader.getText();
         leader = txtLeader.getText();
         weekday = txtWeekday.getText();
+    }
+    
+    public void setArrayTimeplan(ArrayList<BETimePlan> time){
+    allTime = time;
     }
 
     /**

@@ -229,10 +229,11 @@ public class Timeplan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             if (!type.equalsIgnoreCase("øvelse") && !type.equalsIgnoreCase("brandvagt") && !type.equalsIgnoreCase("stand-by")) {
-                dispose();
                 ODINReport report = new ODINReport();
                 report.setVisible(true);
                 report.setLocationRelativeTo(null);
+                report.setArrayTimeplan(allTime);
+                dispose();
             } else {
                 dispose();
 
@@ -270,9 +271,6 @@ public class Timeplan extends javax.swing.JFrame {
         }
     }
 
-    public ArrayList<BETimePlan> getTimePlans(){
-    return allTime;
-    }
     /**
      * Sets the PDFListener
      *
