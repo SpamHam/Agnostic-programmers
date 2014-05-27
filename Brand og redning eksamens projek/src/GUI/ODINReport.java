@@ -147,22 +147,7 @@ public class ODINReport extends javax.swing.JFrame {
         }
         
     }
-    
-    /**
-     * Fires the event to the BLL
-     *
-     * @param event
-     */
-//    public void firePDFEvent(FormatEventPDF event) {
-//        if (PDFListener != null) {
-//            try {
-//                PDFListener.PDFOdinPerformed(event);
-//                JOptionPane.showMessageDialog(null, "ODIN Rapport blev genereret", "Færdig", JOptionPane.INFORMATION_MESSAGE);
-//            } catch (EventExercutionException eex) {
-//                JOptionPane.showMessageDialog(null, eex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-//            }
-//        }
-//    }
+
     
         public void firePDFEvent(FormatEventPDF event) throws Exception {
         if (APDFListeners != null) {
