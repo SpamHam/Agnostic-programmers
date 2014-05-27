@@ -13,7 +13,7 @@ package BE;
 public class BETimePlan {
 
     
-    private String title, vehicle, time;
+    private String title, vehicle, time, firstName, lastName;
     private int FiremanID, hours, stationHours;
     
     /**
@@ -34,6 +34,19 @@ public class BETimePlan {
         this.stationHours = StationHours;
         this.vehicle = vehicle;
     }
+/**
+ * A constructor used for Timeplan Table model 
+ * @param FiremanID int
+ * @param vehicle String
+ * @param firstName String
+ * @param lastName String
+ */
+    public BETimePlan(int FiremanID, String vehicle, String firstName, String lastName ){
+    this.FiremanID = FiremanID;
+    this.vehicle = vehicle;
+    this.firstName = firstName;
+    this.lastName = lastName;
+    }    
     
     /**
      * Constructor used for packaging name and vehicle used for the timesheet
@@ -129,6 +142,34 @@ public class BETimePlan {
      */
     public void setVehicle(String vehicle) {
         this.vehicle = vehicle;
+    }
+
+    /**
+     * @return the firstName
+     */
+    public String getFirstName() {
+        return firstName;
+    }
+
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    /**
+     * @return the lastName
+     */
+    public String getLastName() {
+        return lastName;
+    }
+
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 }

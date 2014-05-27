@@ -210,7 +210,7 @@ public class Timeplan extends javax.swing.JFrame {
     }
 
     /**
-     * anonymous inner class listening on the create pdf button
+     * anonymous inner class listening on the create PDF button
      */
     private class BTNPDFActionListener implements ActionListener {
 

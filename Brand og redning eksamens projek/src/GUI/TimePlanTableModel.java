@@ -31,6 +31,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Returns the number of rows
+     *
      * @return timePlan.size()
      */
     @Override
@@ -40,6 +41,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Returns the numbers of columns
+     *
      * @return colNames.length
      */
     @Override
@@ -49,6 +51,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Returns the names of the columns
+     *
      * @param col
      * @return colNames
      */
@@ -60,6 +63,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Sets which type of data is required for a column
+     *
      * @param col
      * @return classes
      */
@@ -70,6 +74,7 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Returns wether a column is editable or not.
+     *
      * @param row
      * @param col
      * @return true/false
@@ -96,7 +101,8 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Sets the content of the table model to the given list of times.
-     * @param timeList 
+     *
+     * @param timeList
      */
     public void setTimePlanStatusList(ArrayList<BETimePlan> timeList) {
         timePlan = timeList;
@@ -116,9 +122,10 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Returns the value of a specific row in a column
+     *
      * @param rowIndex
      * @param columnIndex
-     * @return e.<Time / Hours / StationHours / Vehicle / Null> 
+     * @return e.<Time / Hours / StationHours / Vehicle / Null>
      */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -127,13 +134,7 @@ public class TimePlanTableModel extends AbstractTableModel {
             case 0:
                 return e.getTitle();
             case 1:
-                try {
-                    BLLFireman g = new BLLFireman();
-                    BE.BEFireman f = g.FiremanFromID(e.getFiremanID());
-                    return f.getFirstName() + " " + f.getLastName();
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-                }
+                return e.getFirstName() + " " + e.getLastName();
             case 2:
                 return e.getTime();
             case 3:
@@ -149,9 +150,10 @@ public class TimePlanTableModel extends AbstractTableModel {
 
     /**
      * Sets the value of a specific row in a column
+     *
      * @param aValue
      * @param rowIndex
-     * @param columnIndex 
+     * @param columnIndex
      */
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {

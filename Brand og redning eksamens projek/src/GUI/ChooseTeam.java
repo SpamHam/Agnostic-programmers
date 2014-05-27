@@ -14,6 +14,8 @@ import DALC.DALCVehicle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -30,6 +32,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     DefaultListModel alleFiremenListModel = new DefaultListModel();
     DefaultListModel valgteFiremenListModel = new DefaultListModel();
     DefaultListModel alleVehiclesListModel = new DefaultListModel();
+
     /**
      * Creates new form ChooseTeam
      */
@@ -38,29 +41,27 @@ public class ChooseTeam extends javax.swing.JDialog {
         initComponents();
         InitializeFiremen();
         InitializeVehicles();
-        
+
         /**
          * All ActionListeners are listed here
          */
         ActionListener BTNListener = new BTNMoveActionListener();
-        ActionListener BTNFoejListener = new BTNTilfoejActionListener();
-        ActionListener BTNCancel= new CancelListener();
+        ActionListener BTNFoejListener = new BTNAddActionListener();
+        ActionListener BTNCancel = new CancelListener();
         btnCancel.addActionListener(BTNCancel);
         btnAddToTeam.addActionListener(BTNListener);
         btnRemoveFromTeam.addActionListener(BTNListener);
         btnAddTeam.addActionListener(BTNFoejListener);
-        
+
         jlistAllFiremen.setModel(alleFiremenListModel);
         jlistChosenFiremen.setModel(valgteFiremenListModel);
         jlistChooseACar.setModel(alleVehiclesListModel);
         PopulateVehicleList();
         PopulateFiremanList();
-        
+
         setTitle("Vælg et team");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
-    
-    
 
     /**
      * Populates the Fireman ArrayList
@@ -122,17 +123,27 @@ public class ChooseTeam extends javax.swing.JDialog {
     }
 
     /**
-     * Sets the firemen & vehicle chosen and packs them into a Business Entity
+     * An anonymous inner class listening on the AddTeam button
      */
-    private class BTNTilfoejActionListener implements ActionListener {
+    private class BTNAddActionListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < valgteFiremenListModel.getSize(); i++) {
-                int FiremanID = Firemen.get(Integer.parseInt(((String)jlistChosenFiremen.getModel().getElementAt(i)).substring(0,1)) - 1).getID();
-                String vehicle = chosenVehicle(jlistChooseACar);
-                BETimePlan temp = new BETimePlan(FiremanID, vehicle);
-                ValgteFiremen.add(i, temp);
+                try {
+                    int FiremanID = Firemen.get(Integer.parseInt(((String) jlistChosenFiremen.getModel().getElementAt(i)).substring(0, 1)) - 1).getID();
+                    BLLFireman g = new BLLFireman();
+
+                    BE.BEFireman f = g.FiremanFromID(FiremanID);
+                    String firstName = f.getFirstName();
+                    String lastName = f.getLastName();
+
+                    String vehicle = chosenVehicle(jlistChooseACar);
+                    BETimePlan temp = new BETimePlan(FiremanID, vehicle, firstName, lastName);
+                    ValgteFiremen.add(i, temp);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
             dispose();
         }
@@ -148,7 +159,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     }
 
     /**
-     * Actionlistener for Buttons used for moving items between lists
+     * ActionListener for Buttons used for moving items between lists
      */
     private class BTNMoveActionListener implements ActionListener {
 
@@ -189,7 +200,7 @@ public class ChooseTeam extends javax.swing.JDialog {
     private void PopulateFiremanList() {
         int count = 1;
         for (BEFireman m : Firemen) {
-            alleFiremenListModel.addElement(count +":"+ m.getFirstName() + " " + m.getLastName());
+            alleFiremenListModel.addElement(count + ":" + m.getFirstName() + " " + m.getLastName());
             count++;
         }
     }
