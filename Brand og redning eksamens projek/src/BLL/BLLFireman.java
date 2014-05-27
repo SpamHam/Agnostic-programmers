@@ -6,17 +6,27 @@
 package BLL;
 
 import BE.BEFireman;
+import static GUI.AddFiremanDialog.resize;
 import GUI.CRUDFireman;
 import GUI.CRUDFiremanListener;
+import GUI.JPGFilter;
 import GUI.PDFListener;
 import Utility.Error.EventExercutionException;
 import Utility.Event.FormatEventPDF;
 import com.microsoft.sqlserver.jdbc.SQLServerException;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,6 +36,9 @@ public class BLLFireman implements CRUDFiremanListener {
 
     private DALC.DALCFireman DALCFireman;
     private final Utility.Error.ErrorHandler Error;
+    private final int hgt = 120;
+    private final int wdt = 110;
+    private static final String batPath = "C:\\Billeder";
 
     /**
      * Instantiates errorHandler
@@ -79,6 +92,7 @@ public class BLLFireman implements CRUDFiremanListener {
      * @throws Exception
      */
     public void Update(BE.BEFireman b) throws Exception {
+        System.out.println(b.getProfileImage() + "dav");
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
             Error.NotEnougthInfo("updating a fireman.");
         } else {
@@ -122,6 +136,44 @@ public class BLLFireman implements CRUDFiremanListener {
         Error.StringEqualError("" + ID);
         return null;
     }
+    
+    public void browseForProfilePicture(){
+        int type = 0;
+        JFileChooser fc = new JFileChooser(batPath);
+        fc.setFileFilter(new JPGFilter()); 
+        int res = fc.showOpenDialog(null);
+        BufferedImage originalImage = null;
+        BufferedImage resizedImage = null;
+        
+        // We have an image!
+        try {
+            if (res == JFileChooser.APPROVE_OPTION) {
+                //File file = fc.getSelectedFile();
+                String path = fc.getSelectedFile().getPath();
+                originalImage = ImageIO.read(new File(path));
+                resizedImage = resize(originalImage, wdt, hgt);
+                System.out.println(fc.getSelectedFile().getPath());
+              
+            } // Oops!
+            else {
+                JOptionPane.showMessageDialog(null,
+                        "You must select one image to be the reference.", "Aborting...",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception iOException) {
+        } 
+     
+    }
+    
+    public BufferedImage resize(BufferedImage image, int width, int height) {
+    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+    Graphics2D g2d = (Graphics2D) bi.createGraphics();
+    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+    g2d.drawImage(image, 0, 0, width, height, null);
+    g2d.dispose();
+    return bi;
+}
+
 
     /**
      * Calls the Create function from DALCFireman and check wether any of the

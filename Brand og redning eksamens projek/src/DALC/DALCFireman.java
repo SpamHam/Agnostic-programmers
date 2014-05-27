@@ -93,7 +93,8 @@ public class DALCFireman {
             String PaymentNr = result.getString("PaymentNr");
             boolean isLeaderTrained = result.getBoolean("LeaderTrained");
             String HiredDate = result.getString("HiredDate");
-            BEFireman c = new BEFireman(ID, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained, HiredDate);
+            String ProfileImage = result.getString("ProfileImage");
+            BEFireman c = new BEFireman(ID, FirstName, LastName, Address, PhoneNr, CallNr, PaymentNr, isLeaderTrained, HiredDate, ProfileImage);
             res.add(c);
         }
         return res;
@@ -105,7 +106,8 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void update(BE.BEFireman u) throws SQLException {
-        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=?, HiredDate=? where ID=?";
+        System.out.println(u.getProfileImage() + "hej");
+        String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=?, HiredDate=?, ProfileImage=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
         ps.setString(2, u.getLastName());
@@ -115,7 +117,8 @@ public class DALCFireman {
         ps.setString(6, u.getPaymentNr());
         ps.setBoolean(7, u.isLeaderTrained());
         ps.setString(8, u.getHiredDate());
-        ps.setInt(9, u.getID());
+        ps.setString(9, u.getProfileImage());
+        ps.setInt(10, u.getID());
         ps.executeUpdate();
     }
 

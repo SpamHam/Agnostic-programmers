@@ -8,13 +8,25 @@ package GUI;
 import BE.BEFireman;
 import BLL.BLLFireman;
 import Utility.Error.EventExercutionException;
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import sun.awt.image.ImageAccessException;
 
 /**
  *
@@ -29,6 +41,11 @@ public class CRUDFireman extends javax.swing.JFrame {
     private BLLFireman m_fireman = new BLLFireman();
     //
     private int selectedRow;
+    private final int hgt = 160;
+    private final int wdt = 148;
+    private String path = null;
+    private String batPath = "C:\\Billeder";
+   
 
     /**
      * Populates the allFiremans ArrayList
@@ -59,8 +76,8 @@ public class CRUDFireman extends javax.swing.JFrame {
         setFiremanListener(m_fireman);
         FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
         tblFiremen.setModel(FiremanTableModel);// Sets the table model for the JTable
-        sorter = new TableRowSorter<TableModel>(FiremanTableModel);
-        tblFiremen.setRowSorter(sorter);
+        //sorter = new TableRowSorter<TableModel>(FiremanTableModel);
+        //tblFiremen.setRowSorter(sorter);
         tblFiremen.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandmand oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -76,7 +93,8 @@ public class CRUDFireman extends javax.swing.JFrame {
         btnRemove.addActionListener(BTNRemove);
         ActionListener BTNBack = new BackListener();
         btnBack.addActionListener(BTNBack);
-
+        ActionListener BTNChangeProfileImage = new ChangeProfileImage();
+        btnChangeProfileImage.addActionListener(BTNChangeProfileImage);
         btnUpdate.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblFiremen.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -111,9 +129,65 @@ public class CRUDFireman extends javax.swing.JFrame {
                 txtPaymentNr.setText(allFiremans.get(selectedRow).getPaymentNr());
                 txtHiredDate.setText(allFiremans.get(selectedRow).getHiredDate());
                 ChBoxIsLeaderTrained.setSelected(allFiremans.get(selectedRow).isLeaderTrained());
-            }
+                System.out.println(allFiremans.get(selectedRow).getProfileImage());
+                if (allFiremans.get(selectedRow).getProfileImage() != null && !allFiremans.get(selectedRow).getProfileImage().isEmpty() ){
+                 lblImage.setIcon(new ImageIcon(resize(allFiremans.get(selectedRow).getProfileImage(), wdt, hgt)));
+                   return;
+               }
+                lblImage.setIcon(new ImageIcon(resize("C:\\Billeder\\brandmand.jpg", wdt, hgt)));
+                            }
+            
+            
+            
         });
     }
+    
+    public void browseForProfilePicture(){
+        int type = 0;
+        JFileChooser fc = new JFileChooser(batPath);
+        fc.setFileFilter(new JPGFilter()); 
+        int res = fc.showOpenDialog(null);
+        BufferedImage originalImage = null;
+        BufferedImage resizedImage = null;
+        
+        // We have an image!
+        try {
+            if (res == JFileChooser.APPROVE_OPTION) {
+                
+                path = fc.getSelectedFile().getPath();
+                originalImage = ImageIO.read(new File(path));
+                resizedImage = m_fireman.resize(originalImage, wdt, hgt);
+                lblImage.setIcon(new ImageIcon(resizedImage));
+                System.out.println(path + "123");
+                
+              
+            } // Oops!
+            else {
+                JOptionPane.showMessageDialog(null,
+                        "You must select one image to be the reference.", "Aborting...",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception iOException) {
+        } 
+     
+    }
+    
+  
+    
+    public BufferedImage resize(String path,int width, int height) {
+    BufferedImage image = null;
+        try {
+            image = ImageIO.read(new File(path));
+        } catch (IOException ex) {
+            Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+    Graphics2D g2d = (Graphics2D) bi.createGraphics();
+    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+    g2d.drawImage(image, 0, 0, width, height, null);
+    g2d.dispose();
+    return bi;
+}
 
     /**
      * Anonymous inner class listening on the Add Button
@@ -255,6 +329,23 @@ public class CRUDFireman extends javax.swing.JFrame {
             }
         }
     }
+    
+    
+        private class ChangeProfileImage implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            browseForProfilePicture();
+            
+            BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
+                    txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
+                    ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate(), path);
+            fireUpdateFiremanEvent(updateFireman);
+            allFiremans.set(selectedRow, updateFireman);
+            FiremanTableModel.setCRUDFiremanList(allFiremans);
+            
+        }
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -287,7 +378,9 @@ public class CRUDFireman extends javax.swing.JFrame {
         btnRemove = new javax.swing.JButton();
         btnAdd = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        btnChangeProfileImage = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblImage = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -423,13 +516,16 @@ public class CRUDFireman extends javax.swing.JFrame {
         btnUpdate.setMinimumSize(new java.awt.Dimension(55, 23));
         btnUpdate.setPreferredSize(new java.awt.Dimension(55, 23));
 
+        btnChangeProfileImage.setText("Skift profilbilled");
+
         javax.swing.GroupLayout jpanelButtonsLayout = new javax.swing.GroupLayout(jpanelButtons);
         jpanelButtons.setLayout(jpanelButtonsLayout);
         jpanelButtonsLayout.setHorizontalGroup(
             jpanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+            .addComponent(btnRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnAdd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnChangeProfileImage, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jpanelButtonsLayout.setVerticalGroup(
             jpanelButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -437,42 +533,54 @@ public class CRUDFireman extends javax.swing.JFrame {
                 .addComponent(btnAdd)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnRemove, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnChangeProfileImage))
         );
 
         btnBack.setText("Tilbage");
         btnBack.setPreferredSize(new java.awt.Dimension(100, 23));
+
+        lblImage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(27, Short.MAX_VALUE)
                 .addComponent(scrollPnlTblFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(225, 225, 225)
+                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(18, 18, 18)
+                            .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(lblImage, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jpanelButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(148, 148, 148)
-                            .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(scrollPnlTblFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jpanelButtons, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(UpdateFieldsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(84, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(scrollPnlTblFiremen, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -483,6 +591,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JPanel UpdateFieldsPanel;
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnChangeProfileImage;
     private javax.swing.JButton btnRemove;
     private javax.swing.JButton btnUpdate;
     private javax.swing.JPanel jpanelButtons;
@@ -490,6 +599,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JLabel lblCallNr;
     private javax.swing.JLabel lblFirstName;
     private javax.swing.JLabel lblHiredDate;
+    private javax.swing.JLabel lblImage;
     private javax.swing.JLabel lblLastName;
     private javax.swing.JLabel lblPaymentNr;
     private javax.swing.JLabel lblTelephoneNr;

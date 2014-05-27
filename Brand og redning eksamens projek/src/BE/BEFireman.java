@@ -98,6 +98,20 @@ public final class BEFireman {
         this.setProfileImage(ProfileImage);
         
     }
+            
+           public BEFireman(int ID, String FirstName, String LastName, String Address,
+                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate, String ProfileImage) {
+        this.setID(ID);
+        this.setFirstName(FirstName);
+        this.setLastName(LastName);
+        this.setAddress(Address);
+        this.setPhoneNr(PhoneNr);
+        this.setCallNr(CallNr);
+        this.setPaymentNr(PaymentNr);
+        this.setLeaderTrained(LeaderTrained);
+        this.setHiredDate(HiredDate);
+        this.setProfileImage(ProfileImage);
+    }
     
     /**
      * @return the ID
