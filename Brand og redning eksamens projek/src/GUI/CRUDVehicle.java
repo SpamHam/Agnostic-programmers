@@ -73,8 +73,8 @@ public class CRUDVehicle extends javax.swing.JFrame {
      */
     public CRUDVehicle() {
         initComponents();
-        //initDALC(); //Only one of these (initDALC/initDALCTest) should be uncommented
-        initDALCTest(); //Only one of these (initDALC/initDALCTest) should be uncommented
+        initDALC(); //Only one of these (initDALC/initDALCTest) should be uncommented
+        //initDALCTest(); //Only one of these (initDALC/initDALCTest) should be uncommented
         setVehicleListener(BLLvehicle);
         initVehicle();
 
@@ -421,9 +421,9 @@ public class CRUDVehicle extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 17, Short.MAX_VALUE)
                 .addComponent(jpanelUpdateFields, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelFunctions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanelFunctions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
