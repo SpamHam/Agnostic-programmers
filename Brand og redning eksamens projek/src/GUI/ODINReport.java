@@ -9,6 +9,7 @@ import Utility.Event.FormatEventPDF;
 import Utility.Error.EventExercutionException;
 import BE.BEForces;
 import BE.BEMaterial;
+import BE.BETimePlan;
 import BLL.BLLPDF;
 import BLL.BLLPayroll;
 import java.awt.event.ActionEvent;
@@ -36,6 +37,7 @@ public class ODINReport extends javax.swing.JFrame {
     ArrayList<String> materialColNames = new ArrayList<>();
     ArrayList<String> forcesColNames = new ArrayList<>();
     ArrayList<BEForces> allforces = new ArrayList<>();
+    ArrayList<BETimePlan> allTime = new ArrayList<>();
     TableRowSorter<TableModel> sorter;
     private String currentTime;
     boolean isForcesSelected = false;
@@ -112,7 +114,7 @@ public class ODINReport extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             getOdinData();
             try {
-                firePDFEvent(new FormatEventPDF(allMaterials, materialColNames, allforces, forcesColNames, date,
+                firePDFEvent(new FormatEventPDF(allTime, allMaterials, materialColNames, allforces, forcesColNames, date,
                         received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -450,8 +452,10 @@ public class ODINReport extends javax.swing.JFrame {
      * fields.
      */
     private void getOdinData() {
+        Timeplan TimeUI = new Timeplan();
         getMaterialColNames();
         getForcesColNames();
+        allTime = TimeUI.getTimePlans();
         evaNr = txtEvaNr.getText();
         fireNr = txtFireNr.getText();
         received = txtRecived.getText();

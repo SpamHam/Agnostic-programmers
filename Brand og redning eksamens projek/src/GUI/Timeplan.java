@@ -270,6 +270,9 @@ public class Timeplan extends javax.swing.JFrame {
         }
     }
 
+    public ArrayList<BETimePlan> getTimePlans(){
+    return allTime;
+    }
     /**
      * Sets the PDFListener
      *
