@@ -46,7 +46,8 @@ public class ODINReport extends javax.swing.JFrame {
     ArrayList<PDFListener> APDFListeners = new ArrayList<>();
     BLLPDF BLLPDF = new BLLPDF();
     BLLPayroll BLLPay = new BLLPayroll();
-    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday;
+    String evaNr, fireNr, received, date, message, name, address, leader, teamLeader, weekday, type;
+    int selectedType;
 
     /**
      * Creates new form ODINReport
@@ -115,7 +116,7 @@ public class ODINReport extends javax.swing.JFrame {
             getOdinData();
             try {
                 firePDFEvent(new FormatEventPDF(allTime, allMaterials, materialColNames, allforces, forcesColNames, date,
-                        received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday));
+                        received, fireNr, evaNr, message, name, address, leader, teamLeader, weekday, selectedType, type));
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -470,6 +471,10 @@ public class ODINReport extends javax.swing.JFrame {
     allTime = time;
     }
 
+    public void setType(int selectedType, String type){
+    this.selectedType = selectedType;
+    this.type = type;
+    }
     /**
      * Retrieves the name of the column for materials. Is needed to create a
      * PDF.

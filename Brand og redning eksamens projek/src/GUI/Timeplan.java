@@ -233,6 +233,7 @@ public class Timeplan extends javax.swing.JFrame {
                 report.setVisible(true);
                 report.setLocationRelativeTo(null);
                 report.setArrayTimeplan(allTime);
+                report.setType(selectedType,type);
                 dispose();
             } else {
                 dispose();

@@ -58,7 +58,7 @@ public class FormatEventPDF {
     */
   public FormatEventPDF(ArrayList<BETimePlan> allTime,ArrayList<BEMaterial> allMaterial, ArrayList<String> materialColNames,ArrayList<BEForces> allForces,
          ArrayList<String> forcesColNames,String date, String received,String fireNr, String evaNr, String message,
-        String name, String address, String leader, String teamLeader, String weekday){
+        String name, String address, String leader, String teamLeader, String weekday, int selectedType, String type){
       this.date = date;
       this.received = received;
       this.allMaterial = allMaterial;
@@ -74,6 +74,8 @@ public class FormatEventPDF {
       this.teamLeader = teamLeader;
       this.weekday = weekday;
        this.allTime = allTime;
+       this.selectedType = selectedType;
+       this.type = type;
   }
   
     public ArrayList<BETimePlan> getTime(){
