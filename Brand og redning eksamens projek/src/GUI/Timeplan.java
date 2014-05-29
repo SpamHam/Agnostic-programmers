@@ -277,7 +277,6 @@ public class Timeplan extends javax.swing.JFrame {
      * @param PDFListener
      */
     public void setPDFListener(PDFListener PDFListener) {
-        // this.PDFListener = PDFListener;
         APDFListeners.add(PDFListener);
     }
 
