@@ -59,10 +59,11 @@ public class PayrollDetails extends javax.swing.JDialog {
     private void filldata() {
         try {
             BLLFireman g = new BLLFireman();
-            if (allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN() != 0) {
                 txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getODIN()));
+            if (allSalarys.get(lstSalaryRapport.getSelectedIndex()).getIsItOdin()) {
+                lblOdinNr.setText("OdinNr");
             } else {
-                txtOdinNr.setText(Integer.toString(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getWORK()));
+                lblOdinNr.setText("WorkNr");
             }
             BE.BEFireman f = g.FiremanFromID(allSalarys.get(lstSalaryRapport.getSelectedIndex()).getFiremanID());
             txtFiremanName.setText(f.getFirstName() + " " + f.getLastName());
@@ -263,7 +264,7 @@ public class PayrollDetails extends javax.swing.JDialog {
                 if (s.getODIN() != 0) {
                     salaryListModel.addElement(s.getODIN() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
                 } else {
-                    salaryListModel.addElement(s.getWORK() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
+                    salaryListModel.addElement(s.getIsItOdin() + "-" + BLL.BLLTimePlan.getInstance().getTypeOfWorkFromInt(s.getTypeOfWork()));
                 }
             }
         }

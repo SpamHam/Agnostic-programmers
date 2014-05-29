@@ -55,13 +55,8 @@ public class DALCSalary {
     public void SalaryReport(BE.BESalary e) throws SQLException {
         String sql = "insert into SalaryReport values (?,?,?,?,?,?)";
         PreparedStatement ps = m_connection.prepareStatement(sql);
-        if (e.getWORK() != 0) {
-            ps.setInt(1, e.getWORK());
-            ps.setString(2, null);
-        } else {
-            ps.setString(1, null);
-            ps.setInt(2, e.getODIN());
-        }
+        ps.setBoolean(1, e.getIsItOdin());
+        ps.setInt(2, e.getODIN());
         ps.setInt(3, e.getFiremanID());
         ps.setString(4, e.getRole());
         ps.setString(5, e.getSalaryCode());
@@ -76,13 +71,13 @@ public class DALCSalary {
      * @throws SQLException
      */
     public void OdinReport(BE.BESalary e) throws SQLException {
-        System.out.println(e.getODIN() + " " + e.getDate() + " " + e.getTypeOfWork() + " " + e.getIsHoliday());
-        String sql = "insert into OdinReport values (?,?,?,?)";
-        PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setInt(1, e.getODIN());
-        ps.setString(2, e.getDate());
-        ps.setInt(3, e.getTypeOfWork());
-        ps.setBoolean(4, e.getIsHoliday());
+        PreparedStatement ps;
+        ps = m_connection.prepareStatement("set identity_insert OdinReport on insert into OdinReport(IsItOdin, OdinNr, Date, TypeOfWork, IsHoliday) values (?,?,?,?,?) set identity_insert OdinReport off");
+        ps.setBoolean(1, e.getIsItOdin());
+        ps.setInt(2, e.getODIN());
+        ps.setString(3, e.getDate());
+        ps.setInt(4, e.getTypeOfWork());
+        ps.setBoolean(5, e.getIsHoliday());
         ps.executeUpdate();
     }
 
@@ -94,18 +89,17 @@ public class DALCSalary {
      * @throws SQLException
      */
     public int WorkReport(BE.BESalary e) throws SQLException {
-        String sql = "insert into WorkReport values (?,?,?) select SCOPE_IDENTITY()";
-        PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setString(1, e.getDate());
-        ps.setInt(2, e.getTypeOfWork());
-        ps.setBoolean(3, e.getIsHoliday());
+        PreparedStatement ps;
+        ps = m_connection.prepareStatement("insert into OdinReport(IsItOdin, Date, TypeOfWork, IsHoliday) "
+                + "values (?,?,?,?)", Statement.RETURN_GENERATED_KEYS);
+        ps.setBoolean(1, e.getIsItOdin());
+        ps.setString(2, e.getDate());
+        ps.setInt(3, e.getTypeOfWork());
+        ps.setBoolean(4, e.getIsHoliday());
         ps.executeUpdate();
-        int ID = 0;
-        ResultSet rs = ps.getGeneratedKeys();
-        if (rs.next()) {
-            ID = rs.getInt(1);
-        }
-        return ID;
+        ResultSet ID = ps.getGeneratedKeys();
+        ID.next();
+        return ID.getInt(1);
     }
 
     /**
@@ -123,8 +117,8 @@ public class DALCSalary {
             ResultSet result = stm.getResultSet();
             while (result.next()) {
 
-                int WORK = result.getInt("WORKnr");
-                int ODIN = result.getInt("ODINnr");
+                boolean IsItOdin = result.getBoolean("IsItOdin");
+                int OdinNr = result.getInt("OdinNr");
                 int ID = result.getInt("FiremanID");
                 String Role = result.getString("Role");
                 String SalaryCode = result.getString("SalaryCode");
@@ -133,27 +127,7 @@ public class DALCSalary {
                 int TypeOfWork = result.getInt("TypeOfWork");
                 boolean isHoliday = result.getBoolean("isHoliday");
 
-                BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
-                res.add(c);
-            }
-        }
-        if (!stm.execute("select * from SalaryReport inner join WorkReport on WorkReport.WorkNr = SalaryReport.WORKnr")) {
-            Error.Datatable("OdinReport or Salaryreport");
-        } else {
-            ResultSet result = stm.getResultSet();
-            while (result.next()) {
-
-                int WORK = result.getInt("WORKnr");
-                int ODIN = result.getInt("ODINnr");
-                int ID = result.getInt("FiremanID");
-                String Role = result.getString("Role");
-                String SalaryCode = result.getString("SalaryCode");
-                double Hours = result.getDouble("Hours");
-                String Date = result.getString("Date");
-                int TypeOfWork = result.getInt("TypeOfWork");
-                boolean isHoliday = result.getBoolean("isHoliday");
-
-                BE.BESalary c = new BE.BESalary(ODIN, WORK, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
+                BE.BESalary c = new BE.BESalary(OdinNr, IsItOdin, ID, Role, SalaryCode, Hours, Date, TypeOfWork, isHoliday);
                 res.add(c);
             }
         }
@@ -167,26 +141,18 @@ public class DALCSalary {
      * @throws java.sql.SQLException
      */
     public void Delete(BE.BESalary e) throws SQLException {
-        String sql = "delete * from SalaryReport, OdinReport, WorkReport";
+        String sql = "delete.SalaryReport delete.OdinReport";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.executeUpdate();
     }
 
-    public void UpdateOdin(BE.BESalary e) throws SQLException {
-        String sql = "update SalaryReport set Hours=? where ODINnr=? and FiremanID=?";
+    public void UpdateSalary(BE.BESalary e) throws SQLException {
+        String sql = "update SalaryReport set Hours=? where IsItOdin=? and OdinNr=? and FiremanID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setDouble(1, e.getHours());
-        ps.setInt(2, e.getODIN());
-        ps.setInt(3, e.getFiremanID());
-        ps.executeUpdate();
-    }
-
-    public void UpdateWork(BE.BESalary e) throws SQLException {
-        String sql = "update SalaryReport set Hours=? where WORKnr=? and FiremanID=?";
-        PreparedStatement ps = m_connection.prepareStatement(sql);
-        ps.setDouble(1, e.getHours());
-        ps.setInt(2, e.getWORK());
-        ps.setInt(3, e.getFiremanID());
+        ps.setBoolean(2, e.getIsItOdin());
+        ps.setInt(3, e.getODIN());
+        ps.setInt(4, e.getFiremanID());
         ps.executeUpdate();
     }
 }

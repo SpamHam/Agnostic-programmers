@@ -12,14 +12,14 @@ package BE;
 public class BESalary {
 
     private String Role, SalaryCode, Date;
-    private int FiremanID, ODIN, WORK, TypeOfWork;
+    private int FiremanID, ODIN, TypeOfWork;
     private double Hours;
-    private boolean isHoliday;
+    private boolean IsItOdin, isHoliday;
 
     /**
      * Constructor used for creating a monthly salary report
      * @param ODIN int
-     * @param WORK int
+     * @param IsItOdin int
      * @param ID int
      * @param Role String
      * @param SalaryCode String
@@ -28,8 +28,8 @@ public class BESalary {
      * @param TypeOfWork int
      * @param isHoliday boolean
      */
-    public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday) {
-        this.WORK = WORK;
+    public BESalary(int ODIN, boolean IsItOdin, int ID, String Role, String SalaryCode, double Hours, String Date, int TypeOfWork, boolean isHoliday) {
+        this.IsItOdin = IsItOdin;
         this.ODIN = ODIN;
         this.FiremanID = ID;
         this.Role = Role;
@@ -42,9 +42,17 @@ public class BESalary {
 
     /**
      * Not sure if this constructor is used, please find out and possibly delete if not!
+     * @param ODIN
+     * @param IsItOdin
+     * @param ID
+     * @param Role
+     * @param SalaryCode
+     * @param Hours
+     * @param Date
+     * @param TypeOfWork
      */
-    public BESalary(int ODIN, int WORK, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork) {
-        this.WORK = WORK;
+   public BESalary(int ODIN, boolean IsItOdin, int ID, String Role, String SalaryCode, int Hours, String Date, int TypeOfWork) {
+        this.IsItOdin = IsItOdin;
         this.ODIN = ODIN;
         this.FiremanID = ID;
         this.Role = Role;
@@ -168,16 +176,16 @@ public class BESalary {
     }
 
     /**
-     * @return the WORK
+     * @return the IsItOdin
      */
-    public int getWORK() {
-        return WORK;
+    public boolean getIsItOdin() {
+        return IsItOdin;
     }
 
     /**
-     * @param WORK the WORK to set
+     * @param IsItOdin the IsItOdin to set
      */
-    public void setWORK(int WORK) {
-        this.WORK = WORK;
+    public void setWORK(boolean IsItOdin) {
+        this.IsItOdin = IsItOdin;
     }
 }

@@ -48,35 +48,23 @@ public class BLLPayroll implements PDFListener {
      * @throws Exception
      */
     public void CreateOdinReport(ArrayList<BE.BESalary> b) throws Exception {
-        if (b.get(0).getDate().isEmpty() || b.get(0).getODIN() == 0) {
+        int ID = b.get(0).getODIN();
+        if (b.get(0).getDate().isEmpty() || (b.get(0).getODIN() == 0 && b.get(0).getIsItOdin())) {
             Error.NotEnougthInfo("creating a OdinReport.");
         } else {
             try {
-                DALCSalary.getInstance().OdinReport(b.get(0));
+                if (b.get(0).getIsItOdin()) {
+                    DALCSalary.getInstance().OdinReport(b.get(0));
+                } else {
+                    ID = DALCSalary.getInstance().WorkReport(b.get(0));
+                }
                 for (int idx = 0; idx < b.size(); idx++) {
+                    b.get(idx).setODIN(ID);
                     CreateSalaryReport(b.get(idx));
                 }
             } catch (SQLServerException ex) {
-                Error.StorageUnreachable(".");
+                Error.StorageUnreachable("." + ex);
             }
-        }
-    }
-
-    /**
-     *
-     * @param b
-     * @throws Exception
-     */
-    public void CreateWorkReport(ArrayList<BE.BESalary> b) throws Exception {
-        try {
-            System.out.println("1");
-            int ID = DALCSalary.getInstance().WorkReport(b.get(0));
-            for (BE.BESalary c : b) {
-                c.setWORK(ID);
-                CreateSalaryReport(c);
-            }
-        } catch (SQLServerException ex) {
-            Error.StorageUnreachable(".");
         }
     }
 
@@ -174,11 +162,7 @@ public class BLLPayroll implements PDFListener {
 
     public void update(BE.BESalary e) throws Exception {
         try {
-            if (e.getODIN() != 0) {
-                DALC.DALCSalary.getInstance().UpdateOdin(e);
-            } else {
-                DALC.DALCSalary.getInstance().UpdateWork(e);
-            }
+            DALC.DALCSalary.getInstance().UpdateSalary(e);
         } catch (SQLServerException ex) {
             Error.StorageUnreachable(".");
         }
@@ -193,27 +177,27 @@ public class BLLPayroll implements PDFListener {
             BLLFireman bllFire = new BLLFireman();
             for (BE.BETimePlan c : event.getTime()) {
                 if (c.getTime() != null) {
-                    time =  Utility.DateConverter.getDate(DateConverter.MONTH_DAY) +"/" + Utility.DateConverter.getDate(DateConverter.YEAR) + " " + c.getTime();
+                    time = Utility.DateConverter.getDate(DateConverter.MONTH_DAY) + "/" + Utility.DateConverter.getDate(DateConverter.YEAR) + " " + c.getTime();
                 }
                 if ((event.getType().equalsIgnoreCase("øvelse") || event.getType().equalsIgnoreCase("brandvagt")
                         || event.getType().equalsIgnoreCase("stand-by")) && c.getHours() != 0) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), time, event.getSelectedType(), false);
+                    BE.BESalary s = new BE.BESalary(0, false, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), time, event.getSelectedType(), false);
                     Salary.add(s);
                 }
                 if (c.getStationHours() != 0) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    BE.BESalary s = new BE.BESalary(0, 0, f.getID(), holdleder, f.getPaymentNr(), c.getStationHours(), time, BLL.BLLTimePlan.getInstance().getTypeOfWorkFromString("Andet"), false);
+                    BE.BESalary s = new BE.BESalary(0, false, f.getID(), holdleder, f.getPaymentNr(), c.getStationHours(), time, BLL.BLLTimePlan.getInstance().getTypeOfWorkFromString("Andet"), false);
                     StationSalary.add(s);
                 }
             }
             if (!StationSalary.isEmpty()) {
-                CreateWorkReport(StationSalary);
+                CreateOdinReport(StationSalary);
             }
             if (!Salary.isEmpty()) {
-                CreateWorkReport(Salary);
+                CreateOdinReport(Salary);
             }
         } catch (Exception ex) {
             throw new EventExercutionException(ex.getMessage());
@@ -232,18 +216,18 @@ public class BLLPayroll implements PDFListener {
         ArrayList<BE.BESalary> salary = new ArrayList<>();
         BLLFireman bllFire = new BLLFireman();
         BE.BETimePlan T = event.getTime().get(0);
-        for (BE.BETimePlan c : event.getTime()) {
-            try {
-                if (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck") || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet")) {
+        try {
+            for (BE.BETimePlan c : event.getTime()) {
+                if (c.getHours() > 0 && (event.getType().equalsIgnoreCase("indsats") || event.getType().equalsIgnoreCase("arbejde falck") || event.getType().equalsIgnoreCase("følgeskadeindsats") || event.getType().equalsIgnoreCase("andet"))) {
                     BE.BEFireman f = bllFire.FiremanFromID(c.getFiremanID());
                     String holdleder = isLeader(f);
-                    BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), 0, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), event.getDate(), event.getSelectedType(), false);
+                    BE.BESalary s = new BE.BESalary(Integer.parseInt(event.getFireNr()), true, f.getID(), holdleder, f.getPaymentNr(), c.getHours(), event.getDate(), event.getSelectedType(), false);
                     salary.add(s);
-                    CreateOdinReport(salary);
                 }
-            } catch (Exception ex) {
-                throw new EventExercutionException(ex.getMessage());
             }
+            CreateOdinReport(salary);
+        } catch (Exception ex) {
+            throw new EventExercutionException(ex.getMessage());
         }
     }
 }
