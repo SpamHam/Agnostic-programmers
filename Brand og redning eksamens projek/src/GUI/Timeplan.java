@@ -29,8 +29,7 @@ public class Timeplan extends javax.swing.JFrame {
     ArrayList<String> colNames;
     String type;
     int selectedType;
-    private PDFListener PDFListener; // holds a reference to a class that implements PDFListener
-    ArrayList<PDFListener> APDFListeners = new ArrayList<>();
+    ArrayList<PDFListener> APDFListeners = new ArrayList<>(); // holds a reference to classes that implements PDFListener
     BLLPDF BLLPDF = new BLLPDF();
     //BLLFireman BLLFireman = new BLLFireman();
     BLLPayroll BLLPayroll = new BLLPayroll();
