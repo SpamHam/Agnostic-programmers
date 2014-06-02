@@ -30,31 +30,34 @@ public class EmergencyStart extends javax.swing.JFrame {
     public EmergencyStart() {
         initComponents();
         setTitle("Emergency Start");
-        
+
         //All ActionListeners are listed here
         ActionListener BTNStart = new BTNStartListener();
         btnStart.addActionListener(BTNStart);
         ActionListener BTNFinishACall = new BTNFinishCallListener();
         btnFinishACall.addActionListener(BTNFinishACall);
     }
+
     /**
      * Returns the current time in date, hours, minutes and seconds.
-     * @return 
+     *
+     * @return
      */
     public String currentTime() {
         return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
     }
-    
+
     /**
-     * The method create a timestamp in the database and set the text with the last time. 
+     * The method create a timestamp in the database and set the text with the
+     * last time.
      */
     private void AddTime() {
         txtLastCall.setText(currentTime());
-        
+
         try {
             BLL.BLLEmergencyStart.getInstance().Create(Udrykningstider, currentTime());
         } catch (Exception ex) {
-           JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }
@@ -66,22 +69,21 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        AddTime();  
+            AddTime();
         }
-        
     }
-    
+
     private class BTNFinishCallListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-        EmergencyStartDialog start = new EmergencyStartDialog(null, true, Udrykningstider);
-        start.setVisible(true);
-        Udrykningstider.clear();
-        dispose();    
+            EmergencyStartDialog start = new EmergencyStartDialog(null, true, Udrykningstider);
+            start.setVisible(true);
+            Udrykningstider.clear();
+            dispose();
         }
-        
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

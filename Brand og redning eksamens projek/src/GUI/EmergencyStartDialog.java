@@ -38,7 +38,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         initComponents();
         nyeTider = tider;
         iniTimeStamps();
-        
+
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
         tblCallOverview.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
@@ -62,7 +62,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
             startTider = BLL.BLLEmergencyStart.getInstance().RemoveOldDates();
             for (String i : nyeTider) {
-                
+
                 startTider.add(i);
             }
 
@@ -80,7 +80,6 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             startMenu.setVisible(true);
             dispose();
         }
-
     }
 
     private class BTNMakeOdinReportListener implements ActionListener {
@@ -92,7 +91,6 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
             report.setVisible(true);
             dispose();
         }
-
     }
 
     /**
@@ -160,11 +158,9 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     /**
      * @param args the command line arguments
      */
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnMakeAnODINReport;

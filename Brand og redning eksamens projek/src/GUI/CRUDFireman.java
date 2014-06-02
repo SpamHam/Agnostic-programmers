@@ -45,9 +45,6 @@ public class CRUDFireman extends javax.swing.JFrame {
     private final int wdt = 148;
     private String path = null;
     private String batPath = "C:\\Billeder";
-    
-    
-   
 
     /**
      * Populates the allFiremans ArrayList
@@ -75,7 +72,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     public CRUDFireman() {
         initComponents();
         initFiremans();
-       
+
         setFiremanListener(m_fireman);
         FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
         tblFiremen.setModel(FiremanTableModel);// Sets the table model for the JTable
@@ -101,7 +98,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         btnUpdate.setEnabled(false);
         UpdateFieldsPanel.setVisible(false);
         tblFiremen.addMouseListener(new java.awt.event.MouseAdapter() {
-
             /**
              * When clicking a row it enables the Update button and Sets the
              * visibility of textfields required for the update function
@@ -110,8 +106,7 @@ public class CRUDFireman extends javax.swing.JFrame {
              */
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                onRowSelected(evt
-                );
+                onRowSelected(evt);
                 btnUpdate.setEnabled(true);
                 UpdateFieldsPanel.setVisible(true);
             }
@@ -132,48 +127,37 @@ public class CRUDFireman extends javax.swing.JFrame {
                 txtPaymentNr.setText(allFiremans.get(selectedRow).getPaymentNr());
                 txtHiredDate.setText(allFiremans.get(selectedRow).getHiredDate());
                 ChBoxIsLeaderTrained.setSelected(allFiremans.get(selectedRow).isLeaderTrained());
-                
-                if (allFiremans.get(selectedRow).getProfileImage() != null && !allFiremans.get(selectedRow).getProfileImage().isEmpty() ){
+
+                if (allFiremans.get(selectedRow).getProfileImage() != null && !allFiremans.get(selectedRow).getProfileImage().isEmpty()) {
                     try {
                         lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage(allFiremans.get(selectedRow).getProfileImage(), wdt, hgt)));
                     } catch (IOException ex) {
                         JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
-                   return;
-               }
+                    return;
+                }
                 try {
                     lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage("C:\\Billeder\\brandmand.jpg", wdt, hgt)));//resize("C:\\Billeder\\brandmand.jpg", wdt, hgt)));
                 } catch (IOException ex) {
                     JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
-                            }
-            
-            
-            
+            }
         });
     }
-    
-    private void initPath(){
-        path = m_fireman.path();
-        
-    }
-    
 
-    
-    private void browseImage(){
+    private void initPath() {
+        path = m_fireman.path();
+
+    }
+
+    private void browseImage() {
         try {
             m_fireman.browseForProfilePicture();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        
-    }
-    
+        }
 
-    
-  
-    
- 
+    }
 
     /**
      * Anonymous inner class listening on the Add Button
@@ -201,7 +185,6 @@ public class CRUDFireman extends javax.swing.JFrame {
 
             }
         }
-
     }
 
     /**
@@ -218,7 +201,6 @@ public class CRUDFireman extends javax.swing.JFrame {
             allFiremans.set(selectedRow, updateFireman);
             FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
-
     }
 
     /**
@@ -233,7 +215,6 @@ public class CRUDFireman extends javax.swing.JFrame {
             allFiremans.remove(selectedRow);
             FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
-
     }
 
     /**
@@ -247,7 +228,6 @@ public class CRUDFireman extends javax.swing.JFrame {
             openAdministrationMenu();
 
         }
-
     }
 
     /**
@@ -315,24 +295,23 @@ public class CRUDFireman extends javax.swing.JFrame {
             }
         }
     }
-    
-    
-        private class ChangeProfileImage implements ActionListener {
+
+    private class ChangeProfileImage implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             browseImage();
             initPath();
-            
+
             BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
                     txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
                     ChBoxIsLeaderTrained.isSelected(), allFiremans.get(selectedRow).getHiredDate(), path);
             fireUpdateFiremanEvent(updateFireman);
             allFiremans.set(selectedRow, updateFireman);
             FiremanTableModel.setCRUDFiremanList(allFiremans);
-            
+
         }
-        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -573,7 +552,6 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox ChBoxIsLeaderTrained;
     private javax.swing.JPanel UpdateFieldsPanel;
@@ -601,5 +579,4 @@ public class CRUDFireman extends javax.swing.JFrame {
     private javax.swing.JTextField txtPaymentNr;
     private javax.swing.JTextField txtTelephoneNr;
     // End of variables declaration//GEN-END:variables
-
 }

@@ -101,11 +101,12 @@ public class DALCFireman {
 
     /**
      * Updates a row on the selected CPR in Fireman table
+     *
      * @param u
      * @throws SQLException
      */
     public void update(BE.BEFireman u) throws SQLException {
-        
+
         String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=?, HiredDate=?, ProfileImage=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
