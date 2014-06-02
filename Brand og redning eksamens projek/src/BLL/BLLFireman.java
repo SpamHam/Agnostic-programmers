@@ -6,7 +6,7 @@
 package BLL;
 
 import BE.BEFireman;
-import static GUI.AddFiremanDialog.resize;
+
 import GUI.CRUDFiremanListener;
 import GUI.JPGFilter;
 import Utility.Error.EventExercutionException;
@@ -15,8 +15,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 
@@ -30,7 +33,10 @@ public class BLLFireman implements CRUDFiremanListener {
     private final Utility.Error.ErrorHandler Error;
     private final int hgt = 120;
     private final int wdt = 110;
+    private String path = null;
     private static final String batPath = "C:\\Billeder";
+    private BufferedImage resizedImage = null;
+    private BufferedImage changeimage  = null;
 
     /**
      * Instantiates errorHandler
@@ -130,23 +136,39 @@ public class BLLFireman implements CRUDFiremanListener {
     }
 
     public void browseForProfilePicture() throws Exception {
-        int type = 0;
+        
         JFileChooser fc = new JFileChooser(batPath);
         fc.setFileFilter(new JPGFilter());
         int res = fc.showOpenDialog(null);
         BufferedImage originalImage = null;
-        BufferedImage resizedImage = null;
+        //BufferedImage resizedImage = null;
         // We have an image!
         try {
             if (res == JFileChooser.APPROVE_OPTION) {
                 //File file = fc.getSelectedFile();
-                String path = fc.getSelectedFile().getPath();
+                path = fc.getSelectedFile().getPath();
                 originalImage = ImageIO.read(new File(path));
                 resizedImage = resize(originalImage, wdt, hgt);
             } // Oops!
         } catch (Exception iOException) {
             throw new Exception("Du skal væge et billed.");
         }
+    }
+    
+    
+    public BufferedImage returnImage(){
+        return resizedImage;
+        
+    }
+    
+    public BufferedImage changeImage() throws IOException{
+        changeimage = resizeChangedImage(batPath, wdt, hgt);
+        
+        return changeimage;
+   }
+    
+    public String path(){
+        return path;
     }
 
     /**
@@ -165,6 +187,17 @@ public class BLLFireman implements CRUDFiremanListener {
         g2d.dispose();
         return bi;
     }
+    
+    public BufferedImage resizeChangedImage(String path,int width, int height) throws IOException {
+    BufferedImage image = null;
+    image = ImageIO.read(new File(path));
+    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
+    Graphics2D g2d = (Graphics2D) bi.createGraphics();
+    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
+    g2d.drawImage(image, 0, 0, width, height, null);
+    g2d.dispose();
+    return bi;
+}
 
     /**
      * Calls the Create function from DALCFireman and check wether any of the

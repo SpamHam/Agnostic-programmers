@@ -6,6 +6,7 @@
 package GUI;
 
 import BE.BEFireman;
+import BLL.BLLFireman;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -35,6 +36,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     private final int hgt = 120;
     private final int wdt = 110;
     private String path = null;
+    private BLLFireman m_fireman = new BLLFireman();
 
     /**
      * Creates new form AddFiremanDialog
@@ -79,58 +81,21 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     public BEFireman getNewFireman() {
         return fireman;
     }
-    
-    private void browseForProfilePicture(){
-        int type = 0;
-        JFileChooser fc = new JFileChooser(batPath);
-        fc.setFileFilter(new JPGFilter()); 
-        int res = fc.showOpenDialog(null);
-        BufferedImage originalImage = null;
-        BufferedImage resizedImage = null;
-        
-        // We have an image!
+
+    /**
+     * This method let you browse for an image. 
+     */
+    private void browseImage(){
         try {
-            if (res == JFileChooser.APPROVE_OPTION) {
-                File file = fc.getSelectedFile();
-                path = fc.getSelectedFile().getPath();
-                originalImage = ImageIO.read(new File(path));
-                resizedImage = resize(originalImage, wdt, hgt);
-                System.out.println(fc.getSelectedFile().getPath());
-                //BufferedImage origalImage = ImageIO.read(file);
-                //BufferedImage resizedImage = new BufferedImage(wdt, hgt, type);
-                //Graphics2D g = origalImage.createGraphics(); //resizedImage.createGraphics();
-                //g.drawImage(origalImage, 0, 0, wdt, hgt, null);
-                lblProfilPicture.setIcon(new ImageIcon(resizedImage));
-                //lblProfilPicture.setIcon(new ImageIcon(origalImage));
-            } // Oops!
-            else {
-                JOptionPane.showMessageDialog(null,
-                        "You must select one image to be the reference.", "Aborting...",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception iOException) {
-        } 
-     
+            m_fireman.browseForProfilePicture();
+        } catch (Exception ex) {
+            Logger.getLogger(AddFiremanDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
-    private void test(){
-        
-        //String  t = browseForProfilePicture();
-        //System.out.println(t + "hej");
-        
-        
-        
-        
+    private void profileImage(){
+        lblProfilPicture.setIcon(new ImageIcon(m_fireman.returnImage()));
     }
-    
-    public static BufferedImage resize(BufferedImage image, int width, int height) {
-    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
-    Graphics2D g2d = (Graphics2D) bi.createGraphics();
-    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
-    g2d.drawImage(image, 0, 0, width, height, null);
-    g2d.dispose();
-    return bi;
-}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -294,8 +259,9 @@ public class AddFiremanDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
-        browseForProfilePicture();
-        //test();
+     browseImage();
+     profileImage();
+      
     }//GEN-LAST:event_btnBrowseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

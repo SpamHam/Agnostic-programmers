@@ -45,6 +45,8 @@ public class CRUDFireman extends javax.swing.JFrame {
     private final int wdt = 148;
     private String path = null;
     private String batPath = "C:\\Billeder";
+    
+    
    
 
     /**
@@ -73,6 +75,7 @@ public class CRUDFireman extends javax.swing.JFrame {
     public CRUDFireman() {
         initComponents();
         initFiremans();
+       
         setFiremanListener(m_fireman);
         FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
         tblFiremen.setModel(FiremanTableModel);// Sets the table model for the JTable
@@ -131,10 +134,18 @@ public class CRUDFireman extends javax.swing.JFrame {
                 ChBoxIsLeaderTrained.setSelected(allFiremans.get(selectedRow).isLeaderTrained());
                 System.out.println(allFiremans.get(selectedRow).getProfileImage());
                 if (allFiremans.get(selectedRow).getProfileImage() != null && !allFiremans.get(selectedRow).getProfileImage().isEmpty() ){
-                 lblImage.setIcon(new ImageIcon(resize(allFiremans.get(selectedRow).getProfileImage(), wdt, hgt)));
+                    try {
+                        lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage(allFiremans.get(selectedRow).getProfileImage(), wdt, hgt)));
+                    } catch (IOException ex) {
+                        Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                    return;
                }
-                lblImage.setIcon(new ImageIcon(resize("C:\\Billeder\\brandmand.jpg", wdt, hgt)));
+                try {
+                    lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage("C:\\Billeder\\brandmand.jpg", wdt, hgt)));//resize("C:\\Billeder\\brandmand.jpg", wdt, hgt)));
+                } catch (IOException ex) {
+                    Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+                }
                             }
             
             
@@ -142,13 +153,17 @@ public class CRUDFireman extends javax.swing.JFrame {
         });
     }
     
+    private void initPath(){
+        path = m_fireman.path();
+        System.out.println(path + "123");
+    }
+    
     public void browseForProfilePicture(){
-        int type = 0;
         JFileChooser fc = new JFileChooser(batPath);
         fc.setFileFilter(new JPGFilter()); 
         int res = fc.showOpenDialog(null);
         BufferedImage originalImage = null;
-        BufferedImage resizedImage = null;
+        
         
         // We have an image!
         try {
@@ -156,8 +171,8 @@ public class CRUDFireman extends javax.swing.JFrame {
                 
                 path = fc.getSelectedFile().getPath();
                 originalImage = ImageIO.read(new File(path));
-                resizedImage = m_fireman.resize(originalImage, wdt, hgt);
-                lblImage.setIcon(new ImageIcon(resizedImage));
+                //resizedImage = m_fireman.resize(originalImage, wdt, hgt);
+                //lblImage.setIcon(new ImageIcon(resizedImage));
                 System.out.println(path + "123");
                 
               
@@ -172,22 +187,26 @@ public class CRUDFireman extends javax.swing.JFrame {
      
     }
     
-  
-    
-    public BufferedImage resize(String path,int width, int height) {
-    BufferedImage image = null;
+    private void browseImage(){
         try {
-            image = ImageIO.read(new File(path));
+            m_fireman.browseForProfilePicture();
+        } catch (Exception ex) {
+            Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    private void setProfileImage(){
+        try {
+            lblImage.setIcon(new ImageIcon(m_fireman.changeImage()));
         } catch (IOException ex) {
             Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
         }
-    BufferedImage bi = new BufferedImage(width, height, BufferedImage.TRANSLUCENT);
-    Graphics2D g2d = (Graphics2D) bi.createGraphics();
-    g2d.addRenderingHints(new RenderingHints(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY));
-    g2d.drawImage(image, 0, 0, width, height, null);
-    g2d.dispose();
-    return bi;
-}
+    }
+    
+  
+    
+ 
 
     /**
      * Anonymous inner class listening on the Add Button
@@ -335,7 +354,8 @@ public class CRUDFireman extends javax.swing.JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            browseForProfilePicture();
+            browseImage();
+            initPath();
             
             BEFireman updateFireman = new BEFireman(allFiremans.get(selectedRow).getID(), txtFirstName.getText(), txtLastName.getText(),
                     txtAddress.getText(), txtTelephoneNr.getText(), txtCallNr.getText(), txtPaymentNr.getText(),
