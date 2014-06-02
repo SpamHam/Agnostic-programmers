@@ -177,7 +177,6 @@ public class CRUDMaterial extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             try {
-               // BLL.BLLMaterial.getInstance().Update(new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim()));
                 BEMaterial event = new BE.BEMaterial(allMaterials.get(selectedRow).getEmergencyID(), txtMaterial.getText().trim());
                 fireUpdateMaterialEvent(event);
                 allMaterials = m_material.VehicleReadPerformed();
