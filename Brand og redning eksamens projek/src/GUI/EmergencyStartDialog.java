@@ -4,16 +4,10 @@
  */
 package GUI;
 
-import Utility.DateConverter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
@@ -32,11 +26,13 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form EmergencyStartDialog
+     *
+     * @param parent
+     * @param modal
      */
-    public EmergencyStartDialog(java.awt.Frame parent, boolean modal, ArrayList<String> tider) {
+    public EmergencyStartDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        nyeTider = tider;
         iniTimeStamps();
 
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
@@ -54,6 +50,10 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         btnMakeAnODINReport.addActionListener(BTNMakeOdinReport);
     }
 
+    public void setTime(ArrayList<String> tider) {
+        nyeTider = tider;
+    }
+
     /**
      * Initializes the Timestamps
      */
@@ -66,22 +66,28 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
                 startTider.add(i);
             }
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
+    /**
+     *
+     */
     private class BTNBackListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
             startTider.clear();
-            EmergencyStart startMenu = new EmergencyStart();
+            FiremanMenu startMenu = new FiremanMenu();
             startMenu.setVisible(true);
             dispose();
         }
     }
 
+    /**
+     *
+     */
     private class BTNMakeOdinReportListener implements ActionListener {
 
         @Override

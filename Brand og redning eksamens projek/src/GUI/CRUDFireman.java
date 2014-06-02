@@ -8,25 +8,15 @@ package GUI;
 import BE.BEFireman;
 import BLL.BLLFireman;
 import Utility.Error.EventExercutionException;
-import java.awt.Graphics2D;
-import java.awt.Image;
-import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import sun.awt.image.ImageAccessException;
 
 /**
  *
@@ -76,8 +66,6 @@ public class CRUDFireman extends javax.swing.JFrame {
         setFiremanListener(m_fireman);
         FiremanTableModel = new CRUDFiremanTableModel(allFiremans);
         tblFiremen.setModel(FiremanTableModel);// Sets the table model for the JTable
-        //sorter = new TableRowSorter<TableModel>(FiremanTableModel);
-        //tblFiremen.setRowSorter(sorter);
         tblFiremen.getTableHeader().setReorderingAllowed(false);
         setTitle("Brandmand oversigt");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -212,7 +200,7 @@ public class CRUDFireman extends javax.swing.JFrame {
         public void actionPerformed(ActionEvent e) {
             BEFireman i = allFiremans.get(selectedRow);
             fireRemoveFiremanEvent(i);
-            allFiremans.remove(selectedRow);
+            initFiremans();
             FiremanTableModel.setCRUDFiremanList(allFiremans);
         }
     }

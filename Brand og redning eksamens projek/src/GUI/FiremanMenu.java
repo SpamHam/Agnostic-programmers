@@ -57,7 +57,7 @@ public class FiremanMenu extends javax.swing.JFrame {
      * Opens the EmergencyStart Dialog
      */
     private void openEmergencySchedule() {
-        EmergencyStartDialog EmergencySchedule = new EmergencyStartDialog(this, true, null);
+        EmergencyStartDialog EmergencySchedule = new EmergencyStartDialog(this, true);
         setLocationRelativeTo(this);
         EmergencySchedule.setVisible(true);
     }

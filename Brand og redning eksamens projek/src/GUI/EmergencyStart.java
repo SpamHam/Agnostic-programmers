@@ -5,15 +5,9 @@
 package GUI;
 
 import Utility.DateConverter;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -34,8 +28,6 @@ public class EmergencyStart extends javax.swing.JFrame {
         //All ActionListeners are listed here
         ActionListener BTNStart = new BTNStartListener();
         btnStart.addActionListener(BTNStart);
-        ActionListener BTNFinishACall = new BTNFinishCallListener();
-        btnFinishACall.addActionListener(BTNFinishACall);
     }
 
     /**
@@ -73,16 +65,6 @@ public class EmergencyStart extends javax.swing.JFrame {
         }
     }
 
-    private class BTNFinishCallListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            EmergencyStartDialog start = new EmergencyStartDialog(null, true, Udrykningstider);
-            start.setVisible(true);
-            Udrykningstider.clear();
-            dispose();
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -96,7 +78,6 @@ public class EmergencyStart extends javax.swing.JFrame {
         btnStart = new javax.swing.JButton();
         lblLastCall = new javax.swing.JLabel();
         txtLastCall = new javax.swing.JTextField();
-        btnFinishACall = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,8 +90,6 @@ public class EmergencyStart extends javax.swing.JFrame {
 
         txtLastCall.setBackground(javax.swing.UIManager.getDefaults().getColor("menu"));
         txtLastCall.setBorder(null);
-
-        btnFinishACall.setText("Afslut en udrykning");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,10 +106,6 @@ public class EmergencyStart extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(txtLastCall, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(67, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnFinishACall, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,14 +116,13 @@ public class EmergencyStart extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblLastCall, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtLastCall))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnFinishACall))
+                .addGap(29, 29, 29))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
+        /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -165,13 +139,13 @@ public class EmergencyStart extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EmergencyStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FiremanMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EmergencyStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FiremanMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EmergencyStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FiremanMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EmergencyStart.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FiremanMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -182,8 +156,8 @@ public class EmergencyStart extends javax.swing.JFrame {
             }
         });
     }
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnFinishACall;
     private javax.swing.JButton btnStart;
     private javax.swing.JLabel lblLastCall;
     private javax.swing.JTextField txtLastCall;

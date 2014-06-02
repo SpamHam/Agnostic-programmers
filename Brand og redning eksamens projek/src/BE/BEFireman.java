@@ -16,7 +16,9 @@ public final class BEFireman {
     private boolean LeaderTrained;
 
     /**
-     * Constructor used for packaging CPR, First Name and Last Name for a Fireman
+     * Constructor used for packaging CPR, First Name and Last Name for a
+     * Fireman
+     *
      * @param ID Int
      * @param FirstName String
      * @param LastName String
@@ -29,6 +31,7 @@ public final class BEFireman {
 
     /**
      * Constructor used for packaging First Name and Last Name for a Fireman
+     *
      * @param FirstName String
      * @param LastName String
      */
@@ -39,6 +42,7 @@ public final class BEFireman {
 
     /**
      * Constructor used for updating a fireman
+     *
      * @param ID int
      * @param HiredDate String
      * @param FirstName String
@@ -50,7 +54,7 @@ public final class BEFireman {
      * @param LeaderTrained Boolean
      */
     public BEFireman(int ID, String FirstName, String LastName, String Address,
-                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
+            String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
         this.setID(ID);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
@@ -64,6 +68,7 @@ public final class BEFireman {
 
     /**
      * Constructor used for creating a fireman
+     *
      * @param FirstName String
      * @param LastName String
      * @param Address String
@@ -73,8 +78,8 @@ public final class BEFireman {
      * @param LeaderTrained boolean
      * @param HiredDate String
      */
-      public BEFireman( String FirstName, String LastName, String Address,
-                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
+    public BEFireman(String FirstName, String LastName, String Address,
+            String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
         this.setFirstName(FirstName);
         this.setLastName(LastName);
         this.setAddress(Address);
@@ -84,9 +89,21 @@ public final class BEFireman {
         this.setLeaderTrained(LeaderTrained);
         this.setHiredDate(HiredDate);
     }
-      
-            public BEFireman(String ProfileImage, String FirstName, String LastName, String Address,
-                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
+
+    /**
+     * 
+     * @param ProfileImage
+     * @param FirstName
+     * @param LastName
+     * @param Address
+     * @param PhoneNr
+     * @param CallNr
+     * @param PaymentNr
+     * @param LeaderTrained
+     * @param HiredDate 
+     */
+    public BEFireman(String ProfileImage, String FirstName, String LastName, String Address,
+            String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate) {
         this.setFirstName(FirstName);
         this.setLastName(LastName);
         this.setAddress(Address);
@@ -96,11 +113,24 @@ public final class BEFireman {
         this.setLeaderTrained(LeaderTrained);
         this.setHiredDate(HiredDate);
         this.setProfileImage(ProfileImage);
-        
+
     }
-            
-           public BEFireman(int ID, String FirstName, String LastName, String Address,
-                     String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate, String ProfileImage) {
+
+    /**
+     * 
+     * @param ID
+     * @param FirstName
+     * @param LastName
+     * @param Address
+     * @param PhoneNr
+     * @param CallNr
+     * @param PaymentNr
+     * @param LeaderTrained
+     * @param HiredDate
+     * @param ProfileImage 
+     */
+    public BEFireman(int ID, String FirstName, String LastName, String Address,
+            String PhoneNr, String CallNr, String PaymentNr, boolean LeaderTrained, String HiredDate, String ProfileImage) {
         this.setID(ID);
         this.setFirstName(FirstName);
         this.setLastName(LastName);
@@ -112,7 +142,7 @@ public final class BEFireman {
         this.setHiredDate(HiredDate);
         this.setProfileImage(ProfileImage);
     }
-    
+
     /**
      * @return the ID
      */
