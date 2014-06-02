@@ -36,7 +36,7 @@ public class BLLFireman implements CRUDFiremanListener {
     private String path = null;
     private static final String batPath = "C:\\Billeder";
     private BufferedImage resizedImage = null;
-    private BufferedImage changeimage  = null;
+    
 
     /**
      * Instantiates errorHandler
@@ -90,7 +90,7 @@ public class BLLFireman implements CRUDFiremanListener {
      * @throws Exception
      */
     public void Update(BE.BEFireman b) throws Exception {
-        System.out.println(b.getProfileImage() + "dav");
+        
         if (b.getFirstName().isEmpty() || b.getLastName().isEmpty() || b.getAddress().isEmpty() || b.getPhoneNr().isEmpty() || b.getPaymentNr().isEmpty() || b.getHiredDate().isEmpty()) {
             Error.NotEnougthInfo("updating a fireman.");
         } else {
@@ -134,7 +134,10 @@ public class BLLFireman implements CRUDFiremanListener {
         Error.StringEqualError("" + ID);
         return null;
     }
-
+    /**
+     * This method browse for an image on your computer.
+     * @throws Exception 
+     */
     public void browseForProfilePicture() throws Exception {
         
         JFileChooser fc = new JFileChooser(batPath);
@@ -155,24 +158,26 @@ public class BLLFireman implements CRUDFiremanListener {
         }
     }
     
-    
+    /**
+     * 
+     * @return the resized image. 
+     */
     public BufferedImage returnImage(){
         return resizedImage;
         
     }
     
-    public BufferedImage changeImage() throws IOException{
-        changeimage = resizeChangedImage(batPath, wdt, hgt);
-        
-        return changeimage;
-   }
-    
+
+    /**
+     * 
+     * @return the path of the chosen image. 
+     */
     public String path(){
         return path;
     }
 
     /**
-     * sets the image size.
+     * set the size of the image.
      * 
      * @param image
      * @param width
@@ -187,7 +192,14 @@ public class BLLFireman implements CRUDFiremanListener {
         g2d.dispose();
         return bi;
     }
-    
+    /**
+     * Set the size of the changed image.
+     * @param path
+     * @param width
+     * @param height
+     * @return
+     * @throws IOException 
+     */
     public BufferedImage resizeChangedImage(String path,int width, int height) throws IOException {
     BufferedImage image = null;
     image = ImageIO.read(new File(path));

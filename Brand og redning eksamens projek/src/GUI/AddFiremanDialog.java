@@ -89,7 +89,7 @@ public class AddFiremanDialog extends javax.swing.JDialog {
         try {
             m_fireman.browseForProfilePicture();
         } catch (Exception ex) {
-            Logger.getLogger(AddFiremanDialog.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
     

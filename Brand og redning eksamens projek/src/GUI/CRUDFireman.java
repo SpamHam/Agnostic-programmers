@@ -132,19 +132,19 @@ public class CRUDFireman extends javax.swing.JFrame {
                 txtPaymentNr.setText(allFiremans.get(selectedRow).getPaymentNr());
                 txtHiredDate.setText(allFiremans.get(selectedRow).getHiredDate());
                 ChBoxIsLeaderTrained.setSelected(allFiremans.get(selectedRow).isLeaderTrained());
-                System.out.println(allFiremans.get(selectedRow).getProfileImage());
+                
                 if (allFiremans.get(selectedRow).getProfileImage() != null && !allFiremans.get(selectedRow).getProfileImage().isEmpty() ){
                     try {
                         lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage(allFiremans.get(selectedRow).getProfileImage(), wdt, hgt)));
                     } catch (IOException ex) {
-                        Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                     }
                    return;
                }
                 try {
                     lblImage.setIcon(new ImageIcon(m_fireman.resizeChangedImage("C:\\Billeder\\brandmand.jpg", wdt, hgt)));//resize("C:\\Billeder\\brandmand.jpg", wdt, hgt)));
                 } catch (IOException ex) {
-                    Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
                 }
                             }
             
@@ -155,54 +155,21 @@ public class CRUDFireman extends javax.swing.JFrame {
     
     private void initPath(){
         path = m_fireman.path();
-        System.out.println(path + "123");
+        
     }
     
-    public void browseForProfilePicture(){
-        JFileChooser fc = new JFileChooser(batPath);
-        fc.setFileFilter(new JPGFilter()); 
-        int res = fc.showOpenDialog(null);
-        BufferedImage originalImage = null;
-        
-        
-        // We have an image!
-        try {
-            if (res == JFileChooser.APPROVE_OPTION) {
-                
-                path = fc.getSelectedFile().getPath();
-                originalImage = ImageIO.read(new File(path));
-                //resizedImage = m_fireman.resize(originalImage, wdt, hgt);
-                //lblImage.setIcon(new ImageIcon(resizedImage));
-                System.out.println(path + "123");
-                
-              
-            } // Oops!
-            else {
-                JOptionPane.showMessageDialog(null,
-                        "You must select one image to be the reference.", "Aborting...",
-                        JOptionPane.WARNING_MESSAGE);
-            }
-        } catch (Exception iOException) {
-        } 
-     
-    }
+
     
     private void browseImage(){
         try {
             m_fireman.browseForProfilePicture();
         } catch (Exception ex) {
-            Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
         
     }
     
-    private void setProfileImage(){
-        try {
-            lblImage.setIcon(new ImageIcon(m_fireman.changeImage()));
-        } catch (IOException ex) {
-            Logger.getLogger(CRUDFireman.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
     
   
     

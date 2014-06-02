@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,18 +37,24 @@ public class EmergencyStart extends javax.swing.JFrame {
         ActionListener BTNFinishACall = new BTNFinishCallListener();
         btnFinishACall.addActionListener(BTNFinishACall);
     }
-
+    /**
+     * Returns the current time in date, hours, minutes and seconds.
+     * @return 
+     */
     public String currentTime() {
         return DateConverter.getDate(DateConverter.DATE_HOURS_MINUTES_SECONDS);
     }
-
+    
+    /**
+     * The method create a timestamp in the database and set the text with the last time. 
+     */
     private void AddTime() {
         txtLastCall.setText(currentTime());
-        //Udrykningstider.add(currentTime());
+        
         try {
             BLL.BLLEmergencyStart.getInstance().Create(Udrykningstider, currentTime());
         } catch (Exception ex) {
-            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
 
     }

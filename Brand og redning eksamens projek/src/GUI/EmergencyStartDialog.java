@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -37,7 +38,7 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
         initComponents();
         nyeTider = tider;
         iniTimeStamps();
-        System.out.println(nyeTider.size() + " nye tider");
+        
         StartTableModel = new EmergencyStartDialogTableModel(startTider);
         tblCallOverview.setModel(StartTableModel);
         sorter = new TableRowSorter<TableModel>(StartTableModel);
@@ -61,12 +62,12 @@ public class EmergencyStartDialog extends javax.swing.JDialog {
 
             startTider = BLL.BLLEmergencyStart.getInstance().RemoveOldDates();
             for (String i : nyeTider) {
-                System.out.println(i + " nye tider");
+                
                 startTider.add(i);
             }
 
         } catch (Exception ex) {
-            Logger.getLogger(EmergencyStart.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

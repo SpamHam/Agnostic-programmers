@@ -105,7 +105,7 @@ public class DALCFireman {
      * @throws SQLException
      */
     public void update(BE.BEFireman u) throws SQLException {
-        System.out.println(u.getProfileImage() + "hej");
+        
         String sql = "update Fireman set FirstName=?, LastName=?, Address=?, Phone=?, CallNumber=?, PaymentNr=?, LeaderTrained=?, HiredDate=?, ProfileImage=? where ID=?";
         PreparedStatement ps = m_connection.prepareStatement(sql);
         ps.setString(1, u.getFirstName());
