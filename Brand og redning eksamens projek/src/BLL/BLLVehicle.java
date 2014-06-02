@@ -6,15 +6,10 @@
 package BLL;
 
 import BE.BEVehicle;
-import DALC.DALCVehicle;
 import DALC.IDALCVehicle;
 import GUI.VehicleListener;
 import Utility.Error.EventExercutionException;
-import com.microsoft.sqlserver.jdbc.SQLServerException;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 /**

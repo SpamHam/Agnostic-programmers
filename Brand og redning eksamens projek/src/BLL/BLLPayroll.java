@@ -127,6 +127,10 @@ public class BLLPayroll implements PDFListener {
         return Index;
     }
 
+    /**
+     * Removes all reports in the tables of SalaryReport and OdinReports.
+     * @throws Exception 
+     */
     public void removeall() throws Exception {
         try {
             for (BE.BESalary s : getAll()) {
