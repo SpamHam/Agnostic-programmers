@@ -26,6 +26,9 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * Creates a row in SalaryReport database for each fireman who have been included in timeplan, 
+     * 
+     * Shortly just creates a row in SalaryReport.
      *
      * @param salary
      * @throws Exception
@@ -43,6 +46,8 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * Creates an row in OdinReport,
+     * an uses @CreateSalaryReport to fill in report that relate to the just created odin report.
      *
      * @param b
      * @throws Exception
@@ -69,6 +74,7 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * gather all date from the salary and odin report that are stored in the database.
      *
      * @return @throws Exception
      */
@@ -83,6 +89,8 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * this is a method that takes the date from @UncompressedTable and compress them
+     * so each fireman has one row on the payroll table.
      *
      * @return @throws Exception
      */
@@ -99,6 +107,8 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * this function are used for the detail report - its importent to that they 
+     * dont get compressed to one BElayer since its mostly for micro managing.
      *
      * @param UncompressedTable
      * @param a
@@ -128,6 +138,8 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * gets an arraylist from every salary report that have been converted to 
+     * tablereport
      *
      * @return @throws Exception
      */
@@ -141,6 +153,9 @@ public class BLLPayroll implements PDFListener {
     }
 
     /**
+     * Convert a salaryReport to an tableSalaryReport, it need to be converted
+     * for the table to become representive in the table form they have been 
+     * given us.
      *
      * @param s
      * @return
@@ -160,6 +175,12 @@ public class BLLPayroll implements PDFListener {
         return ts;
     }
 
+    /**
+     * updates a salary, mostly just hours worked.
+     * 
+     * @param e
+     * @throws Exception 
+     */
     public void update(BE.BESalary e) throws Exception {
         try {
             DALC.DALCSalary.getInstance().UpdateSalary(e);
@@ -168,6 +189,15 @@ public class BLLPayroll implements PDFListener {
         }
     }
 
+    /**
+     * this listen to when the button in timeplan are clicked, then it will try 
+     * produce an arraylist of salaryReport that will be send to the database.
+     * 
+     * it will only create a arraylist, if its not an odin report or there are some
+     * StationVagt marked in timeplan.
+     * 
+     * @param event 
+     */
     @Override
     public void PDFTimePlanPerformed(FormatEventPDF event) {
         ArrayList<BE.BESalary> Salary = new ArrayList<>();
@@ -204,6 +234,12 @@ public class BLLPayroll implements PDFListener {
         }
     }
 
+    /**
+     * just a simple function that finds out if the fireman are leader or not.
+     * 
+     * @param f
+     * @return 
+     */
     private String isLeader(BE.BEFireman f) {
         if (f.isLeaderTrained()) {
             return "Holdleder";
@@ -211,6 +247,12 @@ public class BLLPayroll implements PDFListener {
         return "Brandmand";
     }
 
+    /**
+     * this listen to when the button in ODINReport are clicked, then it will try 
+     * produce an arraylist of salaryReport that will be send to the database.
+     *
+     * @param event 
+     */
     @Override
     public void PDFOdinPerformed(FormatEventPDF event) {
         ArrayList<BE.BESalary> salary = new ArrayList<>();
